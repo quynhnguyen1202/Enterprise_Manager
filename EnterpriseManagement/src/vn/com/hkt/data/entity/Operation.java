@@ -22,6 +22,8 @@ public class Operation {
     private float MoneyTotal;
     private float MoneyAfterTax;
     private float  MoneyAfterDiscount;
+    private long IdEnterprise;
+    private long IdDepartment;
 
     public long getId() {
         return Id;
