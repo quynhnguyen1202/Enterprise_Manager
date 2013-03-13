@@ -4,35 +4,23 @@
  */
 package vn.com.hkt.data.entity;
 
-import java.util.Date;
+import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
 
 /**
  *
  * @author QuynhNguyen
  */
 @Entity
-public class Department {
+public class Employee {
     @Id
     @GeneratedValue (strategy= GenerationType.IDENTITY)
-    private long Id;
+    private  long Id;
     private String Name;
-       @Temporal(javax.persistence.TemporalType.DATE)
-    private Date DateActivate;
-       private long IdEnterprise; // Id cua doanh nghiep cha
-       private long IdDepartment; // Id cua phong ban cha
-
-    public Date getDateActivate() {
-        return DateActivate;
-    }
-
-    public void setDateActivate(Date DateActivate) {
-        this.DateActivate = DateActivate;
-    }
+    private long IdDepartment;
 
     public long getId() {
         return Id;
@@ -50,14 +38,6 @@ public class Department {
         this.IdDepartment = IdDepartment;
     }
 
-    public long getIdEnterprise() {
-        return IdEnterprise;
-    }
-
-    public void setIdEnterprise(long IdEnterprise) {
-        this.IdEnterprise = IdEnterprise;
-    }
-
     public String getName() {
         return Name;
     }
@@ -65,5 +45,6 @@ public class Department {
     public void setName(String Name) {
         this.Name = Name;
     }
+  
     
 }

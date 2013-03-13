@@ -9,6 +9,7 @@
     <class>vn.com.hkt.data.entity.Product</class>
     <class>vn.com.hkt.data.entity.ProductGroup</class>
     <class>vn.com.hkt.data.entity.Project</class>
+    <class>vn.com.hkt.data.entity.Employee</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/EntM"/>
       <property name="javax.persistence.jdbc.password" value="sa"/>

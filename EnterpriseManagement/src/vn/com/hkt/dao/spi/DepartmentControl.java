@@ -10,24 +10,46 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import vn.com.hkt.dao.api.Control;
-import vn.com.hkt.data.entity.Enterprise;
+import vn.com.hkt.data.entity.Department;
 
 /**
  *
  * @author QuynhNguyen
  */
-public class EnterpriseControl implements Control {
+public class DepartmentControl implements Control {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("EM");
     EntityManager em = emf.createEntityManager();
 
-   
     @Override
-    public void updateObject() {
-        Enterprise ent = new Enterprise();
+    public void insertObject() {
+        long Id = 0;
+        String Name = null;
+        Date DateActivate = null;
+        long IdEnterprise = 0;
+        long IdDepartment = 0;
+        Department dep = new Department();
+        dep.setId(Id);
+        dep.setName(Name);
+        dep.setDateActivate(DateActivate);
+        dep.setIdDepartment(IdDepartment);
+        dep.setIdEnterprise(IdEnterprise);
         try {
             em.getTransaction().begin();
-            em.merge(ent);
+            em.persist(dep);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+        } finally {
+            em.close();
+        }
+  }
+
+    @Override
+    public void updateObject() {
+        Department dep = new Department();
+        try {
+            em.getTransaction().begin();
+            em.merge(dep);
             em.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e);
@@ -37,24 +59,23 @@ public class EnterpriseControl implements Control {
     }
 
     @Override
-    public List<Object> getListObject( String string) {
+    public List<Object> getListObject(String s) {
         try {
-            String sql = "Select tbl from Enterprise tbl "+ string;
+            String sql = "Select tbl from Department tbl " + s;
             return em.createQuery(sql).getResultList();
         } catch (Exception e) {
             return null;
         } finally {
             em.close();
         }
-
     }
 
     @Override
     public void deleleObject() {
-        Enterprise ent = new Enterprise();
+        Department dep = new Department();
         try {
             em.getTransaction().begin();
-            em.remove(ent);
+            em.remove(dep);
             em.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e);
@@ -62,33 +83,4 @@ public class EnterpriseControl implements Control {
             em.close();
         }
     }
-
-    @Override
-    public void insertObject() {
-        long Id = 0;
-    String Name = null;
-        Date DateActivative = null;
-     long IdEnterprise = 0;
-     String Slogan = null;
-     String Picture = null;
-     Enterprise ent= new Enterprise();
-     ent.setId(Id);
-     ent.setName(Name);
-     ent.setDateActivative(DateActivative);
-     ent.setIdEnterprise(IdEnterprise);
-     ent.setPicture(Picture);
-     ent.setSlogan(Slogan);
-       try {
-           
-            em.getTransaction().begin();
-            em.persist(ent);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e);
-        } finally {
-            em.close();
-        }
-    }
-
-    
 }

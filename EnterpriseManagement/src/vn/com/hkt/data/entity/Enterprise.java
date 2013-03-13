@@ -20,13 +20,13 @@ import javax.persistence.Temporal;
 public class Enterprise {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long Id;
+    private long Id; // Id của mỗi Enterprise
     private String Name;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateActivative;
-    private long IdEnterprise;
+    private long IdEnterprise; // ID của Enterprise cha
     private String Slogan;
-    private String Picture;
+    private String Picture; // đường dẫn đến logo
 
     public Enterprise(long Id, String Name, Date DateActivative, long IdEnterprise, String Slogan, String Picture) {
         this.Id = Id;

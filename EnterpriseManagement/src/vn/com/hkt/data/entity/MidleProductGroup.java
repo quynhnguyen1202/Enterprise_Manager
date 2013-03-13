@@ -15,8 +15,18 @@ import javax.persistence.Id;
  */
 @Entity
 public class MidleProductGroup {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long Id;
+
+    public long getId() {
+        return Id;
+    }
+
+    public void setId(long Id) {
+        this.Id = Id;
+    }
     private long IdProduct;
     private long IdGroupProduct;
 
@@ -35,8 +45,4 @@ public class MidleProductGroup {
     public void setIdProduct(long IdProduct) {
         this.IdProduct = IdProduct;
     }
-    
-    
-   
-    
 }
