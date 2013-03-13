@@ -8,55 +8,64 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import vn.com.hkt.dao.api.Control;
-import vn.com.hkt.data.entity.MidleProductGroup;
+import vn.com.hkt.dao.api.IEntityDao;
 
 /**
  *
  * @author QuynhNguyen
  */
-public class MidleProductGroupControl implements Control {
+public class EntityDao<E> implements IEntityDao<E> {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("EM");
     EntityManager em = emf.createEntityManager();
 
     @Override
-    public void insertObject() {
-        long Id = 0;
-        long IdProduct = 0;
-        long IdGroup = 0;
-        MidleProductGroup mpg = new MidleProductGroup();
-        mpg.setId(Id);
-        mpg.setIdGroupProduct(IdGroup);
-        mpg.setIdProduct(IdProduct);
+    public boolean insert(E object) {
         try {
             em.getTransaction().begin();
-            em.persist(mpg);
+            em.persist(object);
             em.getTransaction().commit();
+            return true;
         } catch (Exception e) {
+            return false;
         } finally {
             em.close();
         }
     }
 
     @Override
-    public void updateObject() {
-        MidleProductGroup mpg = new MidleProductGroup();
+    public boolean update(E object) {
         try {
             em.getTransaction().begin();
-            em.merge(mpg);
+            em.merge(object);
             em.getTransaction().commit();
+            return true;
         } catch (Exception e) {
+            return false;
         } finally {
             em.close();
         }
     }
 
     @Override
-    public List<Object> getListObject(String s) {
+    public boolean delete(E object) {
         try {
-            String sql = "Select tbl from MidleProductGroup tbl  " + s;
-            return em.createQuery(sql).getResultList();
+            em.getTransaction().begin();
+            em.remove(object);
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public E getById(long id) {
+        try {
+            String sql = "Select tbl from ?1 where object.id = ?1";
+            return (E) em.createQuery(sql).setParameter(1, id).getResultList();
         } catch (Exception e) {
             return null;
         } finally {
@@ -65,13 +74,11 @@ public class MidleProductGroupControl implements Control {
     }
 
     @Override
-    public void deleleObject() {
-        MidleProductGroup mpg = new MidleProductGroup();
+    public List<E> query(String sql) {
         try {
-            em.getTransaction().begin();
-            em.remove(mpg);
-            em.getTransaction().commit();
+            return (List) em.createQuery(sql);
         } catch (Exception e) {
+            return null;
         } finally {
             em.close();
         }
