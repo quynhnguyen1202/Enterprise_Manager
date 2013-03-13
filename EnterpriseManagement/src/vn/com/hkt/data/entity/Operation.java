@@ -4,10 +4,12 @@
  */
 package vn.com.hkt.data.entity;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -24,6 +26,55 @@ public class Operation {
     private float  MoneyAfterDiscount;
     private long IdEnterprise;
     private long IdDepartment;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date DateExecute;
+    private long IdEmployee;
+
+    public long getIdEmployee() {
+        return IdEmployee;
+    }
+
+    public void setIdEmployee(long IdEmployee) {
+        this.IdEmployee = IdEmployee;
+    }
+
+    public Operation() {
+    }
+
+    public Operation(long Id, long IdProject, float MoneyTotal, float MoneyAfterTax, float MoneyAfterDiscount, long IdEnterprise, long IdDepartment, Date DateExecute,long IdEmployee) {
+        this.Id = Id;
+        this.IdProject = IdProject;
+        this.MoneyTotal = MoneyTotal;
+        this.MoneyAfterTax = MoneyAfterTax;
+        this.MoneyAfterDiscount = MoneyAfterDiscount;
+        this.IdEnterprise = IdEnterprise;
+        this.IdDepartment = IdDepartment;
+        this.DateExecute = DateExecute;
+    }
+
+    public Date getDateExecute() {
+        return DateExecute;
+    }
+
+    public void setDateExecute(Date DateExecute) {
+        this.DateExecute = DateExecute;
+    }
+
+    public long getIdDepartment() {
+        return IdDepartment;
+    }
+
+    public void setIdDepartment(long IdDepartment) {
+        this.IdDepartment = IdDepartment;
+    }
+
+    public long getIdEnterprise() {
+        return IdEnterprise;
+    }
+
+    public void setIdEnterprise(long IdEnterprise) {
+        this.IdEnterprise = IdEnterprise;
+    }
 
     public long getId() {
         return Id;
