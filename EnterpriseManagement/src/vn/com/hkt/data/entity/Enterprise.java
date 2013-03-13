@@ -87,6 +87,4 @@ public class Enterprise {
     public void setSlogan(String Slogan) {
         this.Slogan = Slogan;
     }
-    
-    
 }
