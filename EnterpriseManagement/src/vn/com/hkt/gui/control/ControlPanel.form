@@ -22,12 +22,11 @@
               <EmptySpace min="5" pref="5" max="5" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="300" pref="300" max="300" attributes="0"/>
-              <Component id="jButton3" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-              <Component id="jButton5" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-              <Component id="jButton4" min="-2" pref="100" max="-2" attributes="0"/>
+              <EmptySpace min="270" pref="270" max="270" attributes="0"/>
+              <Component id="jButton3" min="-2" pref="110" max="-2" attributes="0"/>
+              <Component id="jButton5" min="-2" pref="110" max="-2" attributes="0"/>
+              <Component id="jButton4" min="-2" pref="110" max="-2" attributes="0"/>
+              <EmptySpace min="20" pref="20" max="20" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -36,12 +35,13 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="438" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButton3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jButton5" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jButton4" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="11" pref="11" max="11" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,6 +49,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\smallicon\24x24\add.png"/>
         </Property>
@@ -60,6 +63,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\smallicon\24x24\refresh.png"/>
         </Property>
@@ -68,6 +74,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\smallicon\24x24\warning.png"/>
         </Property>
