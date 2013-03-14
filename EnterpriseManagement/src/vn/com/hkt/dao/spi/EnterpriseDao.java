@@ -17,22 +17,20 @@ public class EnterpriseDao extends EntityDao<Enterprise> implements IEnterpriseD
     public EnterpriseDao() {
         setClassName(Enterprise.class);
     }
-   public List<Enterprise> getListByIdEnterprise(long id)
-           
-           
-   {
-       String sql="Select tbl from Enterprise tbl where Enterprise.IdEnterprise =?1 ";
-       if(em==null || !em.isOpen()){
+
+    @Override
+    public List<Enterprise> getListByIdEnterprise(long id) {
+        String sql = "Select tbl from Enterprise tbl where tbl.IdEnterprise =?1 ";
+        if (em == null || !em.isOpen()) {
             em = emf.createEntityManager();
         }
         try {
-            
-           return  em.createQuery(sql).setParameter(1, id).getResultList();
+
+            return em.createQuery(sql).setParameter(1, id).getResultList();
         } catch (Exception e) {
             return null;
         } finally {
             em.close();
         }
-   }
-        
+    }
 }
