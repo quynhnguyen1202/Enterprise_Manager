@@ -93,7 +93,7 @@ public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    addData();
+        addData();
 }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -10,6 +10,7 @@
  */
 package vn.com.hkt.gui.entity;
 
+import java.util.List;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 
 /**
@@ -47,13 +48,13 @@ public class AddNewProject extends javax.swing.JPanel implements IShowPanel{
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
         setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Add New Project");
         add(jLabel1);
         jLabel1.setBounds(20, 10, 200, 30);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Description :");
         add(jLabel5);
@@ -61,19 +62,19 @@ public class AddNewProject extends javax.swing.JPanel implements IShowPanel{
         add(tctProjectName);
         tctProjectName.setBounds(260, 100, 200, 23);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Project name :");
         add(jLabel6);
         jLabel6.setBounds(90, 100, 140, 23);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Date start :");
         add(jLabel7);
         jLabel7.setBounds(90, 140, 140, 23);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Date end :");
         add(jLabel8);
@@ -120,6 +121,11 @@ public class AddNewProject extends javax.swing.JPanel implements IShowPanel{
 
     @Override
     public boolean deleteData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List listA() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

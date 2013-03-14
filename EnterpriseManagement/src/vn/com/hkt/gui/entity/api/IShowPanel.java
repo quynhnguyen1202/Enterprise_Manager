@@ -4,11 +4,15 @@
  */
 package vn.com.hkt.gui.entity.api;
 
+import java.util.List;
+
 /**
  *
  * @author Administrator
  */
-public interface IShowPanel {
+public interface IShowPanel<E> {
+
+    public List<E> listA();
 
     public boolean checkData();
 

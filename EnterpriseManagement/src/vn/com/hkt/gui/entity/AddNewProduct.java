@@ -10,6 +10,7 @@
  */
 package vn.com.hkt.gui.entity;
 
+import java.util.List;
 import javax.swing.JOptionPane;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 
@@ -64,7 +65,7 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Product group :");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Choose enterprise :");
 
@@ -210,6 +211,11 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel {
 
     @Override
     public boolean deleteData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List listA() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

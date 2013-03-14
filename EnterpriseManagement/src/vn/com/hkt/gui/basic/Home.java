@@ -18,7 +18,7 @@ import vn.com.hkt.gui.entity.AddNewEmployee;
 import vn.com.hkt.gui.entity.AddNewProduct;
 import vn.com.hkt.gui.entity.AddNewProject;
 import vn.com.hkt.gui.entity.api.IShowPanel;
-import vn.com.hkt.gui.panel.spi.PanelShowEnterprise;
+import vn.com.hkt.gui.panel.spi.PanelShowAllParentEnterprise;
 
 /**
  *
@@ -210,11 +210,17 @@ private void btnProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpriseActionPerformed
 
-    if(cp!=null){
-        IShowPanel panel = new PanelShowEnterprise();
-        cp.setShowPanel(panel);
-        cp.showDefault();
-    }
+    ControlPanel cp=new ControlPanel();
+    IShowPanel anp=new PanelShowAllParentEnterprise();
+        cp.setShowPanel(anp);
+        this.setPanelControl(cp);
+        this.showDefaut();
+    
+//    if(cp!=null){
+//        IShowPanel panel = new PanelShowInsertEnterprise();
+//        cp.setShowPanel(panel);
+//        cp.showDefault();
+//    }
     
 }//GEN-LAST:event_btnEnterpriseActionPerformed
 
