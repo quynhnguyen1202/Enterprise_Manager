@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.dao.api;
 
+import java.util.List;
 import vn.com.hkt.data.entity.Enterprise;
 
 /**
@@ -11,5 +12,6 @@ import vn.com.hkt.data.entity.Enterprise;
  * @author QuynhNguyen
  */
 public interface IEnterpriseDao extends IEntityDao<Enterprise> {
+    public List<Enterprise> getListByIdEnterprise(long id);
     
 }
