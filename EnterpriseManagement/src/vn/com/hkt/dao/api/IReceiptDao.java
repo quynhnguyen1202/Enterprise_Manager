@@ -4,12 +4,12 @@
  */
 package vn.com.hkt.dao.api;
 
-import vn.com.hkt.data.entity.Project;
+import vn.com.hkt.data.entity.Receipt;
 
 /**
  *
  * @author QuynhNguyen
  */
-public interface IProjectDao extends IEntityDao<Project> {
+public interface IReceiptDao extends IEntityDao<Receipt> {
     
 }

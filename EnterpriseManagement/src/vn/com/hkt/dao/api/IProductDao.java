@@ -4,10 +4,12 @@
  */
 package vn.com.hkt.dao.api;
 
+import vn.com.hkt.data.entity.Product;
+
 /**
  *
  * @author QuynhNguyen
  */
-public interface IProductDao {
+public interface IProductDao extends IEntityDao<Product> {
     
 }

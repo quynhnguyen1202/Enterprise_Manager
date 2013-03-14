@@ -4,10 +4,12 @@
  */
 package vn.com.hkt.dao.api;
 
+import vn.com.hkt.data.entity.Employee;
+
 /**
  *
  * @author QuynhNguyen
  */
-public interface IEmployeeDao {
+public interface IEmployeeDao extends IEntityDao<Employee> {
     
 }

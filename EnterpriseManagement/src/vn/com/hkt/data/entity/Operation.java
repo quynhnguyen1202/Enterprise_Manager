@@ -17,21 +17,41 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Operation {
+
     @Id
-    @GeneratedValue (strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private long IdProject;
     private float MoneyTotal;
     private float MoneyAfterTax;
-    private float  MoneyAfterDiscount;
+    private float MoneyAfterDiscount;
     private long IdEnterprise;
     private long IdDepartment;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateExecute;
     private long IdEmployee;
+    private long IdUnitMoney;
+    private boolean classification; // mua hoac ban
 
+    @Temporal(javax.persistence.TemporalType.DATE)
     public long getIdEmployee() {
         return IdEmployee;
+    }
+
+    public long getIdUnitMoney() {
+        return IdUnitMoney;
+    }
+
+    public void setIdUnitMoney(long IdUnitMoney) {
+        this.IdUnitMoney = IdUnitMoney;
+    }
+
+    public boolean isClassification() {
+        return classification;
+    }
+
+    public void setClassification(boolean classification) {
+        this.classification = classification;
     }
 
     public void setIdEmployee(long IdEmployee) {
@@ -39,17 +59,6 @@ public class Operation {
     }
 
     public Operation() {
-    }
-
-    public Operation(long Id, long IdProject, float MoneyTotal, float MoneyAfterTax, float MoneyAfterDiscount, long IdEnterprise, long IdDepartment, Date DateExecute,long IdEmployee) {
-        this.Id = Id;
-        this.IdProject = IdProject;
-        this.MoneyTotal = MoneyTotal;
-        this.MoneyAfterTax = MoneyAfterTax;
-        this.MoneyAfterDiscount = MoneyAfterDiscount;
-        this.IdEnterprise = IdEnterprise;
-        this.IdDepartment = IdDepartment;
-        this.DateExecute = DateExecute;
     }
 
     public Date getDateExecute() {
@@ -115,6 +124,4 @@ public class Operation {
     public void setMoneyTotal(float MoneyTotal) {
         this.MoneyTotal = MoneyTotal;
     }
-    
-    
 }

@@ -16,35 +16,17 @@ import javax.persistence.Temporal;
  * @author QuynhNguyen
  */
 @Entity
-public class Project {
-
+public class ProjectMember {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long Id;
-    private String Name;
-    private String Descript;
+    private long IdProject;
     private long IdEnterprise;
-    private long IdDepartment;
+    private  int Percent;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateStart;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date DateEnd;
-
-    public long getIdDepartment() {
-        return IdDepartment;
-    }
-
-    public void setIdDepartment(long IdDepartment) {
-        this.IdDepartment = IdDepartment;
-    }
-
-    public long getIdEnterprise() {
-        return IdEnterprise;
-    }
-
-    public void setIdEnterprise(long IdEnterprise) {
-        this.IdEnterprise = IdEnterprise;
-    }
+    private  Date DateEnd;
 
     public Date getDateEnd() {
         return DateEnd;
@@ -62,14 +44,6 @@ public class Project {
         this.DateStart = DateStart;
     }
 
-    public String getDescript() {
-        return Descript;
-    }
-
-    public void setDescript(String Descript) {
-        this.Descript = Descript;
-    }
-
     public long getId() {
         return Id;
     }
@@ -78,11 +52,29 @@ public class Project {
         this.Id = Id;
     }
 
-    public String getName() {
-        return Name;
+    public long getIdEnterprise() {
+        return IdEnterprise;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setIdEnterprise(long IdEnterprise) {
+        this.IdEnterprise = IdEnterprise;
     }
+
+    public long getIdProject() {
+        return IdProject;
+    }
+
+    public void setIdProject(long IdProject) {
+        this.IdProject = IdProject;
+    }
+
+    public int getPercent() {
+        return Percent;
+    }
+
+    public void setPercent(int Percent) {
+        this.Percent = Percent;
+    }
+    
+    
 }

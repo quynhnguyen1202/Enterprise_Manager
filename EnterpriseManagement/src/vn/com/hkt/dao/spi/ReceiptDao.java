@@ -2,14 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package vn.com.hkt.dao.api;
-
-import vn.com.hkt.data.entity.Project;
+package vn.com.hkt.dao.spi;
 
 /**
  *
  * @author QuynhNguyen
  */
-public interface IProjectDao extends IEntityDao<Project> {
+public class ReceiptDao {
     
 }
