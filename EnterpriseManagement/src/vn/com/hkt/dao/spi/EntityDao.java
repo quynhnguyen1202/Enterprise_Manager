@@ -16,8 +16,8 @@ import vn.com.hkt.dao.api.IEntityDao;
  */
 public class EntityDao<E> implements IEntityDao<E> {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("EM");
-    private EntityManager em = emf.createEntityManager();
+    protected  EntityManagerFactory emf = Persistence.createEntityManagerFactory("EM");
+    protected  EntityManager em = emf.createEntityManager();
     private Class clsName;
 
     @Override

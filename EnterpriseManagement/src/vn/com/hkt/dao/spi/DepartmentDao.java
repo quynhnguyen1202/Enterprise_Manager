@@ -11,9 +11,9 @@ import vn.com.hkt.data.entity.Department;
  *
  * @author QuynhNguyen
  */
-public class DepartmentDao extends EntityDao<Department> implements  IDepartmentDao
-{
+public class DepartmentDao extends EntityDao<Department> implements IDepartmentDao {
     
-
-    
+    public DepartmentDao() {
+        setClassName(Department.class);
+    }
 }

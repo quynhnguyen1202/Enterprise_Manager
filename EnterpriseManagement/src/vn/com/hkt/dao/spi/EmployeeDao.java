@@ -12,6 +12,8 @@ import vn.com.hkt.data.entity.Employee;
  * @author QuynhNguyen
  */
 public class EmployeeDao extends EntityDao<Employee> implements IEmployeeDao {
-
     
+    public EmployeeDao() {
+        setClassName(Employee.class);
+    }
 }

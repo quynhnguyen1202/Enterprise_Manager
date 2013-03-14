@@ -11,7 +11,9 @@ import vn.com.hkt.data.entity.Project;
  *
  * @author QuynhNguyen
  */
-public class ProjectDao extends EntityDao<Project> implements IProjectDao{
+public class ProjectDao extends EntityDao<Project> implements IProjectDao {
     
-    
+    public ProjectDao() {
+        setClassName(Project.class);
+    }
 }

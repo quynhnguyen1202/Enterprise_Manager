@@ -12,6 +12,8 @@ import vn.com.hkt.data.entity.Operation;
  * @author QuynhNguyen
  */
 public class OperationDao extends EntityDao<Operation> implements IOperationDao {
-
-   
+    
+    public OperationDao() {
+        setClassName(Operation.class);
+    }
 }

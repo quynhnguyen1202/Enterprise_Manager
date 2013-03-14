@@ -12,6 +12,8 @@ import vn.com.hkt.data.entity.MidleProductGroup;
  * @author QuynhNguyen
  */
 public class MidleProductGroupDao extends EntityDao<MidleProductGroup> implements IMidleProductGroupDao {
-
-   
+    
+    public MidleProductGroupDao() {
+        setClassName(MidleProductGroup.class);
+    }
 }

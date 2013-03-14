@@ -4,6 +4,8 @@
  */
 package vn.com.hkt.provider.api;
 
+import java.util.List;
+
 /**
  *
  * @author Administrator
@@ -17,5 +19,7 @@ public interface IProviderGeneral<E> {
     public long addData();
     
     public long deleteData();
+    public List<E> getDataListView();
+    
         
 }

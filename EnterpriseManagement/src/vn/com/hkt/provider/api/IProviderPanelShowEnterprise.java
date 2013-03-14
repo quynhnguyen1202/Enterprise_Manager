@@ -13,6 +13,6 @@ import vn.com.hkt.data.entity.Enterprise;
  */
 public interface IProviderPanelShowEnterprise extends IProviderGeneral<Enterprise> {
     
-    public List<Enterprise> getEnterpriseChildren(long idEnterprise);
+   
     
 }

@@ -13,4 +13,7 @@ import vn.com.hkt.data.entity.ProjectMember;
  */
 public class ProjectMemberDao extends EntityDao<ProjectMember> implements IProjectMemberDao {
     
+    public ProjectMemberDao() {
+        setClassName(ProjectMember.class);
+    }
 }

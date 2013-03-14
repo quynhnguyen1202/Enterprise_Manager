@@ -11,6 +11,9 @@ import vn.com.hkt.data.entity.ProductGroup;
  *
  * @author QuynhNguyen
  */
-public class ProductGroupDao extends EntityDao<ProductGroup> implements IProductGroupDao{
+public class ProductGroupDao extends EntityDao<ProductGroup> implements IProductGroupDao {
     
+    public ProductGroupDao() {
+        setClassName(ProductGroup.class);
+    }
 }

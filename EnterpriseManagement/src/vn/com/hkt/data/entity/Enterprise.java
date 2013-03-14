@@ -5,7 +5,6 @@
 package vn.com.hkt.data.entity;
 
 import java.util.Date;
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +17,9 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Enterprise {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id; // Id của mỗi Enterprise
     private String Name;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -27,15 +27,6 @@ public class Enterprise {
     private long IdEnterprise; // ID của Enterprise cha
     private String Slogan;
     private String Picture; // đường dẫn đến logo
-
-    public Enterprise(long Id, String Name, Date DateActivative, long IdEnterprise, String Slogan, String Picture) {
-        this.Id = Id;
-        this.Name = Name;
-        this.DateActivative = DateActivative;
-        this.IdEnterprise = IdEnterprise;
-        this.Slogan = Slogan;
-        this.Picture = Picture;
-    }
 
     public Enterprise() {
     }

@@ -14,18 +14,13 @@ import vn.com.hkt.provider.api.IProviderPanelShowEnterprise;
  *
  * @author Administrator
  */
-public class ProviderPanelShowEnterprise implements IProviderPanelShowEnterprise{
+public class ProviderPanelShowEnterprise implements IProviderPanelShowEnterprise {
 
     private Enterprise enterprise;
     private IEnterpriseDao enterpriseDao;
 
     public ProviderPanelShowEnterprise() {
         enterpriseDao = new EnterpriseDao();
-    }
-    
-    @Override
-    public List<Enterprise> getEnterpriseChildren(long idEnterprise) {
-        return null;
     }
 
     @Override
@@ -35,7 +30,7 @@ public class ProviderPanelShowEnterprise implements IProviderPanelShowEnterprise
 
     @Override
     public Enterprise getDataView() {
-        if(enterprise==null){
+        if (enterprise == null) {
             enterprise = new Enterprise();
         }
         return enterprise;
@@ -43,10 +38,10 @@ public class ProviderPanelShowEnterprise implements IProviderPanelShowEnterprise
 
     @Override
     public long addData() {
-        if(enterprise!=null){
-            if(enterpriseDao.insert(enterprise)){
+        if (enterprise != null) {
+            if (enterpriseDao.insert(enterprise)) {
                 return enterprise.getId();
-            }else{
+            } else {
                 return -1;
             }
         }
@@ -55,7 +50,20 @@ public class ProviderPanelShowEnterprise implements IProviderPanelShowEnterprise
 
     @Override
     public long deleteData() {
+        if (enterprise != null) {
+            enterpriseDao.delete(enterprise);
+            return 1;
+
+        }
         return 0;
     }
-    
+
+    @Override
+    public List<Enterprise> getDataListView() {
+        String sql = null;
+        long idEnterprise =enterprise.getIdEnterprise();
+        
+        return enterpriseDao.query(sql);
+        
+    }
 }
