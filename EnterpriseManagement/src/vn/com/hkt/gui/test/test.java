@@ -17,14 +17,7 @@ public class test {
        
     }
     public static void main(String[] args) {
-         DepartmentDao control = new DepartmentDao();
-        Department d = control.getById(1);
-        try {
-             System.out.println("abc"+d.getName());
-        } catch (Exception e) {
-            System.out.println(e);
-            
-        }
+        
     }
     
    

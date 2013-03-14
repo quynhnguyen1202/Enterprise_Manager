@@ -17,6 +17,8 @@ import vn.com.hkt.gui.control.api.IControlPanel;
 import vn.com.hkt.gui.entity.AddNewEmployee;
 import vn.com.hkt.gui.entity.AddNewProduct;
 import vn.com.hkt.gui.entity.AddNewProject;
+import vn.com.hkt.gui.entity.api.IShowPanel;
+import vn.com.hkt.gui.panel.spi.PanelShowEnterprise;
 
 /**
  *
@@ -24,10 +26,11 @@ import vn.com.hkt.gui.entity.AddNewProject;
  */
 public class Home extends javax.swing.JFrame implements IHomePanel {
     private IControlPanel controlPanel;
+    private ControlPanel cp;
     /** Creates new form Home */
     public Home() {
         initComponents();
-        ControlPanel cp=new ControlPanel();
+        cp=new ControlPanel();
         AddNewProduct adp=new AddNewProduct();
         cp.setShowPanel(adp);
         this.setPanelControl(cp);
@@ -59,9 +62,8 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         btnProject.setBackground(new java.awt.Color(153, 153, 153));
-        btnProject.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProject.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnProject.setForeground(new java.awt.Color(51, 51, 51));
-        btnProject.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\full_page.png")); // NOI18N
         btnProject.setText("Project            ");
         btnProject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,27 +72,28 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnEnterprise.setBackground(new java.awt.Color(153, 153, 153));
-        btnEnterprise.setFont(new java.awt.Font("Tahoma", 1, 12));
+        btnEnterprise.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEnterprise.setForeground(new java.awt.Color(51, 51, 51));
-        btnEnterprise.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\protection.png")); // NOI18N
         btnEnterprise.setText("Enterprise         ");
+        btnEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnterpriseActionPerformed(evt);
+            }
+        });
 
         btnDepartment.setBackground(new java.awt.Color(153, 153, 153));
-        btnDepartment.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDepartment.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnDepartment.setForeground(new java.awt.Color(51, 51, 51));
-        btnDepartment.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\prize_winner.png")); // NOI18N
         btnDepartment.setText("Department      ");
 
         btnProductGroup.setBackground(new java.awt.Color(153, 153, 153));
-        btnProductGroup.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProductGroup.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnProductGroup.setForeground(new java.awt.Color(51, 51, 51));
-        btnProductGroup.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\puzzle.png")); // NOI18N
         btnProductGroup.setText("Product Group  ");
 
         btnProduct.setBackground(new java.awt.Color(153, 153, 153));
-        btnProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProduct.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnProduct.setForeground(new java.awt.Color(51, 51, 51));
-        btnProduct.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\database.png")); // NOI18N
         btnProduct.setText("Product           ");
         btnProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,9 +102,8 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnEmployee.setBackground(new java.awt.Color(153, 153, 153));
-        btnEmployee.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEmployee.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnEmployee.setForeground(new java.awt.Color(51, 51, 51));
-        btnEmployee.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\users.png")); // NOI18N
         btnEmployee.setText("Employee         ");
         btnEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,15 +112,13 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnOperation.setBackground(new java.awt.Color(153, 153, 153));
-        btnOperation.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnOperation.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnOperation.setForeground(new java.awt.Color(51, 51, 51));
-        btnOperation.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\light_bulb.png")); // NOI18N
         btnOperation.setText("Operation        ");
 
         btnExit.setBackground(new java.awt.Color(153, 153, 153));
-        btnExit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnExit.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnExit.setForeground(new java.awt.Color(51, 51, 51));
-        btnExit.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\warning.png")); // NOI18N
         btnExit.setText("Exit                  ");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +207,16 @@ private void btnProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         this.setPanelControl(cp);
         this.showDefaut();
 }//GEN-LAST:event_btnProjectActionPerformed
+
+private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpriseActionPerformed
+
+    if(cp!=null){
+        IShowPanel panel = new PanelShowEnterprise();
+        cp.setShowPanel(panel);
+        cp.showDefault();
+    }
+    
+}//GEN-LAST:event_btnEnterpriseActionPerformed
 
     /**
      * @param args the command line arguments

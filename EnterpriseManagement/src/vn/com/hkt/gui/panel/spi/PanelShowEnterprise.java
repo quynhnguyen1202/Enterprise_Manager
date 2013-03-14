@@ -10,6 +10,7 @@
  */
 package vn.com.hkt.gui.panel.spi;
 
+import java.util.Date;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.provider.api.IProviderPanelShowEnterprise;
 import vn.com.hkt.provider.spi.ProviderPanelShowEnterprise;
@@ -99,6 +100,7 @@ public class PanelShowEnterprise extends javax.swing.JPanel implements IShowPane
     private boolean getData() {
         try {
             provider.getDataView().setName(txtEnterpriseName.getText());
+            provider.getDataView().setDateActivative(new Date());
             return true;
         } catch (Exception e) {
             return false;

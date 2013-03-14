@@ -91,9 +91,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\full_page.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Project            "/>
           </Properties>
           <Events>
@@ -111,11 +108,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\protection.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Enterprise         "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnterpriseActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnDepartment">
           <Properties>
@@ -127,9 +124,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\prize_winner.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Department      "/>
           </Properties>
@@ -145,9 +139,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\puzzle.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Product Group  "/>
           </Properties>
         </Component>
@@ -161,9 +152,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\database.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Product           "/>
           </Properties>
@@ -182,9 +170,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\users.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Employee         "/>
           </Properties>
           <Events>
@@ -202,9 +187,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\light_bulb.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Operation        "/>
           </Properties>
         </Component>
@@ -218,9 +200,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\warning.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Exit                  "/>
           </Properties>
