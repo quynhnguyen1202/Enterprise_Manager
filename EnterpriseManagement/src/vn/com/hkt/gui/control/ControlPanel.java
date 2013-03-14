@@ -41,6 +41,8 @@ public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jButton3.setBackground(new java.awt.Color(153, 153, 153));
         jButton3.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\smallicon\\24x24\\add.png")); // NOI18N
         jButton3.setText("Add");
@@ -57,6 +59,9 @@ public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
         jButton4.setBackground(new java.awt.Color(153, 153, 153));
         jButton4.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\smallicon\\24x24\\warning.png")); // NOI18N
         jButton4.setText("Cancel");
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

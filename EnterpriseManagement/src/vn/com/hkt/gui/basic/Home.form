@@ -46,38 +46,41 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jButton2" min="-2" pref="170" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" pref="170" max="-2" attributes="0"/>
-              <Component id="jButton4" min="-2" pref="170" max="-2" attributes="0"/>
-              <Component id="jButton5" min="-2" pref="170" max="-2" attributes="0"/>
-              <Component id="jButton6" min="-2" pref="170" max="-2" attributes="0"/>
-              <Component id="jButton7" min="-2" pref="170" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="170" max="-2" attributes="0"/>
+              <Component id="btnEnterprise" min="-2" pref="170" max="-2" attributes="0"/>
+              <Component id="btnDepartment" min="-2" pref="170" max="-2" attributes="0"/>
+              <Component id="btnProductGroup" min="-2" pref="170" max="-2" attributes="0"/>
+              <Component id="btnProduct" min="-2" pref="170" max="-2" attributes="0"/>
+              <Component id="btnEmployee" min="-2" pref="170" max="-2" attributes="0"/>
+              <Component id="btnOperation" min="-2" pref="170" max="-2" attributes="0"/>
+              <Component id="btnProject" min="-2" pref="170" max="-2" attributes="0"/>
+              <Component id="btnExit" min="-2" pref="170" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                  <Component id="jButton2" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnEnterprise" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnDepartment" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                  <Component id="jButton4" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnProductGroup" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                  <Component id="jButton5" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnProduct" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                  <Component id="jButton6" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnEmployee" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                  <Component id="jButton7" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnOperation" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnProject" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                  <Component id="btnExit" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnProject">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -89,12 +92,15 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\protection.png"/>
+              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\full_page.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Project            "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProjectActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnEnterprise">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -111,7 +117,7 @@
             <Property name="text" type="java.lang.String" value="Enterprise         "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="btnDepartment">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -123,12 +129,12 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\protection.png"/>
+              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\prize_winner.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Department      "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="btnProductGroup">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -140,12 +146,12 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\protection.png"/>
+              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\puzzle.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Product Group  "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton5">
+        <Component class="javax.swing.JButton" name="btnProduct">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -157,12 +163,15 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\protection.png"/>
+              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\database.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Product           "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton6">
+        <Component class="javax.swing.JButton" name="btnEmployee">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -174,12 +183,15 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\protection.png"/>
+              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\users.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Employee         "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmployeeActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton7">
+        <Component class="javax.swing.JButton" name="btnOperation">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -191,15 +203,38 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\protection.png"/>
+              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\light_bulb.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Operation        "/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnExit">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="99" red="99" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\warning.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Exit                  "/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
             <BevelBorder/>
