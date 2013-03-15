@@ -10,8 +10,7 @@ import java.util.List;
  *
  * @author Administrator
  */
-public interface IProviderListGeneral <E>{
-    
-    public List<E> getListInformation();    
-    
+public interface IProviderListGeneral<E> {
+
+    public List<E> getListInformation();
 }

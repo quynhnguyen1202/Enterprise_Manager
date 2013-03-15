@@ -20,6 +20,7 @@ public interface IProviderGeneral<E> {
     public long addData();
     
     public long deleteData();
+    public E getObjectbyID(long id);
     
     
         
