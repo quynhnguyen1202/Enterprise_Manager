@@ -12,4 +12,5 @@ import vn.com.hkt.data.entity.Department;
  */
 public interface IProviderPanelShowListDepartment extends IProviderListGeneral<Department> {
     
+    
 }

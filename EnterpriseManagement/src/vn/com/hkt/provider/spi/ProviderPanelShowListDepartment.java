@@ -15,7 +15,8 @@ import vn.com.hkt.provider.api.IProviderPanelShowListDepartment;
  * @author QuynhNguyen
  */
 public class ProviderPanelShowListDepartment implements IProviderPanelShowListDepartment {
-private IDepartmentDao iDepartmentDao;
+
+    private IDepartmentDao iDepartmentDao;
 
     public ProviderPanelShowListDepartment() {
         iDepartmentDao = new DepartmentDao();
@@ -26,5 +27,4 @@ private IDepartmentDao iDepartmentDao;
         List<Department> listdDepartments = iDepartmentDao.selectAll();
         return listdDepartments;
     }
-    
 }

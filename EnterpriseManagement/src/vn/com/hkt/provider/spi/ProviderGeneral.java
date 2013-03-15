@@ -7,6 +7,7 @@ package vn.com.hkt.provider.spi;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import vn.com.hkt.dao.api.IEntityDao;
+import vn.com.hkt.dao.spi.EntityDao;
 import vn.com.hkt.provider.api.IProviderGeneral;
 
 /**
@@ -18,6 +19,11 @@ public class ProviderGeneral<E> implements IProviderGeneral<E> {
     Class classname;
     private E entity;
     private IEntityDao iEntityDao;
+
+    public ProviderGeneral() {
+        iEntityDao= new EntityDao();
+    }
+  
 
     @Override
     public void setDataView(E object) {
@@ -64,4 +70,16 @@ public class ProviderGeneral<E> implements IProviderGeneral<E> {
     public void setClassname(Class classname) {
         this.classname = classname;
     }
+
+    @Override
+    public E getObjectbyID(long id) {
+        if (id>0) {
+            return (E) iEntityDao.getById(id);
+            
+        }
+        return null;
+        
+    }
+
+    
 }
