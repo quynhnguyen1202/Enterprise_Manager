@@ -11,6 +11,7 @@ import java.util.List;
  * @author Administrator
  */
 public interface IProviderGeneral<E> {
+    public void setClassname( Class classname);
     
     public void setDataView(E object);
     
@@ -19,7 +20,7 @@ public interface IProviderGeneral<E> {
     public long addData();
     
     public long deleteData();
-    public List<E> getDataListView();
+    
     
         
 }
