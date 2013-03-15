@@ -15,8 +15,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class UnitProduct {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private String Name;
     private boolean isDefault;
@@ -53,7 +54,9 @@ public class UnitProduct {
     public void setIsDefault(boolean isDefault) {
         this.isDefault = isDefault;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return Name;
+    }
 }

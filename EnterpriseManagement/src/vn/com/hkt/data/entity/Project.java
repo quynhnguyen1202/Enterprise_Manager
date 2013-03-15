@@ -85,4 +85,9 @@ public class Project {
     public void setName(String Name) {
         this.Name = Name;
     }
+
+    @Override
+    public String toString() {
+        return Name;
+    }
 }

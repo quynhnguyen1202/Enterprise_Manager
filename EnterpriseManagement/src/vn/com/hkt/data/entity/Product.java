@@ -15,8 +15,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class Product {
+
     @Id
-    @GeneratedValue (strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private String Name;
     private long IdEnterprise;
@@ -53,6 +54,9 @@ public class Product {
     public void setName(String Name) {
         this.Name = Name;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return Name;
+    }
 }

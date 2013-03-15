@@ -20,6 +20,7 @@ public class MidleProductGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 
+   
     public long getId() {
         return Id;
     }

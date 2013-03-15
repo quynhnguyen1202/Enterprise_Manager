@@ -30,6 +30,11 @@ public class Department {
         return DateActivate;
     }
 
+    @Override
+    public String toString() {
+        return Name;
+    }
+
     public void setDateActivate(Date DateActivate) {
         this.DateActivate = DateActivate;
     }
