@@ -10,11 +10,16 @@ import vn.com.hkt.gui.entity.api.IShowPanel;
  *
  * @author Administrator
  */
-public interface IControlPanel {
+public interface IControlPanel extends IPanelControlGeneral{
+
     public void setShowPanel(IShowPanel p);
+
     public void addData();
+
     public void editData();
+
     public void deleteData();
+
     public void showData();
-    public void showDefault();
+
 }

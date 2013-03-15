@@ -23,4 +23,6 @@ public interface IEntityDao<E> {
     public List<E> query(String sql);
     
     public void setClassName(Class clsName);
+    
+    public List<E> selectAll();
 }

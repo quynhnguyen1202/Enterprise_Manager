@@ -13,28 +13,29 @@ package vn.com.hkt.gui.basic;
 import javax.swing.JPanel;
 import vn.com.hkt.gui.basic.api.IHomePanel;
 import vn.com.hkt.gui.control.ControlPanel;
+import vn.com.hkt.gui.control.PanelControlShowList;
 import vn.com.hkt.gui.control.api.IControlPanel;
-import vn.com.hkt.gui.entity.AddNewEmployee;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
+import vn.com.hkt.gui.control.api.IPanelControlList;
 import vn.com.hkt.gui.entity.AddNewProduct;
 import vn.com.hkt.gui.entity.AddNewProject;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.gui.panel.spi.PanelShowAllParentEnterprise;
+import vn.com.hkt.gui.panel.spi.PanelShowListEmployee;
+import vn.com.hkt.gui.panel.spi.PanelShowListEnterprise;
+import vn.com.hkt.gui.panel.spi.PanelShowListProduct;
 
 /**
  *
  * @author Administrator
  */
 public class Home extends javax.swing.JFrame implements IHomePanel {
-    private IControlPanel controlPanel;
-    private ControlPanel cp;
+
+    private IPanelControlGeneral controlGeneral;
+
     /** Creates new form Home */
     public Home() {
         initComponents();
-        cp=new ControlPanel();
-        AddNewProduct adp=new AddNewProduct();
-        cp.setShowPanel(adp);
-        this.setPanelControl(cp);
-        this.showDefaut();
     }
 
     /** This method is called from within the constructor to
@@ -55,7 +56,8 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         btnEmployee = new javax.swing.JButton();
         btnOperation = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        btnEnterpiseList = new javax.swing.JButton();
+        scrollPane = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,7 +74,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnEnterprise.setBackground(new java.awt.Color(153, 153, 153));
-        btnEnterprise.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEnterprise.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnEnterprise.setForeground(new java.awt.Color(51, 51, 51));
         btnEnterprise.setText("Enterprise         ");
         btnEnterprise.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +128,13 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
             }
         });
 
+        btnEnterpiseList.setText("Danh sach DN");
+        btnEnterpiseList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnterpiseListActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -138,6 +147,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
             .addComponent(btnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnProject, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnEnterpiseList, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,11 +167,14 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
                 .addGap(10, 10, 10)
                 .addComponent(btnProject, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEnterpiseList, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        scrollPane.setBackground(new java.awt.Color(255, 255, 255));
+        scrollPane.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,23 +182,28 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 private void btnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeActionPerformed
-        ControlPanel cp=new ControlPanel();
-        AddNewEmployee ane=new AddNewEmployee();
-        cp.setShowPanel(ane);
-        this.setPanelControl(cp);
-        this.showDefaut();
+//    if (cp != null) {
+//        IShowPanel panel = new PanelShowListEmployee();
+//        cp.setShowPanel(panel);
+//        cp.showDefault();
+//    }
+    //        ControlPanel cp=new ControlPanel();
+//        AddNewEmployee ane=new AddNewEmployee();
+//        cp.setShowPanel(ane);
+//        this.setPanelControl(cp);
+//        this.showDefaut();
 }//GEN-LAST:event_btnEmployeeActionPerformed
 
 private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -193,36 +211,53 @@ private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 }//GEN-LAST:event_btnExitActionPerformed
 
 private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
-        ControlPanel cp=new ControlPanel();
-        AddNewProduct adp=new AddNewProduct();
-        cp.setShowPanel(adp);
-        this.setPanelControl(cp);
-        this.showDefaut();
+//    if (cp != null) {
+//        IShowPanel panel = new PanelShowListProduct();
+//        cp.setShowPanel(panel);
+//        cp.showDefault();
+//    }
+    //        ControlPanel cp=new ControlPanel();
+//        AddNewProduct adp=new AddNewProduct();
+//        cp.setShowPanel(adp);
+//        this.setPanelControl(cp);
+//        this.showDefaut();
 }//GEN-LAST:event_btnProductActionPerformed
 
 private void btnProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjectActionPerformed
-        ControlPanel cp=new ControlPanel();
-        AddNewProject anp=new AddNewProject();
-        cp.setShowPanel(anp);
-        this.setPanelControl(cp);
-        this.showDefaut();
+    ControlPanel cp = new ControlPanel();
+    AddNewProject anp = new AddNewProject();
+    cp.setShowPanel(anp);
+    this.setPanelControl(cp);
+    this.showDefaut();
 }//GEN-LAST:event_btnProjectActionPerformed
 
 private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpriseActionPerformed
 
-    ControlPanel cp=new ControlPanel();
-    IShowPanel anp=new PanelShowAllParentEnterprise();
-        cp.setShowPanel(anp);
-        this.setPanelControl(cp);
-        this.showDefaut();
-    
+    IShowPanel anp = new PanelShowAllParentEnterprise();
+    IControlPanel controlPanel = new ControlPanel();    
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+
 //    if(cp!=null){
 //        IShowPanel panel = new PanelShowInsertEnterprise();
 //        cp.setShowPanel(panel);
 //        cp.showDefault();
 //    }
-    
+
 }//GEN-LAST:event_btnEnterpriseActionPerformed
+
+private void btnEnterpiseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpiseListActionPerformed
+
+    IPanelControlList panelControlList = new PanelControlShowList();
+    panelControlList.setPanelShowList(new PanelShowListEnterprise());
+    panelControlList.showDefault();
+    controlGeneral = panelControlList;
+    setPanelControl(controlGeneral);
+    showDefaut();
+    
+}//GEN-LAST:event_btnEnterpiseListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,6 +297,7 @@ private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDepartment;
     private javax.swing.JButton btnEmployee;
+    private javax.swing.JButton btnEnterpiseList;
     private javax.swing.JButton btnEnterprise;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnOperation;
@@ -269,19 +305,19 @@ private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private javax.swing.JButton btnProductGroup;
     private javax.swing.JButton btnProject;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void setPanelControl(IControlPanel p) { 
-        this.controlPanel=p;
+    public void setPanelControl(IPanelControlGeneral p) {
+        this.controlGeneral = p;
     }
 
     @Override
     public void showDefaut() {
-        if(controlPanel!=null){
-            jScrollPane1.setViewportView((JPanel)controlPanel);
-            controlPanel.showDefault();
+        if (controlGeneral != null) {
+            scrollPane.setViewportView((JPanel) controlGeneral);
+            controlGeneral.showDefault();
         }
     }
 }

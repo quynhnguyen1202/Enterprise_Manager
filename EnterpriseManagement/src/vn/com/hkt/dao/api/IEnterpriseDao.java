@@ -12,6 +12,6 @@ import vn.com.hkt.data.entity.Enterprise;
  * @author QuynhNguyen
  */
 public interface IEnterpriseDao extends IEntityDao<Enterprise> {
+
     public List<Enterprise> getListByIdEnterprise(long id);
-    
 }

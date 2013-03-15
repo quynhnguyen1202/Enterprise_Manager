@@ -16,13 +16,13 @@ import vn.com.hkt.dao.api.IEntityDao;
  */
 public class EntityDao<E> implements IEntityDao<E> {
 
-    protected  EntityManagerFactory emf = Persistence.createEntityManagerFactory("EM");
-    protected  EntityManager em = emf.createEntityManager();
+    protected EntityManagerFactory emf = Persistence.createEntityManagerFactory("EM");
+    protected EntityManager em = emf.createEntityManager();
     private Class clsName;
 
     @Override
     public boolean insert(E object) {
-        if(em==null || !em.isOpen()){
+        if (em == null || !em.isOpen()) {
             em = emf.createEntityManager();
         }
         try {
@@ -39,7 +39,7 @@ public class EntityDao<E> implements IEntityDao<E> {
 
     @Override
     public boolean update(E object) {
-        if(em==null || !em.isOpen()){
+        if (em == null || !em.isOpen()) {
             em = emf.createEntityManager();
         }
         try {
@@ -56,7 +56,7 @@ public class EntityDao<E> implements IEntityDao<E> {
 
     @Override
     public boolean delete(E object) {
-        if(em==null || !em.isOpen()){
+        if (em == null || !em.isOpen()) {
             em = emf.createEntityManager();
         }
         try {
@@ -73,7 +73,7 @@ public class EntityDao<E> implements IEntityDao<E> {
 
     @Override
     public E getById(long id) {
-        if(em==null || !em.isOpen()){
+        if (em == null || !em.isOpen()) {
             em = emf.createEntityManager();
         }
         try {
@@ -87,7 +87,7 @@ public class EntityDao<E> implements IEntityDao<E> {
 
     @Override
     public List<E> query(String sql) {
-        if(em==null || !em.isOpen()){
+        if (em == null || !em.isOpen()) {
             em = emf.createEntityManager();
         }
         try {
@@ -102,5 +102,17 @@ public class EntityDao<E> implements IEntityDao<E> {
     @Override
     public void setClassName(Class clsName) {
         this.clsName = clsName;
+    }
+
+    @Override
+    public List<E> selectAll() {
+        if (em == null || !em.isOpen()) {
+            em = emf.createEntityManager();
+        }
+        try {
+            return em.createQuery("Select tbl from " + clsName.getSimpleName() + " tbl").getResultList();
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
