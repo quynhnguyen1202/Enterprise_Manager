@@ -14,10 +14,10 @@ import vn.com.hkt.provider.api.IProviderPanelShowListDepartment;
  *
  * @author QuynhNguyen
  */
-public class ProviderShowListDepartment implements IProviderPanelShowListDepartment {
+public class ProviderPanelShowListDepartment implements IProviderPanelShowListDepartment {
 private IDepartmentDao iDepartmentDao;
 
-    public ProviderShowListDepartment() {
+    public ProviderPanelShowListDepartment() {
         iDepartmentDao = new DepartmentDao();
     }
 

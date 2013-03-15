@@ -31,6 +31,11 @@ public class Enterprise {
     public Enterprise() {
     }
 
+    @Override
+    public String toString() {
+        return Name;
+    }
+    
     public Date getDateActivative() {
         return DateActivative;
     }
