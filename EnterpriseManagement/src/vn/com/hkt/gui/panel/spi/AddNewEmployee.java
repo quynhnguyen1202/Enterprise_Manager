@@ -8,7 +8,7 @@
  *
  * Created on Mar 14, 2013, 11:02:28 AM
  */
-package vn.com.hkt.gui.entity;
+package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
 import vn.com.hkt.gui.entity.api.IShowPanel;
@@ -142,6 +142,11 @@ public class AddNewEmployee extends javax.swing.JPanel implements IShowPanel{
 
     @Override
     public List listA() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List listCombo() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
