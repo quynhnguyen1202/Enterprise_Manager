@@ -21,4 +21,6 @@ public interface IShowPanel<E> {
     public boolean editData();
 
     public boolean deleteData();
+
+    public List<E> listCombo();
 }

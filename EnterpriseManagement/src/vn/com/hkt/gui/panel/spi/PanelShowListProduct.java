@@ -140,4 +140,9 @@ public class PanelShowListProduct extends javax.swing.JPanel implements IShowPan
     public boolean deleteData() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public List<Product> listCombo() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

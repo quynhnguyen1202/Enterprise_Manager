@@ -10,7 +10,7 @@
  */
 package vn.com.hkt.gui.panel.spi;
 
-import vn.com.hkt.gui.model.MyButton;
+import vn.com.hkt.gui.panel.model.spi.MyButton;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -102,6 +102,11 @@ public class PanelShowAllParentEnterprise extends javax.swing.JPanel implements 
     @Override
     public List<Enterprise> listA() {
         return provider.getListByIdEnterprise(1);
+    }
+
+    @Override
+    public List<Enterprise> listCombo() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

@@ -12,14 +12,15 @@ package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
 import vn.com.hkt.data.entity.Employee;
-import vn.com.hkt.gui.entity.api.IShowPanel;
+import vn.com.hkt.gui.entity.api.IPanelShowList;
+import vn.com.hkt.provider.api.IProviderPanelShowListEnterprise;
 
 /**
  *
  * @author Administrator
  */
-public class PanelShowListEmployee extends javax.swing.JPanel implements IShowPanel<Employee> {
-
+public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelShowList {
+    private IProviderPanelShowListEnterprise provider;
     /** Creates new form PanelShowListEmployee */
     public PanelShowListEmployee() {
         initComponents();
@@ -44,14 +45,14 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IShowPa
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.darkGray));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Search");
 
         jButton1.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\smallicon\\24x24\\zoom.png")); // NOI18N
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 12));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,27 +118,15 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IShowPa
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public List<Employee> listA() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void showDefault() {
+        loadTable();
+        
     }
 
-    @Override
-    public boolean checkData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    private void loadTable() {
+        //List<Employee> emp=provider.getListInformation();
+        
     }
 
-    @Override
-    public long addData() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public boolean editData() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public boolean deleteData() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    
 }

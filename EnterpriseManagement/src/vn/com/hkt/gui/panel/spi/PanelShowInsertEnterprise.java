@@ -57,25 +57,25 @@ public class PanelShowInsertEnterprise extends javax.swing.JPanel implements ISh
         add(txtParentID);
         txtParentID.setBounds(280, 150, 200, 23);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Add New Enterprise");
         add(jLabel3);
         jLabel3.setBounds(20, 10, 200, 30);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Picture :");
         add(jLabel4);
         jLabel4.setBounds(110, 230, 140, 23);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Enterprise name :");
         add(jLabel5);
         jLabel5.setBounds(110, 110, 140, 23);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Slogan :");
         add(jLabel6);
@@ -83,7 +83,7 @@ public class PanelShowInsertEnterprise extends javax.swing.JPanel implements ISh
         add(jDateChooser1);
         jDateChooser1.setBounds(280, 190, 200, 23);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Date active  :");
         add(jLabel7);
@@ -141,6 +141,11 @@ public class PanelShowInsertEnterprise extends javax.swing.JPanel implements ISh
 
     @Override
     public List listA() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List listCombo() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

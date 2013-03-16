@@ -13,7 +13,7 @@ package vn.com.hkt.gui.control;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import vn.com.hkt.gui.control.api.IControlPanel;
-import vn.com.hkt.gui.entity.AddNewProduct;
+import vn.com.hkt.gui.panel.spi.AddNewProduct;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 
 /**

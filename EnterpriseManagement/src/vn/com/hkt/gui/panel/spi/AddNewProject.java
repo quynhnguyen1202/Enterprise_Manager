@@ -29,6 +29,7 @@ import vn.com.hkt.provider.spi.ProviderPanelShowProject;
  * @author Administrator
  */
 public class AddNewProject extends javax.swing.JPanel implements IPanelShowList, IShowPanel<Object> {
+
     private long departmentID;
     private long enterpriseID;
     private IProviderPanelShowProject provider;
@@ -38,12 +39,12 @@ public class AddNewProject extends javax.swing.JPanel implements IPanelShowList,
     /** Creates new form AddNewProject */
     public AddNewProject() {
         initComponents();
-        provider=new ProviderPanelShowProject();
+        provider = new ProviderPanelShowProject();
         providerEnterprise = new ProviderPanelShowListEnterprise();
-        providerDepartment=new ProviderPanelShowListDepartment();
-//        loadComboxEnterprise();
-//        loadComboxDepartment();
+        providerDepartment = new ProviderPanelShowListDepartment();
         showDefault();
+        loadCboDepartment();
+        loadCbEnterprise();
     }
 
     /** This method is called from within the constructor to
@@ -130,6 +131,11 @@ public class AddNewProject extends javax.swing.JPanel implements IPanelShowList,
         jLabel10.setBounds(90, 170, 140, 23);
 
         cbEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEnterprise.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbEnterpriseItemStateChanged(evt);
+            }
+        });
         add(cbEnterprise);
         cbEnterprise.setBounds(260, 210, 200, 23);
 
@@ -144,12 +150,33 @@ public class AddNewProject extends javax.swing.JPanel implements IPanelShowList,
     }// </editor-fold>//GEN-END:initComponents
 
 private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDepartmentItemStateChanged
-    Department d=(Department)cbDepartment.getSelectedItem();
-    departmentID=d.getId();
-    Enterprise e=(Enterprise)cbEnterprise.getSelectedItem();
-    enterpriseID=e.getId();
+        loadCboDepartment();
     
+
 }//GEN-LAST:event_cbDepartmentItemStateChanged
+
+    private void loadCbEnterprise() {
+        Enterprise e = (Enterprise) cbEnterprise.getSelectedItem();
+        if (e.getId() >0) {
+            enterpriseID = e.getId();
+        }else{
+            enterpriseID=0;
+        }
+    }
+
+    private void loadCboDepartment() {
+        Department d = (Department) cbDepartment.getSelectedItem();
+        if (d.getId() >0) {
+            departmentID = d.getId();
+        }else{
+            departmentID=0;
+        }
+    }
+
+
+private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEnterpriseItemStateChanged
+        loadCbEnterprise();
+}//GEN-LAST:event_cbEnterpriseItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbDepartment;
@@ -171,6 +198,9 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 //    private void loadComboxEnterprise() {
 //        cbEnterprise.setModel(new DefaultComboBoxModel(listCombo().toArray()));
 //    }
+    
+    
+    
     @Override
     public void showDefault() {
         loadComboxEnterprise();
@@ -236,7 +266,9 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             provider.getDataView().setDateEnd(dateEnd.getDate());
             provider.getDataView().setDateStart(dateStart.getDate());
             provider.getDataView().setDescript(txtDescription.getText());
+            System.out.println("" + departmentID);
             provider.getDataView().setIdDepartment(departmentID);
+            System.out.println("" + enterpriseID);
             provider.getDataView().setIdEnterprise(enterpriseID);
             return true;
         } catch (Exception e) {
