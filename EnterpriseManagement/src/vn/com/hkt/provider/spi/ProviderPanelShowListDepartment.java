@@ -24,7 +24,7 @@ public class ProviderPanelShowListDepartment implements IProviderPanelShowListDe
 
     public ProviderPanelShowListDepartment() {
         iDepartmentDao = new DepartmentDao();
-        iEnterpriseDao= new EnterpriseDao();
+        iEnterpriseDao = new EnterpriseDao();
     }
 
     @Override
@@ -35,13 +35,18 @@ public class ProviderPanelShowListDepartment implements IProviderPanelShowListDe
 
     @Override
     public List<Department> getByIDEnt(long idEnterprise) {
-       // List<Enterprise> list1= iEnterpriseDao.getListByIdEnterprise(idEnterprise);
+        // List<Enterprise> list1= iEnterpriseDao.getListByIdEnterprise(idEnterprise);
         return null;
     }
 
     @Override
     public List<Department> getByEntName(String EnterpriseName) {
-       List<Department> list1= iDepartmentDao.getByEntpriseId(iEnterpriseDao.getIdByName(EnterpriseName));
-       return list1;
+        List<Department> list1 = null;
+        for (int i = 0; i < iEnterpriseDao.getIdByName(EnterpriseName).size(); i++) {
+            list1 = iDepartmentDao.getByEntpriseId(i);
+
+        }
+
+        return list1;
     }
 }

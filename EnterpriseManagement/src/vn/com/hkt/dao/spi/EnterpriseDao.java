@@ -34,17 +34,19 @@ public class EnterpriseDao extends EntityDao<Enterprise> implements IEnterpriseD
         }
     }
 
+   
+
     @Override
-    public long getIdByName(String name) {
-        String sql = "Select tbl form Enterprise tbl where tbl.Name =? 1";
+    public List<Enterprise> getIdByName(String name) {
+         String sql = "Select tbl form Enterprise tbl where tbl.Name =? 1";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
         try {
 
-            return Long.parseLong(em.createQuery(sql).setParameter(1, name).getResultList().toString());
+            return em.createQuery(sql).setParameter(1, name).getResultList();
         } catch (Exception e) {
-            return -1;
+            return null;
         } finally {
             em.close();
         }
