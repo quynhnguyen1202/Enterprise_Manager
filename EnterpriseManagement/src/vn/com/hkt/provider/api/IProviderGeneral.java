@@ -20,6 +20,15 @@ public interface IProviderGeneral<E> {
     public long addData();
     
     public long deleteData();
+
+    public long updateData();
+
+    public void resetData();
+
+    public void refreshData();
+
+    public boolean checkData();
+
     public E getObjectbyID(long id);
     
     
