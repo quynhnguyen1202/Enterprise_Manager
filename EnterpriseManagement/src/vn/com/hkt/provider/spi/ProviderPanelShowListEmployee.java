@@ -9,12 +9,13 @@ import vn.com.hkt.dao.api.IEmployeeDao;
 import vn.com.hkt.dao.spi.EmployeeDao;
 import vn.com.hkt.data.entity.Employee;
 import vn.com.hkt.provider.api.IProviderListGeneral;
+import vn.com.hkt.provider.api.IProviderPanelShowListEmployee;
 
 /**
  *
  * @author QuynhNguyen
  */
-public class ProviderPanelShowListEmployee implements IProviderListGeneral<Employee> {
+public class ProviderPanelShowListEmployee implements IProviderPanelShowListEmployee {
     private IEmployeeDao iEmployeeDao;
 
     public ProviderPanelShowListEmployee() {
