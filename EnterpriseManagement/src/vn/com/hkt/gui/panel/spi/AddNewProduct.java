@@ -8,7 +8,7 @@
  *
  * Created on Mar 13, 2013, 11:05:56 AM
  */
-package vn.com.hkt.gui.entity;
+package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -216,6 +216,11 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel {
 
     @Override
     public List listA() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List listCombo() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -17,10 +17,11 @@ import vn.com.hkt.gui.control.PanelControlShowList;
 import vn.com.hkt.gui.control.api.IControlPanel;
 import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.control.api.IPanelControlList;
-import vn.com.hkt.gui.entity.AddNewProduct;
-import vn.com.hkt.gui.entity.AddNewProject;
+import vn.com.hkt.gui.panel.spi.AddNewProduct;
+import vn.com.hkt.gui.panel.spi.AddNewProject;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.gui.panel.spi.PanelShowAllParentEnterprise;
+import vn.com.hkt.gui.panel.spi.PanelShowListDepartment;
 import vn.com.hkt.gui.panel.spi.PanelShowListEmployee;
 import vn.com.hkt.gui.panel.spi.PanelShowListEnterprise;
 import vn.com.hkt.gui.panel.spi.PanelShowListProduct;
@@ -87,6 +88,11 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         btnDepartment.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnDepartment.setForeground(new java.awt.Color(51, 51, 51));
         btnDepartment.setText("Department      ");
+        btnDepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepartmentActionPerformed(evt);
+            }
+        });
 
         btnProductGroup.setBackground(new java.awt.Color(153, 153, 153));
         btnProductGroup.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -194,7 +200,18 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void btnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeActionPerformed
-//    if (cp != null) {
+
+    
+    IPanelControlList panelControlList = new PanelControlShowList();
+    panelControlList.setPanelShowList(new PanelShowListEmployee());
+    panelControlList.showDefault();
+    controlGeneral = panelControlList;
+    setPanelControl(controlGeneral);
+    showDefaut();
+    
+    
+    
+    //    if (cp != null) {
 //        IShowPanel panel = new PanelShowListEmployee();
 //        cp.setShowPanel(panel);
 //        cp.showDefault();
@@ -224,11 +241,24 @@ private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btnProductActionPerformed
 
 private void btnProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjectActionPerformed
-    ControlPanel cp = new ControlPanel();
-    AddNewProject anp = new AddNewProject();
-    cp.setShowPanel(anp);
-    this.setPanelControl(cp);
-    this.showDefaut();
+//    ControlPanel cp = new ControlPanel();
+//    AddNewProject anp = new AddNewProject();
+//    cp.setShowPanel(anp);
+//    this.setPanelControl(cp);
+//    this.showDefaut();
+    
+    IShowPanel anp = new AddNewProject();
+    IControlPanel controlPanel = new ControlPanel();    
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+//    IPanelControlList panelControlList = new PanelControlShowList();
+//    panelControlList.setPanelShowList(new AddNewProject());
+//    panelControlList.showDefault();
+//    controlGeneral = panelControlList;
+//    setPanelControl(controlGeneral);
+//    showDefaut();
 }//GEN-LAST:event_btnProjectActionPerformed
 
 private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpriseActionPerformed
@@ -258,6 +288,15 @@ private void btnEnterpiseListActionPerformed(java.awt.event.ActionEvent evt) {//
     showDefaut();
     
 }//GEN-LAST:event_btnEnterpiseListActionPerformed
+
+private void btnDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentActionPerformed
+    IPanelControlList panelControlList = new PanelControlShowList();
+    panelControlList.setPanelShowList(new PanelShowListDepartment());
+    panelControlList.showDefault();
+    controlGeneral = panelControlList;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnDepartmentActionPerformed
 
     /**
      * @param args the command line arguments
