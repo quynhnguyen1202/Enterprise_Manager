@@ -27,6 +27,15 @@ public class Enterprise {
     private long IdEnterprise; // ID của Enterprise cha
     private String Slogan;
     private String Picture; // đường dẫn đến logo
+    private String codeEnterprise;
+
+    public String getCodeEnterprise() {
+        return codeEnterprise;
+    }
+
+    public void setCodeEnterprise(String codeEnterprise) {
+        this.codeEnterprise = codeEnterprise;
+    }
 
     public Enterprise() {
     }
@@ -35,7 +44,7 @@ public class Enterprise {
     public String toString() {
         return Name;
     }
-    
+
     public Date getDateActivative() {
         return DateActivative;
     }

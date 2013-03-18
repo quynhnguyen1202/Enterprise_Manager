@@ -29,6 +29,15 @@ public class Project {
     private Date DateStart;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateEnd;
+    private String codeProject;
+
+    public String getCodeProject() {
+        return codeProject;
+    }
+
+    public void setCodeProject(String codeProject) {
+        this.codeProject = codeProject;
+    }
 
     public long getIdDepartment() {
         return IdDepartment;

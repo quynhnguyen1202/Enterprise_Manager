@@ -22,6 +22,15 @@ public class Product {
     private String Name;
     private long IdEnterprise;
     private long IdDepartment;
+    private String codeProduct;
+
+    public String getCodeProduct() {
+        return codeProduct;
+    }
+
+    public void setCodeProduct(String codeProduct) {
+        this.codeProduct = codeProduct;
+    }
 
     public long getId() {
         return Id;

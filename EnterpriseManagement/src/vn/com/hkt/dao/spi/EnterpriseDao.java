@@ -38,7 +38,7 @@ public class EnterpriseDao extends EntityDao<Enterprise> implements IEnterpriseD
 
     @Override
     public List<Enterprise> getIdByName(String name) {
-         String sql = "Select tbl form Enterprise tbl where tbl.Name =? 1";
+         String sql = "Select tbl form Enterprise tbl where tbl.Name like '%?1' ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }

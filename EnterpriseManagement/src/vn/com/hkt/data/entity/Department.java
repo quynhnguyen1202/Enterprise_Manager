@@ -17,14 +17,24 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Department {
+
     @Id
-    @GeneratedValue (strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private String Name;
-       @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateActivate;
-       private long IdEnterprise; // Id cua doanh nghiep cha
-       private long IdDepartment; // Id cua phong ban cha
+    private long IdEnterprise; // Id cua doanh nghiep cha
+    private long IdDepartment; // Id cua phong ban cha
+    private String codeDepartment;
+
+    public String getCodeDepartment() {
+        return codeDepartment;
+    }
+
+    public void setCodeDepartment(String codeDepartment) {
+        this.codeDepartment = codeDepartment;
+    }
 
     public Date getDateActivate() {
         return DateActivate;
@@ -70,5 +80,4 @@ public class Department {
     public void setName(String Name) {
         this.Name = Name;
     }
-    
 }

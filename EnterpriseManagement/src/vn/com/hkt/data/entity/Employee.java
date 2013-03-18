@@ -16,11 +16,21 @@ import javax.persistence.Id;
  */
 @Entity
 public class Employee {
+
     @Id
-    @GeneratedValue (strategy= GenerationType.IDENTITY)
-    private  long Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long Id;
     private String Name;
     private long IdDepartment;
+    private String codeEmployee;
+
+    public String getCodeEmployee() {
+        return codeEmployee;
+    }
+
+    public void setCodeEmployee(String codeEmployee) {
+        this.codeEmployee = codeEmployee;
+    }
 
     public long getId() {
         return Id;
@@ -50,6 +60,4 @@ public class Employee {
     public String toString() {
         return Name;
     }
-  
-    
 }
