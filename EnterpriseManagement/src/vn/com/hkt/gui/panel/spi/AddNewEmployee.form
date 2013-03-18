@@ -37,21 +37,21 @@
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" pref="140" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="jComboBox2" pref="196" max="32767" attributes="0"/>
+              <Component id="cbEnterprise" pref="196" max="32767" attributes="0"/>
               <EmptySpace min="110" pref="110" max="110" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" pref="140" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="jComboBox1" pref="196" max="32767" attributes="0"/>
+              <Component id="cbDepartment" pref="196" max="32767" attributes="0"/>
               <EmptySpace min="110" pref="110" max="110" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" pref="140" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="jTextField1" pref="196" max="32767" attributes="0"/>
+              <Component id="txtEmployeeName" pref="196" max="32767" attributes="0"/>
               <EmptySpace min="110" pref="110" max="110" attributes="0"/>
           </Group>
       </Group>
@@ -64,17 +64,17 @@
               <EmptySpace min="90" pref="90" max="90" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel5" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="jComboBox2" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="cbEnterprise" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="17" pref="17" max="17" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel6" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="cbDepartment" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="17" pref="17" max="17" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel4" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="txtEmployeeName" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="91" max="32767" attributes="0"/>
           </Group>
@@ -104,7 +104,7 @@
         <Property name="text" type="java.lang.String" value="Employee name :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="cbDepartment">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -127,7 +127,7 @@
         <Property name="text" type="java.lang.String" value="Choose enterprise :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox2">
+    <Component class="javax.swing.JComboBox" name="cbEnterprise">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -138,6 +138,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbEnterpriseItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
@@ -150,7 +153,7 @@
         <Property name="text" type="java.lang.String" value="Choose department :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtEmployeeName">
     </Component>
   </SubComponents>
 </Form>
