@@ -286,14 +286,14 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             JOptionPane.showMessageDialog(null, "Wrong error !");
             return 0;
         }else{
-            JOptionPane.showMessageDialog(null, "Add new product successful !");
+            providerProduct.addData();
             for (int i = 0; i < listAddGroup.getModel().getSize(); i++) {
                 ProductGroup p = (ProductGroup)listAddGroup.getModel().getElementAt(i);
                 providerMidleGroup.getDataView().setIdGroupProduct(p.getId());
                 providerMidleGroup.addData();
             }
-        return providerProduct.addData();
-            
+            JOptionPane.showMessageDialog(null, "Add new product successful !");
+            return 1;
         }
     }
 
