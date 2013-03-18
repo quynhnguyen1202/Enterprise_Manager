@@ -20,9 +20,7 @@ public interface IEntityDao<E> {
 
     public E getById(long id);
 
-   // public List<E> getByFatherID(long Id);
-    
     public void setClassName(Class clsName);
-    
+
     public List<E> selectAll();
 }

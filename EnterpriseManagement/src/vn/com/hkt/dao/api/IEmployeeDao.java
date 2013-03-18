@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.dao.api;
 
+import java.util.List;
 import vn.com.hkt.data.entity.Employee;
 
 /**
@@ -11,5 +12,4 @@ import vn.com.hkt.data.entity.Employee;
  * @author QuynhNguyen
  */
 public interface IEmployeeDao extends IEntityDao<Employee> {
-    
 }

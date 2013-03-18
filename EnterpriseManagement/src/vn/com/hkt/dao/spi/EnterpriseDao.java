@@ -22,7 +22,7 @@ public class EnterpriseDao extends EntityDao<Enterprise> implements IEnterpriseD
     public List<Enterprise> getListByIdEnterprise(long id) {
         String sql = "Select tbl from Enterprise tbl where tbl.IdEnterprise =?1 ";
         if (em == null || !em.isOpen()) {
-            em = emf.createEntityManager();
+            em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
         try {
 
