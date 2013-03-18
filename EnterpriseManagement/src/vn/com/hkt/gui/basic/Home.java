@@ -20,6 +20,7 @@ import vn.com.hkt.gui.control.api.IPanelControlList;
 import vn.com.hkt.gui.panel.spi.AddNewProduct;
 import vn.com.hkt.gui.panel.spi.AddNewProject;
 import vn.com.hkt.gui.entity.api.IShowPanel;
+import vn.com.hkt.gui.panel.spi.AddNewEmployee;
 import vn.com.hkt.gui.panel.spi.PanelShowAllParentEnterprise;
 import vn.com.hkt.gui.panel.spi.PanelShowListDepartment;
 import vn.com.hkt.gui.panel.spi.PanelShowListEmployee;
@@ -202,13 +203,20 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
 private void btnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeActionPerformed
 
     
-    IPanelControlList panelControlList = new PanelControlShowList();
-    panelControlList.setPanelShowList(new PanelShowListEmployee());
-    panelControlList.showDefault();
-    controlGeneral = panelControlList;
+//    IPanelControlList panelControlList = new PanelControlShowList();
+//    panelControlList.setPanelShowList(new PanelShowListEmployee());
+//    panelControlList.showDefault();
+//    controlGeneral = panelControlList;
+//    setPanelControl(controlGeneral);
+//    showDefaut();
+    
+    
+    IControlPanel panelControl = new ControlPanel();
+    panelControl.setShowPanel(new AddNewEmployee());
+    panelControl.showDefault();
+    controlGeneral = panelControl;
     setPanelControl(controlGeneral);
     showDefaut();
-    
     
     
     //    if (cp != null) {
@@ -228,7 +236,16 @@ private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 }//GEN-LAST:event_btnExitActionPerformed
 
 private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
-//    if (cp != null) {
+
+    IShowPanel anp = new AddNewProduct();
+    IControlPanel controlPanel = new ControlPanel();    
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+    
+    
+    //    if (cp != null) {
 //        IShowPanel panel = new PanelShowListProduct();
 //        cp.setShowPanel(panel);
 //        cp.showDefault();

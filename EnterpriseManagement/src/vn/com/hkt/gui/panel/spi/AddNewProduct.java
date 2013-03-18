@@ -11,18 +11,50 @@
 package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import vn.com.hkt.data.entity.Department;
+import vn.com.hkt.data.entity.Enterprise;
+import vn.com.hkt.data.entity.ProductGroup;
+import vn.com.hkt.data.entity.ProductGroup;
+import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.entity.api.IShowPanel;
+import vn.com.hkt.provider.api.IProviderPanelShowListDepartment;
+import vn.com.hkt.provider.api.IProviderPanelShowListEnterprise;
+import vn.com.hkt.provider.api.IProviderPanelShowListProductGroup;
+import vn.com.hkt.provider.api.IProviderPanelShowMidleProductGroup;
+import vn.com.hkt.provider.api.IProviderPanelShowProduct;
+import vn.com.hkt.provider.spi.ProviderPanelShowListDepartment;
+import vn.com.hkt.provider.spi.ProviderPanelShowListEnterprise;
+import vn.com.hkt.provider.spi.ProviderPanelShowListProductGroup;
+import vn.com.hkt.provider.spi.ProviderPanelShowMidleProductGroup;
+import vn.com.hkt.provider.spi.ProviderPanelShowProduct;
 
 /**
  *
  * @author Administrator
  */
-public class AddNewProduct extends javax.swing.JPanel implements IShowPanel {
-
+public class AddNewProduct extends javax.swing.JPanel implements IShowPanel,IPanelShowList {
+    private IProviderPanelShowListProductGroup groupProvider;
+    private IProviderPanelShowListEnterprise providerEnterprise;
+    private IProviderPanelShowListDepartment providerDepartment;
+    private IProviderPanelShowProduct providerProduct;
+    private long departmentID;
+    private long enterpriseID;
+    //group
+    private IProviderPanelShowMidleProductGroup providerMidleGroup;
     /** Creates new form AddNewProduct */
     public AddNewProduct() {
         initComponents();
+        groupProvider=new ProviderPanelShowListProductGroup();
+        providerEnterprise = new ProviderPanelShowListEnterprise();
+        providerDepartment = new ProviderPanelShowListDepartment();
+        providerProduct=new ProviderPanelShowProduct();
+        providerMidleGroup=new ProviderPanelShowMidleProductGroup();
+        showDefault();
+        loabCBEnterpriseAuto();
+        loadCBDepartmentAuto();
     }
 
     /** This method is called from within the constructor to
@@ -38,156 +70,211 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        cbDepartment = new javax.swing.JComboBox();
+        cbEnterprise = new javax.swing.JComboBox();
         txtProductName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        listAddGroup = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        listGroup = new javax.swing.JList();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        lbError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
+        setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Add New Product");
+        add(jLabel1);
+        jLabel1.setBounds(12, 17, 160, 30);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Choose department :");
+        add(jLabel2);
+        jLabel2.setBounds(12, 95, 140, 23);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Product group :");
+        add(jLabel3);
+        jLabel3.setBounds(12, 155, 140, 23);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Choose enterprise :");
+        add(jLabel4);
+        jLabel4.setBounds(12, 65, 140, 23);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbDepartmentItemStateChanged(evt);
+            }
+        });
+        add(cbDepartment);
+        cbDepartment.setBounds(162, 95, 148, 23);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEnterprise.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbEnterpriseItemStateChanged(evt);
+            }
+        });
+        add(cbEnterprise);
+        cbEnterprise.setBounds(162, 65, 148, 23);
 
         txtProductName.setFont(new java.awt.Font("Tahoma", 0, 14));
+        add(txtProductName);
+        txtProductName.setBounds(162, 125, 148, 23);
 
         jLabel5.setText("Image");
         jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        add(jLabel5);
+        jLabel5.setBounds(400, 65, 148, 83);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listAddGroup);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
+        add(jScrollPane1);
+        jScrollPane1.setBounds(400, 155, 148, 240);
+
+        jScrollPane2.setViewportView(listGroup);
+
+        add(jScrollPane2);
+        jScrollPane2.setBounds(162, 155, 148, 240);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Product name :");
+        add(jLabel6);
+        jLabel6.setBounds(12, 125, 140, 23);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\back.png")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1);
+        jButton1.setBounds(330, 295, 50, 35);
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\next.png")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        add(jButton2);
+        jButton2.setBounds(330, 225, 50, 35);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, 0, 148, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, 148, Short.MAX_VALUE)
-                    .addComponent(txtProductName, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
-                .addGap(110, 110, 110)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(396, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
-        );
+        lbError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbError.setForeground(new java.awt.Color(255, 0, 0));
+        add(lbError);
+        lbError.setBounds(162, 400, 385, 23);
     }// </editor-fold>//GEN-END:initComponents
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    //them doi tuong 
+    DefaultListModel dlm=new DefaultListModel();
+    dlm.addElement(listGroup.getSelectedValue());
+    for (int i = 0; i < listAddGroup.getModel().getSize(); i++) {
+        dlm.addElement(listAddGroup.getModel().getElementAt(i));
+    }
+    listAddGroup.setModel(dlm);
+    
+    
+    
+    //xoa doi tuong
+    DefaultListModel model = (DefaultListModel) listGroup.getModel();
+    int selectedIndex = listGroup.getSelectedIndex();
+    if (selectedIndex != -1) {
+        model.remove(selectedIndex);
+    }
+    listGroup.setModel(model);
+}//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    //them doi tuong
+    DefaultListModel dlm=new DefaultListModel();
+    dlm.addElement(listAddGroup.getSelectedValue());
+    for (int i = 0; i < listGroup.getModel().getSize(); i++) {
+        dlm.addElement(listGroup.getModel().getElementAt(i));
+    }
+    listGroup.setModel(dlm);
+    
+    
+    
+    //xoa doi tuong
+    DefaultListModel model = (DefaultListModel) listAddGroup.getModel();
+    int selectedIndex = listAddGroup.getSelectedIndex();
+    if (selectedIndex != -1) {
+        model.remove(selectedIndex);
+    }
+    listAddGroup.setModel(model);
+}//GEN-LAST:event_jButton1ActionPerformed
+
+private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEnterpriseItemStateChanged
+        loabCBEnterpriseAuto();
+}//GEN-LAST:event_cbEnterpriseItemStateChanged
+
+private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDepartmentItemStateChanged
+        loadCBDepartmentAuto();
+}//GEN-LAST:event_cbDepartmentItemStateChanged
+
+    private void loadCBDepartmentAuto() {
+        Department d = (Department) cbDepartment.getSelectedItem();
+            if (d.getId() >0) {
+                departmentID = d.getId();
+            }else{
+                departmentID=0;
+            }
+    }
+
+    private void loabCBEnterpriseAuto() {
+        Enterprise e = (Enterprise) cbEnterprise.getSelectedItem();
+        if (e.getId() >0) {
+            enterpriseID = e.getId();
+        }else{
+            enterpriseID=0;
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cbDepartment;
+    private javax.swing.JComboBox cbEnterprise;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbError;
+    private javax.swing.JList listAddGroup;
+    private javax.swing.JList listGroup;
     private javax.swing.JTextField txtProductName;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public boolean checkData() {
         if(txtProductName.getText().length()==0){
+            lbError.setText("Enter product name !");
+            return false;
+        }
+        int count=listAddGroup.getModel().getSize();
+        if(count<1){
+            lbError.setText("Choose group product !");
             return false;
         }
         return true;
@@ -195,12 +282,18 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel {
 
     @Override
     public long addData() {
-        if(!checkData()){
-            JOptionPane.showMessageDialog(null, "Them moi khong thanh cong\nKiem tra lai du lieu!");
+        if(!checkData() || !getData()){
+            JOptionPane.showMessageDialog(null, "Wrong error !");
             return 0;
         }else{
-            JOptionPane.showMessageDialog(null, "Them moi  thanh cong !");
-            return 1;
+            JOptionPane.showMessageDialog(null, "Add new product successful !");
+            for (int i = 0; i < listAddGroup.getModel().getSize(); i++) {
+                ProductGroup p = (ProductGroup)listAddGroup.getModel().getElementAt(i);
+                providerMidleGroup.getDataView().setIdGroupProduct(p.getId());
+                providerMidleGroup.addData();
+            }
+        return providerProduct.addData();
+            
         }
     }
 
@@ -222,5 +315,38 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel {
     @Override
     public List listCombo() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void showDefault() {
+        loadListGroup();
+        loadCBDepartment();
+        loadCBEnterprise();
+    }
+
+    private void loadListGroup() {
+        List<ProductGroup> productGroups = groupProvider.getListInformation();
+        DefaultListModel dlm=new DefaultListModel();
+        for (ProductGroup p : productGroups) {
+            dlm.addElement(p);
+        }
+        listGroup.setModel(dlm);
+    }
+
+    private void loadCBEnterprise() {
+        List<Enterprise> enterprises = providerEnterprise.getListInformation();
+        cbEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
+    }
+
+    private void loadCBDepartment() {
+        List<Department> departments = providerDepartment.getListInformation();
+       cbDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
+    }
+
+    private boolean getData() {
+        providerProduct.getDataView().setName(txtProductName.getText());
+        providerProduct.getDataView().setIdDepartment(departmentID);
+        providerProduct.getDataView().setIdEnterprise(enterpriseID);
+        return true;
     }
 }
