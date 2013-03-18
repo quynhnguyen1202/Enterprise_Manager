@@ -30,6 +30,15 @@ public class Receipt {
     private float MoneyTotal;
     private long IdUnitMoney;
     private boolean Classification; // Thu hoac chi
+    private String codeReceipt;
+
+    public String getCodeReceipt() {
+        return codeReceipt;
+    }
+
+    public void setCodeReceipt(String codeReceipt) {
+        this.codeReceipt = codeReceipt;
+    }
 
     public boolean isClassification() {
         return Classification;

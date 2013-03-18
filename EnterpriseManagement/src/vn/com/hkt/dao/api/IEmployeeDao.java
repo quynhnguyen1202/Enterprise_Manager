@@ -12,4 +12,7 @@ import vn.com.hkt.data.entity.Employee;
  * @author QuynhNguyen
  */
 public interface IEmployeeDao extends IEntityDao<Employee> {
+    public List<Employee> getByName(String name);
+    public List<Employee> getByCode(String code);
+    public List<Employee> getByIdDepartment(long id);
 }

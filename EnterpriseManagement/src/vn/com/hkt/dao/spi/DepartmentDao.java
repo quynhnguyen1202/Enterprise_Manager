@@ -38,7 +38,7 @@ public class DepartmentDao extends EntityDao<Department> implements IDepartmentD
 
     @Override
     public List<Department> getByName(String Name) {
-       String sql = "Select tbl from Department tbl where tbl.Name = ?1";
+       String sql = "Select tbl from Department tbl where tbl.Name like '%?1'";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }

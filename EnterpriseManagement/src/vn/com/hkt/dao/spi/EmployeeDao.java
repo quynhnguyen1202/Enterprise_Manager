@@ -17,4 +17,49 @@ public class EmployeeDao extends EntityDao<Employee> implements IEmployeeDao {
     public EmployeeDao() {
         setClassName(Employee.class);
     }
+
+    @Override
+    public List<Employee> getByName(String name) {
+        String sql = "Select tbl from Employee tbl where tbl.Name like '%?1'";
+        if (em == null || !em.isOpen()) {
+            em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
+        }
+        try {
+            return em.createQuery(sql).setParameter(1, name).getResultList();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Employee> getByCode(String code) {
+        String sql = "Select tbl from Employee tbl where tbl.codeEmployee like '%?1'";
+        if (em == null || !em.isOpen()) {
+            em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
+        }
+        try {
+            return em.createQuery(sql).setParameter(1, code).getResultList();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Employee> getByIdDepartment(long id) {
+        String sql = "Select tbl from Employee tbl where tbl.IdDepartment= ?1";
+        if (em == null || !em.isOpen()) {
+            em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
+        }
+        try {
+            return em.createQuery(sql).setParameter(1, id).getResultList();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 }
