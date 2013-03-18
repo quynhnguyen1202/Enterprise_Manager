@@ -11,6 +11,7 @@
 package vn.com.hkt.gui.basic;
 
 import javax.swing.JPanel;
+import vn.com.hkt.dao.spi.EntityManageFactoryTest;
 import vn.com.hkt.gui.basic.api.IHomePanel;
 import vn.com.hkt.gui.control.ControlPanel;
 import vn.com.hkt.gui.control.PanelControlShowList;
@@ -23,9 +24,7 @@ import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.gui.panel.spi.AddNewEmployee;
 import vn.com.hkt.gui.panel.spi.PanelShowAllParentEnterprise;
 import vn.com.hkt.gui.panel.spi.PanelShowListDepartment;
-import vn.com.hkt.gui.panel.spi.PanelShowListEmployee;
 import vn.com.hkt.gui.panel.spi.PanelShowListEnterprise;
-import vn.com.hkt.gui.panel.spi.PanelShowListProduct;
 
 /**
  *
@@ -38,6 +37,8 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
     /** Creates new form Home */
     public Home() {
         initComponents();
+        EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
+        System.out.println("Finished!");
     }
 
     /** This method is called from within the constructor to
@@ -202,23 +203,23 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
 
 private void btnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeActionPerformed
 
-    
+
 //    IPanelControlList panelControlList = new PanelControlShowList();
 //    panelControlList.setPanelShowList(new PanelShowListEmployee());
 //    panelControlList.showDefault();
 //    controlGeneral = panelControlList;
 //    setPanelControl(controlGeneral);
 //    showDefaut();
-    
-    
+
+
     IControlPanel panelControl = new ControlPanel();
     panelControl.setShowPanel(new AddNewEmployee());
     panelControl.showDefault();
     controlGeneral = panelControl;
     setPanelControl(controlGeneral);
     showDefaut();
-    
-    
+
+
     //    if (cp != null) {
 //        IShowPanel panel = new PanelShowListEmployee();
 //        cp.setShowPanel(panel);
@@ -238,13 +239,13 @@ private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
 
     IShowPanel anp = new AddNewProduct();
-    IControlPanel controlPanel = new ControlPanel();    
+    IControlPanel controlPanel = new ControlPanel();
     controlPanel.setShowPanel(anp);
     controlGeneral = controlPanel;
     setPanelControl(controlGeneral);
     showDefaut();
-    
-    
+
+
     //    if (cp != null) {
 //        IShowPanel panel = new PanelShowListProduct();
 //        cp.setShowPanel(panel);
@@ -263,9 +264,9 @@ private void btnProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 //    cp.setShowPanel(anp);
 //    this.setPanelControl(cp);
 //    this.showDefaut();
-    
+
     IShowPanel anp = new AddNewProject();
-    IControlPanel controlPanel = new ControlPanel();    
+    IControlPanel controlPanel = new ControlPanel();
     controlPanel.setShowPanel(anp);
     controlGeneral = controlPanel;
     setPanelControl(controlGeneral);
@@ -281,7 +282,7 @@ private void btnProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpriseActionPerformed
 
     IShowPanel anp = new PanelShowAllParentEnterprise();
-    IControlPanel controlPanel = new ControlPanel();    
+    IControlPanel controlPanel = new ControlPanel();
     controlPanel.setShowPanel(anp);
     controlGeneral = controlPanel;
     setPanelControl(controlGeneral);
@@ -303,7 +304,7 @@ private void btnEnterpiseListActionPerformed(java.awt.event.ActionEvent evt) {//
     controlGeneral = panelControlList;
     setPanelControl(controlGeneral);
     showDefaut();
-    
+
 }//GEN-LAST:event_btnEnterpiseListActionPerformed
 
 private void btnDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentActionPerformed

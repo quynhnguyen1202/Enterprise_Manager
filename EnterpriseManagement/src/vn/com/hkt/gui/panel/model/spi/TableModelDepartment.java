@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import vn.com.hkt.dao.api.IDepartmentDao;
 import vn.com.hkt.dao.api.IEnterpriseDao;
+import vn.com.hkt.dao.spi.DepartmentDao;
 import vn.com.hkt.dao.spi.EnterpriseDao;
 import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.Enterprise;
@@ -20,9 +22,10 @@ import vn.com.hkt.data.entity.Enterprise;
 public class TableModelDepartment extends DefaultTableModel {
 
     private List<Department> departments = new ArrayList<Department>();
-    private String[] header = new String[]{"Name","DateActivate"};
+    private String[] header = new String[]{"","Name","DateActivate","Parent Department","Enterprise"};
     private List<String[]> data = new ArrayList<String[]>();
-    //private IEnterpriseDao enterpriseDao=new EnterpriseDao();
+    private IEnterpriseDao enterpriseDao=new EnterpriseDao();
+    private IDepartmentDao departmentDao=new DepartmentDao();
 
     public TableModelDepartment(List<Department> departments) {
         this.departments=departments;
@@ -34,14 +37,22 @@ public class TableModelDepartment extends DefaultTableModel {
         if(departments !=null){
             for(Department d:departments){
                 String name=d.getName();
-//                Enterprise e = enterpriseDao.getById(d.getIdEnterprise());
-//                String eName = e.getName();
+                long id=d.getId();
+                
+                
+                Enterprise e = enterpriseDao.getById(d.getIdEnterprise());
+                String eName = e.getName();
+                //parent department name
+                String deName="";
+                Department de=departmentDao.getById(d.getIdDepartment());
+                if(de!=null){
+                    deName=de.getName();
+                }
                 Date datectivate=d.getDateActivate();
-                String[] row = new String[]{name, datectivate == null ? "" : datectivate.toString()};
+                String[] row = new String[]{String.valueOf(id),name, datectivate == null ? "" : datectivate.toString(),deName,eName};
                 list.add(row);
             }
         }
-        
         return list;
     }
     

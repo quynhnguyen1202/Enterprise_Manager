@@ -60,17 +60,17 @@ public class PanelShowListDepartment extends javax.swing.JPanel implements IPane
 
         tbnDepartment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Employee name", "Department"
+                "Department Name", "Date Activate", "Parent Department", "Enterprise"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
