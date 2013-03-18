@@ -12,6 +12,5 @@ import vn.com.hkt.data.entity.Department;
  *
  * @author QuynhNguyen
  */
-public interface  IDepartmentDao extends IEntityDao<Department> {
-    public List<Department> getByIdDepartment( long IdDepartment);
+public interface IDepartmentDao extends IEntityDao<Department> {
 }
