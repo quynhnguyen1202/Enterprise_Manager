@@ -13,17 +13,20 @@ package vn.com.hkt.gui.panel.spi;
 import java.util.List;
 import vn.com.hkt.data.entity.Employee;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
-import vn.com.hkt.provider.api.IProviderPanelShowListEnterprise;
+import vn.com.hkt.provider.api.IProviderPanelShowListEmployee;
+import vn.com.hkt.provider.spi.ProviderPanelShowListEmployee;
+
 
 /**
  *
  * @author Administrator
  */
 public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelShowList {
-    private IProviderPanelShowListEnterprise provider;
+    private IProviderPanelShowListEmployee provider;
     /** Creates new form PanelShowListEmployee */
     public PanelShowListEmployee() {
         initComponents();
+        //provider=new ProviderPanelShowListEmployee();
     }
 
     /** This method is called from within the constructor to
@@ -56,17 +59,17 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Employee name", "Department"
+                "Employee name", "Department", "Enterprise"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -124,7 +127,7 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
     }
 
     private void loadTable() {
-        //List<Employee> emp=provider.getListInformation();
+        List<Employee> emp=provider.getListInformation();
         
     }
 

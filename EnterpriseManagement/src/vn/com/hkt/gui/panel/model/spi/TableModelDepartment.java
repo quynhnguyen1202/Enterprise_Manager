@@ -22,41 +22,39 @@ import vn.com.hkt.data.entity.Enterprise;
 public class TableModelDepartment extends DefaultTableModel {
 
     private List<Department> departments = new ArrayList<Department>();
-    private String[] header = new String[]{"","Name","DateActivate","Parent Department","Enterprise"};
+    private String[] header = new String[]{"", "Name", "DateActivate", "Parent Department", "Enterprise"};
     private List<String[]> data = new ArrayList<String[]>();
-    private IEnterpriseDao enterpriseDao=new EnterpriseDao();
-    private IDepartmentDao departmentDao=new DepartmentDao();
+    private IEnterpriseDao enterpriseDao = new EnterpriseDao();
+    private IDepartmentDao departmentDao = new DepartmentDao();
 
     public TableModelDepartment(List<Department> departments) {
-        this.departments=departments;
-        data=LoadData();
+        this.departments = departments;
+        data = LoadData();
     }
 
     private List<String[]> LoadData() {
         List<String[]> list = new ArrayList<String[]>();
-        if(departments !=null){
-            for(Department d:departments){
-                String name=d.getName();
-                long id=d.getId();
-                
-                
+        if (departments != null) {
+            for (Department d : departments) {
+                String name = d.getName();
+                long id = d.getId();
+                //enterprise
                 Enterprise e = enterpriseDao.getById(d.getIdEnterprise());
                 String eName = e.getName();
                 //parent department name
-                String deName="";
-                Department de=departmentDao.getById(d.getIdDepartment());
-                if(de!=null){
-                    deName=de.getName();
+                String deName = "";
+                Department de = departmentDao.getById(d.getIdDepartment());
+                if (de != null) {
+                    deName = de.getName();
                 }
-                Date datectivate=d.getDateActivate();
-                String[] row = new String[]{String.valueOf(id),name, datectivate == null ? "" : datectivate.toString(),deName,eName};
+                Date datectivate = d.getDateActivate();
+                String[] row = new String[]{String.valueOf(id), name, datectivate == null ? "" : datectivate.toString(), deName, eName};
                 list.add(row);
             }
         }
         return list;
     }
-    
-    
+
     @Override
     public int getColumnCount() {
         return header.length;
@@ -83,13 +81,9 @@ public class TableModelDepartment extends DefaultTableModel {
     public boolean isCellEditable(int row, int column) {
         return false;
     }
-    
-    
 
     @Override
     public String getColumnName(int column) {
         return header[column];
     }
-    
-    
 }
