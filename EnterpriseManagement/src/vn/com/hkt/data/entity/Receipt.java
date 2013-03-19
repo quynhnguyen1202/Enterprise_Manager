@@ -18,6 +18,14 @@ import javax.persistence.Temporal;
 @Entity
 public class Receipt {
 
+    public static final String FIELD_ID = "Id";
+    public static final String FIELD_IDOPERATION = "IdOperation";
+    public static final String FIELD_IDENTERPRISE = "IdEnterprise";
+    public static final String FIELD_IDDEPARTMENT = "IdDepartment";
+    public static final String FIELD_IDEMPLOYEE = "IdEmployee";
+    public static final String FIELD_DATEPROCESS = "DateProcess";
+    public static final String FIELD_CLASSIFICATION = "Classification";
+    public static final String FIELD_CODE_RECEIPT = "codeReceipt";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;

@@ -17,16 +17,32 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class ProjectMember {
+
+    public static final String FIELD_ID = "Id";
+    public static final String FIELD_IDPROJECT = "IdProject";
+    public static final String FIELD_IDENTERPRISE = "IdEnterprise";
+    public static final String FIELD_DATESTART = "DateStart";
+    public static final String FIELD_DATEEND = "DateEnd";
+    public static final String FIELD_CODE_PROJECTMEMBER = "codeProjectMember";
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private long IdProject;
     private long IdEnterprise;
-    private  int Percent;
+    private int Percent;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateStart;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private  Date DateEnd;
+    private Date DateEnd;
+    private String codeProjectMember;
+
+    public String getCodeProjectMember() {
+        return codeProjectMember;
+    }
+
+    public void setCodeProjectMember(String codeProjectMember) {
+        this.codeProjectMember = codeProjectMember;
+    }
 
     public Date getDateEnd() {
         return DateEnd;
@@ -75,6 +91,4 @@ public class ProjectMember {
     public void setPercent(int Percent) {
         this.Percent = Percent;
     }
-    
-    
 }

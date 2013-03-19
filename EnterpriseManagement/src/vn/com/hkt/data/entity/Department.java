@@ -18,6 +18,12 @@ import javax.persistence.Temporal;
 @Entity
 public class Department {
 
+    public static final String FIELD_ID = "Id";
+    public static final String FIELD_NAME = "Name";
+    public static final String FIELD_DATEACTIVATE = "DateActivate";
+    public static final String FIELD_IDENTERPRISE = "IdEnterprise";
+    public static final String FIELD_IDDEPARTMENT = "IdDepartment";
+    public static final String FIELD_CODEDEPARTMENT = "codeDepartment";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;

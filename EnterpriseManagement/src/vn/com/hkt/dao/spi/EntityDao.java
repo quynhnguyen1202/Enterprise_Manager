@@ -17,7 +17,7 @@ import vn.com.hkt.dao.api.IEntityDao;
 public class EntityDao<E> implements IEntityDao<E> {
 
     private Class clsName;
-    public  EntityManager em;
+    public EntityManager em;
 
     public EntityDao() {
     }
@@ -88,19 +88,6 @@ public class EntityDao<E> implements IEntityDao<E> {
         }
     }
 
-//    @Override
-//    public List<E> query(String sql) {
-//        if (em == null || !em.isOpen()) {
-//            em = emf.createEntityManager();
-//        }
-//        try {
-//            return (List) em.createQuery(sql);
-//        } catch (Exception e) {
-//            return null;
-//        } finally {
-//            em.close();
-//        }
-//    }
     @Override
     public void setClassName(Class clsName) {
         this.clsName = clsName;

@@ -15,6 +15,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class UnitProduct {
+    public static final String FIELD_ID = "Id";
+    public static final String FIELD_NAME = "Name";
+    public static final String FIELD_CODE = "code";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +25,16 @@ public class UnitProduct {
     private String Name;
     private boolean isDefault;
     private float RatiowithDefault;
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+    
 
     public long getId() {
         return Id;
