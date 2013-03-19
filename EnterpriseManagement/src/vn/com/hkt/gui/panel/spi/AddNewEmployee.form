@@ -49,9 +49,16 @@
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+              <Component id="jLabel7" min="-2" pref="140" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="txtName" pref="196" max="32767" attributes="0"/>
+              <EmptySpace min="110" pref="110" max="110" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" pref="140" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="txtEmployeeName" pref="196" max="32767" attributes="0"/>
+              <Component id="txtCode" pref="196" max="32767" attributes="0"/>
               <EmptySpace min="110" pref="110" max="110" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -78,12 +85,16 @@
               </Group>
               <EmptySpace min="17" pref="17" max="17" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel7" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="txtName" min="-2" pref="23" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="17" pref="17" max="17" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel4" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="txtEmployeeName" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="txtCode" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="17" pref="17" max="17" attributes="0"/>
               <Component id="lbError" min="-2" pref="23" max="-2" attributes="0"/>
-              <EmptySpace pref="119" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,7 +119,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Employee name :"/>
+        <Property name="text" type="java.lang.String" value="Code :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbDepartment">
@@ -163,7 +174,7 @@
         <Property name="text" type="java.lang.String" value="Choose department :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtEmployeeName">
+    <Component class="javax.swing.JTextField" name="txtCode">
     </Component>
     <Component class="javax.swing.JLabel" name="lbError">
       <Properties>
@@ -173,6 +184,19 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="ff" type="rgb"/>
         </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtName">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel7">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Employee name :"/>
       </Properties>
     </Component>
   </SubComponents>

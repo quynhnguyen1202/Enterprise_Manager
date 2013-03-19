@@ -22,6 +22,7 @@ import vn.com.hkt.gui.control.api.IPanelControlList;
 import vn.com.hkt.gui.panel.spi.AddNewProduct;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.gui.panel.spi.AddNewDepartment;
+import vn.com.hkt.gui.panel.spi.AddNewEmployee;
 import vn.com.hkt.gui.panel.spi.AddNewEnterprise;
 import vn.com.hkt.gui.panel.spi.AddNewProductGroup;
 import vn.com.hkt.gui.panel.spi.PanelShowAllParentEnterprise;
@@ -325,7 +326,7 @@ private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void btnEnterpiseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpiseListActionPerformed
 
-    IShowPanel anp = new AddNewDepartment();
+    IShowPanel anp = new AddNewEmployee();
     IControlPanel controlPanel = new ControlPanel();
     controlPanel.setShowPanel(anp);
     controlGeneral = controlPanel;

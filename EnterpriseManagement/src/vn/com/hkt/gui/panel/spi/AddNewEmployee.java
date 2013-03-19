@@ -42,7 +42,6 @@ public class AddNewEmployee extends javax.swing.JPanel implements IShowPanel,IPa
         providerDepartment = new ProviderPanelShowListDepartment();
         showDefault();
         loadCBEnterprise();
-        loadCBDepartment();
     }
 
     /** This method is called from within the constructor to
@@ -60,8 +59,10 @@ public class AddNewEmployee extends javax.swing.JPanel implements IShowPanel,IPa
         jLabel5 = new javax.swing.JLabel();
         cbEnterprise = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
-        txtEmployeeName = new javax.swing.JTextField();
+        txtCode = new javax.swing.JTextField();
         lbError = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
@@ -70,9 +71,9 @@ public class AddNewEmployee extends javax.swing.JPanel implements IShowPanel,IPa
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Add New Employee");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Employee name :");
+        jLabel4.setText("Code :");
 
         cbDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbDepartment.addItemListener(new java.awt.event.ItemListener() {
@@ -96,8 +97,12 @@ public class AddNewEmployee extends javax.swing.JPanel implements IShowPanel,IPa
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Choose department :");
 
-        lbError.setFont(new java.awt.Font("Tahoma", 0, 12));
+        lbError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbError.setForeground(new java.awt.Color(255, 0, 51));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("Employee name :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,9 +125,15 @@ public class AddNewEmployee extends javax.swing.JPanel implements IShowPanel,IPa
                 .addGap(110, 110, 110))
             .addGroup(layout.createSequentialGroup()
                 .addGap(100, 100, 100)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addGap(110, 110, 110))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(txtEmployeeName, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addComponent(txtCode, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                 .addGap(110, 110, 110))
             .addGroup(layout.createSequentialGroup()
                 .addGap(260, 260, 260)
@@ -144,11 +155,14 @@ public class AddNewEmployee extends javax.swing.JPanel implements IShowPanel,IPa
                     .addComponent(cbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -161,21 +175,37 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 }//GEN-LAST:event_cbDepartmentItemStateChanged
 
     private void loadCBDepartment() {
-        Department d=(Department) cbDepartment.getSelectedItem();
-        if(d.getId()>0){
-            departmentID=d.getId();
+        int index=cbEnterprise.getSelectedIndex();
+        if(index>0){
+        Department d = (Department) cbDepartment.getSelectedItem();
+        if (d != null) {
+            if (d.getId() > 0) {
+                departmentID = d.getId();
+            } else {
+                departmentID = 0;
+            }
+        } else {
+            departmentID = 0;
+        }
         }else{
-            departmentID=0;
+            departmentID = 0;
         }
     }
 
     private void loadCBEnterprise() {
         Enterprise e = (Enterprise) cbEnterprise.getSelectedItem();
-            if (e.getId() >0) {
+        if (e != null) {
+            if (e.getId() > 0) {
+                cbDepartment.setEnabled(true);
                 enterpriseID = e.getId();
-            }else{
-                enterpriseID=0;
+                loadDepartment();
+                loadCBDepartment();
+            } else {
+                enterpriseID = 0;
             }
+        }else{
+            cbDepartment.setEnabled(false);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -185,14 +215,32 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lbError;
-    private javax.swing.JTextField txtEmployeeName;
+    private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public boolean checkData() {
-        if(txtEmployeeName.getText().length()==0){
+        if(txtCode.getText().length()==0){
             lbError.setText("Enter employee name !");
+            return false;
+        }
+        if(cbEnterprise.getSelectedIndex()==0){
+            lbError.setText("Choose enterprise !");
+            return false;
+        }
+        if(cbEnterprise.getSelectedItem()==null){
+            lbError.setText("Choose enterprise !");
+            return false;
+        }
+        if(cbDepartment.getSelectedIndex()==0){
+            lbError.setText("Choose department !");
+            return false;
+        }
+        if(cbDepartment.getSelectedItem()==null){
+            lbError.setText("Choose department !");
             return false;
         }
         return true;
@@ -201,7 +249,6 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     @Override
     public long addData() {
         if(!checkData() || ! getData()){
-            lbError.setText("Wrong error !");
             return 0;
         }
         return provider.addData();
@@ -229,25 +276,33 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public void showDefault() {
-        loadDepartment();
         loadEnterprise();
         
     }
 
     private void loadEnterprise() {
-        List<Enterprise> enterprises = providerEnterprise.getListInformation();
-        cbEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
+       List<Enterprise> enterprises = providerEnterprise.getListInformation();
+        if (enterprises != null) {
+            cbEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
+            loadCBEnterprise();
+        }else{
+            enterpriseID=0;
+        }
     }
 
     private void loadDepartment() {
-       List<Department> departments = providerDepartment.getListInformation();
-       cbDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
-       cbDepartment.add(null,0);
+      if (enterpriseID > 0) {
+            List<Department> departments = providerDepartment.getByIDEnt(enterpriseID);
+            cbDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
+        } else {
+            cbDepartment.enable(false);
+        }
     }
 
     private boolean getData() {
-       provider.getDataView().setName(txtEmployeeName.getText());
+       provider.getDataView().setName(txtName.getText());
        provider.getDataView().setIdDepartment(departmentID);
+       provider.getDataView().setName(txtCode.getText());
        return true;
     }
 }
