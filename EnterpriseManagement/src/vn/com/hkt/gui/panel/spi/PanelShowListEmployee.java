@@ -13,6 +13,7 @@ package vn.com.hkt.gui.panel.spi;
 import java.util.List;
 import vn.com.hkt.data.entity.Employee;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
+import vn.com.hkt.gui.panel.model.spi.TableModelEmployee;
 import vn.com.hkt.provider.api.IProviderPanelShowListEmployee;
 import vn.com.hkt.provider.spi.ProviderPanelShowListEmployee;
 
@@ -26,7 +27,7 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
     /** Creates new form PanelShowListEmployee */
     public PanelShowListEmployee() {
         initComponents();
-        //provider=new ProviderPanelShowListEmployee();
+        provider=new ProviderPanelShowListEmployee();
     }
 
     /** This method is called from within the constructor to
@@ -43,7 +44,7 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbEmployee = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.darkGray));
@@ -57,7 +58,7 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbEmployee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -76,7 +77,7 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbEmployee);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,11 +92,11 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
                 .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addGap(48, 48, 48))
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
-                .addGap(29, 29, 29))
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +109,7 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-                .addGap(25, 25, 25))
+                .addGap(54, 54, 54))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -116,8 +117,8 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tbEmployee;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -128,6 +129,7 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
 
     private void loadTable() {
         List<Employee> emp=provider.getListInformation();
+        tbEmployee.setModel(new TableModelEmployee(emp));
         
     }
 

@@ -31,26 +31,56 @@ public class TableModelEmployee extends DefaultTableModel {
         this.emp = emp;
         data = loadData();
     }
+    
+    @Override
+    public int getColumnCount() {
+        return header.length;
+    }
 
+    public String[] getHeader() {
+        return header;
+    }
+
+    @Override
+    public Object getValueAt(int row, int column) {
+        return data.get(row)[column];
+    }
+
+    @Override
+    public int getRowCount() {
+        if (data == null) {
+            return 0;
+        }
+        return data.size();
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return false;
+    }
+    
+    
     private List<String[]> loadData() {
         List<String[]> list = new ArrayList<String[]>();
         if (emp != null) {
             for (Employee employ : emp) {
                 String name = employ.getName();
                 long id = employ.getIdDepartment();
+                System.out.println("     ID department   "+id);
                 //department
-                Department d = departmentDow.getById(employ.getIdDepartment());
+                Department d = departmentDow.getById(id);
                 String dName = "";
+                String eName = "";
                 if (d != null) {
                     dName = d.getName();
+                    System.out.println("        "+dName);
+                    //Enterprise
+                    Enterprise e = enterpriseDow.getById(d.getIdEnterprise());
+                    if (e != null) {
+                        eName = e.getName();
+                    }
                 }
-                //Enterprise
-                Enterprise e = enterpriseDow.getById(d.getIdEnterprise());
-                String eName = "";
-                if (e != null) {
-                    eName = e.getName();
-                }
-                String[] row = new String[]{String.valueOf(id), name, dName, eName};
+                String[] row = new String[]{"", name};
                 list.add(row);
             }
         }

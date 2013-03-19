@@ -68,9 +68,9 @@ public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                .addGap(5, 5, 5))
+                .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(270, 270, 270)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,9 +112,9 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public void addData() {
          if(showPanel!=null){
             if(showPanel.addData()>0){
-                JOptionPane.showMessageDialog(null, "Thanh cong!");
+                JOptionPane.showMessageDialog(null, "Susscess !");
             }else{
-                JOptionPane.showMessageDialog(null, "Loi!");
+                JOptionPane.showMessageDialog(null, "Error!");
             }
         }
     }
