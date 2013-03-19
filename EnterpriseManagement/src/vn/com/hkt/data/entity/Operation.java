@@ -18,6 +18,14 @@ import javax.persistence.Temporal;
 @Entity
 public class Operation {
 
+    public static final String FIELD_ID = "Id";
+    public static final String FIELD_IDPROJECT = "IdProject";
+    public static final String FIELD_IDENTERPRISE = "IdEnterprise";
+    public static final String FIELD_IDDEPARTMENT = "IdDepartment";
+    public static final String FIELD_IDEMPLOYEE = "IdEmployee";
+    public static final String FIELD_DATEEXECUTE = "DateExecute";
+    public static final String FIELD_CLASSIFICATION = "classification";
+    public static final String FIELD_CODEOPERATION = "codeOperation";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
@@ -32,13 +40,21 @@ public class Operation {
     private long IdEmployee;
     private long IdUnitMoney;
     private boolean classification; // mua hoac ban
+    private String codeOperation;
+
+    public String getCodeOperation() {
+        return codeOperation;
+    }
+
+    public void setCodeOperation(String codeOperation) {
+        this.codeOperation = codeOperation;
+    }
 
     @Temporal(javax.persistence.TemporalType.DATE)
     public long getIdEmployee() {
         return IdEmployee;
     }
 
-   
     public long getIdUnitMoney() {
         return IdUnitMoney;
     }

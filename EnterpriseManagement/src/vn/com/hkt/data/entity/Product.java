@@ -16,6 +16,11 @@ import javax.persistence.Id;
 @Entity
 public class Product {
 
+    public static final String FIELD_ID = "Id";
+    public static final String FIELD_NAME = "Name";
+    public static final String FIELD_IDENTERPRISE = "IdEnterprise";
+    public static final String FIELD_IDDEPARTMENT = "IdDepartment";
+    public static final String FIELD_CODEPRODUCT = "codeProduct";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;

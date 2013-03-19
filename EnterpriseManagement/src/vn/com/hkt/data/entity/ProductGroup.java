@@ -16,12 +16,26 @@ import javax.persistence.Id;
 @Entity
 public class ProductGroup {
 
+    public static final String FIELD_ID = "";
+    public static final String FIELD_NAME = "Name";
+    public static final String FIELD_IDPRODUCTGROUP = "IdProductGroup";
+    public static final String FIELD_IDENTERPRISE = "IdEnterprise";
+    public static final String FIELD_CODEPRODUCTGROUP = "codeProductGroup";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private String Name;
     private long IdProductGroup;
     private long IdEnterprise;
+    private String codeProductGroup;
+
+    public String getCodeProductGroup() {
+        return codeProductGroup;
+    }
+
+    public void setCodeProductGroup(String codeProductGroup) {
+        this.codeProductGroup = codeProductGroup;
+    }
 
     public long getId() {
         return Id;

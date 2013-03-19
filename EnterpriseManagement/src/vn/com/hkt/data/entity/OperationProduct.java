@@ -16,6 +16,11 @@ import javax.persistence.Id;
 @Entity
 public class OperationProduct {
 
+    public static final String FIELD_ID = "Id";
+    public static final String FIELD_IDOPERATION = "IdOperation";
+    public static final String FIELD_IDPRODUCT = "IdProduct";
+    public static final String FIELD_IDPRODUCTGROUP = "IdProductGroup";
+    public static final String FIELD_CODEOPERATIONPRODUCT = "codeOperationProduct";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
@@ -24,6 +29,15 @@ public class OperationProduct {
     private long IdProductGroup;
     private long Quantity;
     private float UnitPrice;
+    private String codeOperationProduct;
+
+    public String getCodeOperationProduct() {
+        return codeOperationProduct;
+    }
+
+    public void setCodeOperationProduct(String codeOperationProduct) {
+        this.codeOperationProduct = codeOperationProduct;
+    }
 
     public long getId() {
         return Id;

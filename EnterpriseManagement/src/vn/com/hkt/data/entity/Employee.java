@@ -17,6 +17,10 @@ import javax.persistence.Id;
 @Entity
 public class Employee {
 
+    public static final String FIELD_ID = "Id";
+    public static final String FIELD_NAME = "Name";
+    public static final String FIELD_IDDEPARTMENT = "IdDepartment";
+    public static final String FIELD_CODEEMPLOYEE = "codeEmployee";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;

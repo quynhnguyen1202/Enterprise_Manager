@@ -18,6 +18,11 @@ import javax.persistence.Temporal;
 @Entity
 public class Enterprise {
 
+    public static final String FIELD_ID = "Id";
+    public static final String FIELD_NAME = "Name";
+    public static final String FIELD_DATEACTIVATE = "DateActivative";
+    public static final String FIELD_IDENTERPRISE = "IdEnterprise";
+    public static final String FIELD_CODEENTERPRISE = "codeEnterprise";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id; // Id của mỗi Enterprise

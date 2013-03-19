@@ -16,11 +16,13 @@ import javax.persistence.Id;
 @Entity
 public class MidleProductGroup {
 
+    public static final String FIELD_ID = "Id";
+    public static final String FIELD_IDPRODUCT = "Idproduct";
+    public static final String FIELD_IDGROUPPRODUCT = "IdGroupProduct";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 
-   
     public long getId() {
         return Id;
     }

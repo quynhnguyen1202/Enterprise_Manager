@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.dao.api;
 
+import java.util.Date;
 import java.util.List;
 import vn.com.hkt.data.entity.Enterprise;
 
@@ -14,5 +15,10 @@ import vn.com.hkt.data.entity.Enterprise;
 public interface IEnterpriseDao extends IEntityDao<Enterprise> {
 
     public List<Enterprise> getListByIdEnterprise(long id);
-    public  List<Enterprise> getIdByName(String name);
+
+    public List<Enterprise> getIdByName(String name);
+
+    public List<Enterprise> getByDateActivate(Date date);
+
+    public List<Enterprise> getByCode(String code);
 }

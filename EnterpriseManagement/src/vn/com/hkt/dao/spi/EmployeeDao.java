@@ -20,7 +20,7 @@ public class EmployeeDao extends EntityDao<Employee> implements IEmployeeDao {
 
     @Override
     public List<Employee> getByName(String name) {
-        String sql = "Select tbl from Employee tbl where tbl.Name like '%?1'";
+        String sql = "Select tbl from Employee tbl where tbl." + Employee.FIELD_NAME + " like '%?1'";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
@@ -35,7 +35,7 @@ public class EmployeeDao extends EntityDao<Employee> implements IEmployeeDao {
 
     @Override
     public List<Employee> getByCode(String code) {
-        String sql = "Select tbl from Employee tbl where tbl.codeEmployee like '%?1'";
+        String sql = "Select tbl from Employee tbl where tbl." + Employee.FIELD_CODEEMPLOYEE + " like '%?1'";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
@@ -50,7 +50,7 @@ public class EmployeeDao extends EntityDao<Employee> implements IEmployeeDao {
 
     @Override
     public List<Employee> getByIdDepartment(long id) {
-        String sql = "Select tbl from Employee tbl where tbl.IdDepartment= ?1";
+        String sql = "Select tbl from Employee tbl where tbl." + Employee.FIELD_IDDEPARTMENT + "= ?1";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
