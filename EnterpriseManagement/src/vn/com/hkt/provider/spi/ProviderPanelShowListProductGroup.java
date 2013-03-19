@@ -27,5 +27,11 @@ public class ProviderPanelShowListProductGroup implements IProviderPanelShowList
         List<ProductGroup> l= iProductGroupDao.selectAll();
         return l;
     }
+
+    @Override
+    public List<ProductGroup> getByIdEnterprise(long idEnterprise) {
+        List<ProductGroup> listproductgroup = iProductGroupDao.getByIdEnterprise(idEnterprise);
+        return listproductgroup;
+    }
     
 }

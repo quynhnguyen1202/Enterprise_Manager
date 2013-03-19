@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.provider.api;
 
+import java.util.List;
 import vn.com.hkt.data.entity.ProductGroup;
 
 /**
@@ -11,5 +12,7 @@ import vn.com.hkt.data.entity.ProductGroup;
  * @author QuynhNguyen
  */
 public interface IProviderPanelShowListProductGroup extends IProviderListGeneral<ProductGroup> {
+    public List<ProductGroup> getByIdEnterprise(long idEnterprise);
+    
     
 }
