@@ -10,9 +10,11 @@
  */
 package vn.com.hkt.gui.control;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import vn.com.hkt.gui.control.api.IPanelControlList;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
+import vn.com.hkt.gui.entity.api.IShowPanel;
 
 /**
  *
@@ -21,7 +23,7 @@ import vn.com.hkt.gui.entity.api.IPanelShowList;
 public class PanelControlShowList extends javax.swing.JPanel implements IPanelControlList {
 
     private IPanelShowList panelShowList;
-
+     private IShowPanel showPanel;
     /** Creates new form IControlPanel */
     public PanelControlShowList() {
         initComponents();
@@ -40,6 +42,7 @@ public class PanelControlShowList extends javax.swing.JPanel implements IPanelCo
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         scrllPane = new javax.swing.JScrollPane();
+        jButton6 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -63,6 +66,15 @@ public class PanelControlShowList extends javax.swing.JPanel implements IPanelCo
         scrllPane.setBackground(new java.awt.Color(255, 255, 255));
         scrllPane.setBorder(null);
 
+        jButton6.setBackground(new java.awt.Color(153, 153, 153));
+        jButton6.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\smallicon\\24x24\\edit.png")); // NOI18N
+        jButton6.setText("Add new");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,13 +82,14 @@ public class PanelControlShowList extends javax.swing.JPanel implements IPanelCo
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(scrllPane, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                .addGap(5, 5, 5))
+                .addGap(18, 18, 18))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(270, 270, 270)
+                .addGap(178, 178, 178)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,6 +98,7 @@ public class PanelControlShowList extends javax.swing.JPanel implements IPanelCo
                 .addComponent(scrllPane, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -95,10 +109,17 @@ public class PanelControlShowList extends javax.swing.JPanel implements IPanelCo
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 //    addData();
 }//GEN-LAST:event_jButton3ActionPerformed
+
+private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+         
+    
+}//GEN-LAST:event_jButton6ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JScrollPane scrllPane;
     // End of variables declaration//GEN-END:variables
 

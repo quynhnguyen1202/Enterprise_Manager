@@ -65,19 +65,14 @@ public class AddNewEmployee extends javax.swing.JPanel implements IShowPanel,IPa
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
-        setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Add New Employee");
-        add(jLabel1);
-        jLabel1.setBounds(22, 12, 200, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Employee name :");
-        add(jLabel4);
-        jLabel4.setBounds(102, 212, 140, 23);
 
         cbDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbDepartment.addItemListener(new java.awt.event.ItemListener() {
@@ -85,14 +80,10 @@ public class AddNewEmployee extends javax.swing.JPanel implements IShowPanel,IPa
                 cbDepartmentItemStateChanged(evt);
             }
         });
-        add(cbDepartment);
-        cbDepartment.setBounds(262, 172, 196, 23);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Choose enterprise :");
-        add(jLabel5);
-        jLabel5.setBounds(102, 132, 140, 23);
 
         cbEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbEnterprise.addItemListener(new java.awt.event.ItemListener() {
@@ -100,21 +91,64 @@ public class AddNewEmployee extends javax.swing.JPanel implements IShowPanel,IPa
                 cbEnterpriseItemStateChanged(evt);
             }
         });
-        add(cbEnterprise);
-        cbEnterprise.setBounds(262, 132, 196, 23);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Choose department :");
-        add(jLabel6);
-        jLabel6.setBounds(102, 172, 140, 23);
-        add(txtEmployeeName);
-        txtEmployeeName.setBounds(262, 212, 196, 23);
 
-        lbError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbError.setFont(new java.awt.Font("Tahoma", 0, 12));
         lbError.setForeground(new java.awt.Color(255, 0, 51));
-        add(lbError);
-        lbError.setBounds(262, 252, 250, 23);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(cbEnterprise, 0, 196, Short.MAX_VALUE)
+                .addGap(110, 110, 110))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(cbDepartment, 0, 196, Short.MAX_VALUE)
+                .addGap(110, 110, 110))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(txtEmployeeName, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addGap(110, 110, 110))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addGap(56, 56, 56))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEnterpriseItemStateChanged

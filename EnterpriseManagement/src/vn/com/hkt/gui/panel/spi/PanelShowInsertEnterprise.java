@@ -45,53 +45,85 @@ public class PanelShowInsertEnterprise extends javax.swing.JPanel implements ISh
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dcActivate = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
         setForeground(new java.awt.Color(51, 51, 51));
-        setLayout(null);
-        add(txtEnterpriseName);
-        txtEnterpriseName.setBounds(280, 110, 200, 23);
-        add(txtParentID);
-        txtParentID.setBounds(280, 150, 200, 23);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Add New Enterprise");
-        add(jLabel3);
-        jLabel3.setBounds(20, 10, 200, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Picture :");
-        add(jLabel4);
-        jLabel4.setBounds(110, 230, 140, 23);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Enterprise name :");
-        add(jLabel5);
-        jLabel5.setBounds(110, 110, 140, 23);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Slogan :");
-        add(jLabel6);
-        jLabel6.setBounds(110, 150, 140, 23);
-        add(jDateChooser1);
-        jDateChooser1.setBounds(280, 190, 200, 23);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Date active  :");
-        add(jLabel7);
-        jLabel7.setBounds(110, 190, 140, 23);
-    }// </editor-fold>//GEN-END:initComponents
 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(txtEnterpriseName, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(89, 89, 89))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(txtParentID, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(89, 89, 89))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(dcActivate, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(89, 89, 89))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEnterpriseName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtParentID, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dcActivate, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+    }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser dcActivate;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -131,8 +163,8 @@ public class PanelShowInsertEnterprise extends javax.swing.JPanel implements ISh
     private boolean getData() {
         try {
             provider.getDataView().setName(txtEnterpriseName.getText());
-            provider.getDataView().setDateActivative(new Date());
-            provider.getDataView().setIdEnterprise(Integer.parseInt(txtParentID.getText()));
+            provider.getDataView().setDateActivative(dcActivate.getDate());
+            //provider.getDataView().setIdEnterprise(Integer.parseInt(txtParentID.getText()));
             return true;
         } catch (Exception e) {
             return false;
@@ -141,11 +173,13 @@ public class PanelShowInsertEnterprise extends javax.swing.JPanel implements ISh
 
     @Override
     public List listA() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //TODO
+        return null;
     }
 
     @Override
     public List listCombo() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //TODO
+        return null;
     }
 }

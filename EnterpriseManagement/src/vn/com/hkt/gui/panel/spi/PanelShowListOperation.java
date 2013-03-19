@@ -4,30 +4,30 @@
  */
 
 /*
- * PanelShowListEmployee.java
+ * PanelShowListOperation.java
  *
- * Created on Mar 15, 2013, 8:22:36 AM
+ * Created on Mar 19, 2013, 9:57:18 AM
  */
 package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
-import vn.com.hkt.data.entity.Employee;
+import vn.com.hkt.data.entity.Operation;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.panel.model.spi.TableModelEmployee;
-import vn.com.hkt.provider.api.IProviderPanelShowListEmployee;
-import vn.com.hkt.provider.spi.ProviderPanelShowListEmployee;
-
+import vn.com.hkt.gui.panel.model.spi.TableModelOperation;
+import vn.com.hkt.provider.api.IProviderPanelShowListOperation;
+import vn.com.hkt.provider.spi.ProviderPanelShowListOperation;
 
 /**
  *
  * @author Administrator
  */
-public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelShowList {
-    private IProviderPanelShowListEmployee provider;
-    /** Creates new form PanelShowListEmployee */
-    public PanelShowListEmployee() {
+public class PanelShowListOperation extends javax.swing.JPanel implements IPanelShowList {
+    private IProviderPanelShowListOperation provider;
+    /** Creates new form PanelShowListOperation */
+    public PanelShowListOperation() {
         initComponents();
-        provider=new ProviderPanelShowListEmployee();
+        provider=new ProviderPanelShowListOperation();
     }
 
     /** This method is called from within the constructor to
@@ -44,10 +44,10 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbEmployee = new javax.swing.JTable();
+        tbOperation = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.darkGray));
+        setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
@@ -58,7 +58,7 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 12));
 
-        tbEmployee.setModel(new javax.swing.table.DefaultTableModel(
+        tbOperation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -66,7 +66,7 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
                 {null, null, null}
             },
             new String [] {
-                "Employee name", "Department", "Enterprise"
+                "Name", "Department", "Enterprise"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -77,7 +77,7 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbEmployee);
+        jScrollPane1.setViewportView(tbOperation);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -92,11 +92,11 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
                 .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addGap(49, 49, 49))
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
-                .addGap(28, 28, 28))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +109,7 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-                .addGap(54, 54, 54))
+                .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -118,20 +118,16 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tbEmployee;
+    private javax.swing.JTable tbOperation;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void showDefault() {
         loadTable();
-        
     }
 
     private void loadTable() {
-        List<Employee> emp=provider.getListInformation();
-        tbEmployee.setModel(new TableModelEmployee(emp));
-        
+        List<Operation> oper=provider.getListInformation();
+        tbOperation.setModel(new TableModelOperation(oper));
     }
-
-    
 }
