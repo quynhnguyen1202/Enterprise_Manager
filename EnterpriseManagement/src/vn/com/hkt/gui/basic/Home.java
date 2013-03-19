@@ -26,6 +26,7 @@ import vn.com.hkt.gui.panel.spi.PanelShowAllParentEnterprise;
 import vn.com.hkt.gui.panel.spi.PanelShowListDepartment;
 import vn.com.hkt.gui.panel.spi.PanelShowListEmployee;
 import vn.com.hkt.gui.panel.spi.PanelShowListEnterprise;
+import vn.com.hkt.gui.panel.spi.PanelShowListOperation;
 import vn.com.hkt.gui.panel.spi.PanelShowListProduct;
 import vn.com.hkt.gui.panel.spi.PanelShowListProductGroup;
 import vn.com.hkt.gui.panel.spi.PanelShowListProject;
@@ -140,6 +141,11 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         btnOperation.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnOperation.setForeground(new java.awt.Color(51, 51, 51));
         btnOperation.setText("Operation        ");
+        btnOperation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOperationActionPerformed(evt);
+            }
+        });
 
         btnExit.setBackground(new java.awt.Color(153, 153, 153));
         btnExit.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -345,6 +351,15 @@ private void btnProductGroupActionPerformed(java.awt.event.ActionEvent evt) {//G
     setPanelControl(controlGeneral);
     showDefaut();
 }//GEN-LAST:event_btnProductGroupActionPerformed
+
+private void btnOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperationActionPerformed
+    IPanelControlList panelControlList = new PanelControlShowList();
+    panelControlList.setPanelShowList(new PanelShowListOperation());
+    panelControlList.showDefault();
+    controlGeneral = panelControlList;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnOperationActionPerformed
 
     /**
      * @param args the command line arguments
