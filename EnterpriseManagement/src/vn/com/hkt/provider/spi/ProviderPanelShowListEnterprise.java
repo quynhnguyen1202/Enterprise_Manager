@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.provider.spi;
 
+import java.util.ArrayList;
 import java.util.List;
 import vn.com.hkt.dao.api.IEnterpriseDao;
 import vn.com.hkt.dao.spi.EnterpriseDao;
@@ -25,6 +26,10 @@ public class ProviderPanelShowListEnterprise implements IProviderPanelShowListEn
     @Override
     public List<Enterprise> getListInformation() {
         List<Enterprise> enterprises = enterpriseDao.selectAll();
+        if(enterprises==null){
+            enterprises=new ArrayList<Enterprise>();
+        }
+        enterprises.add(0,null);
         return enterprises;
     }
     
