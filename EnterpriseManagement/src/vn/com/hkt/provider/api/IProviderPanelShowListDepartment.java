@@ -12,7 +12,12 @@ import vn.com.hkt.data.entity.Department;
  * @author QuynhNguyen
  */
 public interface IProviderPanelShowListDepartment extends IProviderListGeneral<Department> {
-    public List<Department> getByIDEnt (long idEnterprise);
+
+    public List<Department> getByIDEnt(long idEnterprise);
+
     public List<Department> getByEntName(String EnterpriseName);
-    
+
+    public List<Department> getByName(String name);
+
+    public List<Department> getByIdDepartment(long idDepartment);
 }

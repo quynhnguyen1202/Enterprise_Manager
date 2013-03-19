@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.dao.spi;
 
+import java.util.Date;
 import java.util.List;
 import vn.com.hkt.dao.api.IReceiptDao;
 import vn.com.hkt.data.entity.Receipt;
@@ -107,6 +108,22 @@ public class ReceiptDao extends EntityDao<Receipt> implements IReceiptDao {
         try {
 
             return em.createQuery(sql).setParameter(1, code).getResultList();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Receipt> getByDateProcess(Date date) {
+        String sql = "Select tbl from Receipt tbl where tbl." + Receipt.FIELD_DATEPROCESS + " =?1 ";
+        if (em == null || !em.isOpen()) {
+            em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
+        }
+        try {
+
+            return em.createQuery(sql).setParameter(1, date).getResultList();
         } catch (Exception e) {
             return null;
         } finally {

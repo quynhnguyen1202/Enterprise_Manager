@@ -100,7 +100,7 @@ public class OperationDao extends EntityDao<Operation> implements IOperationDao 
     }
 
     @Override
-    public List<Operation> getByClassification(String classification) {
+    public List<Operation> getByClassification(boolean  classification) {
         String sql = "Select tbl from Operation tbl where tbl." + Operation.FIELD_CLASSIFICATION + " =?1 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -108,6 +108,22 @@ public class OperationDao extends EntityDao<Operation> implements IOperationDao 
         try {
 
             return em.createQuery(sql).setParameter(1, classification).getResultList();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Operation> getByIdEnterprise(long id) {
+        String sql = "Select tbl from Operation tbl where tbl." + Operation.FIELD_IDENTERPRISE + " =?1 ";
+        if (em == null || !em.isOpen()) {
+            em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
+        }
+        try {
+
+            return em.createQuery(sql).setParameter(1, id).getResultList();
         } catch (Exception e) {
             return null;
         } finally {

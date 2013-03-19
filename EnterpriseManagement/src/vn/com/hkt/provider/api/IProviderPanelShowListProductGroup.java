@@ -12,7 +12,12 @@ import vn.com.hkt.data.entity.ProductGroup;
  * @author QuynhNguyen
  */
 public interface IProviderPanelShowListProductGroup extends IProviderListGeneral<ProductGroup> {
+
     public List<ProductGroup> getByIdEnterprise(long idEnterprise);
-    
-    
+
+    public List<ProductGroup> getByName(String name);
+
+    public List<ProductGroup> getByIdProductGroup(long id);
+
+    public List<ProductGroup> getByCodeProductGroup(String code);
 }

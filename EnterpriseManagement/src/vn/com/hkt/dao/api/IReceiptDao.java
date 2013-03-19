@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.dao.api;
 
+import java.util.Date;
 import java.util.List;
 import vn.com.hkt.data.entity.Receipt;
 
@@ -24,4 +25,6 @@ public interface IReceiptDao extends IEntityDao<Receipt> {
     public List<Receipt> getByClassification(boolean classification);
 
     public List<Receipt> getByCodeReceipt(String code);
+
+    public List<Receipt> getByDateProcess(Date date);
 }
