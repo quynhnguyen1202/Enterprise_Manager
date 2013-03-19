@@ -4,13 +4,13 @@
  */
 package vn.com.hkt.provider.spi;
 
+import java.util.ArrayList;
 import java.util.List;
 import vn.com.hkt.dao.api.IDepartmentDao;
 import vn.com.hkt.dao.api.IEnterpriseDao;
 import vn.com.hkt.dao.spi.DepartmentDao;
 import vn.com.hkt.dao.spi.EnterpriseDao;
 import vn.com.hkt.data.entity.Department;
-import vn.com.hkt.data.entity.Enterprise;
 import vn.com.hkt.provider.api.IProviderPanelShowListDepartment;
 
 /**
@@ -36,6 +36,10 @@ public class ProviderPanelShowListDepartment implements IProviderPanelShowListDe
     @Override
     public List<Department> getByIDEnt(long idEnterprise) {
         List<Department> listDep = iDepartmentDao.getByEntpriseId(idEnterprise);
+        if(listDep==null){
+            listDep=new ArrayList<Department>();
+        }
+        listDep.add(0,null);
         return listDep;
     }
 

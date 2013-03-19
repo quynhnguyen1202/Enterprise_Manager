@@ -10,11 +10,12 @@
  */
 package vn.com.hkt.gui.control;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import vn.com.hkt.gui.control.api.IControlPanel;
 import vn.com.hkt.gui.control.api.IPanelControlList;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.entity.api.IShowPanel;
+import vn.com.hkt.gui.panel.spi.AddNewEmployee;
 
 /**
  *
@@ -111,7 +112,7 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton3ActionPerformed
 
 private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-         
+        
     
 }//GEN-LAST:event_jButton6ActionPerformed
 
