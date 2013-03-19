@@ -16,18 +16,34 @@ import vn.com.hkt.provider.api.IProviderPanelShowListEmployee;
  * @author QuynhNguyen
  */
 public class ProviderPanelShowListEmployee implements IProviderPanelShowListEmployee {
+
     private IEmployeeDao iEmployeeDao;
 
     public ProviderPanelShowListEmployee() {
-        iEmployeeDao= new EmployeeDao();
+        iEmployeeDao = new EmployeeDao();
     }
-    
 
     @Override
     public List<Employee> getListInformation() {
-       List<Employee> listEmployees= iEmployeeDao.selectAll();
-       return listEmployees;
+        List<Employee> listEmployees = iEmployeeDao.selectAll();
+        return listEmployees;
     }
-    
-    
+
+    @Override
+    public List<Employee> getByName(String name) {
+        List<Employee> l = iEmployeeDao.getByName(name);
+        return l;
+    }
+
+    @Override
+    public List<Employee> getByIdDepartment(long idDepartment) {
+        List<Employee> l = iEmployeeDao.getByIdDepartment(idDepartment);
+        return l;
+    }
+
+    @Override
+    public List<Employee> getByCodeEmployee(String code) {
+        List<Employee> l = iEmployeeDao.getByCode(code);
+        return l;
+    }
 }

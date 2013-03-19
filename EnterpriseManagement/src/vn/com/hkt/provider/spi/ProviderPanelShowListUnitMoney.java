@@ -14,18 +14,29 @@ import vn.com.hkt.provider.api.IProviderPanelShowListUnitMoney;
  *
  * @author QuynhNguyen
  */
-public class ProviderPanelShowListUnitMoney implements IProviderPanelShowListUnitMoney{
+public class ProviderPanelShowListUnitMoney implements IProviderPanelShowListUnitMoney {
+
     private IUnitMoneyDao iUnitMoneyDao;
 
     public ProviderPanelShowListUnitMoney() {
-        iUnitMoneyDao= new UnitMoneyDao();
+        iUnitMoneyDao = new UnitMoneyDao();
     }
-    
 
     @Override
     public List<UnitMoney> getListInformation() {
-       List<UnitMoney> l = iUnitMoneyDao.selectAll();
-       return l;
+        List<UnitMoney> l = iUnitMoneyDao.selectAll();
+        return l;
     }
-    
+
+    @Override
+    public List<UnitMoney> getByName(String name) {
+        List<UnitMoney> l = iUnitMoneyDao.getByName(name);
+        return l;
+    }
+
+    @Override
+    public List<UnitMoney> getByCode(String code) {
+        List<UnitMoney> l = iUnitMoneyDao.getByCode(code);
+        return l;
+    }
 }

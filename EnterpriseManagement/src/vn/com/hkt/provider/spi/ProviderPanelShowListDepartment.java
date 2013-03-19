@@ -36,10 +36,10 @@ public class ProviderPanelShowListDepartment implements IProviderPanelShowListDe
     @Override
     public List<Department> getByIDEnt(long idEnterprise) {
         List<Department> listDep = iDepartmentDao.getByEntpriseId(idEnterprise);
-        if(listDep==null){
-            listDep=new ArrayList<Department>();
+        if (listDep == null) {
+            listDep = new ArrayList<Department>();
         }
-        listDep.add(0,null);
+        listDep.add(0, null);
         return listDep;
     }
 
@@ -52,5 +52,17 @@ public class ProviderPanelShowListDepartment implements IProviderPanelShowListDe
         }
 
         return list1;
+    }
+
+    @Override
+    public List<Department> getByName(String name) {
+        List<Department> li = iDepartmentDao.getByName(name);
+        return li;
+    }
+
+    @Override
+    public List<Department> getByIdDepartment(long idDepartment) {
+        List<Department> li = iDepartmentDao.getByIdDepartment(idDepartment);
+        return li;
     }
 }

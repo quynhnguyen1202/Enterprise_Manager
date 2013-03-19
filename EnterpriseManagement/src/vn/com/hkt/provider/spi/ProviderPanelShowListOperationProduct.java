@@ -29,4 +29,28 @@ public class ProviderPanelShowListOperationProduct implements IProviderPanelShow
         List<OperationProduct> l = iOperationDao.selectAll();
         return l;
     }
+
+    @Override
+    public List<OperationProduct> getByIdOperation(long id) {
+        List<OperationProduct> l = iOperationDao.getByIdOperation(id);
+        return l;
+    }
+
+    @Override
+    public List<OperationProduct> getByIdProduct(long id) {
+        List<OperationProduct> l = iOperationDao.getByIdProduct(id);
+        return l;
+    }
+
+    @Override
+    public List<OperationProduct> getByIdProductGroup(long id) {
+        List<OperationProduct> l = iOperationDao.getByIdProductGroup(id);
+        return l;
+    }
+
+    @Override
+    public List<OperationProduct> getByCodeOperationProduct(String code) {
+        List<OperationProduct> l = iOperationDao.getByCodeOperationProduct(code);
+        return l;
+    }
 }
