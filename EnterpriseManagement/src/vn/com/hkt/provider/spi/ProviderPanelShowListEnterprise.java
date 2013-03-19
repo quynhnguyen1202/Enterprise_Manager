@@ -26,6 +26,10 @@ public class ProviderPanelShowListEnterprise implements IProviderPanelShowListEn
     @Override
     public List<Enterprise> getListInformation() {
         List<Enterprise> enterprises = enterpriseDao.selectAll();
+        if(enterprises==null){
+            enterprises=new ArrayList<Enterprise>();
+        }
+        enterprises.add(0,null);
         return enterprises;
     }
 

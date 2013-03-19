@@ -51,8 +51,6 @@ public class TableModelEnterprise extends DefaultTableModel {
     public boolean isCellEditable(int row, int column) {
         return false;
     }
-    
-    
 
     @Override
     public String getColumnName(int column) {
@@ -62,12 +60,15 @@ public class TableModelEnterprise extends DefaultTableModel {
     private List<String[]> loadData() {
         List<String[]> list = new ArrayList<String[]>();
         if (enterprises != null) {
-            for (Enterprise e : enterprises) {
-                long id = e.getId();
-                String name = e.getName();
-                Date dateActive = e.getDateActivative();
-                String[] row = new String[]{String.valueOf(id), name, dateActive == null ? "" : dateActive.toString()};
-                list.add(row);
+            for (int i = 0; i < enterprises.size(); i++) {
+                if (enterprises.get(i) != null) {
+                    Enterprise e = enterprises.get(i);
+                    long id = e.getId();
+                    String name = e.getName();
+                    Date dateActive = e.getDateActivative();
+                    String[] row = new String[]{String.valueOf(id), name, dateActive == null ? "" : dateActive.toString()};
+                    list.add(row);
+                }
             }
         }
         return list;
