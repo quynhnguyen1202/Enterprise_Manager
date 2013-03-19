@@ -21,6 +21,7 @@ import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.control.api.IPanelControlList;
 import vn.com.hkt.gui.panel.spi.AddNewProduct;
 import vn.com.hkt.gui.entity.api.IShowPanel;
+import vn.com.hkt.gui.panel.spi.AddNewDepartment;
 import vn.com.hkt.gui.panel.spi.AddNewProductGroup;
 import vn.com.hkt.gui.panel.spi.PanelShowAllParentEnterprise;
 import vn.com.hkt.gui.panel.spi.PanelShowListDepartment;
@@ -73,7 +74,6 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         scrollPane = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -324,7 +324,7 @@ private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
 private void btnEnterpiseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpiseListActionPerformed
 
-    IShowPanel anp = new AddNewProductGroup();
+    IShowPanel anp = new AddNewDepartment();
     IControlPanel controlPanel = new ControlPanel();
     controlPanel.setShowPanel(anp);
     controlGeneral = controlPanel;
