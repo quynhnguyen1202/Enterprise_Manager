@@ -70,24 +70,24 @@ public class AddNewProductGroup extends javax.swing.JPanel implements IShowPanel
         add(txtName);
         txtName.setBounds(290, 140, 200, 23);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Choose parent group :");
         add(jLabel6);
         jLabel6.setBounds(120, 100, 150, 23);
 
-        lbError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbError.setFont(new java.awt.Font("Tahoma", 0, 12));
         lbError.setForeground(new java.awt.Color(255, 0, 51));
         add(lbError);
         lbError.setBounds(290, 220, 200, 23);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Choose enterprise :");
         add(jLabel5);
         jLabel5.setBounds(120, 60, 150, 23);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Code :");
         add(jLabel7);
@@ -111,15 +111,15 @@ public class AddNewProductGroup extends javax.swing.JPanel implements IShowPanel
         add(cbGroup);
         cbGroup.setBounds(290, 100, 200, 23);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Add New Product Group");
         add(jLabel1);
-        jLabel1.setBounds(20, 20, 190, 23);
+        jLabel1.setBounds(20, 20, 240, 23);
         add(txtCode);
         txtCode.setBounds(290, 180, 200, 23);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Group name :");
         add(jLabel8);

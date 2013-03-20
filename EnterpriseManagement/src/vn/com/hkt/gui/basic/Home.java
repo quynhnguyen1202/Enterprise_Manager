@@ -26,6 +26,7 @@ import vn.com.hkt.gui.panel.spi.AddNewEmployee;
 import vn.com.hkt.gui.panel.spi.AddNewEnterprise;
 import vn.com.hkt.gui.panel.spi.AddNewProductGroup;
 import vn.com.hkt.gui.panel.spi.AddNewProject;
+import vn.com.hkt.gui.panel.spi.AddNewUnitMoney;
 import vn.com.hkt.gui.panel.spi.PanelShowAllParentEnterprise;
 import vn.com.hkt.gui.panel.spi.PanelShowListDepartment;
 import vn.com.hkt.gui.panel.spi.PanelShowListEmployee;
@@ -80,6 +81,10 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         btnAddOperation = new javax.swing.JButton();
         btnAddProject = new javax.swing.JButton();
         btnAddEnterprise = new javax.swing.JButton();
+        btnUnitProduct = new javax.swing.JButton();
+        btnUnitMoney = new javax.swing.JButton();
+        btnAddUnitProduct = new javax.swing.JButton();
+        btnAddUnitMoney = new javax.swing.JButton();
         scrollPane = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,7 +102,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnEnterprise.setBackground(new java.awt.Color(153, 153, 153));
-        btnEnterprise.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEnterprise.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnEnterprise.setForeground(new java.awt.Color(51, 51, 51));
         btnEnterprise.setText("Enterprise         ");
         btnEnterprise.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +112,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnDepartment.setBackground(new java.awt.Color(153, 153, 153));
-        btnDepartment.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDepartment.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnDepartment.setForeground(new java.awt.Color(51, 51, 51));
         btnDepartment.setText("Department      ");
         btnDepartment.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +122,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnProductGroup.setBackground(new java.awt.Color(153, 153, 153));
-        btnProductGroup.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProductGroup.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnProductGroup.setForeground(new java.awt.Color(51, 51, 51));
         btnProductGroup.setText("Product Group  ");
         btnProductGroup.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +132,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnProduct.setBackground(new java.awt.Color(153, 153, 153));
-        btnProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProduct.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnProduct.setForeground(new java.awt.Color(51, 51, 51));
         btnProduct.setText("Product           ");
         btnProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +142,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnEmployee.setBackground(new java.awt.Color(153, 153, 153));
-        btnEmployee.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEmployee.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnEmployee.setForeground(new java.awt.Color(51, 51, 51));
         btnEmployee.setText("Employee         ");
         btnEmployee.addActionListener(new java.awt.event.ActionListener() {
@@ -218,6 +223,27 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
             }
         });
 
+        btnUnitProduct.setBackground(new java.awt.Color(153, 153, 153));
+        btnUnitProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUnitProduct.setForeground(new java.awt.Color(51, 51, 51));
+        btnUnitProduct.setText("Unit Product    ");
+
+        btnUnitMoney.setBackground(new java.awt.Color(153, 153, 153));
+        btnUnitMoney.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUnitMoney.setForeground(new java.awt.Color(51, 51, 51));
+        btnUnitMoney.setText("Money             ");
+
+        btnAddUnitProduct.setBackground(new java.awt.Color(102, 102, 102));
+        btnAddUnitProduct.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
+
+        btnAddUnitMoney.setBackground(new java.awt.Color(102, 102, 102));
+        btnAddUnitMoney.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
+        btnAddUnitMoney.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddUnitMoneyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -243,6 +269,12 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnProject, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(btnAddProject, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnUnitMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddUnitMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnUnitProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddUnitProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -277,8 +309,15 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
                     .addComponent(btnProject, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddProject, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUnitMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddUnitMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUnitProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddUnitProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         scrollPane.setBackground(new java.awt.Color(255, 255, 255));
@@ -294,7 +333,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
         );
 
@@ -424,6 +463,15 @@ private void btnAddProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     showDefaut();
 }//GEN-LAST:event_btnAddProjectActionPerformed
 
+private void btnAddUnitMoneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUnitMoneyActionPerformed
+    IShowPanel anp = new AddNewUnitMoney();
+    IControlPanel controlPanel = new ControlPanel();
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnAddUnitMoneyActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -467,6 +515,8 @@ private void btnAddProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private javax.swing.JButton btnAddProduct;
     private javax.swing.JButton btnAddProductGroup;
     private javax.swing.JButton btnAddProject;
+    private javax.swing.JButton btnAddUnitMoney;
+    private javax.swing.JButton btnAddUnitProduct;
     private javax.swing.JButton btnDepartment;
     private javax.swing.JButton btnEmployee;
     private javax.swing.JButton btnEnterprise;
@@ -475,6 +525,8 @@ private void btnAddProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private javax.swing.JButton btnProduct;
     private javax.swing.JButton btnProductGroup;
     private javax.swing.JButton btnProject;
+    private javax.swing.JButton btnUnitMoney;
+    private javax.swing.JButton btnUnitProduct;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
