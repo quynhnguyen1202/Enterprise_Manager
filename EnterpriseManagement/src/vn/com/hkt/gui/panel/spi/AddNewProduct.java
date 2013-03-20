@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.Enterprise;
 import vn.com.hkt.data.entity.ProductGroup;
-import vn.com.hkt.data.entity.ProductGroup;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.provider.api.IProviderPanelShowListDepartment;
@@ -53,8 +52,6 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel,IPan
         providerProduct=new ProviderPanelShowProduct();
         providerMidleGroup=new ProviderPanelShowMidleProductGroup();
         showDefault();
-        loabCBEnterpriseAuto();
-        loadCBDepartmentAuto();
     }
 
     /** This method is called from within the constructor to
@@ -263,28 +260,44 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEnterpriseItemStateChanged
-        loabCBEnterpriseAuto();
+        loabCBEnterprise();
 }//GEN-LAST:event_cbEnterpriseItemStateChanged
 
 private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDepartmentItemStateChanged
-        loadCBDepartmentAuto();
+        loadCBDepartment();
 }//GEN-LAST:event_cbDepartmentItemStateChanged
 
-    private void loadCBDepartmentAuto() {
+    private void loadCBDepartment() {
+       int index=cbEnterprise.getSelectedIndex();
+        if(index>0){
         Department d = (Department) cbDepartment.getSelectedItem();
-            if (d.getId() >0) {
+        if (d != null) {
+            if (d.getId() > 0) {
                 departmentID = d.getId();
-            }else{
-                departmentID=0;
+            } else {
+                departmentID = 0;
             }
+        } else {
+            departmentID = 0;
+        }
+        }else{
+            departmentID = 0;
+        }
     }
 
-    private void loabCBEnterpriseAuto() {
-        Enterprise e = (Enterprise) cbEnterprise.getSelectedItem();
-        if (e.getId() >0) {
-            enterpriseID = e.getId();
+    private void loabCBEnterprise(){
+         Enterprise e = (Enterprise) cbEnterprise.getSelectedItem();
+        if (e != null) {
+            if (e.getId() > 0) {
+                cbDepartment.setEnabled(true);
+                enterpriseID = e.getId();
+                loadDepartment();
+                loadCBDepartment();
+            } else {
+                enterpriseID = 0;
+            }
         }else{
-            enterpriseID=0;
+            cbDepartment.setEnabled(false);
         }
     }
 
@@ -318,6 +331,14 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             lbError.setText("Choose group product !");
             return false;
         }
+        if(cbEnterprise.getSelectedIndex()==0){
+            lbError.setText("Choose enterprise !");
+            return false;
+        }
+        if(cbEnterprise.getSelectedItem()==null){
+            lbError.setText("Choose enterprise !");
+            return false;
+        }
         return true;
     }
 
@@ -327,10 +348,11 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             JOptionPane.showMessageDialog(null, "Wrong error !");
             return 0;
         }else{
-            providerProduct.addData();
+            long iD= providerProduct.addData();
             for (int i = 0; i < listAddGroup.getModel().getSize(); i++) {
                 ProductGroup p = (ProductGroup)listAddGroup.getModel().getElementAt(i);
                 providerMidleGroup.getDataView().setIdGroupProduct(p.getId());
+                providerMidleGroup.getDataView().setIdProduct(iD);
                 providerMidleGroup.addData();
             }
             JOptionPane.showMessageDialog(null, "Add new product successful !");
@@ -361,8 +383,7 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     @Override
     public void showDefault() {
         loadListGroup();
-        loadCBDepartment();
-        loadCBEnterprise();
+        loadEnterprise();;
     }
 
     private void loadListGroup() {
@@ -374,14 +395,23 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
         listGroup.setModel(dlm);
     }
 
-    private void loadCBEnterprise() {
-        List<Enterprise> enterprises = providerEnterprise.getListInformation();
-        cbEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
+    private void loadEnterprise() {
+         List<Enterprise> enterprises = providerEnterprise.getListInformation();
+        if (enterprises != null) {
+            cbEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
+            loabCBEnterprise();
+        }else{
+            enterpriseID=0;
+        }
     }
 
-    private void loadCBDepartment() {
-        List<Department> departments = providerDepartment.getListInformation();
-       cbDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
+    private void loadDepartment() {
+      if (enterpriseID > 0) {
+            List<Department> departments = providerDepartment.getByIDEnt(enterpriseID);
+            cbDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
+        } else {
+            cbDepartment.enable(false);
+        }
     }
 
     private boolean getData() {
