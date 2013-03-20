@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.provider.spi;
 
+import java.util.ArrayList;
 import java.util.List;
 import vn.com.hkt.dao.api.IProductGroupDao;
 import vn.com.hkt.dao.spi.ProductGroupDao;
@@ -31,6 +32,10 @@ public class ProviderPanelShowListProductGroup implements IProviderPanelShowList
     @Override
     public List<ProductGroup> getByIdEnterprise(long idEnterprise) {
         List<ProductGroup> listproductgroup = iProductGroupDao.getByIdEnterprise(idEnterprise);
+        if (listproductgroup == null) {
+            listproductgroup = new ArrayList<ProductGroup>();
+        }
+        listproductgroup.add(0, null);
         return listproductgroup;
     }
 

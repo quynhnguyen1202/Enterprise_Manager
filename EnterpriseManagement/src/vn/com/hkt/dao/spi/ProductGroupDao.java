@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.dao.spi;
 
+import java.util.ArrayList;
 import java.util.List;
 import vn.com.hkt.dao.api.IProductGroupDao;
 import vn.com.hkt.data.entity.ProductGroup;
@@ -52,7 +53,7 @@ public class ProductGroupDao extends EntityDao<ProductGroup> implements IProduct
 
     @Override
     public List<ProductGroup> getByIdEnterprise(long idEnterprise) {
-        String sql = "Select tbl from ProductGroup tbl where tbl." + ProductGroup.FIELD_IDENTERPRISE + " =?1 ";
+        String sql = "Select tbl from "+ProductGroup.class.getSimpleName()+" tbl where tbl." + ProductGroup.FIELD_IDENTERPRISE + " = ?1 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
@@ -60,7 +61,7 @@ public class ProductGroupDao extends EntityDao<ProductGroup> implements IProduct
 
             return em.createQuery(sql).setParameter(1, idEnterprise).getResultList();
         } catch (Exception e) {
-            return null;
+            return new ArrayList<ProductGroup>();
         } finally {
             em.close();
         }
