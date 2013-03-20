@@ -16,4 +16,6 @@ public interface IProviderPanelShowListUnitProduct extends IProviderListGeneral<
     public List<UnitProduct> getByName(String name);
 
     public List<UnitProduct> getByCode(String code);
+
+    public List<UnitProduct> getByDefault(boolean d);
 }

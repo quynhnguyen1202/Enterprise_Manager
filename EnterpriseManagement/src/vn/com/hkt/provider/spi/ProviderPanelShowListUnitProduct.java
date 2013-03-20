@@ -39,4 +39,10 @@ public class ProviderPanelShowListUnitProduct implements IProviderPanelShowListU
         List<UnitProduct> l = iUnitProductDao.getByCode(code);
         return l;
     }
+
+    @Override
+    public List<UnitProduct> getByDefault(boolean d) {
+        List<UnitProduct> l = iUnitProductDao.getByDefault(d);
+        return l;
+    }
 }

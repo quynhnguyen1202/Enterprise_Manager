@@ -39,4 +39,10 @@ public class ProviderPanelShowListUnitMoney implements IProviderPanelShowListUni
         List<UnitMoney> l = iUnitMoneyDao.getByCode(code);
         return l;
     }
+
+    @Override
+    public List<UnitMoney> getByDefault(boolean d) {
+        List<UnitMoney> l = iUnitMoneyDao.getByDefault(d);
+        return l;
+    }
 }

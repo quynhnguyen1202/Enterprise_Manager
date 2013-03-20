@@ -11,5 +11,4 @@ import vn.com.hkt.data.entity.UnitMoney;
  * @author QuynhNguyen
  */
 public interface IProviderPanelShowUnitMoney extends IProviderGeneral<UnitMoney> {
-    
 }
