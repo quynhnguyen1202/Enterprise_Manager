@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.data.entity;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,11 +13,13 @@ import javax.persistence.Id;
  *
  * @author QuynhNguyen
  */
+@Entity
 public class UnitMoney {
 
     public static final String FIELD_ID = "Id";
     public static final String FIELD_NAME = "Name";
     public static final String FIELD_CODE = "code";
+    public static final String FIELD_IS_DEFAULT = "isDefault";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;

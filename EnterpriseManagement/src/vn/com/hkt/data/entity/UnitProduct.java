@@ -15,10 +15,11 @@ import javax.persistence.Id;
  */
 @Entity
 public class UnitProduct {
+
     public static final String FIELD_ID = "Id";
     public static final String FIELD_NAME = "Name";
     public static final String FIELD_CODE = "code";
-
+    public static final String FIELD_IS_DEFAULT = "isDefault";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
@@ -34,7 +35,6 @@ public class UnitProduct {
     public void setCode(String code) {
         this.code = code;
     }
-    
 
     public long getId() {
         return Id;

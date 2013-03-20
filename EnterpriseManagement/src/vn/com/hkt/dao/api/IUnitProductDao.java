@@ -15,5 +15,7 @@ public interface IUnitProductDao extends IEntityDao<UnitProduct> {
 
     public List<UnitProduct> getByName(String name);
 
-    public List<UnitProduct> getByCode(String code) ;
+    public List<UnitProduct> getByCode(String code);
+
+    public List<UnitProduct> getByDefault(boolean d);
 }

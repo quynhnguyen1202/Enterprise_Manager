@@ -49,4 +49,20 @@ public class UnitMoneyDao extends EntityDao<UnitMoney> implements IUnitMoneyDao 
             em.close();
         }
     }
+
+    @Override
+    public List<UnitMoney> getByDefault(boolean d) {
+       String sql = "Select tbl from UnitMoney tbl where tbl." + UnitMoney.FIELD_IS_DEFAULT + " =?1 ";
+        if (em == null || !em.isOpen()) {
+            em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
+        }
+        try {
+
+            return em.createQuery(sql).setParameter(1, d).getResultList();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 }

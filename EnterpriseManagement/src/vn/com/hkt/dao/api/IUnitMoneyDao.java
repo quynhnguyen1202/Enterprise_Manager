@@ -16,4 +16,6 @@ public interface IUnitMoneyDao extends IEntityDao<UnitMoney> {
     public List<UnitMoney> getByName(String name);
 
     public List<UnitMoney> getByCode(String code);
+
+    public List<UnitMoney> getByDefault(boolean d);
 }

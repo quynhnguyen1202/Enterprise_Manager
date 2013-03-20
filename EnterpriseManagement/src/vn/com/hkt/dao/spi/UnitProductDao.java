@@ -49,4 +49,20 @@ public class UnitProductDao extends EntityDao<UnitProduct> implements IUnitProdu
             em.close();
         }
     }
+
+    @Override
+    public List<UnitProduct> getByDefault(boolean d) {
+         String sql = "Select tbl from UnitProduct tbl where tbl." + UnitProduct.FIELD_IS_DEFAULT + " =?1 ";
+        if (em == null || !em.isOpen()) {
+            em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
+        }
+        try {
+
+            return em.createQuery(sql).setParameter(1, d).getResultList();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 }

@@ -14,6 +14,7 @@
     <class>vn.com.hkt.data.entity.ProjectMember</class>
     <class>vn.com.hkt.data.entity.Receipt</class>
     <class>vn.com.hkt.data.entity.UnitProduct</class>
+    <class>vn.com.hkt.data.entity.UnitMoney</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/EntM"/>
       <property name="javax.persistence.jdbc.password" value="sa"/>
