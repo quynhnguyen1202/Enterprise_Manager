@@ -66,7 +66,6 @@ public class TableModelEmployee extends DefaultTableModel {
             for (Employee employ : emp) {
                 String name = employ.getName();
                 long id = employ.getIdDepartment();
-                System.out.println("     ID department   "+id);
                 //department
                 Department d = departmentDow.getById(id);
                 String dName = "";
@@ -80,7 +79,7 @@ public class TableModelEmployee extends DefaultTableModel {
                         eName = e.getName();
                     }
                 }
-                String[] row = new String[]{"", name};
+                String[] row = new String[]{"", name,dName,eName};
                 list.add(row);
             }
         }

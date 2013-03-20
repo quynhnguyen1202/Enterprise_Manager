@@ -95,6 +95,7 @@
               </Group>
               <EmptySpace min="17" pref="17" max="17" attributes="0"/>
               <Component id="lbError" min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace pref="43" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
