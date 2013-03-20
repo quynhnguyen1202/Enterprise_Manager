@@ -124,13 +124,11 @@ public class PanelShowListEmployee extends javax.swing.JPanel implements IPanelS
     @Override
     public void showDefault() {
         loadTable();
-        
     }
 
     private void loadTable() {
         List<Employee> emp=provider.getListInformation();
         tbEmployee.setModel(new TableModelEmployee(emp));
-        
     }
 
     

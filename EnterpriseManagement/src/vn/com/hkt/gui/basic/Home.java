@@ -25,6 +25,7 @@ import vn.com.hkt.gui.panel.spi.AddNewDepartment;
 import vn.com.hkt.gui.panel.spi.AddNewEmployee;
 import vn.com.hkt.gui.panel.spi.AddNewEnterprise;
 import vn.com.hkt.gui.panel.spi.AddNewProductGroup;
+import vn.com.hkt.gui.panel.spi.AddNewProject;
 import vn.com.hkt.gui.panel.spi.PanelShowAllParentEnterprise;
 import vn.com.hkt.gui.panel.spi.PanelShowListDepartment;
 import vn.com.hkt.gui.panel.spi.PanelShowListEmployee;
@@ -51,7 +52,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         Toolkit tk = Toolkit.getDefaultToolkit();
         int xSize = ((int) tk.getScreenSize().getWidth());
         int ySize = ((int) tk.getScreenSize().getHeight());
-        this.setSize(xSize, ySize);
+        this.setSize(xSize, ySize-50);
     }
 
     /** This method is called from within the constructor to
@@ -72,7 +73,13 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         btnEmployee = new javax.swing.JButton();
         btnOperation = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        btnEnterpiseList = new javax.swing.JButton();
+        btnAddDepartment = new javax.swing.JButton();
+        btnAddProductGroup = new javax.swing.JButton();
+        btnAddProduct = new javax.swing.JButton();
+        btnAddEmployee = new javax.swing.JButton();
+        btnAddOperation = new javax.swing.JButton();
+        btnAddProject = new javax.swing.JButton();
+        btnAddEnterprise = new javax.swing.JButton();
         scrollPane = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,7 +87,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         btnProject.setBackground(new java.awt.Color(153, 153, 153));
-        btnProject.setFont(new java.awt.Font("Tahoma", 1, 12));
+        btnProject.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnProject.setForeground(new java.awt.Color(51, 51, 51));
         btnProject.setText("Project            ");
         btnProject.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +97,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnEnterprise.setBackground(new java.awt.Color(153, 153, 153));
-        btnEnterprise.setFont(new java.awt.Font("Tahoma", 1, 12));
+        btnEnterprise.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEnterprise.setForeground(new java.awt.Color(51, 51, 51));
         btnEnterprise.setText("Enterprise         ");
         btnEnterprise.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +107,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnDepartment.setBackground(new java.awt.Color(153, 153, 153));
-        btnDepartment.setFont(new java.awt.Font("Tahoma", 1, 12));
+        btnDepartment.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnDepartment.setForeground(new java.awt.Color(51, 51, 51));
         btnDepartment.setText("Department      ");
         btnDepartment.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +117,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnProductGroup.setBackground(new java.awt.Color(153, 153, 153));
-        btnProductGroup.setFont(new java.awt.Font("Tahoma", 1, 12));
+        btnProductGroup.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnProductGroup.setForeground(new java.awt.Color(51, 51, 51));
         btnProductGroup.setText("Product Group  ");
         btnProductGroup.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +127,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnProduct.setBackground(new java.awt.Color(153, 153, 153));
-        btnProduct.setFont(new java.awt.Font("Tahoma", 1, 12));
+        btnProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnProduct.setForeground(new java.awt.Color(51, 51, 51));
         btnProduct.setText("Product           ");
         btnProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +137,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnEmployee.setBackground(new java.awt.Color(153, 153, 153));
-        btnEmployee.setFont(new java.awt.Font("Tahoma", 1, 12));
+        btnEmployee.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEmployee.setForeground(new java.awt.Color(51, 51, 51));
         btnEmployee.setText("Employee         ");
         btnEmployee.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +147,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnOperation.setBackground(new java.awt.Color(153, 153, 153));
-        btnOperation.setFont(new java.awt.Font("Tahoma", 1, 12));
+        btnOperation.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnOperation.setForeground(new java.awt.Color(51, 51, 51));
         btnOperation.setText("Operation        ");
         btnOperation.addActionListener(new java.awt.event.ActionListener() {
@@ -150,19 +157,64 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnExit.setBackground(new java.awt.Color(153, 153, 153));
-        btnExit.setFont(new java.awt.Font("Tahoma", 1, 12));
+        btnExit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnExit.setForeground(new java.awt.Color(51, 51, 51));
-        btnExit.setText("Exit                  ");
+        btnExit.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\warning.png")); // NOI18N
+        btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
             }
         });
 
-        btnEnterpiseList.setText("Danh sach DN");
-        btnEnterpiseList.addActionListener(new java.awt.event.ActionListener() {
+        btnAddDepartment.setBackground(new java.awt.Color(102, 102, 102));
+        btnAddDepartment.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
+        btnAddDepartment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEnterpiseListActionPerformed(evt);
+                btnAddDepartmentActionPerformed(evt);
+            }
+        });
+
+        btnAddProductGroup.setBackground(new java.awt.Color(102, 102, 102));
+        btnAddProductGroup.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
+        btnAddProductGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddProductGroupActionPerformed(evt);
+            }
+        });
+
+        btnAddProduct.setBackground(new java.awt.Color(102, 102, 102));
+        btnAddProduct.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
+        btnAddProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddProductActionPerformed(evt);
+            }
+        });
+
+        btnAddEmployee.setBackground(new java.awt.Color(102, 102, 102));
+        btnAddEmployee.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
+        btnAddEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEmployeeActionPerformed(evt);
+            }
+        });
+
+        btnAddOperation.setBackground(new java.awt.Color(102, 102, 102));
+        btnAddOperation.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
+
+        btnAddProject.setBackground(new java.awt.Color(102, 102, 102));
+        btnAddProject.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
+        btnAddProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddProjectActionPerformed(evt);
+            }
+        });
+
+        btnAddEnterprise.setBackground(new java.awt.Color(102, 102, 102));
+        btnAddEnterprise.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
+        btnAddEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEnterpriseActionPerformed(evt);
             }
         });
 
@@ -170,38 +222,63 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnProductGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnProject, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnProductGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddProductGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddOperation, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnProject, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddProject, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnEnterpiseList, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(btnEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(btnDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(btnProductGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnProductGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddProductGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(btnProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(btnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(btnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnOperation, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddOperation, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(btnProject, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnProject, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddProject, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEnterpiseList, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGap(48, 48, 48))
         );
 
         scrollPane.setBackground(new java.awt.Color(255, 255, 255));
@@ -217,7 +294,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
             .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
         );
 
@@ -225,34 +302,12 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void btnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeActionPerformed
-
-
     IPanelControlList panelControlList = new PanelControlShowList();
     panelControlList.setPanelShowList(new PanelShowListEmployee());
     panelControlList.showDefault();
     controlGeneral = panelControlList;
     setPanelControl(controlGeneral);
     showDefaut();
-
-
-//    IControlPanel panelControl = new ControlPanel();
-//    panelControl.setShowPanel(new AddNewEmployee());
-//    panelControl.showDefault();
-//    controlGeneral = panelControl;
-//    setPanelControl(controlGeneral);
-//    showDefaut();
-
-
-//    if (cp != null) {
-//        IShowPanel panel = new PanelShowListEmployee();
-//        cp.setShowPanel(panel);
-//        cp.showDefault();
-//    }
-//        ControlPanel cp=new ControlPanel();
-//        AddNewEmployee ane=new AddNewEmployee();
-//        cp.setShowPanel(ane);
-//        this.setPanelControl(cp);
-//        this.showDefaut();
 }//GEN-LAST:event_btnEmployeeActionPerformed
 
 private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -267,36 +322,9 @@ private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     controlGeneral = panelControlList;
     setPanelControl(controlGeneral);
     showDefaut();
-    
-    
-    
-    
-    
-//    IShowPanel anp = new AddNewProduct();
-//    IControlPanel controlPanel = new ControlPanel();
-//    controlPanel.setShowPanel(anp);
-//    controlGeneral = controlPanel;
-//    setPanelControl(controlGeneral);
-//    showDefaut();
-
-
- 
-    //        ControlPanel cp=new ControlPanel();
-//        AddNewProduct adp=new AddNewProduct();
-//        cp.setShowPanel(adp);
-//        this.setPanelControl(cp);
-//        this.showDefaut();
 }//GEN-LAST:event_btnProductActionPerformed
 
 private void btnProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjectActionPerformed
-//    IShowPanel anp = new AddNewProject();
-//    IControlPanel controlPanel = new ControlPanel();
-//    controlPanel.setShowPanel(anp);
-//    controlGeneral = controlPanel;
-//    setPanelControl(controlGeneral);
-//    showDefaut();
-
-
     IPanelControlList panelControlList = new PanelControlShowList();
     panelControlList.setPanelShowList(new PanelShowListProject());
     panelControlList.showDefault();
@@ -304,37 +332,16 @@ private void btnProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     setPanelControl(controlGeneral);
     showDefaut();
 
-
 }//GEN-LAST:event_btnProjectActionPerformed
 
 private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpriseActionPerformed
-
     IPanelControlList panelControlList = new PanelControlShowList();
     panelControlList.setPanelShowList(new PanelShowListEnterprise());
     panelControlList.showDefault();
     controlGeneral = panelControlList;
     setPanelControl(controlGeneral);
     showDefaut();
-
-//    if(cp!=null){
-//        IShowPanel panel = new PanelShowInsertEnterprise();
-//        cp.setShowPanel(panel);
-//        cp.showDefault();
-//    }
-
 }//GEN-LAST:event_btnEnterpriseActionPerformed
-
-private void btnEnterpiseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpiseListActionPerformed
-
-    IShowPanel anp = new AddNewEmployee();
-    IControlPanel controlPanel = new ControlPanel();
-    controlPanel.setShowPanel(anp);
-    controlGeneral = controlPanel;
-    setPanelControl(controlGeneral);
-    showDefaut();
-
-
-}//GEN-LAST:event_btnEnterpiseListActionPerformed
 
 private void btnDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartmentActionPerformed
     IPanelControlList panelControlList = new PanelControlShowList();
@@ -362,6 +369,60 @@ private void btnOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     setPanelControl(controlGeneral);
     showDefaut();
 }//GEN-LAST:event_btnOperationActionPerformed
+
+private void btnAddEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEnterpriseActionPerformed
+    IShowPanel anp = new AddNewEnterprise();
+    IControlPanel controlPanel = new ControlPanel();
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnAddEnterpriseActionPerformed
+
+private void btnAddDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDepartmentActionPerformed
+    IShowPanel anp = new AddNewDepartment();
+    IControlPanel controlPanel = new ControlPanel();
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnAddDepartmentActionPerformed
+
+private void btnAddProductGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductGroupActionPerformed
+    IShowPanel anp = new AddNewProductGroup();
+    IControlPanel controlPanel = new ControlPanel();
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnAddProductGroupActionPerformed
+
+private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
+    IShowPanel anp = new AddNewProduct();
+    IControlPanel controlPanel = new ControlPanel();
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnAddProductActionPerformed
+
+private void btnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmployeeActionPerformed
+    IShowPanel anp = new AddNewEmployee();
+    IControlPanel controlPanel = new ControlPanel();
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnAddEmployeeActionPerformed
+
+private void btnAddProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProjectActionPerformed
+    IShowPanel anp = new AddNewProject();
+    IControlPanel controlPanel = new ControlPanel();
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnAddProjectActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,9 +460,15 @@ private void btnOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddDepartment;
+    private javax.swing.JButton btnAddEmployee;
+    private javax.swing.JButton btnAddEnterprise;
+    private javax.swing.JButton btnAddOperation;
+    private javax.swing.JButton btnAddProduct;
+    private javax.swing.JButton btnAddProductGroup;
+    private javax.swing.JButton btnAddProject;
     private javax.swing.JButton btnDepartment;
     private javax.swing.JButton btnEmployee;
-    private javax.swing.JButton btnEnterpiseList;
     private javax.swing.JButton btnEnterprise;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnOperation;
