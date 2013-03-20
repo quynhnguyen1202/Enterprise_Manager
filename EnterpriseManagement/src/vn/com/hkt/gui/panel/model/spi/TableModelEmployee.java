@@ -45,7 +45,11 @@ public class TableModelEmployee extends DefaultTableModel {
     public Object getValueAt(int row, int column) {
         return data.get(row)[column];
     }
-
+    @Override
+    public String getColumnName(int column) {
+        return header[column];
+    }
+    
     @Override
     public int getRowCount() {
         if (data == null) {
