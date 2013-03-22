@@ -20,6 +20,7 @@ public class UnitMoney {
     public static final String FIELD_NAME = "Name";
     public static final String FIELD_CODE = "code";
     public static final String FIELD_IS_DEFAULT = "isDefault";
+    public static final String FIELD_RATIO_WITH_DEFAULT = "RatiowithDefault";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
