@@ -109,4 +109,9 @@ public class PanelShowAllParentEnterprise extends javax.swing.JPanel implements 
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
+    public boolean resetData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

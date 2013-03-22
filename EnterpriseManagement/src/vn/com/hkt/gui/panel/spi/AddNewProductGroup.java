@@ -255,4 +255,9 @@ private void cbGroupItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:
         provider.getDataView().setIdProductGroup(groupID);
         return true;
     }
+
+    @Override
+    public boolean resetData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

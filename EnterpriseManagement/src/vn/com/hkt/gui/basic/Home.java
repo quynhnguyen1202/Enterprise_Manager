@@ -27,6 +27,7 @@ import vn.com.hkt.gui.panel.spi.AddNewEnterprise;
 import vn.com.hkt.gui.panel.spi.AddNewProductGroup;
 import vn.com.hkt.gui.panel.spi.AddNewProject;
 import vn.com.hkt.gui.panel.spi.AddNewUnitMoney;
+import vn.com.hkt.gui.panel.spi.AddNewUnitProduct;
 import vn.com.hkt.gui.panel.spi.PanelShowAllParentEnterprise;
 import vn.com.hkt.gui.panel.spi.PanelShowListDepartment;
 import vn.com.hkt.gui.panel.spi.PanelShowListEmployee;
@@ -35,6 +36,8 @@ import vn.com.hkt.gui.panel.spi.PanelShowListOperation;
 import vn.com.hkt.gui.panel.spi.PanelShowListProduct;
 import vn.com.hkt.gui.panel.spi.PanelShowListProductGroup;
 import vn.com.hkt.gui.panel.spi.PanelShowListProject;
+import vn.com.hkt.gui.panel.spi.PanelShowListUnitMoney;
+import vn.com.hkt.gui.panel.spi.PanelShowListUnitProduct;
 
 /**
  *
@@ -53,7 +56,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         Toolkit tk = Toolkit.getDefaultToolkit();
         int xSize = ((int) tk.getScreenSize().getWidth());
         int ySize = ((int) tk.getScreenSize().getHeight());
-        this.setSize(xSize, ySize-50);
+        this.setSize(xSize, ySize - 50);
     }
 
     /** This method is called from within the constructor to
@@ -92,7 +95,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         btnProject.setBackground(new java.awt.Color(153, 153, 153));
-        btnProject.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnProject.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnProject.setForeground(new java.awt.Color(51, 51, 51));
         btnProject.setText("Project            ");
         btnProject.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +155,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnOperation.setBackground(new java.awt.Color(153, 153, 153));
-        btnOperation.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnOperation.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnOperation.setForeground(new java.awt.Color(51, 51, 51));
         btnOperation.setText("Operation        ");
         btnOperation.addActionListener(new java.awt.event.ActionListener() {
@@ -162,7 +165,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnExit.setBackground(new java.awt.Color(153, 153, 153));
-        btnExit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnExit.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnExit.setForeground(new java.awt.Color(51, 51, 51));
         btnExit.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\warning.png")); // NOI18N
         btnExit.setText("Exit");
@@ -224,17 +227,32 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnUnitProduct.setBackground(new java.awt.Color(153, 153, 153));
-        btnUnitProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUnitProduct.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnUnitProduct.setForeground(new java.awt.Color(51, 51, 51));
         btnUnitProduct.setText("Unit Product    ");
+        btnUnitProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnitProductActionPerformed(evt);
+            }
+        });
 
         btnUnitMoney.setBackground(new java.awt.Color(153, 153, 153));
-        btnUnitMoney.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUnitMoney.setFont(new java.awt.Font("Tahoma", 1, 12));
         btnUnitMoney.setForeground(new java.awt.Color(51, 51, 51));
         btnUnitMoney.setText("Money             ");
+        btnUnitMoney.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnitMoneyActionPerformed(evt);
+            }
+        });
 
         btnAddUnitProduct.setBackground(new java.awt.Color(102, 102, 102));
         btnAddUnitProduct.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
+        btnAddUnitProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddUnitProductActionPerformed(evt);
+            }
+        });
 
         btnAddUnitMoney.setBackground(new java.awt.Color(102, 102, 102));
         btnAddUnitMoney.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
@@ -471,6 +489,33 @@ private void btnAddUnitMoneyActionPerformed(java.awt.event.ActionEvent evt) {//G
     setPanelControl(controlGeneral);
     showDefaut();
 }//GEN-LAST:event_btnAddUnitMoneyActionPerformed
+
+private void btnAddUnitProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUnitProductActionPerformed
+    IShowPanel anp = new AddNewUnitProduct();
+    IControlPanel controlPanel = new ControlPanel();
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnAddUnitProductActionPerformed
+
+private void btnUnitMoneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnitMoneyActionPerformed
+    IPanelControlList panelControlList = new PanelControlShowList();
+    panelControlList.setPanelShowList(new PanelShowListUnitMoney());
+    panelControlList.showDefault();
+    controlGeneral = panelControlList;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnUnitMoneyActionPerformed
+
+private void btnUnitProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnitProductActionPerformed
+    IPanelControlList panelControlList = new PanelControlShowList();
+    panelControlList.setPanelShowList(new PanelShowListUnitProduct());
+    panelControlList.showDefault();
+    controlGeneral = panelControlList;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnUnitProductActionPerformed
 
     /**
      * @param args the command line arguments
