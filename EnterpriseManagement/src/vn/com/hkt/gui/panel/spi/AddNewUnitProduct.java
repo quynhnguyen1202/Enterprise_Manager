@@ -10,15 +10,30 @@
  */
 package vn.com.hkt.gui.panel.spi;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import vn.com.hkt.data.entity.UnitMoney;
+import vn.com.hkt.data.entity.UnitProduct;
+import vn.com.hkt.gui.entity.api.IShowPanel;
+import vn.com.hkt.provider.api.IProviderPanelShowListUnitProduct;
+import vn.com.hkt.provider.api.IProviderPanelShowUnitProduct;
+import vn.com.hkt.provider.spi.ProviderPanelShowListUnitProduct;
+import vn.com.hkt.provider.spi.ProviderPanelShowUnitProduct;
+
 /**
  *
  * @author Administrator
  */
-public class AddNewUnitProduct extends javax.swing.JPanel {
+public class AddNewUnitProduct extends javax.swing.JPanel implements IShowPanel {
 
+    private IProviderPanelShowListUnitProduct providerUnitProduct;
+    private IProviderPanelShowUnitProduct provider;
     /** Creates new form AddNewUnitProduct */
     public AddNewUnitProduct() {
         initComponents();
+        provider=new ProviderPanelShowUnitProduct();
+        providerUnitProduct=new ProviderPanelShowListUnitProduct();
+        loadUnitDefault();
     }
 
     /** This method is called from within the constructor to
@@ -32,14 +47,15 @@ public class AddNewUnitProduct extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtRatio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtCode = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel2 = new javax.swing.JLabel();
+        cbDefault = new javax.swing.JCheckBox();
+        lbDefault = new javax.swing.JLabel();
+        lbError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
@@ -64,11 +80,14 @@ public class AddNewUnitProduct extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Ratio with default :");
 
-        jCheckBox1.setText("Default");
-        jCheckBox1.setOpaque(false);
+        cbDefault.setText("Default");
+        cbDefault.setOpaque(false);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11));
-        jLabel2.setText("Default");
+        lbDefault.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lbDefault.setText("Default");
+
+        lbError.setFont(new java.awt.Font("Tahoma", 0, 12));
+        lbError.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -80,24 +99,28 @@ public class AddNewUnitProduct extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addComponent(txtCode, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addGap(108, 108, 108))
             .addGroup(layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addGap(108, 108, 108))
             .addGroup(layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addComponent(txtRatio, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbDefault, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8))
             .addGroup(layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cbDefault, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(258, 258, 258)
+                .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,33 +130,114 @@ public class AddNewUnitProduct extends javax.swing.JPanel {
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRatio, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbDefault, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addComponent(cbDefault))
+                .addGap(7, 7, 7)
+                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox cbDefault;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lbDefault;
+    private javax.swing.JLabel lbError;
+    private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtRatio;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public List listA() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean checkData() {
+        if(txtCode.getText().length()==0){
+            lbError.setText("Enter unit code");
+            return false;
+        }
+        if(txtName.getText().length()==0){
+            lbError.setText("Enter unit name");
+            return false;
+        }
+        if(txtRatio.getText().length()==0){
+            lbError.setText("Enter unit ratio");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public long addData() {
+        if (!checkData()) {
+            return 0;
+        }
+        editData();
+        if (!getData()) {
+            return 0;
+        }
+        return provider.addData();
+    }
+
+    @Override
+    public boolean editData() {
+        List<UnitProduct> unitProducts = providerUnitProduct.getByDefault(true);
+        if (!cbDefault.isSelected() || unitProducts == null || unitProducts.isEmpty()) {
+            return false;
+        }
+        provider.setDataView(unitProducts.get(0));
+        provider.getDataView().setIsDefault(false);
+        provider.updateData();
+        JOptionPane.showConfirmDialog(this, "Update default");
+        return true;
+    }
+
+    @Override
+    public boolean deleteData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List listCombo() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private void loadUnitDefault() {
+        List<UnitProduct> unitProducts=providerUnitProduct.getByDefault(true);
+        if(unitProducts!=null){
+            lbDefault.setText(unitProducts.toString());
+        }else{
+            lbDefault.setText("No Default");
+        }
+    }
+
+    private boolean getData() {
+        provider.getDataView().setName(txtName.getText());
+        provider.getDataView().setCode(txtCode.getText());
+        provider.getDataView().setRatiowithDefault(Long.parseLong(txtRatio.getText()));
+        if (cbDefault.isSelected()) {
+            provider.getDataView().setIsDefault(true);
+        } else {
+            provider.getDataView().setIsDefault(false);
+        }
+        return true;
+    }
 }

@@ -146,7 +146,8 @@ public class AddNewUnitMoney extends javax.swing.JPanel implements IShowPanel {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbDefault))
                 .addGap(17, 17, 17)
-                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -193,12 +194,14 @@ public class AddNewUnitMoney extends javax.swing.JPanel implements IShowPanel {
 
     @Override
     public long addData() {
-        editData();
-        if (!checkData() || !getData()) {
+        if (!checkData()) {
             return 0;
         }
-        long id=provider.addData();
-        return id;
+        editData();
+        if (!getData()) {
+            return 0;
+        }
+        return provider.addData();
     }
 
     @Override
