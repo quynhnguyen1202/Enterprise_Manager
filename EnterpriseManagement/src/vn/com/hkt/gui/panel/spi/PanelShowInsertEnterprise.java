@@ -182,4 +182,9 @@ public class PanelShowInsertEnterprise extends javax.swing.JPanel implements ISh
         //TODO
         return null;
     }
+
+    @Override
+    public boolean resetData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

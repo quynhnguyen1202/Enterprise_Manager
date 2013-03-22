@@ -320,4 +320,9 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
         provider.getDataView().setCodeDepartment(txtCode.getText());
         return true;
     }
+
+    @Override
+    public boolean resetData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

@@ -18,6 +18,8 @@ public interface IShowPanel<E> {
 
     public long addData();
 
+    public boolean resetData();
+
     public boolean editData();
 
     public boolean deleteData();

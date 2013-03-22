@@ -201,7 +201,9 @@ public class AddNewUnitMoney extends javax.swing.JPanel implements IShowPanel {
         if (!getData()) {
             return 0;
         }
-        return provider.addData();
+        long id=provider.addData();
+        resetData();
+        return id;
     }
 
     @Override
@@ -245,6 +247,17 @@ public class AddNewUnitMoney extends javax.swing.JPanel implements IShowPanel {
         } else {
             provider.getDataView().setIsDefault(false);
         }
+        return true;
+    }
+
+    @Override
+    public boolean resetData() {
+         provider.resetData();
+        txtCode.setText("");
+        txtName.setText("");
+        txtRatio.setText("");
+        showDefaultUnit();
+        cbDefault.setSelected(false);
         return true;
     }
 }
