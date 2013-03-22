@@ -37,7 +37,7 @@ public class ProjectMemberDao extends EntityDao<ProjectMember> implements IProje
 
     @Override
     public List<ProjectMember> getByIDEnterprise(long idEnterprise) {
-        String sql = "Select tbl from ProjectMember tbl where tbl." + ProjectMember.FIELD_IDENTERPRISE + " =?1 ";
+        String sql = "Select tbl from ProjectMember tbl where tbl." + ProjectMember.FIELD_IDEMPLOYEE + " =?1 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }

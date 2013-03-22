@@ -7,19 +7,18 @@ package vn.com.hkt.statistic.spi;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.TemporalType;
 import vn.com.hkt.dao.spi.EntityManageFactoryTest;
 import vn.com.hkt.data.entity.Enterprise;
 import vn.com.hkt.data.entity.Operation;
 import vn.com.hkt.data.entity.UnitMoney;
-import vn.com.hkt.statistic.api.IRevenueRecurrentStatistic;
+import vn.com.hkt.statistic.api.IEnterpriseRevenueStatistic;
 
 /**
  *
  * @author QuynhNguyen
  */
-public class RevenueRecurrentStatistic implements IRevenueRecurrentStatistic {
+public class EnterpriseRevenueStatistic implements IEnterpriseRevenueStatistic {
 
     private EntityManager em;
     List<Double> result = null;
@@ -57,13 +56,34 @@ public class RevenueRecurrentStatistic implements IRevenueRecurrentStatistic {
     public float revenueGetByTotalChildrenEnterprise(long idParentEnterprise, Date dateStart, Date dateEnd) {
         float revenueChildren = revenueGetByTotalEnterprise(idParentEnterprise, dateStart, dateEnd) - revenueGetByEnterprise(idParentEnterprise, dateStart, dateEnd);
         return revenueChildren;
-
     }
 
     @Override
     public float revenueGetByEnterprise(long idEnterprise, Date dateStart, Date dateEnd) {
-        RevenueStatistic r = new RevenueStatistic();
-        float revenueE = r.revenueGetByEnterprise(idEnterprise, dateStart, dateEnd);
-        return revenueE;
+        float sum = 0;
+        String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where (tbl." + Operation.FIELD_ID + "=?1) "
+                + " and ( tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
+                + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<?3)";
+        if (em == null || !em.isOpen()) {
+            em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
+        }
+        try {
+
+            result = em.createQuery(sql).setParameter(1, idEnterprise).setParameter(2, dateStart, TemporalType.DATE).setParameter(3, dateEnd, TemporalType.DATE).getResultList();
+            if (result != null && !result.isEmpty()) {
+                try {
+                    sum = Float.parseFloat(result.get(0).toString());
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            } else {
+                sum = 0;
+            }
+        } catch (Exception e) {
+            return 0;
+        } finally {
+            em.close();
+        }
+        return sum;
     }
 }
