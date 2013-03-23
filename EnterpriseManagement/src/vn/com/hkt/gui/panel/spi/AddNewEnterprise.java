@@ -10,31 +10,30 @@
  */
 package vn.com.hkt.gui.panel.spi;
 
+import java.sql.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import vn.com.hkt.data.entity.Enterprise;
-import vn.com.hkt.gui.entity.api.IPanelShowList;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.provider.api.IProviderPanelShowEnterprise;
-import vn.com.hkt.provider.api.IProviderPanelShowListEnterprise;
 import vn.com.hkt.provider.spi.ProviderPanelShowEnterprise;
-import vn.com.hkt.provider.spi.ProviderPanelShowListEnterprise;
 
 /**
  *
  * @author Administrator
  */
-public class AddNewEnterprise extends javax.swing.JPanel implements IShowPanel, IPanelShowList {
+public class AddNewEnterprise extends javax.swing.JPanel implements IShowPanel<Enterprise> {
 
     /** Creates new form AddNewEnterprise */
-    private IProviderPanelShowListEnterprise providerEnterprise;
+    private IPanelControlGeneral controlGeneral;
     private long enterpriseID;
     private IProviderPanelShowEnterprise provider;
 
     public AddNewEnterprise() {
         initComponents();
         provider = new ProviderPanelShowEnterprise();
-        providerEnterprise = new ProviderPanelShowListEnterprise();
         loadEnterprise();
     }
 
@@ -219,7 +218,7 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public List listA() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return null;
     }
 
     @Override
@@ -237,12 +236,25 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             lbError.setText("Wrong error !");
             return 0;
         }
-        return provider.addData();
+        long id = provider.addData();
+        resetData();
+        return id;
     }
 
     @Override
     public boolean editData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        JOptionPane.showConfirmDialog(this, "Are you sure !");
+        if (!checkData() || !getData()) {
+            lbError.setText("Wrong error !");
+            return false;
+        }
+        long id =provider. updateData();
+        if(id<0){
+            return false;
+        }
+        return true;
+        
+        
     }
 
     @Override
@@ -255,13 +267,8 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public void showDefault() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     private void loadEnterprise() {
-        List<Enterprise> enterprises = providerEnterprise.getListInformation();
+        List<Enterprise> enterprises = provider.getListEnterprise();
         if (enterprises != null) {
             cbEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
             loadCBEnterprise();
@@ -281,6 +288,47 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public boolean resetData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        txtEnterpriseName.setText("");
+        txtCode.setText("");
+        txtSlogan.setText("");
+        cbEnterprise.setSelectedIndex(0);
+        dcDateActivate.setCalendar(null);
+        provider.setDataView(null);
+        return true;
+    }
+
+    @Override
+    public void setDataShow(Enterprise ob) {
+        provider.setDataView(ob);
+        refreshData();
+    }
+
+    @Override
+    public void refreshData() {
+        txtEnterpriseName.setText(provider.getDataView().getName());
+        txtCode.setText(provider.getDataView().getCodeEnterprise());
+        txtSlogan.setText(provider.getDataView().getSlogan());
+        dcDateActivate.setDate(provider.getDataView().getDateActivative());
+        //set gia tri cho combobox
+        long id = provider.getDataView().getIdEnterprise();
+        Enterprise enter = provider.getObjectbyID(id);
+        cbEnterprise.setSelectedItem(enter);
+        //xoa ten doanh nghiep can sua tren comboboEn
+        Enterprise en = provider.getObjectbyID(provider.getDataView().getId());
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbEnterprise.getModel();
+        for (int i = 0; i < model.getSize();) {
+            Enterprise e = ((Enterprise) model.getElementAt(i));
+            if (e != null && e.getId() == en.getId()) {
+                model.removeElementAt(i);
+            } else {
+                i++;
+            }
+        }
+        controlGeneral.refresh(this);
+    }
+
+    @Override
+    public void setControlShow(IPanelControlGeneral controlGeneral) {
+        this.controlGeneral = controlGeneral;
     }
 }

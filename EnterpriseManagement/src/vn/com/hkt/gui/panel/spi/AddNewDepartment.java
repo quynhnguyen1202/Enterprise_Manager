@@ -14,7 +14,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.Enterprise;
-import vn.com.hkt.gui.entity.api.IPanelShowList;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.provider.api.IProviderPanelShowDepartment;
 import vn.com.hkt.provider.api.IProviderPanelShowListDepartment;
@@ -27,7 +27,7 @@ import vn.com.hkt.provider.spi.ProviderPanelShowListEnterprise;
  *
  * @author Administrator
  */
-public class AddNewDepartment extends javax.swing.JPanel implements IShowPanel, IPanelShowList {
+public class AddNewDepartment extends javax.swing.JPanel implements IShowPanel<Department> {
 
     private IProviderPanelShowListEnterprise providerEnterprise;
     private IProviderPanelShowListDepartment providerDepartment;
@@ -41,7 +41,7 @@ public class AddNewDepartment extends javax.swing.JPanel implements IShowPanel, 
         provider = new ProviderPanelShowDepartment();
         providerEnterprise = new ProviderPanelShowListEnterprise();
         providerDepartment = new ProviderPanelShowListDepartment();
-        showDefault();
+//        showDefault();
         loadCBEnterprise();
     }
 
@@ -270,7 +270,9 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
         if (!checkData() || !getData()) {
             return 0;
         }
-        return provider.addData();
+        long id=provider.addData();
+        resetData();
+        return id;
     }
 
     @Override
@@ -287,11 +289,11 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     public List listCombo() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    @Override
-    public void showDefault() {
-        loadEnterprise();
-    }
+//
+//    @Override
+//    public void showDefault() {
+//        loadEnterprise();
+//    }
 
     private void loadEnterprise() {
         List<Enterprise> enterprises = providerEnterprise.getListInformation();
@@ -323,6 +325,26 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public boolean resetData() {
+        txtName.setText("");
+        txtCode.setText("");
+        cbEnterprise.setSelectedIndex(0);
+        dcDateActivate.setDateFormatString("");
+        provider.setDataView(null);
+        return true;
+    }
+
+    @Override
+    public void setDataShow(Department ob) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void refreshData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setControlShow(IPanelControlGeneral controlGeneral) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

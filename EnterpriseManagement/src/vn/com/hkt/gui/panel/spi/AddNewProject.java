@@ -14,6 +14,8 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.Enterprise;
+import vn.com.hkt.data.entity.Project;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.provider.api.IProviderPanelShowEnterprise;
@@ -28,7 +30,7 @@ import vn.com.hkt.provider.spi.ProviderPanelShowProject;
  *
  * @author Administrator
  */
-public class AddNewProject extends javax.swing.JPanel implements IPanelShowList, IShowPanel<Object> {
+public class AddNewProject extends javax.swing.JPanel implements IShowPanel<Project> {
 
     private long departmentID;
     private long enterpriseID;
@@ -42,7 +44,7 @@ public class AddNewProject extends javax.swing.JPanel implements IPanelShowList,
         provider = new ProviderPanelShowProject();
         providerEnterprise = new ProviderPanelShowListEnterprise();
         providerDepartment = new ProviderPanelShowListDepartment();
-        showDefault();
+//        showDefault();
         loadCBEnterprise();
     }
 
@@ -288,18 +290,15 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     private javax.swing.JTextField txtProjectName;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void showDefault() {
-        loadEnterprise();
-    }
+//    @Override
+//    public void showDefault() {
+//        loadEnterprise();
+//    }
 
    
     
 
-    @Override
-    public List<Object> listA() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    
 
     @Override
     public boolean checkData() {
@@ -347,10 +346,7 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public List<Object> listCombo() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+
 
     private boolean getData() {
         try {
@@ -388,8 +384,42 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public boolean resetData() {
+        txtProjectName.setText("");
+        txtCode.setText("");
+        txtDescription.setText("");
+        cbEnterprise.setSelectedIndex(0);
+        dateStart.setDateFormatString("");
+        dateEnd.setDateFormatString("");
+        provider.setDataView(null);
+        return true;
+    }
+
+    @Override
+    public List<Project> listA() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public List<Project> listCombo() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setDataShow(Project ob) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void refreshData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setControlShow(IPanelControlGeneral controlGeneral) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+  
 
    
 }

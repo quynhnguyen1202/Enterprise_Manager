@@ -19,4 +19,6 @@ public interface IProviderPanelShowListEnterprise extends IProviderListGeneral<E
     public List<Enterprise> getByDateActivate(Date date);
 
     public List<Enterprise> getByCodeEnterprise(String code);
+
+    public Enterprise getByEnterpriseId(long idEnterprise);
 }

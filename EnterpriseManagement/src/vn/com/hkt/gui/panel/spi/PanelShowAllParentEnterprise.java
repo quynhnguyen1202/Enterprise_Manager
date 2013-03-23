@@ -10,6 +10,7 @@
  */
 package vn.com.hkt.gui.panel.spi;
 
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.panel.model.spi.MyButton;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -111,6 +112,21 @@ public class PanelShowAllParentEnterprise extends javax.swing.JPanel implements 
 
     @Override
     public boolean resetData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setDataShow(Enterprise ob) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void refreshData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setControlShow(IPanelControlGeneral controlGeneral) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

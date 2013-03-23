@@ -4,6 +4,8 @@
  */
 package vn.com.hkt.gui.control.api;
 
+import vn.com.hkt.gui.entity.api.IShowPanel;
+
 /**
  *
  * @author Administrator
@@ -11,5 +13,7 @@ package vn.com.hkt.gui.control.api;
 public interface IPanelControlGeneral {
     
     public void showDefault();
+
+    public void refresh(IShowPanel panel);
     
 }

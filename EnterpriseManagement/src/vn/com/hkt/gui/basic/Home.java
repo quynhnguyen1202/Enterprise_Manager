@@ -11,6 +11,7 @@
 package vn.com.hkt.gui.basic;
 
 import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import vn.com.hkt.dao.spi.EntityManageFactoryTest;
 import vn.com.hkt.gui.basic.api.IHomePanel;
@@ -52,7 +53,9 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         initComponents();
         EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         System.out.println("Finished!");
-
+        
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        
         Toolkit tk = Toolkit.getDefaultToolkit();
         int xSize = ((int) tk.getScreenSize().getWidth());
         int ySize = ((int) tk.getScreenSize().getHeight());
@@ -393,7 +396,9 @@ private void btnProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void btnEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterpriseActionPerformed
     IPanelControlList panelControlList = new PanelControlShowList();
-    panelControlList.setPanelShowList(new PanelShowListEnterprise());
+    PanelShowListEnterprise pn = new PanelShowListEnterprise();
+    pn.setPanelControShow(controlGeneral);
+    panelControlList.setPanelShowList(pn);
     panelControlList.showDefault();
     controlGeneral = panelControlList;
     setPanelControl(controlGeneral);

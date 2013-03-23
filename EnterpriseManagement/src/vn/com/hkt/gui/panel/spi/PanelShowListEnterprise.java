@@ -11,8 +11,15 @@
 package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import vn.com.hkt.data.entity.Enterprise;
+import vn.com.hkt.gui.basic.Home;
+import vn.com.hkt.gui.basic.api.IHomePanel;
+import vn.com.hkt.gui.control.ControlPanel;
+import vn.com.hkt.gui.control.api.IControlPanel;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
+import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.gui.panel.model.spi.TableModelEnterprise;
 import vn.com.hkt.provider.api.IProviderPanelShowListEnterprise;
 import vn.com.hkt.provider.spi.ProviderPanelShowListEnterprise;
@@ -24,6 +31,7 @@ import vn.com.hkt.provider.spi.ProviderPanelShowListEnterprise;
 public class PanelShowListEnterprise extends javax.swing.JPanel implements IPanelShowList {
 
     private IProviderPanelShowListEnterprise provider;
+    private IPanelControlGeneral controlGeneral;    
 
     /** Creates new form PanelShowListEnterprise */
     public PanelShowListEnterprise() {
@@ -46,6 +54,12 @@ public class PanelShowListEnterprise extends javax.swing.JPanel implements IPane
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.darkGray));
 
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseClicked(evt);
+            }
+        });
+
         tblEnterprise.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -57,6 +71,11 @@ public class PanelShowListEnterprise extends javax.swing.JPanel implements IPane
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblEnterprise.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEnterpriseMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblEnterprise);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -76,6 +95,42 @@ public class PanelShowListEnterprise extends javax.swing.JPanel implements IPane
                 .addGap(35, 35, 35))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+    
+    
+    
+}//GEN-LAST:event_jScrollPane1MouseClicked
+
+private void tblEnterpriseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEnterpriseMouseClicked
+
+    if(tblEnterprise.getSelectedRow()<0){
+        return;
+    }
+    if(evt.getClickCount() <2){
+        return;
+    }
+    try {
+        String id=tblEnterprise.getValueAt(tblEnterprise.getSelectedRow(), 0).toString();
+        Enterprise e=provider.getByEnterpriseId(Long.parseLong(id));
+        if(e!=null){
+            IShowPanel p=new AddNewEnterprise();
+            IControlPanel controlPanel = new ControlPanel();
+            controlPanel.setShowPanel(p);
+            p.setControlShow(controlPanel);
+            p.setDataShow(e);
+            IHomePanel homePanel = new Home();
+            controlPanel.refresh(p);
+            homePanel.setPanelControl(controlPanel);
+            homePanel.showDefaut();
+            homePanel.setVisible(true);
+        }
+    } catch (Exception e) {
+        JOptionPane.showConfirmDialog(this, e);
+    }
+    
+}//GEN-LAST:event_tblEnterpriseMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblEnterprise;
@@ -89,5 +144,10 @@ public class PanelShowListEnterprise extends javax.swing.JPanel implements IPane
     private void loadTable() {
         List<Enterprise> enterprises = provider.getListInformation();
         tblEnterprise.setModel(new TableModelEnterprise(enterprises));
+    }
+
+    @Override
+    public void setPanelControShow(IPanelControlGeneral controlGeneral) {
+        this.controlGeneral = controlGeneral;
     }
 }

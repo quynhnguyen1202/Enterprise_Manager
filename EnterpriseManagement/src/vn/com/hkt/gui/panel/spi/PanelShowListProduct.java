@@ -12,6 +12,7 @@ package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
 import vn.com.hkt.data.entity.Product;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.panel.model.spi.TableModelProduct;
 import vn.com.hkt.provider.api.IProviderPanelShowListProduct;
@@ -128,5 +129,10 @@ public class PanelShowListProduct extends javax.swing.JPanel implements  IPanelS
     private void loadTable() {
         List<Product> departments=provider.getListInformation();
         tbProduct.setModel(new TableModelProduct(departments));
+    }
+
+    @Override
+    public void setPanelControShow(IPanelControlGeneral controlGeneral) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

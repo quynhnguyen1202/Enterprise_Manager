@@ -12,6 +12,7 @@ package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
 import vn.com.hkt.data.entity.Project;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.panel.model.spi.TableModelProject;
 import vn.com.hkt.provider.api.IProviderPanelShowListProject;
@@ -128,5 +129,10 @@ public class PanelShowListProject extends javax.swing.JPanel implements IPanelSh
     private void loadTable() {
         List<Project> ject=provider.getListInformation();
         tbProject.setModel(new TableModelProject(ject));
+    }
+
+    @Override
+    public void setPanelControShow(IPanelControlGeneral controlGeneral) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

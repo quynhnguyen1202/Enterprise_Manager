@@ -12,7 +12,7 @@ import vn.com.hkt.data.entity.Enterprise;
  * @author Administrator
  */
 public interface IProviderPanelShowEnterprise extends IProviderGeneral<Enterprise> {
-    
+    public List<Enterprise> getListEnterprise();
    
     
 }

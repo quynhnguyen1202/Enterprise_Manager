@@ -13,10 +13,13 @@ package vn.com.hkt.gui.panel.spi;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.Enterprise;
+import vn.com.hkt.data.entity.Product;
 import vn.com.hkt.data.entity.ProductGroup;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.provider.api.IProviderPanelShowListDepartment;
@@ -34,7 +37,8 @@ import vn.com.hkt.provider.spi.ProviderPanelShowProduct;
  *
  * @author Administrator
  */
-public class AddNewProduct extends javax.swing.JPanel implements IShowPanel,IPanelShowList {
+public class AddNewProduct extends javax.swing.JPanel implements IShowPanel<Product> {
+
     private IProviderPanelShowListProductGroup groupProvider;
     private IProviderPanelShowListEnterprise providerEnterprise;
     private IProviderPanelShowListDepartment providerDepartment;
@@ -43,15 +47,17 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel,IPan
     private long enterpriseID;
     //group
     private IProviderPanelShowMidleProductGroup providerMidleGroup;
+
     /** Creates new form AddNewProduct */
     public AddNewProduct() {
         initComponents();
-        groupProvider=new ProviderPanelShowListProductGroup();
+        groupProvider = new ProviderPanelShowListProductGroup();
         providerEnterprise = new ProviderPanelShowListEnterprise();
         providerDepartment = new ProviderPanelShowListDepartment();
-        providerProduct=new ProviderPanelShowProduct();
-        providerMidleGroup=new ProviderPanelShowMidleProductGroup();
-        showDefault();
+        providerProduct = new ProviderPanelShowProduct();
+        providerMidleGroup = new ProviderPanelShowMidleProductGroup();
+        loadListGroup();
+        loadEnterprise();
     }
 
     /** This method is called from within the constructor to
@@ -229,15 +235,15 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel,IPan
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     //them doi tuong 
-    DefaultListModel dlm=new DefaultListModel();
+    DefaultListModel dlm = new DefaultListModel();
     dlm.addElement(listGroup.getSelectedValue());
     for (int i = 0; i < listAddGroup.getModel().getSize(); i++) {
         dlm.addElement(listAddGroup.getModel().getElementAt(i));
     }
     listAddGroup.setModel(dlm);
-    
-    
-    
+
+
+
     //xoa doi tuong
     DefaultListModel model = (DefaultListModel) listGroup.getModel();
     int selectedIndex = listGroup.getSelectedIndex();
@@ -250,15 +256,15 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     //them doi tuong
-    DefaultListModel dlm=new DefaultListModel();
+    DefaultListModel dlm = new DefaultListModel();
     dlm.addElement(listAddGroup.getSelectedValue());
     for (int i = 0; i < listGroup.getModel().getSize(); i++) {
         dlm.addElement(listGroup.getModel().getElementAt(i));
     }
     listGroup.setModel(dlm);
-    
-    
-    
+
+
+
     //xoa doi tuong
     DefaultListModel model = (DefaultListModel) listAddGroup.getModel();
     int selectedIndex = listAddGroup.getSelectedIndex();
@@ -269,33 +275,33 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEnterpriseItemStateChanged
-        loabCBEnterprise();
+    loabCBEnterprise();
 }//GEN-LAST:event_cbEnterpriseItemStateChanged
 
 private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDepartmentItemStateChanged
-        loadCBDepartment();
+    loadCBDepartment();
 }//GEN-LAST:event_cbDepartmentItemStateChanged
 
     private void loadCBDepartment() {
-       int index=cbEnterprise.getSelectedIndex();
-        if(index>0){
-        Department d = (Department) cbDepartment.getSelectedItem();
-        if (d != null) {
-            if (d.getId() > 0) {
-                departmentID = d.getId();
+        int index = cbEnterprise.getSelectedIndex();
+        if (index > 0) {
+            Department d = (Department) cbDepartment.getSelectedItem();
+            if (d != null) {
+                if (d.getId() > 0) {
+                    departmentID = d.getId();
+                } else {
+                    departmentID = 0;
+                }
             } else {
                 departmentID = 0;
             }
         } else {
             departmentID = 0;
         }
-        }else{
-            departmentID = 0;
-        }
     }
 
-    private void loabCBEnterprise(){
-         Enterprise e = (Enterprise) cbEnterprise.getSelectedItem();
+    private void loabCBEnterprise() {
+        Enterprise e = (Enterprise) cbEnterprise.getSelectedItem();
         if (e != null) {
             if (e.getId() > 0) {
                 cbDepartment.setEnabled(true);
@@ -305,11 +311,10 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             } else {
                 enterpriseID = 0;
             }
-        }else{
+        } else {
             cbDepartment.setEnabled(false);
         }
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbDepartment;
     private javax.swing.JComboBox cbEnterprise;
@@ -332,20 +337,20 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public boolean checkData() {
-        if(txtProductName.getText().length()==0){
+        if (txtProductName.getText().length() == 0) {
             lbError.setText("Enter product name !");
             return false;
         }
-        int count=listAddGroup.getModel().getSize();
-        if(count<1){
+        int count = listAddGroup.getModel().getSize();
+        if (count < 1) {
             lbError.setText("Choose group product !");
             return false;
         }
-        if(cbEnterprise.getSelectedIndex()==0){
+        if (cbEnterprise.getSelectedIndex() == 0) {
             lbError.setText("Choose enterprise !");
             return false;
         }
-        if(cbEnterprise.getSelectedItem()==null){
+        if (cbEnterprise.getSelectedItem() == null) {
             lbError.setText("Choose enterprise !");
             return false;
         }
@@ -354,19 +359,21 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public long addData() {
-        if(!checkData() || !getData()){
-            JOptionPane.showMessageDialog(null, "Wrong error !");
+        if (!checkData() || !getData()) {
             return 0;
-        }else{
-            long iD= providerProduct.addData();
+        } else {
+            long iD = providerProduct.addData();
             for (int i = 0; i < listAddGroup.getModel().getSize(); i++) {
-                ProductGroup p = (ProductGroup)listAddGroup.getModel().getElementAt(i);
-                providerMidleGroup.getDataView().setIdGroupProduct(p.getId());
-                providerMidleGroup.getDataView().setIdProduct(iD);
-                providerMidleGroup.addData();
+                ProductGroup p = (ProductGroup) listAddGroup.getModel().getElementAt(i);
+                if (p != null) {
+                    providerMidleGroup.getDataView().setIdGroupProduct(p.getId());
+                    providerMidleGroup.getDataView().setIdProduct(iD);
+                    providerMidleGroup.addData();
+                }
             }
             JOptionPane.showMessageDialog(null, "Add new product successful !");
-            return 1;
+            resetData();
+            return iD;
         }
     }
 
@@ -390,15 +397,10 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public void showDefault() {
-        loadListGroup();
-        loadEnterprise();;
-    }
 
     private void loadListGroup() {
         List<ProductGroup> productGroups = groupProvider.getListInformation();
-        DefaultListModel dlm=new DefaultListModel();
+        DefaultListModel dlm = new DefaultListModel();
         for (ProductGroup p : productGroups) {
             dlm.addElement(p);
         }
@@ -406,17 +408,17 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     }
 
     private void loadEnterprise() {
-         List<Enterprise> enterprises = providerEnterprise.getListInformation();
+        List<Enterprise> enterprises = providerEnterprise.getListInformation();
         if (enterprises != null) {
             cbEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
             loabCBEnterprise();
-        }else{
-            enterpriseID=0;
+        } else {
+            enterpriseID = 0;
         }
     }
 
     private void loadDepartment() {
-      if (enterpriseID > 0) {
+        if (enterpriseID > 0) {
             List<Department> departments = providerDepartment.getByIDEnt(enterpriseID);
             cbDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
         } else {
@@ -434,6 +436,29 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public boolean resetData() {
+        txtProductName.setText("");
+        txtCode.setText("");
+        cbEnterprise.setSelectedIndex(0);
+        providerProduct.setDataView(null);
+        loadListGroup();
+        DefaultComboBoxModel dcm = new DefaultComboBoxModel();
+        dcm.addElement(null);
+        listAddGroup.setModel(dcm);
+        return true;
+    }
+
+    @Override
+    public void setDataShow(Product ob) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void refreshData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setControlShow(IPanelControlGeneral controlGeneral) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

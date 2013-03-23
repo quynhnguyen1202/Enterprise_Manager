@@ -17,7 +17,7 @@ import vn.com.hkt.data.entity.Enterprise;
 public class TableModelEnterprise extends DefaultTableModel {
 
     private List<Enterprise> enterprises = new ArrayList<Enterprise>();
-    private String[] header = new String[]{"Ma DN", "Ten DN", "Ngay thanh lap"};
+    private String[] header = new String[]{"Ma DN","Code", "Ten DN", "Ngay thanh lap"};
     private List<String[]> data = new ArrayList<String[]>();
 
     public TableModelEnterprise(List<Enterprise> enterprises) {
@@ -63,10 +63,11 @@ public class TableModelEnterprise extends DefaultTableModel {
             for (int i = 0; i < enterprises.size(); i++) {
                 if (enterprises.get(i) != null) {
                     Enterprise e = enterprises.get(i);
+                    String code=e.getCodeEnterprise();
                     long id = e.getId();
                     String name = e.getName();
                     Date dateActive = e.getDateActivative();
-                    String[] row = new String[]{String.valueOf(id), name, dateActive == null ? "" : dateActive.toString()};
+                    String[] row = new String[]{String.valueOf(id),code, name, dateActive == null ? "" : dateActive.toString()};
                     list.add(row);
                 }
             }

@@ -12,6 +12,7 @@ package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
 import vn.com.hkt.data.entity.ProductGroup;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.panel.model.spi.TableModelProductGroup;
 import vn.com.hkt.provider.api.IProviderPanelShowListProductGroup;
@@ -132,5 +133,10 @@ public class PanelShowListProductGroup extends javax.swing.JPanel implements IPa
         List<ProductGroup> productGroups=provider.getListInformation();
         tbProductGroup.setModel(new TableModelProductGroup(productGroups));
         
+    }
+
+    @Override
+    public void setPanelControShow(IPanelControlGeneral controlGeneral) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

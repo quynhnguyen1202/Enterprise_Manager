@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import org.eclipse.persistence.annotations.Convert;
 import vn.com.hkt.data.entity.UnitMoney;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.provider.api.IProviderPanelShowListUnitMoney;
 import vn.com.hkt.provider.api.IProviderPanelShowUnitMoney;
@@ -259,5 +260,20 @@ public class AddNewUnitMoney extends javax.swing.JPanel implements IShowPanel {
         showDefaultUnit();
         cbDefault.setSelected(false);
         return true;
+    }
+
+    @Override
+    public void setDataShow(Object ob) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void refreshData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setControlShow(IPanelControlGeneral controlGeneral) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

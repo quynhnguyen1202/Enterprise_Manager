@@ -12,6 +12,7 @@ package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
 import vn.com.hkt.data.entity.Department;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.panel.model.spi.TableModelDepartment;
 import vn.com.hkt.provider.api.IProviderPanelShowListDepartment;
@@ -152,5 +153,10 @@ public class PanelShowListDepartment extends javax.swing.JPanel implements IPane
     private void loadTable() {
         List<Department> departments=provider.getListInformation();
         tbnDepartment.setModel(new TableModelDepartment(departments));
+    }
+
+    @Override
+    public void setPanelControShow(IPanelControlGeneral controlGeneral) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

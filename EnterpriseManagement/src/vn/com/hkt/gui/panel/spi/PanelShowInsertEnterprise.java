@@ -12,6 +12,8 @@ package vn.com.hkt.gui.panel.spi;
 
 import java.util.Date;
 import java.util.List;
+import vn.com.hkt.data.entity.Enterprise;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.provider.api.IProviderPanelShowEnterprise;
 import vn.com.hkt.provider.spi.ProviderPanelShowEnterprise;
@@ -20,7 +22,7 @@ import vn.com.hkt.provider.spi.ProviderPanelShowEnterprise;
  *
  * @author Administrator
  */
-public class PanelShowInsertEnterprise extends javax.swing.JPanel implements IShowPanel {
+public class PanelShowInsertEnterprise extends javax.swing.JPanel implements IShowPanel<Enterprise> {
 
     private IProviderPanelShowEnterprise provider;
 
@@ -119,7 +121,8 @@ public class PanelShowInsertEnterprise extends javax.swing.JPanel implements ISh
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dcActivate, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -185,6 +188,21 @@ public class PanelShowInsertEnterprise extends javax.swing.JPanel implements ISh
 
     @Override
     public boolean resetData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setDataShow(Enterprise ob) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void refreshData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setControlShow(IPanelControlGeneral controlGeneral) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

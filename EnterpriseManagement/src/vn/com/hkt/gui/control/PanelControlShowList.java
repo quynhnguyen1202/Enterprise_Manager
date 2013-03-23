@@ -136,4 +136,9 @@ private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public void setPanelShowList(IPanelShowList panelShowList) {
         this.panelShowList = panelShowList;
     }
+
+    @Override
+    public void refresh(IShowPanel panel) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

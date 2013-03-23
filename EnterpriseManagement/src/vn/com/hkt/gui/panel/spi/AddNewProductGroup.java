@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import vn.com.hkt.data.entity.Enterprise;
 import vn.com.hkt.data.entity.ProductGroup;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.provider.api.IProviderPanelShowListEnterprise;
@@ -27,7 +28,7 @@ import vn.com.hkt.provider.spi.ProviderPanelShowProductGroup;
  *
  * @author Administrator
  */
-public class AddNewProductGroup extends javax.swing.JPanel implements IShowPanel, IPanelShowList {
+public class AddNewProductGroup extends javax.swing.JPanel implements IShowPanel<ProductGroup> {
 
     private IProviderPanelShowListEnterprise providerEnterprise;
     private IProviderPanelShowListProductGroup providerGroup;
@@ -41,7 +42,7 @@ public class AddNewProductGroup extends javax.swing.JPanel implements IShowPanel
         provider = new ProviderPanelShowProductGroup();
         providerEnterprise = new ProviderPanelShowListEnterprise();
         providerGroup = new ProviderPanelShowListProductGroup();
-        showDefault();
+//        showDefault();
     }
 
     /** This method is called from within the constructor to
@@ -206,7 +207,9 @@ private void cbGroupItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:
         if(!checkData()||!getData()){
             return 0;
         }
-        return provider.addData();
+        long id=provider.addData();
+        resetData();
+        return id;
     }
 
     @Override
@@ -222,11 +225,6 @@ private void cbGroupItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:
     @Override
     public List listCombo() {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void showDefault() {
-        loadEnterprise();
     }
 
     private void loadEnterprise() {
@@ -258,6 +256,25 @@ private void cbGroupItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:
 
     @Override
     public boolean resetData() {
+        txtName.setText("");
+        txtCode.setText("");
+        cbEnterprise.setSelectedIndex(0);
+        provider.setDataView(null);
+        return true;
+    }
+
+    @Override
+    public void setDataShow(ProductGroup ob) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void refreshData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setControlShow(IPanelControlGeneral controlGeneral) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

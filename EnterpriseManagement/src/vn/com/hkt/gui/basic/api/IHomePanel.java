@@ -15,4 +15,6 @@ public interface IHomePanel {
     public void setPanelControl(IPanelControlGeneral p);
 
     public void showDefaut();
+    
+    public void setVisible(boolean flag);
 }

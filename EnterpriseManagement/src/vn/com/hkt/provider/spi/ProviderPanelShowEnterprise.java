@@ -4,6 +4,8 @@
  */
 package vn.com.hkt.provider.spi;
 
+import java.util.ArrayList;
+import java.util.List;
 import vn.com.hkt.dao.api.IEnterpriseDao;
 import vn.com.hkt.dao.spi.EnterpriseDao;
 import vn.com.hkt.data.entity.Enterprise;
@@ -88,6 +90,17 @@ public class ProviderPanelShowEnterprise implements IProviderPanelShowEnterprise
 
     @Override
     public Enterprise getObjectbyID(long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Enterprise e=iEnterpriseDao.getById(id);
+        return e;
+    }
+
+    @Override
+    public List<Enterprise> getListEnterprise() {
+        List<Enterprise> enterprises=iEnterpriseDao.selectAll();
+        if(enterprises==null){
+            enterprises=new ArrayList<Enterprise>();
+        }
+        enterprises.add(0, null);
+        return enterprises;
     }
 }

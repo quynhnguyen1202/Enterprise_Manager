@@ -12,6 +12,7 @@ package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
 import vn.com.hkt.data.entity.UnitMoney;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.panel.model.spi.TableModelUnitMoney;
 import vn.com.hkt.provider.api.IProviderPanelShowListUnitMoney;
@@ -125,5 +126,10 @@ public class PanelShowListUnitMoney extends javax.swing.JPanel implements IPanel
     public void showDefault() {
         List<UnitMoney> unitMoneys=provider.getListInformation();
         tbnUnitMoney.setModel(new TableModelUnitMoney(unitMoneys));
+    }
+
+    @Override
+    public void setPanelControShow(IPanelControlGeneral controlGeneral) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

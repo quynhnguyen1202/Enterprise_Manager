@@ -16,8 +16,7 @@ import vn.com.hkt.provider.api.IProviderPanelShowListEnterprise;
  *
  * @author QuynhNguyen
  */
-public class ProviderPanelShowListEnterprise implements IProviderPanelShowListEnterprise{
-
+public class ProviderPanelShowListEnterprise implements IProviderPanelShowListEnterprise {
 
     private IEnterpriseDao enterpriseDao;
 
@@ -28,10 +27,10 @@ public class ProviderPanelShowListEnterprise implements IProviderPanelShowListEn
     @Override
     public List<Enterprise> getListInformation() {
         List<Enterprise> enterprises = enterpriseDao.selectAll();
-        if(enterprises==null){
-            enterprises=new ArrayList<Enterprise>();
+        if (enterprises == null) {
+            enterprises = new ArrayList<Enterprise>();
         }
-        enterprises.add(0,null);
+        enterprises.add(0, null);
         return enterprises;
     }
 
@@ -52,5 +51,9 @@ public class ProviderPanelShowListEnterprise implements IProviderPanelShowListEn
         List<Enterprise> l = enterpriseDao.getByCode(code);
         return l;
     }
-  
+
+    @Override
+    public Enterprise getByEnterpriseId(long idEnterprise) {
+        return enterpriseDao.getById(idEnterprise);
+    }
 }
