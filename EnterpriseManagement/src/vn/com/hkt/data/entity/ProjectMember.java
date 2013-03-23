@@ -20,7 +20,7 @@ public class ProjectMember {
 
     public static final String FIELD_ID = "Id";
     public static final String FIELD_IDPROJECT = "IdProject";
-    public static final String FIELD_IDENTERPRISE = "IdEnterprise";
+    public static final String FIELD_IDEMPLOYEE = "IdEmployee";
     public static final String FIELD_DATESTART = "DateStart";
     public static final String FIELD_DATEEND = "DateEnd";
     public static final String FIELD_CODE_PROJECTMEMBER = "codeProjectMember";
@@ -28,7 +28,7 @@ public class ProjectMember {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private long IdProject;
-    private long IdEnterprise;
+    private long IdEmployee;
     private int Percent;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateStart;
@@ -68,13 +68,15 @@ public class ProjectMember {
         this.Id = Id;
     }
 
-    public long getIdEnterprise() {
-        return IdEnterprise;
+    public long getIdEmployee() {
+        return IdEmployee;
     }
 
-    public void setIdEnterprise(long IdEnterprise) {
-        this.IdEnterprise = IdEnterprise;
+    public void setIdEmployee(long IdEmployee) {
+        this.IdEmployee = IdEmployee;
     }
+
+  
 
     public long getIdProject() {
         return IdProject;

@@ -26,6 +26,9 @@ public class Operation {
     public static final String FIELD_DATEEXECUTE = "DateExecute";
     public static final String FIELD_CLASSIFICATION = "classification";
     public static final String FIELD_CODEOPERATION = "codeOperation";
+    public static final String FIELD_MONEYAFTERDISCOUNT = "MoneyAfterDiscount";
+    public static final String FIELD_MONEYAFTERTAX = "MoneyAfterTax";
+    public static final String FIELD_MONEYTOTAL = "MoneyTotal";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
