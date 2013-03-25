@@ -31,8 +31,8 @@ public class AddNewDepartment extends javax.swing.JPanel implements IShowPanel<D
     private long departmentID;
     private long enterpriseID;
     private IProviderPanelShowDepartment provider;
-    private IPanelControlGeneral controlGeneral;
     private IProviderPanelShowEnterprise providerEnterprise;
+    private IPanelControlGeneral controlGeneral;
 
     /** Creates new form AddNewDepartment */
     public AddNewDepartment() {
@@ -355,7 +355,6 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
         controlGeneral.refresh(this);
         //set combo box enterprise
         long idEnter = provider.getDataView().getIdEnterprise();
-        JOptionPane.showMessageDialog(null, idEnter);
         for (int i = 0; i < cbEnterprise.getItemCount();) {
             Enterprise enter = ((Enterprise) cbEnterprise.getItemAt(i));
             if (enter != null && enter.getId() == idEnter) {

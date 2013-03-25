@@ -22,7 +22,7 @@ import vn.com.hkt.data.entity.Enterprise;
 public class TableModelEmployee extends DefaultTableModel {
 
     private List<Employee> emp = new ArrayList<Employee>();
-    private String[] header = new String[]{"", "Name", "Department", "Enterprise"};
+    private String[] header = new String[]{"ID","Code", "Name", "Department", "Enterprise"};
     private List<String[]> data = new ArrayList<String[]>();
     private IEnterpriseDao enterpriseDow = new EnterpriseDao();
     private IDepartmentDao departmentDow = new DepartmentDao();
@@ -70,6 +70,8 @@ public class TableModelEmployee extends DefaultTableModel {
             for (Employee employ : emp) {
                 String name = employ.getName();
                 long id = employ.getIdDepartment();
+                String code=employ.getCodeEmployee();
+                long idEmploy=employ.getId();
                 //department
                 Department d = departmentDow.getById(id);
                 String dName = "";
@@ -83,7 +85,7 @@ public class TableModelEmployee extends DefaultTableModel {
                         eName = e.getName();
                     }
                 }
-                String[] row = new String[]{"", name,dName,eName};
+                String[] row = new String[]{String.valueOf(idEmploy),code, name,dName,eName};
                 list.add(row);
             }
         }

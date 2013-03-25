@@ -4,9 +4,14 @@
  */
 package vn.com.hkt.provider.spi;
 
+import java.util.ArrayList;
+import java.util.List;
 import vn.com.hkt.dao.api.IEmployeeDao;
+import vn.com.hkt.dao.api.IEnterpriseDao;
 import vn.com.hkt.dao.spi.EmployeeDao;
+import vn.com.hkt.dao.spi.EnterpriseDao;
 import vn.com.hkt.data.entity.Employee;
+import vn.com.hkt.data.entity.Enterprise;
 import vn.com.hkt.provider.api.IProviderPanelShowEmployee;
 
 /**
@@ -17,9 +22,11 @@ public class ProviderPanelShowEmployee implements IProviderPanelShowEmployee {
 
     private Employee employee;
     private IEmployeeDao iEmployeeDao;
+    private IEnterpriseDao iEnterpriseDao;
 
     public ProviderPanelShowEmployee() {
         iEmployeeDao = new EmployeeDao();
+        iEnterpriseDao = new EnterpriseDao();
     }
 
     @Override
@@ -89,5 +96,15 @@ public class ProviderPanelShowEmployee implements IProviderPanelShowEmployee {
     @Override
     public Employee getObjectbyID(long id) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Enterprise> getListEnterprise() {
+        List<Enterprise> enterprises=iEnterpriseDao.selectAll();
+        if(enterprises==null){
+            enterprises=new ArrayList<Enterprise>();
+        }
+        enterprises.add(0, null);
+        return enterprises;
     }
 }

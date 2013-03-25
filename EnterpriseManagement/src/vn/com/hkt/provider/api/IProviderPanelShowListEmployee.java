@@ -18,4 +18,6 @@ public interface IProviderPanelShowListEmployee extends IProviderListGeneral<Emp
     public List<Employee> getByIdDepartment(long idDepartment);
 
     public List<Employee> getByCodeEmployee(String code);
+
+    public Employee getByIdEmployee(long idEmployee);
 }

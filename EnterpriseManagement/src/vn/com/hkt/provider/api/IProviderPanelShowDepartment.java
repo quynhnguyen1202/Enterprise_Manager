@@ -15,4 +15,5 @@ import vn.com.hkt.data.entity.Enterprise;
 public interface IProviderPanelShowDepartment extends IProviderGeneral<Department> {
      public List<Department> getListDepartmentByIDEnt(long idEnterprise);
      public List<Enterprise> getListEnterprise();
+     public Enterprise getEnterpriseByID(long idEnterprise);
 }

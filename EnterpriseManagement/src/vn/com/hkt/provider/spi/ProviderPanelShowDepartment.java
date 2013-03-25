@@ -125,4 +125,12 @@ public class ProviderPanelShowDepartment implements IProviderPanelShowDepartment
         return listDep;
 
     }
+
+    @Override
+    public Enterprise getEnterpriseByID(long idEnterprise) {
+        if (idEnterprise > 0) {
+            return iEnterpriseDao.getById(idEnterprise);
+        }
+        return null;
+    }
 }

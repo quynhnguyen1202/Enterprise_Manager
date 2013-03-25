@@ -31,7 +31,7 @@ import vn.com.hkt.provider.spi.ProviderPanelShowListDepartment;
 public class PanelShowListDepartment extends javax.swing.JPanel implements IPanelShowList {
 
     private IProviderPanelShowListDepartment provider;
-    private IPanelControlGeneral contelGaneral;
+    private IPanelControlGeneral controlGaneral;
 
     /** Creates new form PanelShowListDepartment */
     public PanelShowListDepartment() {
@@ -198,6 +198,6 @@ private void tbnDepartmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIR
 
     @Override
     public void setPanelControShow(IPanelControlGeneral controlGeneral) {
-        this.contelGaneral = controlGeneral;
+        this.controlGaneral = controlGeneral;
     }
 }
