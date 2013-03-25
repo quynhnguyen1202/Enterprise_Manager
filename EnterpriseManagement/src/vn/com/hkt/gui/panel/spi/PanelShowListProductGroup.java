@@ -11,9 +11,16 @@
 package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
+import javax.swing.JOptionPane;
+import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.ProductGroup;
+import vn.com.hkt.gui.basic.Home;
+import vn.com.hkt.gui.basic.api.IHomePanel;
+import vn.com.hkt.gui.control.ControlPanel;
+import vn.com.hkt.gui.control.api.IControlPanel;
 import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
+import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.gui.panel.model.spi.TableModelProductGroup;
 import vn.com.hkt.provider.api.IProviderPanelShowListProductGroup;
 import vn.com.hkt.provider.spi.ProviderPanelShowListProductGroup;
@@ -26,6 +33,7 @@ public class PanelShowListProductGroup extends javax.swing.JPanel implements IPa
 
     /** Creates new form PanelShowListProductGroup */
     private IProviderPanelShowListProductGroup provider;
+    private IPanelControlGeneral controlGeneral;
     public PanelShowListProductGroup() {
         initComponents();
         provider=new ProviderPanelShowListProductGroup();
@@ -74,6 +82,11 @@ public class PanelShowListProductGroup extends javax.swing.JPanel implements IPa
                 return canEdit [columnIndex];
             }
         });
+        tbProductGroup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbProductGroupMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbProductGroup);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12));
@@ -88,18 +101,19 @@ public class PanelShowListProductGroup extends javax.swing.JPanel implements IPa
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                .addGap(70, 70, 70)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
-                .addGap(30, 30, 30))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,6 +129,34 @@ public class PanelShowListProductGroup extends javax.swing.JPanel implements IPa
                 .addGap(56, 56, 56))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void tbProductGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductGroupMouseClicked
+    if (tbProductGroup.getSelectedRow() < 0) {
+        return;
+    }
+    if (evt.getClickCount() < 2) {
+        return;
+    }
+    try {
+        String id = tbProductGroup.getValueAt(tbProductGroup.getSelectedRow(), 0).toString();
+        ProductGroup e = provider.getByIdProductGroup(Long.parseLong(id));
+        if (e != null) {
+            IShowPanel p = new AddNewProductGroup();
+            IControlPanel controlPanel = new ControlPanel();
+            controlPanel.setShowPanel(p);
+            p.setControlShow(controlPanel);
+            p.setDataShow(e);
+            IHomePanel homePanel = new Home();
+            controlPanel.refresh(p);
+            homePanel.setPanelControl(controlPanel);
+            homePanel.showDefaut();
+            homePanel.setVisible(true);
+        }
+    } catch (Exception e) {
+        JOptionPane.showConfirmDialog(this, e);
+    }
+}//GEN-LAST:event_tbProductGroupMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -137,6 +179,6 @@ public class PanelShowListProductGroup extends javax.swing.JPanel implements IPa
 
     @Override
     public void setPanelControShow(IPanelControlGeneral controlGeneral) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.controlGeneral=controlGeneral;
     }
 }

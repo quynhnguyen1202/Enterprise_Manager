@@ -17,7 +17,7 @@ public interface IProviderPanelShowListProductGroup extends IProviderListGeneral
 
     public List<ProductGroup> getByName(String name);
 
-    public List<ProductGroup> getByIdProductGroup(long id);
+    public ProductGroup getByIdProductGroup(long id);
 
     public List<ProductGroup> getByCodeProductGroup(String code);
 }
