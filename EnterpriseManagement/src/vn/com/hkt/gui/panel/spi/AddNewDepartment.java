@@ -12,16 +12,15 @@ package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.Enterprise;
 import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.provider.api.IProviderPanelShowDepartment;
-import vn.com.hkt.provider.api.IProviderPanelShowListDepartment;
-import vn.com.hkt.provider.api.IProviderPanelShowListEnterprise;
+import vn.com.hkt.provider.api.IProviderPanelShowEnterprise;
 import vn.com.hkt.provider.spi.ProviderPanelShowDepartment;
-import vn.com.hkt.provider.spi.ProviderPanelShowListDepartment;
-import vn.com.hkt.provider.spi.ProviderPanelShowListEnterprise;
+import vn.com.hkt.provider.spi.ProviderPanelShowEnterprise;
 
 /**
  *
@@ -29,20 +28,18 @@ import vn.com.hkt.provider.spi.ProviderPanelShowListEnterprise;
  */
 public class AddNewDepartment extends javax.swing.JPanel implements IShowPanel<Department> {
 
-    private IProviderPanelShowListEnterprise providerEnterprise;
-    private IProviderPanelShowListDepartment providerDepartment;
     private long departmentID;
     private long enterpriseID;
     private IProviderPanelShowDepartment provider;
+    private IPanelControlGeneral controlGeneral;
+    private IProviderPanelShowEnterprise providerEnterprise;
 
     /** Creates new form AddNewDepartment */
     public AddNewDepartment() {
         initComponents();
         provider = new ProviderPanelShowDepartment();
-        providerEnterprise = new ProviderPanelShowListEnterprise();
-        providerDepartment = new ProviderPanelShowListDepartment();
-//        showDefault();
-        loadCBEnterprise();
+        providerEnterprise = new ProviderPanelShowEnterprise();
+        loadEnterprise();
     }
 
     /** This method is called from within the constructor to
@@ -54,7 +51,7 @@ public class AddNewDepartment extends javax.swing.JPanel implements IShowPanel<D
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lbTitle = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         dcDateActivate = new com.toedter.calendar.JDateChooser();
@@ -70,9 +67,9 @@ public class AddNewDepartment extends javax.swing.JPanel implements IShowPanel<D
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.darkGray));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Add New Department");
+        lbTitle.setFont(new java.awt.Font("Tahoma", 1, 18));
+        lbTitle.setForeground(new java.awt.Color(102, 102, 102));
+        lbTitle.setText("Add New Department");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
@@ -121,7 +118,7 @@ public class AddNewDepartment extends javax.swing.JPanel implements IShowPanel<D
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(98, 98, 98)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,7 +157,7 @@ public class AddNewDepartment extends javax.swing.JPanel implements IShowPanel<D
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,19 +189,19 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 }//GEN-LAST:event_cbDepartmentItemStateChanged
 
     private void loadCBDepartment() {
-        int index=cbEnterprise.getSelectedIndex();
-        if(index>0){
-        Department d = (Department) cbDepartment.getSelectedItem();
-        if (d != null) {
-            if (d.getId() > 0) {
-                departmentID = d.getId();
+        int index = cbEnterprise.getSelectedIndex();
+        if (index > 0) {
+            Department d = (Department) cbDepartment.getSelectedItem();
+            if (d != null) {
+                if (d.getId() > 0) {
+                    departmentID = d.getId();
+                } else {
+                    departmentID = 0;
+                }
             } else {
                 departmentID = 0;
             }
         } else {
-            departmentID = 0;
-        }
-        }else{
             departmentID = 0;
         }
     }
@@ -224,7 +221,7 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             } else {
                 enterpriseID = 0;
             }
-        }else{
+        } else {
             cbDepartment.setEnabled(false);
         }
     }
@@ -232,13 +229,13 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     private javax.swing.JComboBox cbDepartment;
     private javax.swing.JComboBox cbEnterprise;
     private com.toedter.calendar.JDateChooser dcDateActivate;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lbError;
+    private javax.swing.JLabel lbTitle;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
@@ -254,11 +251,11 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             lbError.setText("Enter department name !");
             return false;
         }
-        if(cbEnterprise.getSelectedIndex()==0){
+        if (cbEnterprise.getSelectedIndex() == 0) {
             lbError.setText("Choose enterprise !");
             return false;
         }
-        if(cbEnterprise.getSelectedItem()==null){
+        if (cbEnterprise.getSelectedItem() == null) {
             lbError.setText("Choose enterprise !");
             return false;
         }
@@ -270,14 +267,24 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
         if (!checkData() || !getData()) {
             return 0;
         }
-        long id=provider.addData();
+        long id = provider.addData();
         resetData();
         return id;
     }
 
     @Override
     public boolean editData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       if (JOptionPane.showConfirmDialog(null, "Are you sure !", "Edit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if (!checkData() || !getData()) {
+                return false;
+            }
+            long id = provider.updateData();
+            if (id < 0) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -296,18 +303,18 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 //    }
 
     private void loadEnterprise() {
-        List<Enterprise> enterprises = providerEnterprise.getListInformation();
+        List<Enterprise> enterprises = provider.getListEnterprise();
         if (enterprises != null) {
             cbEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
             loadCBEnterprise();
-        }else{
-            enterpriseID=0;
+        } else {
+            lbError.setText("No enterprise");
         }
     }
 
     private void loadDepartment() {
         if (enterpriseID > 0) {
-            List<Department> departments = providerDepartment.getByIDEnt(enterpriseID);
+            List<Department> departments = provider.getListDepartmentByIDEnt(enterpriseID);
             cbDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
         } else {
             cbDepartment.enable(false);
@@ -335,16 +342,56 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public void setDataShow(Department ob) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        provider.setDataView(ob);
+        refreshData();
     }
 
     @Override
     public void refreshData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        lbTitle.setText("Update Department");
+        txtName.setText(provider.getDataView().getName());
+        txtCode.setText(provider.getDataView().getCodeDepartment());
+        dcDateActivate.setDate(provider.getDataView().getDateActivate());
+        controlGeneral.refresh(this);
+        //set combo box enterprise
+        long idEnter = provider.getDataView().getIdEnterprise();
+        JOptionPane.showMessageDialog(null, idEnter);
+        for (int i = 0; i < cbEnterprise.getItemCount();) {
+            Enterprise enter = ((Enterprise) cbEnterprise.getItemAt(i));
+            if (enter != null && enter.getId() == idEnter) {
+                cbEnterprise.setSelectedIndex(i);
+                break;
+            } else {
+                i++;
+            }
+        }
+       // set combo box department
+        long idDepart = provider.getDataView().getIdDepartment();
+        for (int i = 0; i < cbDepartment.getItemCount();) {
+            Department depart = ((Department) cbDepartment.getItemAt(i));
+            if (depart != null && depart.getId() == idDepart) {
+                cbDepartment.setSelectedIndex(i);
+                break;
+            } else {
+                i++;
+            }
+        }
+       // xoa ten trong parent combo box
+        Department en = provider.getObjectbyID(provider.getDataView().getId());
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbDepartment.getModel();
+        for (int i = 0; i < model.getSize();) {
+            Department e = ((Department) model.getElementAt(i));
+            if (e != null && e.getId() == en.getId()) {
+                model.removeElementAt(i);
+            } else {
+                i++;
+            }
+        }
+        controlGeneral.refresh(this);
     }
 
     @Override
     public void setControlShow(IPanelControlGeneral controlGeneral) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.controlGeneral = controlGeneral;
     }
 }

@@ -4,9 +4,14 @@
  */
 package vn.com.hkt.provider.spi;
 
+import java.util.ArrayList;
+import java.util.List;
 import vn.com.hkt.dao.api.IDepartmentDao;
+import vn.com.hkt.dao.api.IEnterpriseDao;
 import vn.com.hkt.dao.spi.DepartmentDao;
+import vn.com.hkt.dao.spi.EnterpriseDao;
 import vn.com.hkt.data.entity.Department;
+import vn.com.hkt.data.entity.Enterprise;
 import vn.com.hkt.provider.api.IProviderPanelShowDepartment;
 
 /**
@@ -17,9 +22,11 @@ public class ProviderPanelShowDepartment implements IProviderPanelShowDepartment
 
     Department department;
     IDepartmentDao iDepartmentDao;
+    IEnterpriseDao iEnterpriseDao;
 
     public ProviderPanelShowDepartment() {
         iDepartmentDao = new DepartmentDao();
+        iEnterpriseDao = new EnterpriseDao();
     }
 
     @Override
@@ -77,8 +84,8 @@ public class ProviderPanelShowDepartment implements IProviderPanelShowDepartment
 
     @Override
     public void refreshData() {
-      long id=getDataView().getId();
-      department=iDepartmentDao.getById(id);
+        long id = getDataView().getId();
+        department = iDepartmentDao.getById(id);
     }
 
     @Override
@@ -95,6 +102,27 @@ public class ProviderPanelShowDepartment implements IProviderPanelShowDepartment
             return iDepartmentDao.getById(id);
         }
         return null;
-        
+
+    }
+
+    @Override
+    public List<Enterprise> getListEnterprise() {
+        List<Enterprise> enterprises = iEnterpriseDao.selectAll();
+        if (enterprises == null) {
+            enterprises = new ArrayList<Enterprise>();
+        }
+        enterprises.add(0, null);
+        return enterprises;
+    }
+
+    @Override
+    public List<Department> getListDepartmentByIDEnt(long idEnterprise) {
+        List<Department> listDep = iDepartmentDao.getByEntpriseId(idEnterprise);
+        if (listDep == null) {
+            listDep = new ArrayList<Department>();
+        }
+        listDep.add(0, null);
+        return listDep;
+
     }
 }

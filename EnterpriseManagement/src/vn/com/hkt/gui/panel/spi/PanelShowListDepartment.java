@@ -159,9 +159,7 @@ private void tbnDepartmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIR
     }
     try {
         String id = tbnDepartment.getValueAt(tbnDepartment.getSelectedRow(), 0).toString();
-        System.out.println("iddddddddd"+id);
-            List<Department> e = provider.getByIdDepartment(Long.parseLong(id));
-        JOptionPane.showMessageDialog(null, e);
+        Department e = provider.getByIdDepartment(Long.parseLong(id));
         if (e != null) {
             IShowPanel p = new AddNewDepartment();
             IControlPanel controlPanel = new ControlPanel();
