@@ -51,4 +51,9 @@ public class ProviderPanelShowListProduct implements IProviderPanelShowListProdu
         List<Product> l = iProductDao.getByCode(code);
         return l;
     }
+
+    @Override
+    public Product getByIdProduct(long idProduct) {
+        return iProductDao.getById(idProduct);
+    }
 }

@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.provider.api;
 
+import java.util.List;
 import vn.com.hkt.data.entity.MidleProductGroup;
 import vn.com.hkt.data.entity.ProductGroup;
 
@@ -12,5 +13,6 @@ import vn.com.hkt.data.entity.ProductGroup;
  * @author QuynhNguyen
  */
 public interface IProviderPanelShowMidleProductGroup extends IProviderGeneral<MidleProductGroup> {
-    
+   public List<MidleProductGroup> getMidleGroupByProductId(long idProduct);
+   public List<ProductGroup> getProductGroupByMidleId(long idMidle);
 }

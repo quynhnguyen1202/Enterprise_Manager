@@ -4,9 +4,14 @@
  */
 package vn.com.hkt.provider.spi;
 
+import java.util.ArrayList;
+import java.util.List;
 import vn.com.hkt.dao.api.IMidleProductGroupDao;
+import vn.com.hkt.dao.api.IProductGroupDao;
 import vn.com.hkt.dao.spi.MidleProductGroupDao;
+import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.MidleProductGroup;
+import vn.com.hkt.data.entity.ProductGroup;
 import vn.com.hkt.provider.api.IProviderPanelShowMidleProductGroup;
 
 /**
@@ -17,6 +22,7 @@ public class ProviderPanelShowMidleProductGroup implements IProviderPanelShowMid
 
     private MidleProductGroup midleProductGroup;
     private IMidleProductGroupDao iMidleProductGroupDao;
+    private IProductGroupDao iProductGroupDao;
 
     public ProviderPanelShowMidleProductGroup() {
         iMidleProductGroupDao = new MidleProductGroupDao();
@@ -92,5 +98,21 @@ public class ProviderPanelShowMidleProductGroup implements IProviderPanelShowMid
     @Override
     public MidleProductGroup getObjectbyID(long id) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<MidleProductGroup> getMidleGroupByProductId(long idProduct) {
+       List<MidleProductGroup> listDep=iMidleProductGroupDao.getByIdProduct(idProduct);
+       return listDep;
+    }
+
+    @Override
+    public List<ProductGroup> getProductGroupByMidleId(long idMidle) {
+//        List<ProductGroup> listDep = 
+//        if (listDep == null) {
+//            listDep = new ArrayList<Department>();
+//        }
+//        listDep.add(0, null);
+        return null;
     }
 }

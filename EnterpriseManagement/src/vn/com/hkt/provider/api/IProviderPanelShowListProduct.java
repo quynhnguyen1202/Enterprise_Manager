@@ -20,4 +20,6 @@ public interface IProviderPanelShowListProduct extends IProviderListGeneral<Prod
     public List<Product> getByIdDepartment(long id);
 
     public List<Product> getByCodeProduct(String code);
+
+    public Product getByIdProduct(long idProduct);
 }

@@ -11,9 +11,15 @@
 package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import vn.com.hkt.data.entity.Product;
+import vn.com.hkt.gui.basic.Home;
+import vn.com.hkt.gui.basic.api.IHomePanel;
+import vn.com.hkt.gui.control.ControlPanel;
+import vn.com.hkt.gui.control.api.IControlPanel;
 import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
+import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.gui.panel.model.spi.TableModelProduct;
 import vn.com.hkt.provider.api.IProviderPanelShowListProduct;
 import vn.com.hkt.provider.spi.ProviderPanelShowListProduct;
@@ -24,6 +30,7 @@ import vn.com.hkt.provider.spi.ProviderPanelShowListProduct;
  */
 public class PanelShowListProduct extends javax.swing.JPanel implements  IPanelShowList{
     private IProviderPanelShowListProduct provider;
+    private IPanelControlGeneral controlGeneral;
     /** Creates new form PanelShowListProduct */
     public PanelShowListProduct() {
         initComponents();
@@ -77,6 +84,11 @@ public class PanelShowListProduct extends javax.swing.JPanel implements  IPanelS
                 return canEdit [columnIndex];
             }
         });
+        tbProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbProductMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbProduct);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -112,6 +124,34 @@ public class PanelShowListProduct extends javax.swing.JPanel implements  IPanelS
                 .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void tbProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductMouseClicked
+    if (tbProduct.getSelectedRow() < 0) {
+        return;
+    }
+    if (evt.getClickCount() < 2) {
+        return;
+    }
+    try {
+        String id = tbProduct.getValueAt(tbProduct.getSelectedRow(), 0).toString();
+        Product e = provider.getByIdProduct(Long.parseLong(id));
+        if (e != null) {
+            IShowPanel p = new AddNewProduct();
+            IControlPanel controlPanel = new ControlPanel();
+            controlPanel.setShowPanel(p);
+            p.setControlShow(controlPanel);
+            p.setDataShow(e);
+            IHomePanel homePanel = new Home();
+            controlPanel.refresh(p);
+            homePanel.setPanelControl(controlPanel);
+            homePanel.showDefaut();
+            homePanel.setVisible(true);
+        }
+    } catch (Exception e) {
+        JOptionPane.showConfirmDialog(this, e);
+    }
+}//GEN-LAST:event_tbProductMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -133,6 +173,6 @@ public class PanelShowListProduct extends javax.swing.JPanel implements  IPanelS
 
     @Override
     public void setPanelControShow(IPanelControlGeneral controlGeneral) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.controlGeneral=controlGeneral;
     }
 }
