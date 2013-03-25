@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
  * @author QuynhNguyen
  */
 @Entity
-public class Operation {
+public class Operation implements IEntity{
 
     public static final String FIELD_ID = "Id";
     public static final String FIELD_IDPROJECT = "IdProject";
@@ -42,7 +42,7 @@ public class Operation {
     private Date DateExecute;
     private long IdEmployee;
     private long IdUnitMoney;
-    private boolean classification; // mua hoac ban
+    private boolean classification; // mua hoac ban : classification = 1 : ban , = 0 : mua
     private String codeOperation;
 
     public String getCodeOperation() {

@@ -15,7 +15,7 @@ import javax.persistence.Id;
  * @author QuynhNguyen
  */
 @Entity
-public class Employee {
+public class Employee implements IEntity{
 
     public static final String FIELD_ID = "Id";
     public static final String FIELD_NAME = "Name";
@@ -36,6 +36,7 @@ public class Employee {
         this.codeEmployee = codeEmployee;
     }
 
+    @Override
     public long getId() {
         return Id;
     }

@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
  * @author QuynhNguyen
  */
 @Entity
-public class Enterprise {
+public class Enterprise implements IEntity {
 
     public static final String FIELD_ID = "Id";
     public static final String FIELD_NAME = "Name";
@@ -58,6 +58,7 @@ public class Enterprise {
         this.DateActivative = DateActivative;
     }
 
+    @Override
     public long getId() {
         return Id;
     }

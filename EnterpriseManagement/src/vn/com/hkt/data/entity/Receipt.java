@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
  * @author QuynhNguyen
  */
 @Entity
-public class Receipt {
+public class Receipt implements IEntity{
 
     public static final String FIELD_ID = "Id";
     public static final String FIELD_IDOPERATION = "IdOperation";
@@ -64,6 +64,7 @@ public class Receipt {
         this.DateProcess = DateProcess;
     }
 
+    @Override
     public long getId() {
         return Id;
     }
