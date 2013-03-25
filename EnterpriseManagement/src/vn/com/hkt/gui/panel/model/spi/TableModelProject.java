@@ -23,7 +23,7 @@ import vn.com.hkt.data.entity.Project;
 public class TableModelProject extends DefaultTableModel {
 
     private List<Project> projects = new ArrayList<Project>();
-    private String[] header = new String[]{"", "Project Name", "Date Start", "Date End", "Department", "Enterprise"};
+    private String[] header = new String[]{"ID", "Project Name", "Date Start", "Date End", "Department", "Enterprise"};
     private List<String[]> data = new ArrayList<String[]>();
     private IEnterpriseDao enterpriseDao = new EnterpriseDao();
     private IDepartmentDao departmentDao = new DepartmentDao();
@@ -76,7 +76,7 @@ public class TableModelProject extends DefaultTableModel {
                 Enterprise e = enterpriseDao.getById(p.getIdEnterprise());
                 String eName = "";
                 if (e != null) {
-                    e.getName();
+                    eName = e.getName();
                 }
                 //parent department name
                 String deName = "";

@@ -29,7 +29,7 @@ import vn.com.hkt.data.entity.Project;
 public class TableModelOperation extends DefaultTableModel {
 
     private List<Operation> operations = new ArrayList<Operation>();
-    private String[] header = new String[]{"", "Project Name", "Employee", "Department", "Enterprise", "Date excute"};
+    private String[] header = new String[]{"ID", "Project Name", "Employee", "Department", "Enterprise", "Date excute"};
     private List<String[]> data = new ArrayList<String[]>();
     private IEnterpriseDao enterpriseDao = new EnterpriseDao();
     private IDepartmentDao departmentDao = new DepartmentDao();

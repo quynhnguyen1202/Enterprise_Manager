@@ -25,4 +25,6 @@ public interface IProviderPanelShowListProject extends IProviderListGeneral<Proj
     public List<Project> getByIdDepartment(long id);
 
     public List<Project> getByCodeProject(String code);
+
+    public Project getByIdProject(long idProject);
 }

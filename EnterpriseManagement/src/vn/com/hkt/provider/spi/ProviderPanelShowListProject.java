@@ -64,4 +64,9 @@ public class ProviderPanelShowListProject implements IProviderPanelShowListProje
         List<Project> l = iProjectDao.getByCode(code);
         return l;
     }
+
+    @Override
+    public Project getByIdProject(long idProject) {
+        return iProjectDao.getById(idProject);
+    }
 }

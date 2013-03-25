@@ -21,7 +21,7 @@ import vn.com.hkt.data.entity.ProductGroup;
 public class TableModelProductGroup extends DefaultTableModel {
 
     private List<ProductGroup> groups = new ArrayList<ProductGroup>();
-    private String[] header = new String[]{"", "Group Name", "Parent Group", "Enterprise"};
+    private String[] header = new String[]{"ID", "Group Name", "Parent Group", "Enterprise"};
     private List<String[]> data = new ArrayList<String[]>();
     private IEnterpriseDao enterpriseDao = new EnterpriseDao();
     private IProductGroupDao groupDao = new ProductGroupDao();
@@ -68,6 +68,7 @@ public class TableModelProductGroup extends DefaultTableModel {
         if (groups != null) {
             for (ProductGroup g : groups) {
                 String gName = g.getName();
+                long id=g.getId();
                 //enter prise
                 String eName = "";
                 Enterprise e = enterpriseDao.getById(g.getIdEnterprise());
@@ -80,7 +81,7 @@ public class TableModelProductGroup extends DefaultTableModel {
                 if (pg != null) {
                     pName = pg.getName();
                 }
-                String[] row = new String[]{"", gName, pName, eName};
+                String[] row = new String[]{String.valueOf(id), gName, pName, eName};
                 list.add(row);
             }
         }

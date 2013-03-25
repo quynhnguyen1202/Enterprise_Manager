@@ -4,8 +4,16 @@
  */
 package vn.com.hkt.provider.spi;
 
+import java.util.ArrayList;
+import java.util.List;
+import vn.com.hkt.dao.api.IDepartmentDao;
+import vn.com.hkt.dao.api.IEnterpriseDao;
 import vn.com.hkt.dao.api.IProjectDao;
+import vn.com.hkt.dao.spi.DepartmentDao;
+import vn.com.hkt.dao.spi.EnterpriseDao;
 import vn.com.hkt.dao.spi.ProjectDao;
+import vn.com.hkt.data.entity.Department;
+import vn.com.hkt.data.entity.Enterprise;
 import vn.com.hkt.data.entity.Project;
 import vn.com.hkt.provider.api.IProviderPanelShowProject;
 
@@ -17,9 +25,13 @@ public class ProviderPanelShowProject implements IProviderPanelShowProject {
 
     private Project project;
     private IProjectDao iProjectDao;
+    private IDepartmentDao iDepartmentDao;
+    private IEnterpriseDao iEnterpriseDao;
 
     public ProviderPanelShowProject() {
         iProjectDao = new ProjectDao();
+        iDepartmentDao = new DepartmentDao();
+        iEnterpriseDao = new EnterpriseDao();
     }
 
     @Override
@@ -89,6 +101,37 @@ public class ProviderPanelShowProject implements IProviderPanelShowProject {
 
     @Override
     public Project getObjectbyID(long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (id > 0) {
+            return iProjectDao.getById(id);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Department> getListDepartmentByIDEnt(long idEnterprise) {
+        List<Department> listDep = iDepartmentDao.getByEntpriseId(idEnterprise);
+        if (listDep == null) {
+            listDep = new ArrayList<Department>();
+        }
+        listDep.add(0, null);
+        return listDep;
+    }
+
+    @Override
+    public List<Enterprise> getListEnterprise() {
+        List<Enterprise> enterprises = iEnterpriseDao.selectAll();
+        if (enterprises == null) {
+            enterprises = new ArrayList<Enterprise>();
+        }
+        enterprises.add(0, null);
+        return enterprises;
+    }
+
+    @Override
+    public Enterprise getEnterpriseByID(long idEnterprise) {
+        if (idEnterprise > 0) {
+            return iEnterpriseDao.getById(idEnterprise);
+        }
+        return null;
     }
 }
