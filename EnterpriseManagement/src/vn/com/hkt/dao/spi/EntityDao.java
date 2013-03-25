@@ -63,8 +63,9 @@ public class EntityDao<E> implements IEntityDao<E> {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
         try {
+            
             em.getTransaction().begin();
-            em.remove(object);
+            em.remove(em.find(clsName, object));
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {
