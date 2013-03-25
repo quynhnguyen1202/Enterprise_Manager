@@ -11,10 +11,12 @@ import java.util.Date;
  * @author QuynhNguyen
  */
 public interface IEnterpriseRevenueStatistic {
+
     public float revenueGetByTotalEnterprise(long idEnterprise, Date dateStart, Date dateEnd);
 
     public float revenueGetByTotalChildrenEnterprise(long idParentEnterprise, Date dateStart, Date dateEnd);
 
     public float revenueGetByEnterprise(long idEnterprise, Date dateStart, Date dateEnd);
-    
+
+    public float spendingGetByEnterprise(long idEnterprise, Date dateStart, Date dateEnd);
 }

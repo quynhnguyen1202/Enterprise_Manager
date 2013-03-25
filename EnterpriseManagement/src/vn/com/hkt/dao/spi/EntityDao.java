@@ -6,9 +6,8 @@ package vn.com.hkt.dao.spi;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import vn.com.hkt.dao.api.IEntityDao;
+import vn.com.hkt.data.entity.IEntity;
 
 /**
  *
@@ -18,6 +17,7 @@ public class EntityDao<E> implements IEntityDao<E> {
 
     private Class clsName;
     public EntityManager em;
+    private long id;
 
     public EntityDao() {
     }
@@ -47,7 +47,7 @@ public class EntityDao<E> implements IEntityDao<E> {
         }
         try {
             em.getTransaction().begin();
-            em.merge(object);
+            em.merge(em.find(clsName, object));
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {
@@ -59,13 +59,15 @@ public class EntityDao<E> implements IEntityDao<E> {
 
     @Override
     public boolean delete(E object) {
+
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
         try {
-            
+
             em.getTransaction().begin();
-            em.remove(em.find(clsName, object));
+            em.remove(em.find(clsName, ((IEntity) object).getId()));
+
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {

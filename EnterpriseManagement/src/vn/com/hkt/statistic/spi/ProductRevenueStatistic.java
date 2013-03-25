@@ -30,7 +30,7 @@ public class ProductRevenueStatistic implements IProductRevenueStatistic {
                 + " where (oP." + OperationProduct.FIELD_IDPRODUCT + "=?1 )"
                 + " and (oP. " + OperationProduct.FIELD_IDOPERATION + " = o." + Operation.FIELD_ID + ")"
                 + " and ( o." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
-                + " and (o." + Operation.FIELD_DATEEXECUTE + "<?3)";
+                + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?3)";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }

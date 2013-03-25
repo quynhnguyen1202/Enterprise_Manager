@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
  * @author QuynhNguyen
  */
 @Entity
-public class Department {
+public class Department implements IEntity {
 
     public static final String FIELD_ID = "Id";
     public static final String FIELD_NAME = "Name";
@@ -55,6 +55,7 @@ public class Department {
         this.DateActivate = DateActivate;
     }
 
+    @Override
     public long getId() {
         return Id;
     }

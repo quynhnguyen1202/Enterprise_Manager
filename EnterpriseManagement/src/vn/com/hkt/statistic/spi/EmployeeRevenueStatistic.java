@@ -28,7 +28,7 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
     public float revenueGetByEmployee(long idEmployee, Date dateStart, Date dateEnd) {
         String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where (Id=?1) "
                 + "and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
-                + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<?3)";
+                + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3)";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
@@ -57,7 +57,7 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
                 + "select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
                 + "from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
                 + "join  tmp t on t.id=o.IdEmployee "
-                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " < ?3 ";
+                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }

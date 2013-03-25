@@ -66,7 +66,7 @@ public class ProductGroupRevenueStatistic implements IProductGroupRevenueStatist
                 + " where (o." + OperationProduct.FIELD_IDPRODUCTGROUP + "=?1 )"
                 + " and oP. " + OperationProduct.FIELD_IDOPERATION + " = o." + Operation.FIELD_ID
                 + " and ( o." + Operation.FIELD_DATEEXECUTE + ">= ?2 )"
-                + " and (o." + Operation.FIELD_DATEEXECUTE + "<?3)";
+                + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?3)";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }

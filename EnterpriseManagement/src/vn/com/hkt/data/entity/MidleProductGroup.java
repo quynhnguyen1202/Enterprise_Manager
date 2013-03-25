@@ -14,7 +14,7 @@ import javax.persistence.Id;
  * @author QuynhNguyen
  */
 @Entity
-public class MidleProductGroup {
+public class MidleProductGroup implements IEntity{
 
     public static final String FIELD_ID = "Id";
     public static final String FIELD_IDPRODUCT = "Idproduct";
@@ -23,6 +23,7 @@ public class MidleProductGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 
+    @Override
     public long getId() {
         return Id;
     }

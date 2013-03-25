@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
  * @author QuynhNguyen
  */
 @Entity
-public class ProjectMember {
+public class ProjectMember implements IEntity{
 
     public static final String FIELD_ID = "Id";
     public static final String FIELD_IDPROJECT = "IdProject";
@@ -60,6 +60,7 @@ public class ProjectMember {
         this.DateStart = DateStart;
     }
 
+    @Override
     public long getId() {
         return Id;
     }
