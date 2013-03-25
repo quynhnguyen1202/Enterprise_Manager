@@ -4,9 +4,13 @@
  */
 package vn.com.hkt.provider.spi;
 
+import java.util.ArrayList;
 import java.util.List;
+import vn.com.hkt.dao.api.IEnterpriseDao;
 import vn.com.hkt.dao.api.IProductGroupDao;
+import vn.com.hkt.dao.spi.EnterpriseDao;
 import vn.com.hkt.dao.spi.ProductGroupDao;
+import vn.com.hkt.data.entity.Enterprise;
 import vn.com.hkt.data.entity.ProductGroup;
 import vn.com.hkt.provider.api.IProviderPanelShowProductGroup;
 
@@ -18,9 +22,10 @@ public class ProviderPanelShowProductGroup implements IProviderPanelShowProductG
 
     private ProductGroup productGroup;
     private IProductGroupDao iProductGroupDao;
-
+    private  IEnterpriseDao iEnterpriseDao;
     public ProviderPanelShowProductGroup() {
         iProductGroupDao = new ProductGroupDao();
+        iEnterpriseDao = new EnterpriseDao();
     }
 
     @Override
@@ -89,6 +94,37 @@ public class ProviderPanelShowProductGroup implements IProviderPanelShowProductG
 
     @Override
     public ProductGroup getObjectbyID(long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       if (id > 0) {
+            return iProductGroupDao.getById(id);
+        }
+        return null;
+    }
+
+    @Override
+    public Enterprise getEnterpriseByID(long idEnterprise) {
+        if (idEnterprise > 0) {
+            return iEnterpriseDao.getById(idEnterprise);
+        }
+        return null;
+    }
+
+    @Override
+    public List<ProductGroup> getListGroupByEntID(long idEnterprise) {
+        List<ProductGroup> listDep = iProductGroupDao.getByIdEnterprise(idEnterprise);
+        if (listDep == null) {
+            listDep = new ArrayList<ProductGroup>();
+        }
+        listDep.add(0, null);
+        return listDep;
+    }
+
+    @Override
+    public List<Enterprise> getListEnterprise() {
+        List<Enterprise> enterprises = iEnterpriseDao.selectAll();
+        if (enterprises == null) {
+            enterprises = new ArrayList<Enterprise>();
+        }
+        enterprises.add(0, null);
+        return enterprises;
     }
 }

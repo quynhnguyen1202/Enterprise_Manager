@@ -40,15 +40,16 @@ public class ProviderPanelShowListProductGroup implements IProviderPanelShowList
         return listproductgroup;
     }
 
-    @Override
-    public List<ProductGroup> getByIdProductGroup(long id) {
-        List<ProductGroup> l = iProductGroupDao.getByIdProductGroup(id);
-        return l;
-    }
+    
 
     @Override
     public List<ProductGroup> getByCodeProductGroup(String code) {
         List<ProductGroup> l = iProductGroupDao.getByCodeProductGroup(code);
         return l;
+    }
+
+    @Override
+    public ProductGroup getByIdProductGroup(long id) {
+        return iProductGroupDao.getById(id);
     }
 }

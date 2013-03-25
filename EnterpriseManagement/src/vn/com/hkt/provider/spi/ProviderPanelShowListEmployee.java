@@ -46,4 +46,9 @@ public class ProviderPanelShowListEmployee implements IProviderPanelShowListEmpl
         List<Employee> l = iEmployeeDao.getByCode(code);
         return l;
     }
+
+    @Override
+    public Employee getByIdEmployee(long idEmployee) {
+        return iEmployeeDao.getById(idEmployee);
+    }
 }

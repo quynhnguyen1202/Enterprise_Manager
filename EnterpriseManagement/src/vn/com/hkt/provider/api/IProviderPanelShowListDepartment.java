@@ -19,5 +19,5 @@ public interface IProviderPanelShowListDepartment extends IProviderListGeneral<D
 
     public List<Department> getByName(String name);
 
-    public List<Department> getByIdDepartment(long idDepartment);
+    public Department getByIdDepartment(long idDepartment);
 }

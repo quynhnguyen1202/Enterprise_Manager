@@ -17,7 +17,7 @@ import vn.com.hkt.data.entity.UnitMoney;
  */
 public class TableModelUnitMoney extends DefaultTableModel {
      private  List<UnitMoney> unitMoneys=new ArrayList<UnitMoney>();
-    private String[] header=new String[]{"Code","Name","Ratio with default"};
+    private String[] header=new String[]{"","Code","Name","Ratio with default"};
     private List<String[]> data=new ArrayList<String[]>();
     private IUnitMoneyDao unitMoneyDao = new UnitMoneyDao();
 
@@ -64,10 +64,11 @@ public class TableModelUnitMoney extends DefaultTableModel {
         List<String[]> list=new ArrayList<String[]>();
         if(unitMoneys!=null){
             for (UnitMoney unit : unitMoneys) {
+                long id=unit.getId();
                 String code=unit.getCode();
                 String name=unit.getName();
                 float ratio=unit.getRatiowithDefault();
-                String[] row=new String[]{code,name,String.valueOf(ratio)};
+                String[] row=new String[]{String.valueOf(id),code,name,String.valueOf(ratio)};
                 list.add(row);
             }
         }

@@ -61,8 +61,9 @@ public class ProviderPanelShowListDepartment implements IProviderPanelShowListDe
     }
 
     @Override
-    public List<Department> getByIdDepartment(long idDepartment) {
-        List<Department> li = iDepartmentDao.getByIdDepartment(idDepartment);
-        return li;
+    public Department getByIdDepartment(long idDepartment) {
+        return iDepartmentDao.getById(idDepartment);
     }
+
+    
 }

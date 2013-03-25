@@ -21,7 +21,7 @@ import vn.com.hkt.data.entity.Product;
  */
 public class TableModelProduct extends DefaultTableModel {
     private  List<Product> products=new ArrayList<Product>();
-    private String[] header=new String[]{"Code","Product Name","Department","Enterprise"};
+    private String[] header=new String[]{"ID","Code","Product Name","Department","Enterprise"};
     private List<String[]> data=new ArrayList<String[]>();
     private IEnterpriseDao enterpriseDao = new EnterpriseDao();
     private IDepartmentDao departmentDao = new DepartmentDao();
@@ -30,8 +30,6 @@ public class TableModelProduct extends DefaultTableModel {
         this.products=products;
         data=loadData();
     }
-
-    
     @Override
     public int getColumnCount() {
         return header.length;
@@ -67,6 +65,7 @@ public class TableModelProduct extends DefaultTableModel {
             for(Product p:products){
                 String pName=p.getName();
                 String pCode=p.getCodeProduct();
+                long id=p.getId();
                 //department
                 String dName="";
                 Department d=departmentDao.getById(p.getIdDepartment());
@@ -79,7 +78,7 @@ public class TableModelProduct extends DefaultTableModel {
                 if(e!=null){
                     eName=e.getName();
                 }
-                String[] row=new String[]{pCode,pName,dName,eName};
+                String[] row=new String[]{String.valueOf(id),pCode,pName,dName,eName};
                 list.add(row);
             }
         }
