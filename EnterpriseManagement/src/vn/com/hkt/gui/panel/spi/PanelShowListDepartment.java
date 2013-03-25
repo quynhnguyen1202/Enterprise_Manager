@@ -11,9 +11,15 @@
 package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import vn.com.hkt.data.entity.Department;
+import vn.com.hkt.gui.basic.Home;
+import vn.com.hkt.gui.basic.api.IHomePanel;
+import vn.com.hkt.gui.control.ControlPanel;
+import vn.com.hkt.gui.control.api.IControlPanel;
 import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
+import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.gui.panel.model.spi.TableModelDepartment;
 import vn.com.hkt.provider.api.IProviderPanelShowListDepartment;
 import vn.com.hkt.provider.spi.ProviderPanelShowListDepartment;
@@ -22,8 +28,11 @@ import vn.com.hkt.provider.spi.ProviderPanelShowListDepartment;
  *
  * @author Administrator
  */
-public class PanelShowListDepartment extends javax.swing.JPanel implements IPanelShowList{
+public class PanelShowListDepartment extends javax.swing.JPanel implements IPanelShowList {
+
     private IProviderPanelShowListDepartment provider;
+    private IPanelControlGeneral contelGaneral;
+
     /** Creates new form PanelShowListDepartment */
     public PanelShowListDepartment() {
         initComponents();
@@ -79,6 +88,11 @@ public class PanelShowListDepartment extends javax.swing.JPanel implements IPane
             }
         });
         tbnDepartment.setGridColor(new java.awt.Color(204, 204, 204));
+        tbnDepartment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbnDepartmentMouseClicked(evt);
+            }
+        });
         scrollPanel.setViewportView(tbnDepartment);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -135,6 +149,35 @@ public class PanelShowListDepartment extends javax.swing.JPanel implements IPane
                     .addGap(0, 0, 0)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void tbnDepartmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbnDepartmentMouseClicked
+    if (tbnDepartment.getSelectedRow() < 0) {
+        return;
+    }
+    if (evt.getClickCount() < 2) {
+        return;
+    }
+    try {
+        String id = tbnDepartment.getValueAt(tbnDepartment.getSelectedRow(), 0).toString();
+        System.out.println("iddddddddd"+id);
+            List<Department> e = provider.getByIdDepartment(Long.parseLong(id));
+        JOptionPane.showMessageDialog(null, e);
+        if (e != null) {
+            IShowPanel p = new AddNewDepartment();
+            IControlPanel controlPanel = new ControlPanel();
+            controlPanel.setShowPanel(p);
+            p.setControlShow(controlPanel);
+            p.setDataShow(e);
+            IHomePanel homePanel = new Home();
+            controlPanel.refresh(p);
+            homePanel.setPanelControl(controlPanel);
+            homePanel.showDefaut();
+            homePanel.setVisible(true);
+        }
+    } catch (Exception e) {
+        JOptionPane.showConfirmDialog(this, e);
+    }
+}//GEN-LAST:event_tbnDepartmentMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -151,14 +194,12 @@ public class PanelShowListDepartment extends javax.swing.JPanel implements IPane
     }
 
     private void loadTable() {
-        List<Department> departments=provider.getListInformation();
+        List<Department> departments = provider.getListInformation();
         tbnDepartment.setModel(new TableModelDepartment(departments));
     }
 
     @Override
     public void setPanelControShow(IPanelControlGeneral controlGeneral) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.contelGaneral = controlGeneral;
     }
-
-   
 }
