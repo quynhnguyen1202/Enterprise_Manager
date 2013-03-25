@@ -56,4 +56,11 @@ public class ProviderPanelShowListEnterprise implements IProviderPanelShowListEn
     public Enterprise getByEnterpriseId(long idEnterprise) {
         return enterpriseDao.getById(idEnterprise);
     }
+
+    @Override
+    public boolean  deleteEnterprise(Enterprise e) {
+        return  enterpriseDao.delete(e);
+    }
+
+    
 }

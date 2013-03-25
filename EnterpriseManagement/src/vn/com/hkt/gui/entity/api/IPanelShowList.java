@@ -4,6 +4,7 @@
  */
 package vn.com.hkt.gui.entity.api;
 
+import java.util.List;
 import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 
 /**
@@ -11,9 +12,9 @@ import vn.com.hkt.gui.control.api.IPanelControlGeneral;
  * @author Administrator
  */
 public interface IPanelShowList {
-    
+
     public void showDefault();
-    
+
     public void setPanelControShow(IPanelControlGeneral controlGeneral);
-    
+
 }

@@ -21,4 +21,6 @@ public interface IProviderPanelShowListEnterprise extends IProviderListGeneral<E
     public List<Enterprise> getByCodeEnterprise(String code);
 
     public Enterprise getByEnterpriseId(long idEnterprise);
+
+    public boolean  deleteEnterprise(Enterprise e);
 }

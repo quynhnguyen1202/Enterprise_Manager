@@ -159,4 +159,6 @@ public class PanelShowListDepartment extends javax.swing.JPanel implements IPane
     public void setPanelControShow(IPanelControlGeneral controlGeneral) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+   
 }

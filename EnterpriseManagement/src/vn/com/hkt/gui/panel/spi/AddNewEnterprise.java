@@ -47,7 +47,7 @@ public class AddNewEnterprise extends javax.swing.JPanel implements IShowPanel<E
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lbTitle = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -63,15 +63,15 @@ public class AddNewEnterprise extends javax.swing.JPanel implements IShowPanel<E
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.darkGray));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Code :");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Add New Enterprise");
+        lbTitle.setFont(new java.awt.Font("Tahoma", 1, 18));
+        lbTitle.setForeground(new java.awt.Color(102, 102, 102));
+        lbTitle.setText("Add New Enterprise");
 
-        txtCode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCode.setFont(new java.awt.Font("Tahoma", 0, 12));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
@@ -98,10 +98,10 @@ public class AddNewEnterprise extends javax.swing.JPanel implements IShowPanel<E
             }
         });
 
-        lbError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbError.setFont(new java.awt.Font("Tahoma", 0, 12));
         lbError.setForeground(new java.awt.Color(255, 0, 0));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("Picture :");
 
@@ -113,7 +113,7 @@ public class AddNewEnterprise extends javax.swing.JPanel implements IShowPanel<E
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(98, 98, 98)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,7 +156,7 @@ public class AddNewEnterprise extends javax.swing.JPanel implements IShowPanel<E
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,7 +180,8 @@ public class AddNewEnterprise extends javax.swing.JPanel implements IShowPanel<E
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -203,7 +204,6 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbEnterprise;
     private com.toedter.calendar.JDateChooser dcDateActivate;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -211,6 +211,7 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lbError;
+    private javax.swing.JLabel lbTitle;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtEnterpriseName;
     private javax.swing.JTextField txtSlogan;
@@ -227,13 +228,20 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             lbError.setText("Enter enterprise name !");
             return false;
         }
+        if(txtCode.getText().length()==0){
+            lbError.setText("Enter enterprise code !");
+            return false;
+        }
+        if(dcDateActivate.getDate()==null){
+            lbError.setText("Enter date activate !");
+            return false;
+        }
         return true;
     }
 
     @Override
     public long addData() {
         if (!checkData() || !getData()) {
-            lbError.setText("Wrong error !");
             return 0;
         }
         long id = provider.addData();
@@ -243,23 +251,29 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public boolean editData() {
-        JOptionPane.showConfirmDialog(this, "Are you sure !");
-        if (!checkData() || !getData()) {
-            lbError.setText("Wrong error !");
-            return false;
+        if (JOptionPane.showConfirmDialog(null, "Are you sure !", "Edit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if (!checkData() || !getData()) {
+                return false;
+            }
+            long id = provider.updateData();
+            if (id < 0) {
+                return false;
+            }
+            return true;
         }
-        long id =provider. updateData();
-        if(id<0){
-            return false;
-        }
-        return true;
-        
-        
+        return false;
+
+
     }
 
     @Override
     public boolean deleteData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (JOptionPane.showConfirmDialog(null, "Are you sure !", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, provider.getDataView().getName());
+            provider.deleteData();
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -273,7 +287,7 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             cbEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
             loadCBEnterprise();
         } else {
-            lbError.setText("No enterpeise");
+            lbError.setText("No enterprise");
         }
     }
 
@@ -305,6 +319,7 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public void refreshData() {
+        lbTitle.setText("Update enterprise");
         txtEnterpriseName.setText(provider.getDataView().getName());
         txtCode.setText(provider.getDataView().getCodeEnterprise());
         txtSlogan.setText(provider.getDataView().getSlogan());

@@ -10,6 +10,7 @@
  */
 package vn.com.hkt.gui.control;
 
+import com.sun.java.swing.plaf.windows.resources.windows;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import vn.com.hkt.gui.control.api.IControlPanel;
@@ -26,6 +27,7 @@ public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
     public ControlPanel() {
         initComponents();
         btnEdit.setVisible(false);
+        btnDelete.setVisible(false);
     }
 
     /** This method is called from within the constructor to
@@ -42,6 +44,7 @@ public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         btnEdit = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -67,10 +70,19 @@ public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
 
         btnEdit.setBackground(new java.awt.Color(153, 153, 153));
         btnEdit.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\smallicon\\24x24\\edit.png")); // NOI18N
-        btnEdit.setText("Edit");
+        btnEdit.setText("Update");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setBackground(new java.awt.Color(153, 153, 153));
+        btnDelete.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\smallicon\\24x24\\delete.png")); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -81,14 +93,15 @@ public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+                .addGap(23, 23, 23))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(160, 160, 160)
+                .addGap(50, 50, 50)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,6 +110,7 @@ public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,8 +127,13 @@ private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     editData();
 }//GEN-LAST:event_btnEditActionPerformed
 
+private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    deleteData();
+}//GEN-LAST:event_btnDeleteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -131,8 +150,6 @@ private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
          if(showPanel!=null){
             if(showPanel.addData()>0){
                 JOptionPane.showMessageDialog(null, "Add new data successfully !"); 
-            }else{
-                JOptionPane.showMessageDialog(null, "Error!");
             }
         }
     }
@@ -142,15 +159,17 @@ private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         if(showPanel!=null){
             if(showPanel.editData()==true){
                 JOptionPane.showMessageDialog(null, "Update data successfully !");
-            }else{ 
-                JOptionPane.showMessageDialog(null, "Error!");
             }
         }
     }
 
     @Override
     public void deleteData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if(showPanel!=null){
+            if(showPanel.deleteData()==true){
+                JOptionPane.showMessageDialog(null, "Delete data successfully !");
+            }
+        }
     }
 
     @Override
@@ -169,7 +188,8 @@ private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     public void refresh(IShowPanel panel) {
         jScrollPane1.setViewportView((JPanel)panel);
         btnEdit.setVisible(true);
-        btnAdd.setVisible(false);
+        btnAdd.setVisible(true);
+        btnDelete.setVisible(true);
     }
 
     
