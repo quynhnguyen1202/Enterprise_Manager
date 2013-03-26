@@ -19,4 +19,8 @@ public interface IEnterpriseRevenueStatistic {
     public float revenueGetByEnterprise(long idEnterprise, Date dateStart, Date dateEnd);
 
     public float spendingGetByEnterprise(long idEnterprise, Date dateStart, Date dateEnd);
+
+    public float spendingGetByTotalEnterprise(long idEnterprise, Date dateStart, Date dateEnd);
+
+    public float spendingGetByTotalChildrenEnterprise(long idEnterprise, Date dateStart, Date dateEnd);
 }
