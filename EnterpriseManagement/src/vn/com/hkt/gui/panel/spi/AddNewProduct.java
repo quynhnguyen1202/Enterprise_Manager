@@ -17,6 +17,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.Enterprise;
+import vn.com.hkt.data.entity.MidleProductGroup;
 import vn.com.hkt.data.entity.Product;
 import vn.com.hkt.data.entity.ProductGroup;
 import vn.com.hkt.gui.control.api.IPanelControlGeneral;
@@ -39,10 +40,9 @@ import vn.com.hkt.provider.spi.ProviderPanelShowProduct;
  */
 public class AddNewProduct extends javax.swing.JPanel implements IShowPanel<Product> {
 
-    private IProviderPanelShowListProductGroup groupProvider;
-    private IProviderPanelShowListEnterprise providerEnterprise;
-    private IProviderPanelShowListDepartment providerDepartment;
+    
     private IProviderPanelShowProduct providerProduct;
+    private IPanelControlGeneral controlGeneral;
     private long departmentID;
     private long enterpriseID;
     //group
@@ -51,9 +51,6 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel<Prod
     /** Creates new form AddNewProduct */
     public AddNewProduct() {
         initComponents();
-        groupProvider = new ProviderPanelShowListProductGroup();
-        providerEnterprise = new ProviderPanelShowListEnterprise();
-        providerDepartment = new ProviderPanelShowListDepartment();
         providerProduct = new ProviderPanelShowProduct();
         providerMidleGroup = new ProviderPanelShowMidleProductGroup();
         loadListGroup();
@@ -69,7 +66,7 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel<Prod
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lbTitle = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -90,15 +87,15 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel<Prod
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Add New Product");
+        lbTitle.setFont(new java.awt.Font("Tahoma", 1, 18));
+        lbTitle.setForeground(new java.awt.Color(102, 102, 102));
+        lbTitle.setText("Add New Product");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Choose department :");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Product group :");
 
@@ -120,13 +117,13 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel<Prod
             }
         });
 
-        txtProductName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtProductName.setFont(new java.awt.Font("Tahoma", 0, 14));
 
         jScrollPane1.setViewportView(listAddGroup);
 
         jScrollPane2.setViewportView(listGroup);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Code :");
 
@@ -146,10 +143,10 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel<Prod
             }
         });
 
-        lbError.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbError.setFont(new java.awt.Font("Tahoma", 0, 14));
         lbError.setForeground(new java.awt.Color(255, 0, 0));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Name :");
 
@@ -159,7 +156,7 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel<Prod
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +197,7 @@ public class AddNewProduct extends javax.swing.JPanel implements IShowPanel<Prod
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,7 +317,6 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     private javax.swing.JComboBox cbEnterprise;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -329,6 +325,7 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbError;
+    private javax.swing.JLabel lbTitle;
     private javax.swing.JList listAddGroup;
     private javax.swing.JList listGroup;
     private javax.swing.JTextField txtCode;
@@ -379,7 +376,24 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public boolean editData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (JOptionPane.showConfirmDialog(null, "Are you sure !", "Edit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if (!checkData() || !getData()) {
+                return false;
+            }
+            long id = providerProduct.updateData();
+            for (int i = 0; i < listAddGroup.getModel().getSize(); i++) {
+                ProductGroup p = (ProductGroup) listAddGroup.getModel().getElementAt(i);
+                if (p != null) {
+                    providerMidleGroup.getDataView().setIdGroupProduct(p.getId());
+                    providerMidleGroup.updateData();
+                }
+            }
+            if (id < 0) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -399,7 +413,7 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
 
     private void loadListGroup() {
-        List<ProductGroup> productGroups = groupProvider.getListInformation();
+        List<ProductGroup> productGroups = providerProduct.getListGroup();
         DefaultListModel dlm = new DefaultListModel();
         for (ProductGroup p : productGroups) {
             dlm.addElement(p);
@@ -408,18 +422,18 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     }
 
     private void loadEnterprise() {
-        List<Enterprise> enterprises = providerEnterprise.getListInformation();
+        List<Enterprise> enterprises = providerProduct.getListEnterprise();
         if (enterprises != null) {
             cbEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
             loabCBEnterprise();
         } else {
-            enterpriseID = 0;
+            lbError.setText("No enterprise");
         }
     }
 
     private void loadDepartment() {
         if (enterpriseID > 0) {
-            List<Department> departments = providerDepartment.getByIDEnt(enterpriseID);
+            List<Department> departments = providerProduct.getDepartmentByEntID(enterpriseID);
             cbDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
         } else {
             cbDepartment.enable(false);
@@ -449,16 +463,46 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
 
     @Override
     public void setDataShow(Product ob) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        providerProduct.setDataView(ob);
+        refreshData();
     }
 
     @Override
     public void refreshData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        lbTitle.setText("Update Product");
+        txtProductName.setText(providerProduct.getDataView().getName());
+        txtCode.setText(providerProduct.getDataView().getCodeProduct());
+        //set combo box enterprise
+        long idEnter = providerProduct.getDataView().getIdEnterprise();
+        for (int i = 0; i < cbEnterprise.getItemCount();) {
+            Enterprise enter = ((Enterprise) cbEnterprise.getItemAt(i));
+            if (enter != null && enter.getId() == idEnter) {
+                cbEnterprise.setSelectedIndex(i);
+                break;
+            } else {
+                i++;
+            }
+        }
+        // set combo box department
+        long idDepart = providerProduct.getDataView().getIdDepartment();
+        for (int i = 0; i < cbDepartment.getItemCount();) {
+            Department depart = ((Department) cbDepartment.getItemAt(i));
+            if (depart != null && depart.getId() == idDepart) {
+                cbDepartment.setSelectedIndex(i);
+                break;
+            } else {
+                i++;
+            }
+        }
+        //set list midle group
+        //long idGroup=providerProduct.
+        
+        
+        controlGeneral.refresh(this);
     }
 
     @Override
     public void setControlShow(IPanelControlGeneral controlGeneral) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.controlGeneral=controlGeneral;
     }
 }
