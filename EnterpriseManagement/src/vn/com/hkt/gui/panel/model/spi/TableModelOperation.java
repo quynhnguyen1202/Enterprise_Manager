@@ -64,6 +64,11 @@ public class TableModelOperation extends DefaultTableModel {
     }
 
     @Override
+    public String getColumnName(int column) {
+        return header[column];
+    }
+
+    @Override
     public boolean isCellEditable(int row, int column) {
         return false;
     }

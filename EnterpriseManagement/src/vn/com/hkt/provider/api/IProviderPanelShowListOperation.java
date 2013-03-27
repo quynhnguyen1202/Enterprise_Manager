@@ -27,4 +27,6 @@ public interface IProviderPanelShowListOperation extends IProviderListGeneral<Op
     public List<Operation> getByClassification(boolean classification);
 
     public List<Operation> getByCodeOperation(String code);
+
+    public Operation getByOperationId(long idOperation);
 }

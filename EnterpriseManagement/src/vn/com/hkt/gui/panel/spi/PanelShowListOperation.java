@@ -11,10 +11,15 @@
 package vn.com.hkt.gui.panel.spi;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import vn.com.hkt.data.entity.Operation;
+import vn.com.hkt.gui.basic.Home;
+import vn.com.hkt.gui.basic.api.IHomePanel;
+import vn.com.hkt.gui.control.ControlPanel;
+import vn.com.hkt.gui.control.api.IControlPanel;
 import vn.com.hkt.gui.control.api.IPanelControlGeneral;
 import vn.com.hkt.gui.entity.api.IPanelShowList;
-import vn.com.hkt.gui.panel.model.spi.TableModelEmployee;
+import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.gui.panel.model.spi.TableModelOperation;
 import vn.com.hkt.provider.api.IProviderPanelShowListOperation;
 import vn.com.hkt.provider.spi.ProviderPanelShowListOperation;
@@ -25,6 +30,7 @@ import vn.com.hkt.provider.spi.ProviderPanelShowListOperation;
  */
 public class PanelShowListOperation extends javax.swing.JPanel implements IPanelShowList {
     private IProviderPanelShowListOperation provider;
+    private IPanelControlGeneral controlGeneral;
     /** Creates new form PanelShowListOperation */
     public PanelShowListOperation() {
         initComponents();
@@ -78,6 +84,11 @@ public class PanelShowListOperation extends javax.swing.JPanel implements IPanel
                 return canEdit [columnIndex];
             }
         });
+        tbOperation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbOperationMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbOperation);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -113,6 +124,34 @@ public class PanelShowListOperation extends javax.swing.JPanel implements IPanel
                 .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void tbOperationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbOperationMouseClicked
+    if(tbOperation.getSelectedRow()<0){
+        return;
+    }
+    if(evt.getClickCount() <2){
+        return;
+    }
+    try {
+        String id=tbOperation.getValueAt(tbOperation.getSelectedRow(), 0).toString();
+        Operation o=provider.getByOperationId(Long.parseLong(id));
+        if(o!=null){
+            IShowPanel p=new AddNewOperation();
+            IControlPanel controlPanel = new ControlPanel();
+            controlPanel.setShowPanel(p);
+            p.setControlShow(controlPanel);
+            p.setDataShow(o);
+            IHomePanel homePanel = new Home();
+            controlPanel.refresh(p);
+            homePanel.setPanelControl(controlPanel);
+            homePanel.showDefaut();
+            homePanel.setVisible(true);
+        }
+    } catch (Exception e) {
+        JOptionPane.showConfirmDialog(this, e);
+    }
+}//GEN-LAST:event_tbOperationMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -134,6 +173,6 @@ public class PanelShowListOperation extends javax.swing.JPanel implements IPanel
 
     @Override
     public void setPanelControShow(IPanelControlGeneral controlGeneral) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.controlGeneral = controlGeneral;
     }
 }
