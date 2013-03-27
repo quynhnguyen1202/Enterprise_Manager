@@ -340,6 +340,9 @@
               <Image iconType="2" name="D:\HKT\HKT_Team_Project\Enterprise_Manager\EnterpriseManagement\src\vn\com\hkt\gui\icon\32x32\add.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddOperationActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnAddProject">
           <Properties>

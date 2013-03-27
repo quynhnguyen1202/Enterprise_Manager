@@ -25,6 +25,7 @@ import vn.com.hkt.gui.entity.api.IShowPanel;
 import vn.com.hkt.gui.panel.spi.AddNewDepartment;
 import vn.com.hkt.gui.panel.spi.AddNewEmployee;
 import vn.com.hkt.gui.panel.spi.AddNewEnterprise;
+import vn.com.hkt.gui.panel.spi.AddNewOperation;
 import vn.com.hkt.gui.panel.spi.AddNewProductGroup;
 import vn.com.hkt.gui.panel.spi.AddNewProject;
 import vn.com.hkt.gui.panel.spi.AddNewUnitMoney;
@@ -212,6 +213,11 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
 
         btnAddOperation.setBackground(new java.awt.Color(102, 102, 102));
         btnAddOperation.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
+        btnAddOperation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddOperationActionPerformed(evt);
+            }
+        });
 
         btnAddProject.setBackground(new java.awt.Color(102, 102, 102));
         btnAddProject.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\add.png")); // NOI18N
@@ -521,6 +527,15 @@ private void btnUnitProductActionPerformed(java.awt.event.ActionEvent evt) {//GE
     setPanelControl(controlGeneral);
     showDefaut();
 }//GEN-LAST:event_btnUnitProductActionPerformed
+
+private void btnAddOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOperationActionPerformed
+    IShowPanel anp = new AddNewOperation();
+    IControlPanel controlPanel = new ControlPanel();
+    controlPanel.setShowPanel(anp);
+    controlGeneral = controlPanel;
+    setPanelControl(controlGeneral);
+    showDefaut();
+}//GEN-LAST:event_btnAddOperationActionPerformed
 
     /**
      * @param args the command line arguments
