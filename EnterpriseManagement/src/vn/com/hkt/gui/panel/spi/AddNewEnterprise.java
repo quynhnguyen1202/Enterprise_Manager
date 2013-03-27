@@ -269,9 +269,8 @@ private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     @Override
     public boolean deleteData() {
         if (JOptionPane.showConfirmDialog(null, "Are you sure !", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(null, provider.getDataView().getName());
             provider.deleteData();
-            System.out.println("aaaaaaaaaaaaa"+provider.deleteData());
+            resetData();
             return true;
         }
         return false;

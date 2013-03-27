@@ -36,10 +36,12 @@ public class AddNewOperation extends javax.swing.JPanel implements IShowPanel<Op
     private long employeeID;
     private long unitMoneyID;
     private IProviderPanelShowOperation provider;
+    private IPanelControlGeneral controlGeneral;
+
     /** Creates new form AddNewOperation */
     public AddNewOperation() {
         initComponents();
-        provider=new ProviderPanelShowOperation();
+        provider = new ProviderPanelShowOperation();
         loadEnterprise();
         loadUnitMoney();
     }
@@ -54,7 +56,7 @@ public class AddNewOperation extends javax.swing.JPanel implements IShowPanel<Op
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
+        lbTitle = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         cbEnterprise = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
@@ -64,37 +66,32 @@ public class AddNewOperation extends javax.swing.JPanel implements IShowPanel<Op
         jLabel8 = new javax.swing.JLabel();
         cbEmployee = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMoneyAfterDiscount = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtCode = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtMoneyAfterTax = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtMoneyTotal = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dcDateExecute = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         cbProject = new javax.swing.JComboBox();
         jLabel15 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rbSale = new javax.swing.JRadioButton();
+        rbBuy = new javax.swing.JRadioButton();
         lbError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
-        setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Add New Operation");
-        add(jLabel1);
-        jLabel1.setBounds(20, 20, 200, 23);
+        lbTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbTitle.setForeground(new java.awt.Color(102, 102, 102));
+        lbTitle.setText("Add New Operation");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Classification :");
-        add(jLabel6);
-        jLabel6.setBounds(90, 460, 150, 23);
 
         cbEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbEnterprise.addItemListener(new java.awt.event.ItemListener() {
@@ -102,14 +99,10 @@ public class AddNewOperation extends javax.swing.JPanel implements IShowPanel<Op
                 cbEnterpriseItemStateChanged(evt);
             }
         });
-        add(cbEnterprise);
-        cbEnterprise.setBounds(240, 100, 200, 23);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Code :");
-        add(jLabel5);
-        jLabel5.setBounds(90, 60, 150, 23);
 
         cbUnitMoney.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbUnitMoney.addItemListener(new java.awt.event.ItemListener() {
@@ -117,14 +110,10 @@ public class AddNewOperation extends javax.swing.JPanel implements IShowPanel<Op
                 cbUnitMoneyItemStateChanged(evt);
             }
         });
-        add(cbUnitMoney);
-        cbUnitMoney.setBounds(240, 420, 200, 23);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Choose department :");
-        add(jLabel7);
-        jLabel7.setBounds(90, 140, 150, 23);
 
         cbDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbDepartment.addItemListener(new java.awt.event.ItemListener() {
@@ -132,14 +121,10 @@ public class AddNewOperation extends javax.swing.JPanel implements IShowPanel<Op
                 cbDepartmentItemStateChanged(evt);
             }
         });
-        add(cbDepartment);
-        cbDepartment.setBounds(240, 140, 200, 23);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Choose employee :");
-        add(jLabel8);
-        jLabel8.setBounds(90, 180, 150, 23);
 
         cbEmployee.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbEmployee.addItemListener(new java.awt.event.ItemListener() {
@@ -147,54 +132,30 @@ public class AddNewOperation extends javax.swing.JPanel implements IShowPanel<Op
                 cbEmployeeItemStateChanged(evt);
             }
         });
-        add(cbEmployee);
-        cbEmployee.setBounds(240, 180, 200, 23);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("Choose project :");
-        add(jLabel9);
-        jLabel9.setBounds(90, 220, 150, 23);
-        add(jTextField1);
-        jTextField1.setBounds(240, 340, 200, 23);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("Money total :");
-        add(jLabel10);
-        jLabel10.setBounds(90, 260, 150, 23);
-        add(jTextField2);
-        jTextField2.setBounds(240, 60, 200, 23);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("Money after tax :");
-        add(jLabel11);
-        jLabel11.setBounds(90, 300, 150, 23);
-        add(jTextField3);
-        jTextField3.setBounds(240, 300, 200, 23);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setText("Choose enterprise :");
-        add(jLabel12);
-        jLabel12.setBounds(90, 100, 150, 23);
-        add(jTextField4);
-        jTextField4.setBounds(240, 260, 200, 23);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
         jLabel13.setText("Money after discount :");
-        add(jLabel13);
-        jLabel13.setBounds(90, 340, 150, 23);
-        add(jDateChooser1);
-        jDateChooser1.setBounds(240, 380, 200, 23);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
         jLabel14.setText("Date execute :");
-        add(jLabel14);
-        jLabel14.setBounds(90, 380, 150, 23);
 
         cbProject.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbProject.addItemListener(new java.awt.event.ItemListener() {
@@ -202,30 +163,142 @@ public class AddNewOperation extends javax.swing.JPanel implements IShowPanel<Op
                 cbProjectItemStateChanged(evt);
             }
         });
-        add(cbProject);
-        cbProject.setBounds(240, 220, 200, 23);
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(102, 102, 102));
         jLabel15.setText("Unit money :");
-        add(jLabel15);
-        jLabel15.setBounds(90, 420, 150, 23);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Sale");
-        jRadioButton1.setOpaque(false);
-        add(jRadioButton1);
-        jRadioButton1.setBounds(340, 460, 100, 23);
+        buttonGroup1.add(rbSale);
+        rbSale.setSelected(true);
+        rbSale.setText("Sale");
+        rbSale.setOpaque(false);
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Buy");
-        jRadioButton2.setOpaque(false);
-        add(jRadioButton2);
-        jRadioButton2.setBounds(240, 460, 100, 23);
+        buttonGroup1.add(rbBuy);
+        rbBuy.setText("Buy");
+        rbBuy.setOpaque(false);
 
         lbError.setForeground(new java.awt.Color(255, 0, 0));
-        add(lbError);
-        lbError.setBounds(240, 500, 300, 23);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCode, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(128, 128, 128))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbEnterprise, 0, 200, Short.MAX_VALUE)
+                .addGap(128, 128, 128))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbDepartment, 0, 200, Short.MAX_VALUE)
+                .addGap(128, 128, 128))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbEmployee, 0, 200, Short.MAX_VALUE)
+                .addGap(128, 128, 128))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbProject, 0, 200, Short.MAX_VALUE)
+                .addGap(128, 128, 128))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMoneyTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(128, 128, 128))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMoneyAfterTax, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(128, 128, 128))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMoneyAfterDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(128, 128, 128))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dcDateExecute, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(128, 128, 128))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbUnitMoney, 0, 200, Short.MAX_VALUE)
+                .addGap(128, 128, 128))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rbBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rbSale, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(238, 238, 238)
+                .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                .addGap(28, 28, 28))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbProject, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMoneyTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMoneyAfterTax, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMoneyAfterDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dcDateExecute, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbUnitMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbBuy)
+                    .addComponent(rbSale))
+                .addGap(17, 17, 17)
+                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEnterpriseItemStateChanged
@@ -247,7 +320,6 @@ private void cbEmployeeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
 private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbProjectItemStateChanged
     loadCBProject();
 }//GEN-LAST:event_cbProjectItemStateChanged
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cbDepartment;
@@ -255,8 +327,7 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
     private javax.swing.JComboBox cbEnterprise;
     private javax.swing.JComboBox cbProject;
     private javax.swing.JComboBox cbUnitMoney;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
+    private com.toedter.calendar.JDateChooser dcDateExecute;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -268,18 +339,19 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel lbError;
+    private javax.swing.JLabel lbTitle;
+    private javax.swing.JRadioButton rbBuy;
+    private javax.swing.JRadioButton rbSale;
+    private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtMoneyAfterDiscount;
+    private javax.swing.JTextField txtMoneyAfterTax;
+    private javax.swing.JTextField txtMoneyTotal;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void setControlShow(IPanelControlGeneral controlGeneral) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.controlGeneral=controlGeneral;
     }
 
     @Override
@@ -289,27 +361,74 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
 
     @Override
     public boolean checkData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (txtCode.getText().length() == 0) {
+            lbError.setText("Enter code operation !");
+            return false;
+        }
+        if (txtMoneyTotal.getText().length() == 0) {
+            lbError.setText("Enter money total operation !");
+            return false;
+        }
+        if (txtMoneyAfterDiscount.getText().length() == 0) {
+            lbError.setText("Enter money after discount operation !");
+            return false;
+        }
+        if (cbEnterprise.getSelectedItem() == null) {
+            lbError.setText("Choose enterprise !");
+            return false;
+        }
+        if (dcDateExecute.getDate() == null) {
+            lbError.setText("Choose date execute !");
+            return false;
+        }
+        return true;
     }
 
     @Override
     public long addData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (!checkData() || !getData()) {
+            return 0;
+        }
+        long id = provider.addData();
+        resetData();
+        return id;
     }
 
     @Override
     public boolean resetData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        txtCode.setText("");
+        txtMoneyAfterDiscount.setText("");
+        txtMoneyTotal.setText("");
+        txtMoneyAfterTax.setText("");
+        cbEnterprise.setSelectedIndex(0);
+        cbUnitMoney.setSelectedIndex(0);
+        rbSale.setSelected(true);
+        return true;
     }
 
     @Override
     public boolean editData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (JOptionPane.showConfirmDialog(null, "Are you sure !", "Edit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if (!checkData() || !getData()) {
+                return false;
+            }
+            long id = provider.updateData();
+            if (id < 0) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean deleteData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (JOptionPane.showConfirmDialog(null, "Are you sure !", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            provider.deleteData();
+            resetData();
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -319,13 +438,65 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
 
     @Override
     public void setDataShow(Operation ob) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        provider.setDataView(ob);
+        refreshData();
     }
 
     @Override
     public void refreshData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        lbTitle.setText("Update Operation");
+        txtCode.setText(provider.getDataView().getCodeOperation());
+        txtMoneyTotal.setText(String.valueOf( provider.getDataView().getMoneyTotal()));
+        txtMoneyAfterTax.setText(String.valueOf( provider.getDataView().getMoneyAfterTax()));
+        txtMoneyAfterDiscount.setText(String.valueOf( provider.getDataView().getMoneyAfterDiscount()));
+        dcDateExecute.setDate(provider.getDataView().getDateExecute());
+        //set combobox enrterprise
+        long idEnter = provider.getDataView().getIdEnterprise();
+        for (int i = 0; i < cbEnterprise.getItemCount();) {
+            Enterprise enter = ((Enterprise) cbEnterprise.getItemAt(i));
+            if (enter != null && enter.getId() == idEnter) {
+                cbEnterprise.setSelectedIndex(i);
+                break;
+            } else {
+                i++;
+            }
+        }
+        //set combobox department
+        long idDepart = provider.getDataView().getIdDepartment();
+        for (int i = 0; i < cbDepartment.getItemCount();) {
+            Department depart = ((Department) cbDepartment.getItemAt(i));
+            if (depart != null && depart.getId() == idDepart) {
+                cbDepartment.setSelectedIndex(i);
+                break;
+            } else {
+                i++;
+            }
+        }
+        //set combobox employee
+        long idEmp = provider.getDataView().getIdEmployee();
+        for (int i = 0; i < cbEmployee.getItemCount();) {
+            Employee emp = ((Employee) cbEmployee.getItemAt(i));
+            if (emp != null && emp.getId() == idEmp) {
+                cbEmployee.setSelectedIndex(i);
+                break;
+            } else {
+                i++;
+            }
+        }
+        //set combobox project
+        long idPro = provider.getDataView().getIdProject();
+        for (int i = 0; i < cbProject.getItemCount();) {
+            Project pro = ((Project) cbProject.getItemAt(i));
+            if (pro != null && pro.getId() == idPro) {
+                cbProject.setSelectedIndex(i);
+                break;
+            } else {
+                i++;
+            }
+        }
+        controlGeneral.refresh(this);
     }
+
     private void loadEnterprise() {
         List<Enterprise> enterprises = provider.getListEnterprise();
         if (enterprises != null) {
@@ -387,6 +558,7 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
             departmentID = 0;
         }
     }
+
     private void loadUnitMoney() {
         List<UnitMoney> unitMoneys = provider.getListUnitMoney();
         if (unitMoneys != null) {
@@ -405,9 +577,9 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
             } else {
                 unitMoneyID = 0;
             }
-        } 
+        }
     }
-    
+
     private void loadEmployee() {
         if (departmentID > 0) {
             List<Employee> employees = provider.getListEmployeeByIDDep(departmentID);
@@ -434,10 +606,9 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
             employeeID = 0;
         }
     }
-    
-    private void loadProject(){
+
+    private void loadProject() {
         if (enterpriseID > 0) {
-            JOptionPane.showMessageDialog(null, enterpriseID);
             List<Project> projects = provider.getListProjectByIDEnt(enterpriseID);
             cbProject.setModel(new DefaultComboBoxModel(projects.toArray()));
         } else {
@@ -461,5 +632,24 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
         } else {
             projectID = 0;
         }
+    }
+
+    private boolean getData() {
+        provider.getDataView().setIdEnterprise(enterpriseID);
+        provider.getDataView().setCodeOperation(txtCode.getText());
+        provider.getDataView().setIdDepartment(departmentID);
+        provider.getDataView().setIdEmployee(employeeID);
+        provider.getDataView().setIdProject(projectID);
+        provider.getDataView().setIdUnitMoney(unitMoneyID);
+        provider.getDataView().setMoneyTotal(Float.parseFloat(txtMoneyTotal.getText()));
+        provider.getDataView().setMoneyAfterTax(Float.parseFloat(txtMoneyAfterTax.getText()));
+        provider.getDataView().setMoneyAfterDiscount(Float.parseFloat(txtMoneyAfterDiscount.getText()));
+        provider.getDataView().setDateExecute(dcDateExecute.getDate());
+        boolean classification = true;
+        if (rbSale.isSelected()) {
+            classification = false;
+        }
+        provider.getDataView().setClassification(classification);
+        return true;
     }
 }

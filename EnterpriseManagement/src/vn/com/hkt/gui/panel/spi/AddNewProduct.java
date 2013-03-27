@@ -397,7 +397,12 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
     
     @Override
     public boolean deleteData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (JOptionPane.showConfirmDialog(null, "Are you sure !", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            providerProduct.deleteData();
+            resetData();
+            return true;
+        }
+        return false;
     }
     
     @Override

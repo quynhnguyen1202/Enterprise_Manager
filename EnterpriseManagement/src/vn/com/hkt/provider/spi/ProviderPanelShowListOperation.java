@@ -37,7 +37,7 @@ public class ProviderPanelShowListOperation implements IProviderPanelShowListOpe
 
     @Override
     public List<Operation> getByDateExecute(Date date) {
-        List<Operation> l = iOperationDao.getByDateExecute( date);
+        List<Operation> l = iOperationDao.getByDateExecute(date);
         return l;
     }
 
@@ -67,7 +67,12 @@ public class ProviderPanelShowListOperation implements IProviderPanelShowListOpe
 
     @Override
     public List<Operation> getByCodeOperation(String code) {
-         List<Operation> l = iOperationDao.getByCode(code);
+        List<Operation> l = iOperationDao.getByCode(code);
         return l;
+    }
+
+    @Override
+    public Operation getByOperationId(long idOperation) {
+        return iOperationDao.getById(idOperation);
     }
 }
