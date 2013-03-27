@@ -29,6 +29,7 @@ public class Operation implements IEntity{
     public static final String FIELD_MONEYAFTERDISCOUNT = "MoneyAfterDiscount";
     public static final String FIELD_MONEYAFTERTAX = "MoneyAfterTax";
     public static final String FIELD_MONEYTOTAL = "MoneyTotal";
+    public static final String FIELD_ID_UNITMONEY="IdUnitMoney";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;

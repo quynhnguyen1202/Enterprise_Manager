@@ -62,10 +62,10 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                 + " from " + Project.class.getSimpleName() + " e  "
                 + "where e." + Project.FIELD_ID + " =  " + idProject
                 + " union all  select  e." + Project.FIELD_ID + " ,e." + Project.FIELD_IDENTERPRISE
-                + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e.IdProject )"
+                + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e." + Project.FIELD_ID + " )"
                 + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
-                + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
-                + "  join  tmp t on t.id=o.IdProject "
+                + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o." + Operation.FIELD_ID_UNITMONEY + " = u." + UnitMoney.FIELD_ID
+                + "  join  tmp t on t.id=o." + Operation.FIELD_IDPROJECT
                 + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " =1  ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -126,10 +126,10 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                 + " from " + Project.class.getSimpleName() + " e  "
                 + " where e." + Project.FIELD_ID + " =  " + idProject
                 + " union all  select  e." + Project.FIELD_ID + " ,e." + Project.FIELD_IDENTERPRISE
-                + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e.IdProject )"
+                + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e." + Project.FIELD_ID + " )"
                 + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
-                + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
-                + " join  tmp t on t.id=o.IdProject "
+                + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o." + Operation.FIELD_ID_UNITMONEY + "= u." + UnitMoney.FIELD_ID
+                + " join  tmp t on t.id=o." + Operation.FIELD_IDPROJECT
                 + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " = 0 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -160,7 +160,7 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                         + " where (o." + Operation.FIELD_IDPROJECT + "=?1 )"
                         + " and o." + Operation.FIELD_IDDEPARTMENT + " = ?2 and o." + Operation.FIELD_IDENTERPRISE + " = ?3 "
                         + " and ( o." + Operation.FIELD_DATEEXECUTE + " >= ?4 )"
-                        + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?5) and o." + Operation.FIELD_CLASSIFICATION + " = 0 ";
+                        + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?5) and o." + Operation.FIELD_CLASSIFICATION + " = 1 ";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
 
@@ -178,7 +178,7 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                         + " where (o." + Operation.FIELD_IDPROJECT + "=?1 )"
                         + "  and o." + Operation.FIELD_IDENTERPRISE + " = ?3"
                         + " and ( o." + Operation.FIELD_DATEEXECUTE + " >= ?4 )"
-                        + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?5) and o." + Operation.FIELD_CLASSIFICATION + " = 0 ";
+                        + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?5) and o." + Operation.FIELD_CLASSIFICATION + " = 1 ";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
 
@@ -199,7 +199,7 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                         + " where (o." + Operation.FIELD_IDPROJECT + "=?1 )"
                         + " and o." + Operation.FIELD_IDDEPARTMENT + " = ?2 "
                         + " and ( o." + Operation.FIELD_DATEEXECUTE + " >= ?4 )"
-                        + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?5) and o." + Operation.FIELD_CLASSIFICATION + " = 0 ";
+                        + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?5) and o." + Operation.FIELD_CLASSIFICATION + " = 1 ";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
 
@@ -216,7 +216,7 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                 String sql = "select sum(o." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " o,"
                         + " where (o." + Operation.FIELD_IDPROJECT + "=?1 )"
                         + " and ( o." + Operation.FIELD_DATEEXECUTE + " >= ?4 )"
-                        + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?5) and o." + Operation.FIELD_CLASSIFICATION + " = 0 ";
+                        + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?5) and o." + Operation.FIELD_CLASSIFICATION + " = 1 ";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
 
@@ -326,10 +326,10 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                         + " from " + Project.class.getSimpleName() + " e  "
                         + "where e." + Project.FIELD_ID + " =  " + idProject
                         + " union all  select  e." + Project.FIELD_ID + " ,e." + Project.FIELD_IDENTERPRISE
-                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e.IdProject )"
+                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e." + Project.FIELD_ID + ")"
                         + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
-                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
-                        + "  join  tmp t on t.id=o.IdProject "
+                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o." + Operation.FIELD_ID_UNITMONEY + " = u." + UnitMoney.FIELD_ID
+                        + "  join  tmp t on t.id=o." + Operation.FIELD_IDPROJECT
                         + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " =1  "
                         + " and o." + Operation.FIELD_IDENTERPRISE + " = ?4 and o." + Operation.FIELD_IDDEPARTMENT + " = ?5  ";
                 if (em == null || !em.isOpen()) {
@@ -350,10 +350,10 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                         + " from " + Project.class.getSimpleName() + " e  "
                         + "where e." + Project.FIELD_ID + " =  " + idProject
                         + " union all  select  e." + Project.FIELD_ID + " ,e." + Project.FIELD_IDENTERPRISE
-                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e.IdProject )"
+                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e." + Project.FIELD_ID + " )"
                         + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
-                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
-                        + "  join  tmp t on t.id=o.IdProject "
+                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o." + Operation.FIELD_ID_UNITMONEY + "= u." + UnitMoney.FIELD_ID
+                        + "  join  tmp t on t.id=o." + Operation.FIELD_IDPROJECT
                         + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " =1  and o." + Operation.FIELD_IDENTERPRISE + " = ?4";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -374,10 +374,10 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                         + " from " + Project.class.getSimpleName() + " e  "
                         + "where e." + Project.FIELD_ID + " =  " + idProject
                         + " union all  select  e." + Project.FIELD_ID + " ,e." + Project.FIELD_IDENTERPRISE
-                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e.IdProject )"
+                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e." + Project.FIELD_ID + " )"
                         + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
-                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
-                        + "  join  tmp t on t.id=o.IdProject "
+                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o." + Operation.FIELD_ID_UNITMONEY + "= u." + UnitMoney.FIELD_ID
+                        + "  join  tmp t on t.id=o." + Operation.FIELD_IDPROJECT
                         + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " =1 and o." + Operation.FIELD_IDDEPARTMENT + " = ?4";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -397,10 +397,10 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                         + " from " + Project.class.getSimpleName() + " e  "
                         + "where e." + Project.FIELD_ID + " =  " + idProject
                         + " union all  select  e." + Project.FIELD_ID + " ,e." + Project.FIELD_IDENTERPRISE
-                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e.IdProject )"
+                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e." + Project.FIELD_ID + " )"
                         + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
-                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
-                        + "  join  tmp t on t.id=o.IdProject "
+                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o." + Operation.FIELD_ID_UNITMONEY + " = u." + UnitMoney.FIELD_ID
+                        + "  join  tmp t on t.id=o." + Operation.FIELD_IDPROJECT
                         + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " =1  ";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -428,10 +428,10 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                         + " from " + Project.class.getSimpleName() + " e  "
                         + "where e." + Project.FIELD_ID + " =  " + idProject
                         + " union all  select  e." + Project.FIELD_ID + " ,e." + Project.FIELD_IDENTERPRISE
-                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e.IdProject )"
+                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e." + Project.FIELD_ID + " )"
                         + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
-                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
-                        + "  join  tmp t on t.id=o.IdProject "
+                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o." + Operation.FIELD_ID_UNITMONEY + " = u." + UnitMoney.FIELD_ID
+                        + "  join  tmp t on t.id=o." + Operation.FIELD_IDPROJECT
                         + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " =1  "
                         + " and o." + Operation.FIELD_IDENTERPRISE + " = ?4 and o." + Operation.FIELD_IDDEPARTMENT + " = ?5  ";
                 if (em == null || !em.isOpen()) {
@@ -452,10 +452,10 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                         + " from " + Project.class.getSimpleName() + " e  "
                         + "where e." + Project.FIELD_ID + " =  " + idProject
                         + " union all  select  e." + Project.FIELD_ID + " ,e." + Project.FIELD_IDENTERPRISE
-                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e.IdProject )"
+                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e." + Project.FIELD_ID + " )"
                         + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
-                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
-                        + "  join  tmp t on t.id=o.IdProject "
+                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o." + Operation.FIELD_ID_UNITMONEY + " = u." + UnitMoney.FIELD_ID
+                        + "  join  tmp t on t.id=o." + Operation.FIELD_IDPROJECT
                         + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " =1  and o." + Operation.FIELD_IDENTERPRISE + " = ?4";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -476,10 +476,10 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                         + " from " + Project.class.getSimpleName() + " e  "
                         + "where e." + Project.FIELD_ID + " =  " + idProject
                         + " union all  select  e." + Project.FIELD_ID + " ,e." + Project.FIELD_IDENTERPRISE
-                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e.IdProject )"
+                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e." + Project.FIELD_ID + " )"
                         + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
-                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
-                        + "  join  tmp t on t.id=o.IdProject "
+                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o." + Operation.FIELD_ID_UNITMONEY + " = u." + UnitMoney.FIELD_ID
+                        + "  join  tmp t on t.id=o." + Operation.FIELD_IDPROJECT
                         + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " =1 and o." + Operation.FIELD_IDDEPARTMENT + " = ?4";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -499,10 +499,10 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                         + " from " + Project.class.getSimpleName() + " e  "
                         + "where e." + Project.FIELD_ID + " =  " + idProject
                         + " union all  select  e." + Project.FIELD_ID + " ,e." + Project.FIELD_IDENTERPRISE
-                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e.IdProject )"
+                        + " From " + Project.class.getSimpleName() + " e join tmp t on t.id=e." + Project.FIELD_ID + " )"
                         + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
-                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
-                        + "  join  tmp t on t.id=o.IdProject "
+                        + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o." + Operation.FIELD_ID_UNITMONEY + " = u." + UnitMoney.FIELD_ID
+                        + "  join  tmp t on t.id=o." + Operation.FIELD_IDPROJECT
                         + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " =1  ";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
