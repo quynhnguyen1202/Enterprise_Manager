@@ -30,10 +30,227 @@ public class AddNewOperation extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        cbEnterprise = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        cbUnitMoney = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        cbDepartment = new javax.swing.JComboBox();
+        jLabel8 = new javax.swing.JLabel();
+        cbEmployee = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
+        cbProject = new javax.swing.JComboBox();
+        jLabel15 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        lbError = new javax.swing.JLabel();
+
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
         setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("Add New Operation");
+        add(jLabel1);
+        jLabel1.setBounds(20, 20, 200, 23);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setText("Classification :");
+        add(jLabel6);
+        jLabel6.setBounds(90, 460, 150, 23);
+
+        cbEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEnterprise.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbEnterpriseItemStateChanged(evt);
+            }
+        });
+        add(cbEnterprise);
+        cbEnterprise.setBounds(240, 100, 200, 23);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setText("Code :");
+        add(jLabel5);
+        jLabel5.setBounds(90, 60, 150, 23);
+
+        cbUnitMoney.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbUnitMoney.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbUnitMoneyItemStateChanged(evt);
+            }
+        });
+        add(cbUnitMoney);
+        cbUnitMoney.setBounds(240, 420, 200, 23);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("Choose department :");
+        add(jLabel7);
+        jLabel7.setBounds(90, 140, 150, 23);
+
+        cbDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbDepartmentItemStateChanged(evt);
+            }
+        });
+        add(cbDepartment);
+        cbDepartment.setBounds(240, 140, 200, 23);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Choose employee :");
+        add(jLabel8);
+        jLabel8.setBounds(90, 180, 150, 23);
+
+        cbEmployee.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEmployee.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbEmployeeItemStateChanged(evt);
+            }
+        });
+        add(cbEmployee);
+        cbEmployee.setBounds(240, 180, 200, 23);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setText("Choose project :");
+        add(jLabel9);
+        jLabel9.setBounds(90, 220, 150, 23);
+        add(jTextField1);
+        jTextField1.setBounds(240, 340, 200, 23);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setText("Money total :");
+        add(jLabel10);
+        jLabel10.setBounds(90, 260, 150, 23);
+        add(jTextField2);
+        jTextField2.setBounds(240, 60, 200, 23);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("Money after tax :");
+        add(jLabel11);
+        jLabel11.setBounds(90, 300, 150, 23);
+        add(jTextField3);
+        jTextField3.setBounds(240, 300, 200, 23);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setText("Choose enterprise :");
+        add(jLabel12);
+        jLabel12.setBounds(90, 100, 150, 23);
+        add(jTextField4);
+        jTextField4.setBounds(240, 260, 200, 23);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel13.setText("Money after discount :");
+        add(jLabel13);
+        jLabel13.setBounds(90, 340, 150, 23);
+        add(jDateChooser1);
+        jDateChooser1.setBounds(240, 380, 200, 23);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel14.setText("Date execute :");
+        add(jLabel14);
+        jLabel14.setBounds(90, 380, 150, 23);
+
+        cbProject.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbProject.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbProjectItemStateChanged(evt);
+            }
+        });
+        add(cbProject);
+        cbProject.setBounds(240, 220, 200, 23);
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel15.setText("Unit money :");
+        add(jLabel15);
+        jLabel15.setBounds(90, 420, 150, 23);
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Sale");
+        jRadioButton1.setOpaque(false);
+        add(jRadioButton1);
+        jRadioButton1.setBounds(340, 460, 100, 23);
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Buy");
+        jRadioButton2.setOpaque(false);
+        add(jRadioButton2);
+        jRadioButton2.setBounds(240, 460, 100, 23);
+
+        lbError.setForeground(new java.awt.Color(255, 0, 0));
+        add(lbError);
+        lbError.setBounds(240, 500, 300, 23);
     }// </editor-fold>//GEN-END:initComponents
+
+private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEnterpriseItemStateChanged
+    
+}//GEN-LAST:event_cbEnterpriseItemStateChanged
+
+private void cbUnitMoneyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbUnitMoneyItemStateChanged
+    
+}//GEN-LAST:event_cbUnitMoneyItemStateChanged
+
+private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDepartmentItemStateChanged
+// TODO add your handling code here:
+}//GEN-LAST:event_cbDepartmentItemStateChanged
+
+private void cbEmployeeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEmployeeItemStateChanged
+// TODO add your handling code here:
+}//GEN-LAST:event_cbEmployeeItemStateChanged
+
+private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbProjectItemStateChanged
+// TODO add your handling code here:
+}//GEN-LAST:event_cbProjectItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox cbDepartment;
+    private javax.swing.JComboBox cbEmployee;
+    private javax.swing.JComboBox cbEnterprise;
+    private javax.swing.JComboBox cbProject;
+    private javax.swing.JComboBox cbUnitMoney;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lbError;
     // End of variables declaration//GEN-END:variables
 }
