@@ -22,7 +22,7 @@ public class ProjectStatisticChart {
 
     float revenue = 0, spending = 0, profit = 0;
     Calendar startDate = null, endDate = null;
-    long id = 0;
+    long idProject = 0,idEnterprise =0 ,idDepartment =0;
 
     public  XYDataset createDataset() {
         Calendar dateStart, dateEnd;
@@ -52,18 +52,18 @@ public class ProjectStatisticChart {
             while (dateStart.before(dateEnd)) {
                 ProjectRevenueStatistic prs = new ProjectRevenueStatistic();
                 if (total == 1) {
-                    revenue = prs.revenueGetByProject(id, dateStart.getTime(), dateStart.getTime());
-                    spending = prs.spendingGetByProject(id, dateStart.getTime(), dateStart.getTime());
+                    revenue = prs.revenueGetByProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), dateStart.getTime());
+                    spending = prs.spendingGetByProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
                 }
                 if (total == 2) {
-                    revenue = prs.revenueGetByTotalProject(id, dateStart.getTime(), dateEnd.getTime());
-                    spending = prs.spendingGetByTotalProject(id, dateStart.getTime(), dateStart.getTime());
+                    revenue = prs.revenueGetByTotalProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), dateEnd.getTime());
+                    spending = prs.spendingGetByTotalProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
                 }
                 if (total == 3) {
-                    revenue = prs.revenueGetByTotalChildrenProject(id, dateStart.getTime(), dateEnd.getTime());
-                    spending = prs.spendingGetByTotalChildrenProject(id, dateStart.getTime(), dateStart.getTime());
+                    revenue = prs.revenueGetByTotalChildrenProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), dateEnd.getTime());
+                    spending = prs.spendingGetByTotalChildrenProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
                 }
                 s1.add(new Day(dateStart.getTime()), revenue);
@@ -92,18 +92,18 @@ public class ProjectStatisticChart {
             while (dateStart.before(dateEnd)) {
                 ProjectRevenueStatistic prs = new ProjectRevenueStatistic();
                 if (total == 1) {
-                    revenue = prs.revenueGetByProject(id, dateStart.getTime(), nextMonth.getTime());
-                    spending = prs.revenueGetByProject(id, dateStart.getTime(), nextMonth.getTime());
+                    revenue = prs.revenueGetByProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextMonth.getTime());
+                    spending = prs.revenueGetByProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextMonth.getTime());
                     profit = revenue - spending;
                 }
                 if (total == 2) {
-                    revenue = prs.revenueGetByTotalProject(id, dateStart.getTime(), nextMonth.getTime());
-                    spending = prs.revenueGetByTotalProject(id, dateStart.getTime(), nextMonth.getTime());
+                    revenue = prs.revenueGetByTotalProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextMonth.getTime());
+                    spending = prs.revenueGetByTotalProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextMonth.getTime());
                     profit = revenue - spending;
                 }
                 if (total == 3) {
-                    revenue = prs.revenueGetByTotalChildrenProject(id, dateStart.getTime(), nextMonth.getTime());
-                    spending = prs.revenueGetByTotalChildrenProject(id, dateStart.getTime(), nextMonth.getTime());
+                    revenue = prs.revenueGetByTotalChildrenProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextMonth.getTime());
+                    spending = prs.revenueGetByTotalChildrenProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextMonth.getTime());
                     profit = revenue - spending;
                 }
                 s1.add(new Month(dateStart.getTime()), revenue);
@@ -131,18 +131,18 @@ public class ProjectStatisticChart {
                 ProjectRevenueStatistic prs = new ProjectRevenueStatistic();
                 if (total == 1) {
 
-                    revenue = prs.revenueGetByProject(id, dateStart.getTime(), nextYear.getTime());
-                    spending = prs.revenueGetByProject(id, dateStart.getTime(), nextYear.getTime());
+                    revenue = prs.revenueGetByProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextYear.getTime());
+                    spending = prs.revenueGetByProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextYear.getTime());
                     profit = revenue - spending;
                 }
                 if (total == 2) {
-                    revenue = prs.revenueGetByTotalProject(id, dateStart.getTime(), nextYear.getTime());
-                    spending = prs.revenueGetByTotalProject(id, dateStart.getTime(), nextYear.getTime());
+                    revenue = prs.revenueGetByTotalProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextYear.getTime());
+                    spending = prs.revenueGetByTotalProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextYear.getTime());
                     profit = revenue - spending;
                 }
                 if (total == 3) {
-                    revenue = prs.revenueGetByTotalChildrenProject(id, dateStart.getTime(), nextYear.getTime());
-                    spending = prs.revenueGetByTotalChildrenProject(id, dateStart.getTime(), nextYear.getTime());
+                    revenue = prs.revenueGetByTotalChildrenProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextYear.getTime());
+                    spending = prs.revenueGetByTotalChildrenProject(idProject,idDepartment,idEnterprise, dateStart.getTime(), nextYear.getTime());
                     profit = revenue - spending;
                 }
 
