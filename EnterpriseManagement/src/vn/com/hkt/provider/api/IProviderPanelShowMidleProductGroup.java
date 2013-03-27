@@ -14,5 +14,5 @@ import vn.com.hkt.data.entity.ProductGroup;
  */
 public interface IProviderPanelShowMidleProductGroup extends IProviderGeneral<MidleProductGroup> {
    public List<MidleProductGroup> getMidleGroupByProductId(long idProduct);
-   public List<ProductGroup> getProductGroupByMidleId(long idMidle);
+   public List<ProductGroup> getProductGroupByIDGroup(long idGroup);
 }

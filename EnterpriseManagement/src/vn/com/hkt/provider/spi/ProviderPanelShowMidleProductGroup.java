@@ -4,12 +4,11 @@
  */
 package vn.com.hkt.provider.spi;
 
-import java.util.ArrayList;
 import java.util.List;
 import vn.com.hkt.dao.api.IMidleProductGroupDao;
 import vn.com.hkt.dao.api.IProductGroupDao;
 import vn.com.hkt.dao.spi.MidleProductGroupDao;
-import vn.com.hkt.data.entity.Department;
+import vn.com.hkt.dao.spi.ProductGroupDao;
 import vn.com.hkt.data.entity.MidleProductGroup;
 import vn.com.hkt.data.entity.ProductGroup;
 import vn.com.hkt.provider.api.IProviderPanelShowMidleProductGroup;
@@ -26,6 +25,7 @@ public class ProviderPanelShowMidleProductGroup implements IProviderPanelShowMid
 
     public ProviderPanelShowMidleProductGroup() {
         iMidleProductGroupDao = new MidleProductGroupDao();
+        iProductGroupDao=new ProductGroupDao();
     }
 
     @Override
@@ -107,12 +107,10 @@ public class ProviderPanelShowMidleProductGroup implements IProviderPanelShowMid
     }
 
     @Override
-    public List<ProductGroup> getProductGroupByMidleId(long idMidle) {
-//        List<ProductGroup> listDep = 
-//        if (listDep == null) {
-//            listDep = new ArrayList<Department>();
-//        }
-//        listDep.add(0, null);
-        return null;
+    public List<ProductGroup> getProductGroupByIDGroup(long idGroup) {
+        List<ProductGroup> listDep=iProductGroupDao.getByIdProductGroup(idGroup);
+        return listDep;
     }
+
+   
 }
