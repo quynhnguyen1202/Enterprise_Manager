@@ -10,15 +10,38 @@
  */
 package vn.com.hkt.gui.panel.spi;
 
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import vn.com.hkt.data.entity.Department;
+import vn.com.hkt.data.entity.Employee;
+import vn.com.hkt.data.entity.Enterprise;
+import vn.com.hkt.data.entity.Operation;
+import vn.com.hkt.data.entity.Project;
+import vn.com.hkt.data.entity.UnitMoney;
+import vn.com.hkt.gui.control.api.IPanelControlGeneral;
+import vn.com.hkt.gui.entity.api.IShowPanel;
+import vn.com.hkt.provider.api.IProviderPanelShowOperation;
+import vn.com.hkt.provider.spi.ProviderPanelShowOperation;
+
 /**
  *
  * @author Administrator
  */
-public class AddNewOperation extends javax.swing.JPanel {
+public class AddNewOperation extends javax.swing.JPanel implements IShowPanel<Operation> {
 
+    private long departmentID;
+    private long enterpriseID;
+    private long projectID;
+    private long employeeID;
+    private long unitMoneyID;
+    private IProviderPanelShowOperation provider;
     /** Creates new form AddNewOperation */
     public AddNewOperation() {
         initComponents();
+        provider=new ProviderPanelShowOperation();
+        loadEnterprise();
+        loadUnitMoney();
     }
 
     /** This method is called from within the constructor to
@@ -206,23 +229,23 @@ public class AddNewOperation extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void cbEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEnterpriseItemStateChanged
-    
+    loadCBEnterprise();
 }//GEN-LAST:event_cbEnterpriseItemStateChanged
 
 private void cbUnitMoneyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbUnitMoneyItemStateChanged
-    
+    loadCBUnitMoney();
 }//GEN-LAST:event_cbUnitMoneyItemStateChanged
 
 private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDepartmentItemStateChanged
-// TODO add your handling code here:
+    loadCBDepartment();
 }//GEN-LAST:event_cbDepartmentItemStateChanged
 
 private void cbEmployeeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEmployeeItemStateChanged
-// TODO add your handling code here:
+    loadCBEmployee();
 }//GEN-LAST:event_cbEmployeeItemStateChanged
 
 private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbProjectItemStateChanged
-// TODO add your handling code here:
+    loadCBProject();
 }//GEN-LAST:event_cbProjectItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -253,4 +276,190 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
     private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel lbError;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setControlShow(IPanelControlGeneral controlGeneral) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Operation> listA() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean checkData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public long addData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean resetData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean editData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean deleteData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Operation> listCombo() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setDataShow(Operation ob) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void refreshData() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    private void loadEnterprise() {
+        List<Enterprise> enterprises = provider.getListEnterprise();
+        if (enterprises != null) {
+            cbEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
+            loadCBEnterprise();
+        } else {
+            lbError.setText("No enterprise");
+        }
+    }
+
+    private void loadDepartment() {
+        if (enterpriseID > 0) {
+            List<Department> departments = provider.getListDepartmentByIDEnt(enterpriseID);
+            cbDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
+        } else {
+            cbDepartment.enable(false);
+        }
+    }
+
+    private void loadCBEnterprise() {
+        Enterprise e = (Enterprise) cbEnterprise.getSelectedItem();
+        if (e != null) {
+            if (e.getId() > 0) {
+                cbProject.setEnabled(true);
+                cbDepartment.setEnabled(true);
+                enterpriseID = e.getId();
+                loadDepartment();
+                loadProject();
+                loadCBDepartment();
+                loadCBProject();
+            } else {
+                enterpriseID = 0;
+            }
+        } else {
+            cbProject.setEnabled(false);
+            cbDepartment.setEnabled(false);
+            cbEmployee.setEnabled(false);
+        }
+    }
+
+    private void loadCBDepartment() {
+        int index = cbEnterprise.getSelectedIndex();
+        if (index > 0) {
+            Department d = (Department) cbDepartment.getSelectedItem();
+            if (d != null) {
+                if (d.getId() > 0) {
+                    cbEmployee.setEnabled(true);
+                    departmentID = d.getId();
+                    loadEmployee();
+                    loadCBEmployee();
+                } else {
+                    departmentID = 0;
+                }
+            } else {
+                cbEmployee.setEnabled(false);
+                departmentID = 0;
+            }
+        } else {
+            departmentID = 0;
+        }
+    }
+    private void loadUnitMoney() {
+        List<UnitMoney> unitMoneys = provider.getListUnitMoney();
+        if (unitMoneys != null) {
+            cbUnitMoney.setModel(new DefaultComboBoxModel(unitMoneys.toArray()));
+            loadCBUnitMoney();
+        } else {
+            lbError.setText("No unit money");
+        }
+    }
+
+    private void loadCBUnitMoney() {
+        UnitMoney u = (UnitMoney) cbUnitMoney.getSelectedItem();
+        if (u != null) {
+            if (u.getId() > 0) {
+                unitMoneyID = u.getId();
+            } else {
+                unitMoneyID = 0;
+            }
+        } 
+    }
+    
+    private void loadEmployee() {
+        if (departmentID > 0) {
+            List<Employee> employees = provider.getListEmployeeByIDDep(departmentID);
+            cbEmployee.setModel(new DefaultComboBoxModel(employees.toArray()));
+        } else {
+            cbEmployee.enable(false);
+        }
+    }
+
+    private void loadCBEmployee() {
+        int index = cbDepartment.getSelectedIndex();
+        if (index > 0) {
+            Employee e = (Employee) cbEmployee.getSelectedItem();
+            if (e != null) {
+                if (e.getId() > 0) {
+                    employeeID = e.getId();
+                } else {
+                    employeeID = 0;
+                }
+            } else {
+                employeeID = 0;
+            }
+        } else {
+            employeeID = 0;
+        }
+    }
+    
+    private void loadProject(){
+        if (enterpriseID > 0) {
+            JOptionPane.showMessageDialog(null, enterpriseID);
+            List<Project> projects = provider.getListProjectByIDEnt(enterpriseID);
+            cbProject.setModel(new DefaultComboBoxModel(projects.toArray()));
+        } else {
+            cbProject.enable(false);
+        }
+    }
+
+    private void loadCBProject() {
+        int index = cbEnterprise.getSelectedIndex();
+        if (index > 0) {
+            Project p = (Project) cbProject.getSelectedItem();
+            if (p != null) {
+                if (p.getId() > 0) {
+                    projectID = p.getId();
+                } else {
+                    projectID = 0;
+                }
+            } else {
+                projectID = 0;
+            }
+        } else {
+            projectID = 0;
+        }
+    }
 }
