@@ -47,7 +47,7 @@ public class EntityDao<E> implements IEntityDao<E> {
         }
         try {
             em.getTransaction().begin();
-            em.merge(em.find(clsName, ((IEntity) object).getId()));
+            em.merge(object);
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {
