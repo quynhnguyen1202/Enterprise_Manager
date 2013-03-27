@@ -18,16 +18,18 @@ import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
 
 /**
  *
  * @author QuynhNguyen
  */
 public class Chart extends ApplicationFrame {
+    int choose=1;
 
     public Chart(String title) {
         super(title);
-        final XYDataset dataset = createDataset();
+        final XYDataset dataset = createDataset(choose);
         JFreeChart chart = createChart(dataset);
         final ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
@@ -38,8 +40,9 @@ public class Chart extends ApplicationFrame {
         chartFrame.setVisible(true);
     }
 
-    private XYDataset createDataset() {
-        int choose = 0;
+    private XYDataset createDataset(int choose) {
+        int check = 1, total = 1;
+        //int choose = 0;
         /*
          * choose = 1 : thong ke cho enterprise
          * choose =2 : thong ke theo department
@@ -49,7 +52,7 @@ public class Chart extends ApplicationFrame {
         TimeSeriesCollection dataset=new TimeSeriesCollection();
         if (choose==1) {
           EnterpriseStatisticChart  ent= new EnterpriseStatisticChart();
-          dataset=(TimeSeriesCollection) ent.createDataset();
+          dataset=(TimeSeriesCollection) ent.createDataset(check, total);
                    }
         if(choose==2)
         {
@@ -91,7 +94,15 @@ public class Chart extends ApplicationFrame {
             renderer.setSeriesStroke(1, new BasicStroke(2.0f));
         }
         final DateAxis axis = (DateAxis) plot.getDomainAxis();
-        axis.setDateFormatOverride(new SimpleDateFormat("hh:mma"));
+        axis.setDateFormatOverride(new SimpleDateFormat("dd:MM:yyyy"));
         return chart;
+    }
+    public static void main(String[] args) {
+         final Chart demo = new Chart("Multiple Dataset Demo 1");
+        demo.pack();
+        RefineryUtilities.centerFrameOnScreen(demo);
+        demo.setVisible(true);
+
+        
     }
 }

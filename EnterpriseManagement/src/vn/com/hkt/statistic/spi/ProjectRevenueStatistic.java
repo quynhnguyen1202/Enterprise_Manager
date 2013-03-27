@@ -29,7 +29,7 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
         String sql = "select sum(o." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " o,"
                 + " where (o." + Operation.FIELD_IDPROJECT + "=?1 )"
                 + "and ( o." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
-                + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?3) and o." + Operation.FIELD_CLASSIFICATION + " = 'TRUE'";
+                + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?3) and o." + Operation.FIELD_CLASSIFICATION + " = 1 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
@@ -66,7 +66,7 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                 + "select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
                 + "from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
                 + "join  tmp t on t.id=o.IdProject "
-                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " ='TRUE' ";
+                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " =1  ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
@@ -93,7 +93,7 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
         String sql = "select sum(o." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " o,"
                 + " where (o." + Operation.FIELD_IDPROJECT + "=?1 )"
                 + "and ( o." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
-                + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?3) and o." + Operation.FIELD_CLASSIFICATION + " = 'TRUE'";
+                + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?3) and o." + Operation.FIELD_CLASSIFICATION + " = 0";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
@@ -130,7 +130,7 @@ public class ProjectRevenueStatistic implements IProjectRevenueStatistic {
                 + "select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
                 + "from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
                 + "join  tmp t on t.id=o.IdProject "
-                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " ='FALSE' ";
+                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + " = 0 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }

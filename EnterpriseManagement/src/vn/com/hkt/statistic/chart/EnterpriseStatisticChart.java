@@ -38,7 +38,7 @@ public class EnterpriseStatisticChart {
     private long id;
     private double revenue = 0, spending = 0, profit = 0;
 
-    public  XYDataset createDataset() {
+    public  XYDataset createDataset(int check, int total) {
         Calendar dateStart, dateEnd;
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.setDomainIsPointsInTime(true);
@@ -46,13 +46,13 @@ public class EnterpriseStatisticChart {
         TimeSeries s2 = new TimeSeries("Spending", Date.class);
         TimeSeries s3 = new TimeSeries("Profit", Date.class);
 
-        int check = 0;
+        //int check = 0;
         /*check =1 : thong ke theo ngay,
          * =2 : thong ke theo thang; 
          * =3 : thong ke theo nam
          * 
          */
-        int total = 0;
+        //int total = 0;
         /* total =1 : tinh doanh thu theo enterprise cha,
          * =2 : tinh doanh thu theo enterprise cha va cac con
          * =3 : tinh doanh thu theo cac con cua enterprise

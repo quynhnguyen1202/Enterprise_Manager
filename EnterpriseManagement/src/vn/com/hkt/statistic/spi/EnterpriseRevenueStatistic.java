@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TemporalType;
+import javax.swing.JOptionPane;
 import vn.com.hkt.dao.spi.EntityManageFactoryTest;
 import vn.com.hkt.data.entity.Enterprise;
 import vn.com.hkt.data.entity.Operation;
@@ -21,7 +22,7 @@ import vn.com.hkt.statistic.api.IEnterpriseRevenueStatistic;
 public class EnterpriseRevenueStatistic implements IEnterpriseRevenueStatistic {
 
     private EntityManager em;
-    List<Double> result = null;
+    List<Object> result = null;
 
     @Override
     public float revenueGetByTotalEnterprise(long idEnterprise, Date dateStart, Date dateEnd) {
@@ -35,7 +36,7 @@ public class EnterpriseRevenueStatistic implements IEnterpriseRevenueStatistic {
                 + "select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
                 + "from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
                 + "join  tmp t on t.id=o.IdEnterprise "
-                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3  and o."+Operation.FIELD_CLASSIFICATION +" = 'TRUE' ";
+                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3  and o." + Operation.FIELD_CLASSIFICATION + " = 1 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
@@ -45,6 +46,7 @@ public class EnterpriseRevenueStatistic implements IEnterpriseRevenueStatistic {
                 revenue = Float.parseFloat(result.get(0).toString());
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println(e);
         }
 
@@ -61,10 +63,11 @@ public class EnterpriseRevenueStatistic implements IEnterpriseRevenueStatistic {
     @Override
     public float revenueGetByEnterprise(long idEnterprise, Date dateStart, Date dateEnd) {
         float sum = 0;
-        String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where (tbl." + Operation.FIELD_ID + "=?1) "
+        String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ")"
+                + " from " + Operation.class.getSimpleName() + " tbl where (tbl." + Operation.FIELD_IDENTERPRISE + "=?1) "
                 + " and ( tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
                 + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3)"
-                +" and (tbl." +Operation.FIELD_CLASSIFICATION+ " ='TRUE')";
+                + " and (tbl." + Operation.FIELD_CLASSIFICATION + " = 1)";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
@@ -76,12 +79,14 @@ public class EnterpriseRevenueStatistic implements IEnterpriseRevenueStatistic {
                     sum = Float.parseFloat(result.get(0).toString());
                 } catch (Exception e) {
                     System.out.println(e);
+                    sum=0;
                 }
             } else {
                 sum = 0;
             }
         } catch (Exception e) {
-            return 0;
+            sum=0;
+            System.out.println(e);
         } finally {
             em.close();
         }
@@ -100,7 +105,7 @@ public class EnterpriseRevenueStatistic implements IEnterpriseRevenueStatistic {
                 + "select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
                 + "from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
                 + "join  tmp t on t.id=o.IdEnterprise "
-                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3  and o."+Operation.FIELD_CLASSIFICATION +" = 'FALSE' ";
+                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3  and o." + Operation.FIELD_CLASSIFICATION + " = 0 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
@@ -109,7 +114,12 @@ public class EnterpriseRevenueStatistic implements IEnterpriseRevenueStatistic {
             if (result != null && !result.isEmpty()) {
                 spending = Float.parseFloat(result.get(0).toString());
             }
+            else
+            {
+                spending=0;
+            }
         } catch (Exception e) {
+            spending=0;
             System.out.println(e);
         }
 
@@ -128,14 +138,14 @@ public class EnterpriseRevenueStatistic implements IEnterpriseRevenueStatistic {
                 + "select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
                 + "from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
                 + "join  tmp t on t.id=o.IdEnterprise "
-                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3  and o."+Operation.FIELD_CLASSIFICATION +" = 'FALSE' ";
+                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3  and o." + Operation.FIELD_CLASSIFICATION + " = 0 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
         try {
             result = em.createNativeQuery(sql).setParameter(2, dateStart, TemporalType.DATE).setParameter(3, dateEnd, TemporalType.DATE).getResultList();
             if (result != null && !result.isEmpty()) {
-               spending = Float.parseFloat(result.get(0).toString());
+                spending = Float.parseFloat(result.get(0).toString());
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -146,8 +156,8 @@ public class EnterpriseRevenueStatistic implements IEnterpriseRevenueStatistic {
 
     @Override
     public float spendingGetByTotalChildrenEnterprise(long idEnterprise, Date dateStart, Date dateEnd) {
-        float spending=0;
-        spending= spendingGetByTotalEnterprise(idEnterprise, dateStart, dateEnd)-spendingGetByEnterprise(idEnterprise, dateStart, dateEnd);
+        float spending = 0;
+        spending = spendingGetByTotalEnterprise(idEnterprise, dateStart, dateEnd) - spendingGetByEnterprise(idEnterprise, dateStart, dateEnd);
         return spending;
     }
 }
