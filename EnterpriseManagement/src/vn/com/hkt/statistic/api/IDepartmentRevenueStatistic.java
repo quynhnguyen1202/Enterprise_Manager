@@ -17,4 +17,10 @@ public interface IDepartmentRevenueStatistic {
     public float revenueGetByTotalDepartment(long idDepartment, Date dateStart, Date dateEnd);
 
     public float revenueGetByTotalChildrenDepartment(long idDepartment, Date dateStart, Date dateEnd);
+
+    public float spendingGetByDepartment(long idDepartment, Date dateStart, Date dateEnd);
+
+    public float spendingGetByTotalDepartment(long idDepartment, Date dateStart, Date dateEnd);
+
+    public float spendingGetByTotalChildrenDepartment(long idDepartment, Date dateStart, Date dateEnd);
 }
