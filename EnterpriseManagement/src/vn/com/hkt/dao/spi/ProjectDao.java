@@ -41,7 +41,7 @@ public class ProjectDao extends EntityDao<Project> implements IProjectDao {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
         try {
-            return (List) em.createQuery(sql).setParameter(1, id);
+            return  em.createQuery(sql).setParameter(1, id).getResultList();
         } catch (Exception e) {
             return null;
         } finally {
