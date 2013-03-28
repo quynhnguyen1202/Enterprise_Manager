@@ -10,20 +10,17 @@
  */
 package vn.com.hkt.gui.chart.control;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
-import org.jfree.data.category.DefaultCategoryDataset;
 import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.Employee;
 import vn.com.hkt.data.entity.Enterprise;
@@ -37,7 +34,7 @@ import vn.com.hkt.provider.spi.ProviderPanelShowChartLine;
  *
  * @author Administrator
  */
-public class PanelControlChart extends javax.swing.JPanel implements IPanelControlChart {
+public final class PanelControlChart extends javax.swing.JPanel implements IPanelControlChart {
 
     private long projectID;
     private long enterpriseID;
@@ -57,10 +54,8 @@ public class PanelControlChart extends javax.swing.JPanel implements IPanelContr
         jPanel4.setVisible(false);
         loadEnterprise();
         //load date
-        cbDateTime.setSelectedItem("Date");
-        panelDay.setVisible(true);
-        panelMonth.setVisible(false);
-        panelyear.setVisible(false);
+        cbDateTime.setSelectedItem("Day");
+
 
     }
 
@@ -102,16 +97,6 @@ public class PanelControlChart extends javax.swing.JPanel implements IPanelContr
         cbType = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         cbDateTime = new javax.swing.JComboBox();
-        panelyear = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
-        jYearChooser2 = new com.toedter.calendar.JYearChooser();
-        panelMonth = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        mcEndMonth = new com.toedter.calendar.JMonthChooser();
-        mcStartMonth = new com.toedter.calendar.JMonthChooser();
         panelDay = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         dcEndDate = new com.toedter.calendar.JDateChooser();
@@ -354,56 +339,6 @@ public class PanelControlChart extends javax.swing.JPanel implements IPanelContr
         add(cbDateTime);
         cbDateTime.setBounds(460, 55, 120, 23);
 
-        panelyear.setBackground(new java.awt.Color(255, 255, 255));
-        panelyear.setLayout(null);
-
-        jLabel16.setText("End year :");
-        panelyear.add(jLabel16);
-        jLabel16.setBounds(200, 0, 70, 21);
-
-        jLabel17.setText("Start year :");
-        panelyear.add(jLabel17);
-        jLabel17.setBounds(5, 0, 70, 21);
-        panelyear.add(jYearChooser1);
-        jYearChooser1.setBounds(280, 0, 100, 21);
-        panelyear.add(jYearChooser2);
-        jYearChooser2.setBounds(90, 0, 100, 21);
-
-        add(panelyear);
-        panelyear.setBounds(582, 55, 383, 23);
-
-        panelMonth.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel14.setText("End month :");
-
-        jLabel15.setText("Start month :");
-
-        javax.swing.GroupLayout panelMonthLayout = new javax.swing.GroupLayout(panelMonth);
-        panelMonth.setLayout(panelMonthLayout);
-        panelMonthLayout.setHorizontalGroup(
-            panelMonthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMonthLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(mcStartMonth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(15, 15, 15)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(mcEndMonth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-        );
-        panelMonthLayout.setVerticalGroup(
-            panelMonthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(mcStartMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(mcEndMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        add(panelMonth);
-        panelMonth.setBounds(582, 55, 383, 23);
-
         panelDay.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel12.setText("End date :");
@@ -504,21 +439,6 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_cbProjectItemStateChanged
 
 private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDateTimeItemStateChanged
-    if (cbDateTime.getSelectedItem() == "Day") {
-        panelDay.setVisible(true);
-        panelMonth.setVisible(false);
-        panelyear.setVisible(false);
-    }
-    if (cbDateTime.getSelectedItem() == "Month") {
-        panelDay.setVisible(false);
-        panelMonth.setVisible(true);
-        panelyear.setVisible(false);
-    }
-    if (cbDateTime.getSelectedItem() == "Year") {
-        panelDay.setVisible(false);
-        panelMonth.setVisible(false);
-        panelyear.setVisible(true);
-    }
 }//GEN-LAST:event_cbDateTimeItemStateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -541,10 +461,6 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -558,13 +474,7 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
-    private com.toedter.calendar.JYearChooser jYearChooser2;
-    private com.toedter.calendar.JMonthChooser mcEndMonth;
-    private com.toedter.calendar.JMonthChooser mcStartMonth;
     private javax.swing.JPanel panelDay;
-    private javax.swing.JPanel panelMonth;
-    private javax.swing.JPanel panelyear;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -850,36 +760,46 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
         //get object
         if (cbChoose.getSelectedItem() == "Enterprise") {
             panelShowChart.setObjectView(getEntEnterprise());
-        }else if(cbChoose.getSelectedItem()=="Department"){
+        } else if (cbChoose.getSelectedItem() == "Department") {
             panelShowChart.setObjectView(getDepartment());
-        }else if(cbChoose.getSelectedItem()=="Project"){
+        } else if (cbChoose.getSelectedItem() == "Project") {
             panelShowChart.setObjectView(getProject());
-        }else {
+        } else {
             panelShowChart.setObjectView(getEmployee());
         }
         //get type view
-        if(cbType.getSelectedItem().toString().equals("Parent")){
+        if (cbType.getSelectedItem().toString().equals("Parent")) {
             panelShowChart.setTypeView(1);
-        }else if(cbType.getSelectedItem().toString().equals("Subsidiary")){
-            panelShowChart.setTypeView(2);
-        }else{
+        } else if (cbType.getSelectedItem().toString().equals("Subsidiary")) {
             panelShowChart.setTypeView(3);
+        } else {
+            panelShowChart.setTypeView(2);
         }
-        
+
         //get type time
-        if(cbDateTime.getSelectedItem().toString().equals("Day")){
-            panelShowChart.setTypeDate(1);
-            panelShowChart.setStartDate(dcStartDate.getDate());
-            panelShowChart.setEndDate(dcEndDate.getDate());
-        }else if(cbDateTime.getSelectedItem().toString().equals("Month")){
-            panelShowChart.setTypeDate(2);
-           // panelShowChart.setStartDate();
-            //.setEndDate(dcEndDate.getDate());
+        int typeTime = 0;
+        if (cbDateTime.getSelectedItem().toString().equals("Day")) {
+            typeTime = 1;
+        } else if (cbDateTime.getSelectedItem().toString().equals("Month")) {
+            typeTime = 2;
+        } else if (cbDateTime.getSelectedItem().toString().equals("Year")) {
+            typeTime = 3;
         }
-        
-        
-        
-        if(panelShowChart!=null){
+        panelShowChart.setTypeDate(typeTime);
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date a = (Date) format.parse(dcStartDate.getDate().toString());
+            Date b = (Date) format.parse(dcEndDate.getDate().toString());
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(a);
+            panelShowChart.setStartDate(cal);
+            cal.setTime(b);
+            panelShowChart.setEndDate(cal);
+        } catch (ParseException ex) {
+            Logger.getLogger(PanelControlChart.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (panelShowChart != null) {
             panelShowChart.viewData();
         }
     }
@@ -891,26 +811,36 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
         }
         return null;
     }
-    private Department getDepartment(){
-        Department d=(Department)cbDepDepartment.getSelectedItem();
-        if(d!=null){
+
+    private Department getDepartment() {
+        Department d = (Department) cbDepDepartment.getSelectedItem();
+        if (d != null) {
             return d;
         }
-        return null; 
+        return null;
     }
-     private Project getProject(){
-        Project p=(Project)cbProject.getSelectedItem();
-        if(p!=null){
+
+    private Project getProject() {
+        Project p = (Project) cbProject.getSelectedItem();
+        if (p != null) {
             return p;
         }
-        return null; 
+        return null;
     }
-     private Employee getEmployee(){
-         Employee e=(Employee)cbEmployee.getSelectedItem();
-         if(e!=null){
-             return e;
-         }
-         return null;
-     }
-    
+
+    private Object getEmployee() {
+        Employee e = (Employee) cbEmployee.getSelectedItem();
+        Department d = (Department) cbEmpDepartment.getSelectedItem();
+        Enterprise ent = (Enterprise) cbEmpEnterprise.getSelectedItem();
+        if (e != null) {
+            return e;
+        }
+//        if(d!=null){
+//            return d;
+//        }
+//        if(ent!=null){
+//            return ent;
+//        }
+        return null;
+    }
 }

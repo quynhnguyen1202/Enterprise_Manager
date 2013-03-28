@@ -10,27 +10,27 @@
  */
 package vn.com.hkt.gui.chart.PanelShow;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.io.File;
-import java.util.Date;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.time.TimeSeriesCollection;
 import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.Employee;
 import vn.com.hkt.data.entity.Enterprise;
 import vn.com.hkt.data.entity.Project;
 import vn.com.hkt.gui.chart.panelshow.api.IPanelShowChart;
+import vn.com.hkt.statistic.chart.DepartmentStatisticChart;
+import vn.com.hkt.statistic.chart.EmployeeStatisticChart;
+import vn.com.hkt.statistic.chart.EnterpriseStatisticChart;
+import vn.com.hkt.statistic.chart.ProjectStatisticChart;
 
 /**
  *
@@ -43,6 +43,14 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
     Department d;
     Project p;
     Employee emp;
+    int typeView;
+    int typeDate;
+    Calendar startDate;
+    Calendar endDate;
+    EnterpriseStatisticChart enterpriseChart;
+    DepartmentStatisticChart departmentChart;
+    ProjectStatisticChart projectChart;
+    EmployeeStatisticChart employeeChart;
     public linechart() {
         initComponents();
     }
@@ -77,13 +85,26 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
 
    
     public  ChartPanel createChart(){
-        DefaultCategoryDataset dataset=new DefaultCategoryDataset();
-        dataset.addValue(110, "aaa", "2009");
-        dataset.addValue(150, "aaa", "2010");
-        dataset.addValue(250, "aaa", "2011");
-        dataset.addValue(500, "aaa", "2012");
-        dataset.addValue(1200, "aaa", "2013");
-        JFreeChart chart=ChartFactory.createLineChart("Line Chart Demo", "Export","Year" , dataset, PlotOrientation.VERTICAL, true, true, false);
+        TimeSeriesCollection dataset=new TimeSeriesCollection();
+        if(e!=null){
+            JOptionPane.showConfirmDialog(null, endDate);
+            JOptionPane.showConfirmDialog(null, startDate);
+            JOptionPane.showConfirmDialog(null, typeDate);
+            JOptionPane.showConfirmDialog(null, typeView);
+            JOptionPane.showConfirmDialog(null, e.getId());
+            dataset= (TimeSeriesCollection) enterpriseChart.createDataset(typeDate,typeView,e.getId(),startDate,endDate);
+        }else if(d !=null){
+//            dataset=(DefaultCategoryDataset) departmentChart.createDataset();
+        }else if(p !=null){
+          //  dataset=(DefaultCategoryDataset) projectChart.createDataset();
+        }else if(emp !=null){
+          //  dataset=(DefaultCategoryDataset) employeeChart.createDataset();
+        }else{
+            JOptionPane.showMessageDialog(null, "Data not found");
+            return null;
+        }
+        
+        JFreeChart chart=ChartFactory.createTimeSeriesChart("Chart "+e.getName(), "Year","Name" , dataset, true, true, false);
         //design
         chart.setBackgroundPaint(Color.white);
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
@@ -112,37 +133,33 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
     public void setObjectView(Object obj) {
       if(obj instanceof Enterprise){
           e=(Enterprise) obj;
-          JOptionPane.showMessageDialog(null, e);
       }else if(obj instanceof Department){
           d=(Department)obj;
-          JOptionPane.showMessageDialog(null, d);
       }else if(obj instanceof Project){
           p=(Project)obj;
-          JOptionPane.showMessageDialog(null, p);
       }else{
           emp=(Employee)obj;
-          JOptionPane.showMessageDialog(null, emp);
       }
     }
 
     @Override
     public void setTypeDate(int type) {
-     //   throw new UnsupportedOperationException("Not supported yet.");
+        this.typeDate=type;   
     }
 
     @Override
     public void setTypeView(int type) {
-      //  throw new UnsupportedOperationException("Not supported yet.");
+      this.typeView=type;
     }
 
     @Override
-    public void setStartDate(Date d) {
-      //  throw new UnsupportedOperationException("Not supported yet.");
+    public void setStartDate(Calendar d) {
+      this.startDate=d;
     }
 
     @Override
-    public void setEndDate(Date d) {
-       // throw new UnsupportedOperationException("Not supported yet.");
+    public void setEndDate(Calendar d) {
+       this.endDate=d;
     }
 
     @Override
