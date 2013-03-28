@@ -48,7 +48,9 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
         return revenue;
     }
 
-    @Override
+    
+    /*
+     @Override
     public float revenueGetByTotalEmployee(long idEmployee, Date dateStart, Date dateEnd) {
         String sql = "with tmp ( id , idEmployee ) as "
                 + "(select d." + Employee.FIELD_ID + " ,d." + Employee.FIELD_IDDEPARTMENT
@@ -74,13 +76,17 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
 
         return revenue;
     }
-
+     * 
+     */
+/*
     @Override
     public float revenueGetByTotalChildrenEmployee(long idEmployee, Date dateStart, Date dateEnd) {
         revenue = revenueGetByTotalEmployee(idEmployee, dateStart, dateEnd) - revenueGetByEmployee(idEmployee, dateStart, dateEnd);
         return revenue;
     }
 
+     * 
+     */
     @Override
     public float spendingGetByEmployee(long idEmployee, Date dateStart, Date dateEnd) {
         String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1) "
@@ -103,7 +109,7 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
         }
         return spending;
     }
-
+/*
     @Override
     public float spendingGetByTotalEmployee(long idEmployee, Date dateStart, Date dateEnd) {
         String sql = "with tmp ( id , idEmployee ) as "
@@ -131,12 +137,17 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
         return spending;
     }
 
+     * 
+     */
+    /*
     @Override
     public float spendingGetByTotalChildrenEmployee(long idEmployee, Date dateStart, Date dateEnd) {
         spending = spendingGetByTotalEmployee(idEmployee, dateStart, dateEnd) - spendingGetByEmployee(idEmployee, dateStart, dateEnd);
         return spending;
     }
 
+     * 
+     */
     @Override
     public float revenueGetByEmployee(long idEmployee, long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         if (idEnterprise > 0) {
@@ -225,7 +236,7 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
         }
         return revenue;
     }
-
+/*
     @Override
     public float revenueGetByTotalEmployee(long idEmployee, long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         if (idEnterprise > 0) {
@@ -327,11 +338,16 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
         return revenue;
     }
 
+     * 
+     */
+    /*
     @Override
     public float revenueGetByTotalChildrenEmployee(long idEmployee, long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         revenue = revenueGetByTotalEmployee(idEmployee, idDepartment, idEnterprise, dateStart, dateEnd) - revenueGetByEmployee(idEmployee, idDepartment, idEnterprise, dateStart, dateEnd);
         return revenue;
     }
+     * 
+     */
 
     @Override
     public float spendingGetByEmployee(long idEmployee, long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
@@ -424,6 +440,7 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
         return spending;
     }
 
+   /*
     @Override
     public float spendingGetByTotalEmployee(long idEmployee, long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         if (idEnterprise > 0) {
@@ -525,9 +542,14 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
         return spending;
     }
 
+     * 
+     */
+    /*
     @Override
     public float spendingGetByTotalChildrenEmployee(long idEmployee, long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         spending = spendingGetByTotalEmployee(idEmployee, idDepartment, idEnterprise, dateStart, dateEnd) - spendingGetByEmployee(idEmployee, idDepartment, idEnterprise, dateStart, dateEnd);
         return spending;
     }
+     * 
+     */
 }
