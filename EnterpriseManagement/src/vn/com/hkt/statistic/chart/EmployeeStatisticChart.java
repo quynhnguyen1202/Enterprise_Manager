@@ -37,7 +37,7 @@ public class EmployeeStatisticChart {
          * =3 : thong ke theo nam
          * 
          */
-        int total = 0;
+        //int total = 0;
         /* total =1 : tinh doanh thu theo  cha,
          * =2 : tinh doanh thu theo  cha va cac con
          * =3 : tinh doanh thu theo cac con 
@@ -50,11 +50,12 @@ public class EmployeeStatisticChart {
             TimeSeriesCollection datasetStatisticPerDay = new TimeSeriesCollection();
             while (dateStart.before(dateEnd)) {
                 EmployeeRevenueStatistic ers = new EmployeeRevenueStatistic();
-                if (total == 1) {
+              //  if (total == 1) {
                     revenue = ers.revenueGetByEmployee(id, dateStart.getTime(), dateStart.getTime());
                     spending = ers.spendingGetByEmployee(id, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
-                }
+               // }
+                /*
                 if (total == 2) {
                     revenue = ers.revenueGetByTotalEmployee(id, dateStart.getTime(), dateEnd.getTime());
                     spending = ers.spendingGetByTotalEmployee(id, dateStart.getTime(), dateStart.getTime());
@@ -65,6 +66,8 @@ public class EmployeeStatisticChart {
                     spending = ers.spendingGetByTotalChildrenEmployee(id, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
                 }
+                 * 
+                 */
                 s1.add(new Day(dateStart.getTime()), revenue);
                 s2.add(new Day(dateStart.getTime()), spending);
                 s3.add(new Day(dateStart.getTime()), profit);
@@ -90,11 +93,11 @@ public class EmployeeStatisticChart {
 
             while (dateStart.before(dateEnd)) {
                 EmployeeRevenueStatistic ers = new EmployeeRevenueStatistic();
-                if (total == 1) {
+               // if (total == 1) {
                     revenue = ers.revenueGetByEmployee(id, dateStart.getTime(), nextMonth.getTime());
                     spending = ers.revenueGetByEmployee(id, dateStart.getTime(), nextMonth.getTime());
                     profit = revenue - spending;
-                }
+               /* }
                 if (total == 2) {
                     revenue = ers.revenueGetByTotalEmployee(id, dateStart.getTime(), nextMonth.getTime());
                     spending = ers.revenueGetByTotalEmployee(id, dateStart.getTime(), nextMonth.getTime());
@@ -105,6 +108,8 @@ public class EmployeeStatisticChart {
                     spending = ers.revenueGetByTotalChildrenEmployee(id, dateStart.getTime(), nextMonth.getTime());
                     profit = revenue - spending;
                 }
+                * 
+                */
                 s1.add(new Month(dateStart.getTime()), revenue);
                 s2.add(new Month(dateStart.getTime()), spending);
                 s3.add(new Month(dateStart.getTime()), profit);
@@ -128,12 +133,12 @@ public class EmployeeStatisticChart {
             dateEnd.set(yearE + 1, 0, 1);
             while (dateStart.before(dateEnd)) {
                 EmployeeRevenueStatistic ers = new EmployeeRevenueStatistic();
-                if (total == 1) {
+               // if (total == 1) {
 
                     revenue = ers.revenueGetByEmployee(id, dateStart.getTime(), nextYear.getTime());
                     spending = ers.revenueGetByEmployee(id, dateStart.getTime(), nextYear.getTime());
                     profit = revenue - spending;
-                }
+                /*}
                 if (total == 2) {
                     revenue = ers.revenueGetByTotalEmployee(id, dateStart.getTime(), nextYear.getTime());
                     spending = ers.revenueGetByTotalEmployee(id, dateStart.getTime(), nextYear.getTime());
@@ -145,6 +150,8 @@ public class EmployeeStatisticChart {
                     profit = revenue - spending;
                 }
 
+                 * 
+                 */
                 s1.add(new Year(dateStart.getTime()), revenue);
                 s2.add(new Year(dateStart.getTime()), spending);
                 s3.add(new Year(dateStart.getTime()), profit);

@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @Entity
 public class ProductGroup implements IEntity{
 
-    public static final String FIELD_ID = "";
+    public static final String FIELD_ID = "Id";
     public static final String FIELD_NAME = "Name";
     public static final String FIELD_IDPRODUCTGROUP = "IdProductGroup";
     public static final String FIELD_IDENTERPRISE = "IdEnterprise";

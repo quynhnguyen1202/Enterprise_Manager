@@ -17,4 +17,11 @@ public interface IProductGroupRevenueStatistic {
     public float revenueGetByProductGroup(long idProductGroup, Date dateStart, Date dateEnd);
 
     public float revenueGetByTotalChildrenProductGroup(long idProductGroup, Date dateStart, Date dateEnd);
+    
+    public float spendingGetByTotalProductGroup(long idProductGroup, Date dateStart, Date dateEnd);
+
+    public float spendingGetByProductGroup(long idProductGroup, Date dateStart, Date dateEnd);
+
+    public float spendingGetByTotalChildrenProductGroup(long idProductGroup, Date dateStart, Date dateEnd);
+    
 }

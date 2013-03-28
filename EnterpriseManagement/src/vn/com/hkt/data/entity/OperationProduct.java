@@ -14,7 +14,7 @@ import javax.persistence.Id;
  * @author QuynhNguyen
  */
 @Entity
-public class OperationProduct implements IEntity{
+public class OperationProduct implements IEntity {
 
     public static final String FIELD_ID = "Id";
     public static final String FIELD_IDOPERATION = "IdOperation";
@@ -26,7 +26,6 @@ public class OperationProduct implements IEntity{
     private long Id;
     private long IdOperation;
     private long IdProduct;
-    private long IdProductGroup;
     private long Quantity;
     private float UnitPrice;
     private String codeOperationProduct;
@@ -62,14 +61,6 @@ public class OperationProduct implements IEntity{
 
     public void setIdProduct(long IdProduct) {
         this.IdProduct = IdProduct;
-    }
-
-    public long getIdProductGroup() {
-        return IdProductGroup;
-    }
-
-    public void setIdProductGroup(long IdProductGroup) {
-        this.IdProductGroup = IdProductGroup;
     }
 
     public long getIdUnitMoney() {
