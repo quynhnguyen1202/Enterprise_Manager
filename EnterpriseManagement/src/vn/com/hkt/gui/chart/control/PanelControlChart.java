@@ -10,23 +10,41 @@
  */
 package vn.com.hkt.gui.chart.control;
 
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
+import vn.com.hkt.data.entity.Department;
+import vn.com.hkt.data.entity.Employee;
+import vn.com.hkt.data.entity.Enterprise;
+import vn.com.hkt.data.entity.Project;
 import vn.com.hkt.gui.chart.panelshow.api.IPanelShowChart;
 import vn.com.hkt.gui.chart.control.api.IPanelControlChart;
+import vn.com.hkt.provider.api.IProviderPanelShowChartLine;
+import vn.com.hkt.provider.spi.ProviderPanelShowChartLine;
 
 /**
  *
  * @author Administrator
  */
 public class PanelControlChart extends javax.swing.JPanel implements IPanelControlChart {
+
+    private long projectID;
+    private long enterpriseID;
+    private long departmentID;
+    private long employeeID;
     private IPanelShowChart panelShowChart;
+    private IProviderPanelShowChartLine provider;
+
     /** Creates new form PanelControlChart */
     public PanelControlChart() {
         initComponents();
+        provider = new ProviderPanelShowChartLine();
+        cbChoose.setSelectedIndex(0);
         jPanel1.setVisible(true);
         jPanel2.setVisible(false);
         jPanel3.setVisible(false);
         jPanel4.setVisible(false);
+        loadEnterprise();
     }
 
     /** This method is called from within the constructor to
@@ -40,31 +58,29 @@ public class PanelControlChart extends javax.swing.JPanel implements IPanelContr
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         cbEntEnterprise = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox();
+        cbEmpEnterprise = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox();
+        cbEmpDepartment = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox();
+        cbEmployee = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        cbDepEnterprise = new javax.swing.JComboBox();
+        cbDepDepartment = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
+        cbProEnterprise = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox();
+        cbProDepartment = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox();
+        cbProject = new javax.swing.JComboBox();
+        cbChoose = new javax.swing.JComboBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
@@ -73,58 +89,31 @@ public class PanelControlChart extends javax.swing.JPanel implements IPanelContr
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Employee");
-        jRadioButton1.setOpaque(false);
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText("Enterprise");
-        jRadioButton2.setOpaque(false);
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Department");
-        jRadioButton3.setOpaque(false);
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("Project");
-        jRadioButton4.setOpaque(false);
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
-            }
-        });
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         cbEntEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbEntEnterprise.setOpaque(false);
+        cbEntEnterprise.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbEntEnterpriseItemStateChanged(evt);
+            }
+        });
+
+        jLabel9.setText("Choose enterprise :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(cbEntEnterprise, 0, 200, Short.MAX_VALUE)
-                .addGap(656, 656, 656))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbEntEnterprise, 0, 196, Short.MAX_VALUE)
+                .addGap(506, 506, 506))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(cbEntEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -132,15 +121,30 @@ public class PanelControlChart extends javax.swing.JPanel implements IPanelContr
 
         jLabel6.setText("    Enterprise");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEmpEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEmpEnterprise.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbEmpEnterpriseItemStateChanged(evt);
+            }
+        });
 
         jLabel7.setText("Department :");
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEmpDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEmpDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbEmpDepartmentItemStateChanged(evt);
+            }
+        });
 
         jLabel8.setText("Employee :");
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEmployee.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEmployee.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbEmployeeItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -149,32 +153,42 @@ public class PanelControlChart extends javax.swing.JPanel implements IPanelContr
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jComboBox6, 0, 100, Short.MAX_VALUE)
+                .addComponent(cbEmpEnterprise, 0, 99, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jComboBox7, 0, 100, Short.MAX_VALUE)
+                .addComponent(cbEmpDepartment, 0, 99, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jComboBox8, 0, 100, Short.MAX_VALUE)
-                .addGap(206, 206, 206))
+                .addComponent(cbEmployee, 0, 98, Short.MAX_VALUE)
+                .addGap(220, 220, 220))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cbEmpEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cbEmpDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cbEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbDepEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbDepEnterprise.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbDepEnterpriseItemStateChanged(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbDepDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbDepDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbDepDepartmentItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setText("Department :");
 
@@ -187,34 +201,49 @@ public class PanelControlChart extends javax.swing.JPanel implements IPanelContr
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jComboBox1, 0, 200, Short.MAX_VALUE)
+                .addComponent(cbDepEnterprise, 0, 198, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jComboBox2, 0, 200, Short.MAX_VALUE)
-                .addGap(226, 226, 226))
+                .addComponent(cbDepDepartment, 0, 198, Short.MAX_VALUE)
+                .addGap(240, 240, 240))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cbDepEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cbDepDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setText("    Enterprise");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbProEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbProEnterprise.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbProEnterpriseItemStateChanged(evt);
+            }
+        });
 
         jLabel4.setText("Department :");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbProDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbProDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbProDepartmentItemStateChanged(evt);
+            }
+        });
 
         jLabel5.setText("Project :");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbProject.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbProject.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbProjectItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -223,26 +252,33 @@ public class PanelControlChart extends javax.swing.JPanel implements IPanelContr
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jComboBox3, 0, 100, Short.MAX_VALUE)
+                .addComponent(cbProEnterprise, 0, 99, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jComboBox4, 0, 100, Short.MAX_VALUE)
+                .addComponent(cbProDepartment, 0, 99, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jComboBox5, 0, 100, Short.MAX_VALUE)
-                .addGap(206, 206, 206))
+                .addComponent(cbProject, 0, 98, Short.MAX_VALUE)
+                .addGap(220, 220, 220))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cbProEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cbProDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cbProject, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        cbChoose.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enterprise", "Department", "Employee", "Project" }));
+        cbChoose.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbChooseItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -250,88 +286,115 @@ public class PanelControlChart extends javax.swing.JPanel implements IPanelContr
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
+                .addComponent(cbChoose, 0, 100, Short.MAX_VALUE)
+                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(14, 14, 14))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(14, 14, 14))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(14, 14, 14))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(14, 14, 14))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
-                        .addContainerGap())))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 956, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addGap(11, 11, 11))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-    jPanel1.setVisible(true);
-    jPanel2.setVisible(false);
-    jPanel3.setVisible(false);
-    jPanel4.setVisible(false);
-}//GEN-LAST:event_jRadioButton2ActionPerformed
+private void cbEntEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEntEnterpriseItemStateChanged
+    loadCBEnterprise();
+}//GEN-LAST:event_cbEntEnterpriseItemStateChanged
 
-private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-    jPanel1.setVisible(false);
-    jPanel2.setVisible(true);
-    jPanel3.setVisible(false);
-    jPanel4.setVisible(false);
-}//GEN-LAST:event_jRadioButton3ActionPerformed
+private void cbChooseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbChooseItemStateChanged
+    if (cbChoose.getSelectedItem() == "Enterprise") {
+        jPanel1.setVisible(true);
+        jPanel2.setVisible(false);
+        jPanel3.setVisible(false);
+        jPanel4.setVisible(false);
+    }
+    if (cbChoose.getSelectedItem() == "Department") {
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(true);
+        jPanel3.setVisible(false);
+        jPanel4.setVisible(false);
+        loadDepEnterprise();
+    }
+    if (cbChoose.getSelectedItem() == "Employee") {
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(false);
+        jPanel3.setVisible(false);
+        jPanel4.setVisible(true);
+        loadEmpEnterprise();
+    }
+    if (cbChoose.getSelectedItem() == "Project") {
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(false);
+        jPanel3.setVisible(true);
+        jPanel4.setVisible(false);
+        loadProject();
+        loadProEnterprise();
+    }
+}//GEN-LAST:event_cbChooseItemStateChanged
 
-private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-    jPanel1.setVisible(false);
-    jPanel2.setVisible(false);
-    jPanel3.setVisible(true);
-    jPanel4.setVisible(false);
-}//GEN-LAST:event_jRadioButton4ActionPerformed
+private void cbDepEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDepEnterpriseItemStateChanged
+    loadCBDepEnterprise();
+}//GEN-LAST:event_cbDepEnterpriseItemStateChanged
 
-private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-    jPanel1.setVisible(false);
-    jPanel2.setVisible(false);
-    jPanel3.setVisible(false);
-    jPanel4.setVisible(true);
-}//GEN-LAST:event_jRadioButton1ActionPerformed
+private void cbDepDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDepDepartmentItemStateChanged
+    loadCBDepDepartment();
+}//GEN-LAST:event_cbDepDepartmentItemStateChanged
+
+private void cbEmpEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEmpEnterpriseItemStateChanged
+    loadCBEmpEnterprise();
+}//GEN-LAST:event_cbEmpEnterpriseItemStateChanged
+
+private void cbEmpDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEmpDepartmentItemStateChanged
+    loadCBEmpDepartment();
+}//GEN-LAST:event_cbEmpDepartmentItemStateChanged
+
+private void cbEmployeeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEmployeeItemStateChanged
+    loadCBEmployee();
+}//GEN-LAST:event_cbEmployeeItemStateChanged
+
+private void cbProEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbProEnterpriseItemStateChanged
+    loadCBProEnterprise();
+}//GEN-LAST:event_cbProEnterpriseItemStateChanged
+
+private void cbProDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbProDepartmentItemStateChanged
+    loadCBProDepartment();
+}//GEN-LAST:event_cbProDepartmentItemStateChanged
+
+private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbProjectItemStateChanged
+    loadCBProject();
+}//GEN-LAST:event_cbProjectItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox cbChoose;
+    private javax.swing.JComboBox cbDepDepartment;
+    private javax.swing.JComboBox cbDepEnterprise;
+    private javax.swing.JComboBox cbEmpDepartment;
+    private javax.swing.JComboBox cbEmpEnterprise;
+    private javax.swing.JComboBox cbEmployee;
     private javax.swing.JComboBox cbEntEnterprise;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
-    private javax.swing.JComboBox jComboBox5;
-    private javax.swing.JComboBox jComboBox6;
-    private javax.swing.JComboBox jComboBox7;
-    private javax.swing.JComboBox jComboBox8;
+    private javax.swing.JComboBox cbProDepartment;
+    private javax.swing.JComboBox cbProEnterprise;
+    private javax.swing.JComboBox cbProject;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -340,32 +403,35 @@ private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void showDefault() {
-        if(panelShowChart!=null){
-            jScrollPane1.setViewportView((JPanel)panelShowChart);
+        if (panelShowChart != null) {
+            jScrollPane1.setViewportView((JPanel) panelShowChart);
         }
     }
 
     @Override
     public void setPanelShow(IPanelShowChart panelChart) {
-        this.panelShowChart=panelChart;
+        this.panelShowChart = panelChart;
     }
 
     @Override
     public void loadEnterprise() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Enterprise> enterprises = provider.getListEnterprise();
+        if (enterprises != null) {
+            cbEntEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
+            loadCBEnterprise();
+        } else {
+            enterpriseID = 0;
+        }
     }
 
     @Override
@@ -375,13 +441,244 @@ private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
     @Override
     public void loadProject() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Project> projects = provider.getListProject();
+        if (projects != null) {
+            cbProject.setModel(new DefaultComboBoxModel(projects.toArray()));
+            loadCBProject();
+        } else {
+            enterpriseID = 0;
+        }
     }
 
     @Override
     public void loadEmployee() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (departmentID > 0) {
+            List<Employee> employees = provider.getListEmployeeByIdDep(departmentID);
+            cbEmployee.setModel(new DefaultComboBoxModel(employees.toArray()));
+        } else {
+            cbEmployee.enable(false);
+        }
     }
 
-   
+    private void loadCBEnterprise() {
+        Enterprise e = (Enterprise) cbEntEnterprise.getSelectedItem();
+        if (e != null) {
+            if (e.getId() > 0) {
+                enterpriseID = e.getId();
+            } else {
+                enterpriseID = 0;
+            }
+        }
+    }
+
+    private void loadDepEnterprise() {
+        List<Enterprise> enterprises = provider.getListEnterprise();
+        if (enterprises != null) {
+            cbDepEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
+            loadCBDepEnterprise();
+        } else {
+            enterpriseID = 0;
+        }
+    }
+
+    private void loadCBDepEnterprise() {
+        Enterprise e = (Enterprise) cbDepEnterprise.getSelectedItem();
+        if (e != null) {
+            if (e.getId() > 0) {
+                cbDepDepartment.setEnabled(true);
+                enterpriseID = e.getId();
+                loadDepDepartment();
+                loadCBDepDepartment();
+            } else {
+                enterpriseID = 0;
+            }
+        } else {
+            cbDepDepartment.setEnabled(false);
+        }
+    }
+
+    private void loadDepDepartment() {
+        if (enterpriseID > 0) {
+            List<Department> departments = provider.getListDepartmentByIdEnt(enterpriseID);
+            cbDepDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
+        } else {
+            cbDepDepartment.enable(false);
+        }
+    }
+
+    private void loadCBDepDepartment() {
+        int index = cbDepEnterprise.getSelectedIndex();
+        if (index > 0) {
+            Department d = (Department) cbDepDepartment.getSelectedItem();
+            if (d != null) {
+                if (d.getId() > 0) {
+                    departmentID = d.getId();
+                } else {
+                    departmentID = 0;
+                }
+            } else {
+                departmentID = 0;
+            }
+        } else {
+            departmentID = 0;
+        }
+    }
+
+    private void loadEmpEnterprise() {
+        List<Enterprise> enterprises = provider.getListEnterprise();
+        if (enterprises != null) {
+            cbEmpEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
+            loadCBEmpEnterprise();
+        }
+    }
+
+    private void loadCBEmpEnterprise() {
+        Enterprise e = (Enterprise) cbEmpEnterprise.getSelectedItem();
+        if (e != null) {
+            if (e.getId() > 0) {
+                cbEmpDepartment.setEnabled(true);
+                enterpriseID = e.getId();
+                loadEmpDepartment();
+                loadEmployee();
+                loadCBEmpDepartment();
+            } else {
+                enterpriseID = 0;
+            }
+        } else {
+            cbEmpDepartment.setEnabled(false);
+            cbEmployee.setEnabled(false);
+        }
+    }
+
+    private void loadEmpDepartment() {
+        if (enterpriseID > 0) {
+            List<Department> departments = provider.getListDepartmentByIdEnt(enterpriseID);
+            cbEmpDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
+        } else {
+            cbEmpDepartment.enable(false);
+        }
+    }
+
+    private void loadCBEmpDepartment() {
+        int index = cbEmpEnterprise.getSelectedIndex();
+        if (index > 0) {
+            Department d = (Department) cbEmpDepartment.getSelectedItem();
+            if (d != null) {
+                if (d.getId() > 0) {
+                    cbEmployee.setEnabled(true);
+                    departmentID = d.getId();
+                    loadEmployee();
+                    loadCBEmployee();
+                } else {
+                    departmentID = 0;
+                }
+            } else {
+                cbEmployee.setEnabled(false);
+                departmentID = 0;
+            }
+        } else {
+            departmentID = 0;
+        }
+    }
+
+    private void loadCBEmployee() {
+        int index = cbEmpDepartment.getSelectedIndex();
+        if (index > 0) {
+            Employee e = (Employee) cbEmployee.getSelectedItem();
+            if (e != null) {
+                if (e.getId() > 0) {
+                    employeeID = e.getId();
+                } else {
+                    employeeID = 0;
+                }
+            } else {
+                employeeID = 0;
+            }
+        } else {
+            employeeID = 0;
+        }
+    }
+
+    private void loadProEnterprise() {
+        List<Enterprise> enterprises = provider.getListEnterprise();
+        if (enterprises != null) {
+            cbProEnterprise.setModel(new DefaultComboBoxModel(enterprises.toArray()));
+            loadCBProject();
+        }
+    }
+
+    private void loadCBProEnterprise() {
+        Enterprise e = (Enterprise) cbProEnterprise.getSelectedItem();
+        if (e != null) {
+            if (e.getId() > 0) {
+                cbProDepartment.setEnabled(true);
+                enterpriseID = e.getId();
+                loadProDepartment();
+                loadProjectByidEnt();
+                loadCBProDepartment();
+                loadCBProject();
+            } else {
+                enterpriseID = 0;
+            }
+        } else {
+            cbProDepartment.setEnabled(false);
+        }
+    }
+
+    private void loadProDepartment() {
+        if (enterpriseID > 0) {
+            List<Department> departments = provider.getListDepartmentByIdEnt(enterpriseID);
+            cbProDepartment.setModel(new DefaultComboBoxModel(departments.toArray()));
+        } else {
+            cbProDepartment.enable(false);
+        }
+    }
+
+    private void loadCBProDepartment() {
+        int index = cbProEnterprise.getSelectedIndex();
+        if (index > 0) {
+            Department d = (Department) cbProDepartment.getSelectedItem();
+            if (d != null) {
+                if (d.getId() > 0) {
+                    departmentID = d.getId();
+                    loadProjectByIdDep();
+                    loadCBProject();
+                } else {
+                    departmentID = 0;
+                }
+            } else {
+                departmentID = 0;
+            }
+        } else {
+            cbProDepartment.setEnabled(false);
+            departmentID = 0;
+        }
+    }
+
+    private void loadCBProject() {
+        Project e = (Project) cbProject.getSelectedItem();
+        if (e != null) {
+            if (e.getId() > 0) {
+                projectID = e.getId();
+            } else {
+                projectID = 0;
+            }
+        } else {
+            projectID = 0;
+        }
+    }
+
+    private void loadProjectByidEnt() {
+        if (enterpriseID > 0) {
+            List<Project> projects = provider.getListProjectIdEnt(enterpriseID);
+            cbProject.setModel(new DefaultComboBoxModel(projects.toArray()));
+        } 
+    }
+
+    private void loadProjectByIdDep() {
+         if (departmentID > 0) {
+            List<Project> projects = provider.getListProjectByIdDep(departmentID);
+            cbProject.setModel(new DefaultComboBoxModel(projects.toArray()));
+        } 
+    }
 }

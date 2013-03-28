@@ -37,59 +37,40 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Component id="cbChoose" pref="100" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jRadioButton2" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel1" max="32767" attributes="0"/>
                       <EmptySpace min="14" pref="14" max="14" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jRadioButton3" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="jPanel2" max="32767" attributes="0"/>
-                      <EmptySpace min="14" pref="14" max="14" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jRadioButton4" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="jPanel3" max="32767" attributes="0"/>
-                      <EmptySpace min="14" pref="14" max="14" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jRadioButton1" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="jPanel4" max="32767" attributes="0"/>
-                      <EmptySpace min="14" pref="14" max="14" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane1" pref="960" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jPanel2" max="32767" attributes="0"/>
+                  <Component id="jPanel4" max="32767" attributes="0"/>
+                  <Component id="jPanel3" max="32767" attributes="0"/>
               </Group>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="956" max="32767" attributes="0"/>
+              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel1" min="-2" pref="23" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel2" min="-2" pref="23" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel3" min="-2" pref="23" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel4" min="-2" pref="23" max="-2" attributes="0"/>
-              </Group>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="339" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="cbChoose" min="-2" pref="21" max="-2" attributes="0"/>
+                  <Component id="jPanel1" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="410" max="32767" attributes="0"/>
+              <EmptySpace min="11" pref="11" max="11" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -112,55 +93,6 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
     </Container>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton1">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Employee"/>
-        <Property name="opaque" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton2">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup1"/>
-        </Property>
-        <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Enterprise"/>
-        <Property name="opaque" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton2ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton3">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Department"/>
-        <Property name="opaque" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton3ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton4">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Project"/>
-        <Property name="opaque" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton4ActionPerformed"/>
-      </Events>
-    </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -171,14 +103,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="cbEntEnterprise" pref="200" max="32767" attributes="0"/>
-                  <EmptySpace min="656" pref="656" max="656" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="jLabel9" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Component id="cbEntEnterprise" pref="196" max="32767" attributes="0"/>
+                  <EmptySpace min="506" pref="506" max="506" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jLabel9" min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="cbEntEnterprise" min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
@@ -196,6 +131,14 @@
             </Property>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbEntEnterpriseItemStateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Choose enterprise :"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -212,27 +155,27 @@
               <Group type="102" attributes="0">
                   <Component id="jLabel6" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="jComboBox6" pref="100" max="32767" attributes="0"/>
+                  <Component id="cbEmpEnterprise" pref="99" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="jLabel7" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="jComboBox7" pref="100" max="32767" attributes="0"/>
+                  <Component id="cbEmpDepartment" pref="99" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="jLabel8" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="jComboBox8" pref="100" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
+                  <Component id="cbEmployee" pref="98" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jLabel6" min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="jComboBox6" min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="cbEmpEnterprise" min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jLabel7" min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="jComboBox7" min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="cbEmpDepartment" min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jLabel8" min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="jComboBox8" min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="cbEmployee" min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -242,7 +185,7 @@
             <Property name="text" type="java.lang.String" value="    Enterprise"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox6">
+        <Component class="javax.swing.JComboBox" name="cbEmpEnterprise">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -253,13 +196,16 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbEmpEnterpriseItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="text" type="java.lang.String" value="Department :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox7">
+        <Component class="javax.swing.JComboBox" name="cbEmpDepartment">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -270,13 +216,16 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbEmpDepartmentItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="text" type="java.lang.String" value="Employee :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox8">
+        <Component class="javax.swing.JComboBox" name="cbEmployee">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -287,6 +236,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbEmployeeItemStateChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -303,26 +255,26 @@
               <Group type="102" attributes="0">
                   <Component id="jLabel2" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" pref="200" max="32767" attributes="0"/>
+                  <Component id="cbDepEnterprise" pref="198" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="jComboBox2" pref="200" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
+                  <Component id="cbDepDepartment" pref="198" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jLabel2" min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="jComboBox1" min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="cbDepEnterprise" min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="jComboBox2" min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="cbDepDepartment" min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="cbDepEnterprise">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -333,8 +285,11 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbDepEnterpriseItemStateChanged"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox2">
+        <Component class="javax.swing.JComboBox" name="cbDepDepartment">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -345,6 +300,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbDepDepartmentItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -371,27 +329,27 @@
               <Group type="102" attributes="0">
                   <Component id="jLabel3" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="jComboBox3" pref="100" max="32767" attributes="0"/>
+                  <Component id="cbProEnterprise" pref="99" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="jComboBox4" pref="100" max="32767" attributes="0"/>
+                  <Component id="cbProDepartment" pref="99" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="jComboBox5" pref="100" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
+                  <Component id="cbProject" pref="98" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jLabel3" min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="jComboBox3" min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="cbProEnterprise" min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="jComboBox4" min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="cbProDepartment" min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="jComboBox5" min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="cbProject" min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -401,7 +359,7 @@
             <Property name="text" type="java.lang.String" value="    Enterprise"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox3">
+        <Component class="javax.swing.JComboBox" name="cbProEnterprise">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -412,13 +370,16 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbProEnterpriseItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Department :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox4">
+        <Component class="javax.swing.JComboBox" name="cbProDepartment">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -429,13 +390,16 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbProDepartmentItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Project :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox5">
+        <Component class="javax.swing.JComboBox" name="cbProject">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -446,8 +410,26 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbProjectItemStateChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JComboBox" name="cbChoose">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Enterprise"/>
+            <StringItem index="1" value="Department"/>
+            <StringItem index="2" value="Employee"/>
+            <StringItem index="3" value="Project"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbChooseItemStateChanged"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
