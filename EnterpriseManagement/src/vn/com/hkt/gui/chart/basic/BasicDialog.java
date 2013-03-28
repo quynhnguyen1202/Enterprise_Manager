@@ -10,12 +10,13 @@
  */
 package vn.com.hkt.gui.chart.basic;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import vn.com.hkt.gui.chart.PanelShow.linechart;
-import vn.com.hkt.gui.chart.panelshow.api.IPanelShowChart;
 import vn.com.hkt.gui.chart.basic.api.IBasicDialog;
 import vn.com.hkt.gui.chart.control.PanelControlChart;
 import vn.com.hkt.gui.chart.control.api.IPanelControlChart;
+import vn.com.hkt.gui.chart.panelshow.api.IPanelShowChart;
 
 /**
  *
@@ -27,10 +28,10 @@ public class BasicDialog extends javax.swing.JDialog implements IBasicDialog{
     public BasicDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        IPanelControlChart controlChart = new PanelControlChart();
+        IPanelControlChart controlChart1 = new PanelControlChart();
         IPanelShowChart showChart=new linechart();
-        controlChart.setPanelShow(showChart);
-        setPanelControl(controlChart);
+        controlChart1.setPanelShow(showChart);
+        setPanelControl(controlChart1);
         showDefaut();
     }
 
@@ -55,11 +56,21 @@ public class BasicDialog extends javax.swing.JDialog implements IBasicDialog{
         jButton1.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\zoom.png")); // NOI18N
         jButton1.setText("View");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(102, 102, 102));
         jButton2.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\delete.png")); // NOI18N
         jButton2.setText("Exit");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.black, java.awt.Color.darkGray));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,49 +98,15 @@ public class BasicDialog extends javax.swing.JDialog implements IBasicDialog{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BasicDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BasicDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BasicDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BasicDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    System.exit(1);
+}//GEN-LAST:event_jButton2ActionPerformed
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    viewData();
+}//GEN-LAST:event_jButton1ActionPerformed
 
-            public void run() {
-                BasicDialog dialog = new BasicDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -137,15 +114,23 @@ public class BasicDialog extends javax.swing.JDialog implements IBasicDialog{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void setPanelControl(IPanelControlChart p) {
+    public final void setPanelControl(IPanelControlChart p) {
         this.controlChart=p;
     }
 
     @Override
-    public void showDefaut() {
+    public final void showDefaut() {
          if (controlChart != null) {
             scrollPane.setViewportView((JPanel) controlChart);
             controlChart.showDefault();
         }
+    }
+
+    @Override
+    public void viewData() {
+        if (controlChart != null) {
+            controlChart.viewData();
+        }
+         
     }
 }

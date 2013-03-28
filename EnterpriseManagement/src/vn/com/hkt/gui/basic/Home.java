@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import vn.com.hkt.dao.spi.EntityManageFactoryTest;
 import vn.com.hkt.gui.basic.api.IHomePanel;
+import vn.com.hkt.gui.chart.basic.BasicDialog;
 import vn.com.hkt.gui.control.ControlPanel;
 import vn.com.hkt.gui.control.PanelControlShowList;
 import vn.com.hkt.gui.control.api.IControlPanel;
@@ -92,6 +93,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         btnUnitMoney = new javax.swing.JButton();
         btnAddUnitProduct = new javax.swing.JButton();
         btnAddUnitMoney = new javax.swing.JButton();
+        btnExit1 = new javax.swing.JButton();
         scrollPane = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -169,10 +171,10 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnExit.setBackground(new java.awt.Color(153, 153, 153));
-        btnExit.setFont(new java.awt.Font("Tahoma", 1, 12));
+        btnExit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnExit.setForeground(new java.awt.Color(51, 51, 51));
         btnExit.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\32x32\\warning.png")); // NOI18N
-        btnExit.setText("Exit");
+        btnExit.setText("       Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -236,7 +238,7 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         });
 
         btnUnitProduct.setBackground(new java.awt.Color(153, 153, 153));
-        btnUnitProduct.setFont(new java.awt.Font("Tahoma", 1, 12));
+        btnUnitProduct.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnUnitProduct.setForeground(new java.awt.Color(51, 51, 51));
         btnUnitProduct.setText("Unit Product    ");
         btnUnitProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -268,6 +270,17 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         btnAddUnitMoney.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddUnitMoneyActionPerformed(evt);
+            }
+        });
+
+        btnExit1.setBackground(new java.awt.Color(153, 153, 153));
+        btnExit1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnExit1.setForeground(new java.awt.Color(51, 51, 51));
+        btnExit1.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\smallicon\\24x24\\chart.png")); // NOI18N
+        btnExit1.setText("Statistics");
+        btnExit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExit1ActionPerformed(evt);
             }
         });
 
@@ -303,11 +316,12 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
                 .addComponent(btnUnitProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(btnAddUnitProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnExit1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -344,7 +358,9 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
                     .addComponent(btnUnitProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddUnitProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnExit1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         scrollPane.setBackground(new java.awt.Color(255, 255, 255));
@@ -360,8 +376,8 @@ public class Home extends javax.swing.JFrame implements IHomePanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
         );
 
         pack();
@@ -537,6 +553,11 @@ private void btnAddOperationActionPerformed(java.awt.event.ActionEvent evt) {//G
     showDefaut();
 }//GEN-LAST:event_btnAddOperationActionPerformed
 
+private void btnExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit1ActionPerformed
+    BasicDialog a=new BasicDialog(this,true);
+    a.setVisible(true);
+}//GEN-LAST:event_btnExit1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -586,6 +607,7 @@ private void btnAddOperationActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JButton btnEmployee;
     private javax.swing.JButton btnEnterprise;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnExit1;
     private javax.swing.JButton btnOperation;
     private javax.swing.JButton btnProduct;
     private javax.swing.JButton btnProductGroup;
