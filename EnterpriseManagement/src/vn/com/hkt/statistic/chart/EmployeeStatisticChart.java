@@ -19,19 +19,16 @@ import vn.com.hkt.statistic.spi.EmployeeRevenueStatistic;
  * @author QuynhNguyen
  */
 public class EmployeeStatisticChart {
-    float revenue = 0, spending = 0, profit = 0;
-    Calendar startDate = null, endDate = null;
-    long id = 0;
 
-    public  XYDataset createDataset() {
-        Calendar dateStart, dateEnd;
+    public XYDataset createDataset(int check,long id, Calendar dateStart, Calendar dateEnd) {
+        float revenue = 0, spending = 0, profit = 0;
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.setDomainIsPointsInTime(true);
         TimeSeries s1 = new TimeSeries("Obtain", Date.class);
         TimeSeries s2 = new TimeSeries("Spending", Date.class);
         TimeSeries s3 = new TimeSeries("Profit", Date.class);
 
-        int check = 0;
+
         /*check =1 : thong ke theo ngay,
          * =2 : thong ke theo thang; 
          * =3 : thong ke theo nam
@@ -50,24 +47,11 @@ public class EmployeeStatisticChart {
             TimeSeriesCollection datasetStatisticPerDay = new TimeSeriesCollection();
             while (dateStart.before(dateEnd)) {
                 EmployeeRevenueStatistic ers = new EmployeeRevenueStatistic();
-              //  if (total == 1) {
-                    revenue = ers.revenueGetByEmployee(id, dateStart.getTime(), dateStart.getTime());
-                    spending = ers.spendingGetByEmployee(id, dateStart.getTime(), dateStart.getTime());
-                    profit = revenue - spending;
-               // }
-                /*
-                if (total == 2) {
-                    revenue = ers.revenueGetByTotalEmployee(id, dateStart.getTime(), dateEnd.getTime());
-                    spending = ers.spendingGetByTotalEmployee(id, dateStart.getTime(), dateStart.getTime());
-                    profit = revenue - spending;
-                }
-                if (total == 3) {
-                    revenue = ers.revenueGetByTotalChildrenEmployee(id, dateStart.getTime(), dateEnd.getTime());
-                    spending = ers.spendingGetByTotalChildrenEmployee(id, dateStart.getTime(), dateStart.getTime());
-                    profit = revenue - spending;
-                }
-                 * 
-                 */
+
+                revenue = ers.revenueGetByEmployee(id, dateStart.getTime(), dateStart.getTime());
+                spending = ers.spendingGetByEmployee(id, dateStart.getTime(), dateStart.getTime());
+                profit = revenue - spending;
+
                 s1.add(new Day(dateStart.getTime()), revenue);
                 s2.add(new Day(dateStart.getTime()), spending);
                 s3.add(new Day(dateStart.getTime()), profit);
@@ -93,23 +77,10 @@ public class EmployeeStatisticChart {
 
             while (dateStart.before(dateEnd)) {
                 EmployeeRevenueStatistic ers = new EmployeeRevenueStatistic();
-               // if (total == 1) {
-                    revenue = ers.revenueGetByEmployee(id, dateStart.getTime(), nextMonth.getTime());
-                    spending = ers.revenueGetByEmployee(id, dateStart.getTime(), nextMonth.getTime());
-                    profit = revenue - spending;
-               /* }
-                if (total == 2) {
-                    revenue = ers.revenueGetByTotalEmployee(id, dateStart.getTime(), nextMonth.getTime());
-                    spending = ers.revenueGetByTotalEmployee(id, dateStart.getTime(), nextMonth.getTime());
-                    profit = revenue - spending;
-                }
-                if (total == 3) {
-                    revenue = ers.revenueGetByTotalChildrenEmployee(id, dateStart.getTime(), nextMonth.getTime());
-                    spending = ers.revenueGetByTotalChildrenEmployee(id, dateStart.getTime(), nextMonth.getTime());
-                    profit = revenue - spending;
-                }
-                * 
-                */
+                revenue = ers.revenueGetByEmployee(id, dateStart.getTime(), nextMonth.getTime());
+                spending = ers.revenueGetByEmployee(id, dateStart.getTime(), nextMonth.getTime());
+                profit = revenue - spending;
+
                 s1.add(new Month(dateStart.getTime()), revenue);
                 s2.add(new Month(dateStart.getTime()), spending);
                 s3.add(new Month(dateStart.getTime()), profit);
@@ -133,25 +104,12 @@ public class EmployeeStatisticChart {
             dateEnd.set(yearE + 1, 0, 1);
             while (dateStart.before(dateEnd)) {
                 EmployeeRevenueStatistic ers = new EmployeeRevenueStatistic();
-               // if (total == 1) {
+                // if (total == 1) {
 
-                    revenue = ers.revenueGetByEmployee(id, dateStart.getTime(), nextYear.getTime());
-                    spending = ers.revenueGetByEmployee(id, dateStart.getTime(), nextYear.getTime());
-                    profit = revenue - spending;
-                /*}
-                if (total == 2) {
-                    revenue = ers.revenueGetByTotalEmployee(id, dateStart.getTime(), nextYear.getTime());
-                    spending = ers.revenueGetByTotalEmployee(id, dateStart.getTime(), nextYear.getTime());
-                    profit = revenue - spending;
-                }
-                if (total == 3) {
-                    revenue = ers.revenueGetByTotalChildrenEmployee(id, dateStart.getTime(), nextYear.getTime());
-                    spending = ers.revenueGetByTotalChildrenEmployee(id, dateStart.getTime(), nextYear.getTime());
-                    profit = revenue - spending;
-                }
+                revenue = ers.revenueGetByEmployee(id, dateStart.getTime(), nextYear.getTime());
+                spending = ers.revenueGetByEmployee(id, dateStart.getTime(), nextYear.getTime());
+                profit = revenue - spending;
 
-                 * 
-                 */
                 s1.add(new Year(dateStart.getTime()), revenue);
                 s2.add(new Year(dateStart.getTime()), spending);
                 s3.add(new Year(dateStart.getTime()), profit);
@@ -167,5 +125,4 @@ public class EmployeeStatisticChart {
 
         return dataset;
     }
-    
 }

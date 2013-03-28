@@ -20,12 +20,8 @@ import vn.com.hkt.statistic.spi.EnterpriseRevenueStatistic;
  */
 public class EnterpriseStatisticChart {
 
-    private Calendar dateStart = null, dateEnd = null;
-    private long id;
-    private double revenue = 0, spending = 0, profit = 0;
-
-    public  XYDataset createDataset(int check, int total) {
-        Calendar dateStart, dateEnd;
+    public XYDataset createDataset(int check, int total, long id, Calendar dateStart, Calendar dateEnd) {
+        float revenue = 0, spending = 0, profit = 0;
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.setDomainIsPointsInTime(true);
         TimeSeries s1 = new TimeSeries("Obtain", Date.class);
@@ -81,7 +77,7 @@ public class EnterpriseStatisticChart {
             dateStart = Calendar.getInstance();
             int monthSt = dateStart.get(Calendar.MONTH);
             int yearSt = dateStart.get(Calendar.YEAR);
-            dateStart.set(yearSt, monthSt , 1);
+            dateStart.set(yearSt, monthSt, 1);
             Calendar nextMonth = Calendar.getInstance();
             nextMonth.set(yearSt, monthSt + 1, 1);
             dateEnd = Calendar.getInstance();

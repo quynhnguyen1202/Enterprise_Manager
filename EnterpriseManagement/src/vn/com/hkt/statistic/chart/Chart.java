@@ -49,29 +49,29 @@ public class Chart extends ApplicationFrame {
          * choose = 3 : thong ke theo employee
          * choose = 4 : thong ke theo project
          */
-        TimeSeriesCollection dataset=new TimeSeriesCollection();
-        if (choose==1) {
-          EnterpriseStatisticChart  ent= new EnterpriseStatisticChart();
-          dataset=(TimeSeriesCollection) ent.createDataset(check, total);
-                   }
-        if(choose==2)
-        {
-        DepartmentStatisticChart dep= new DepartmentStatisticChart();
-        dataset = (TimeSeriesCollection) dep.createDataset();
-                
-        }
-        if(choose ==3)
-        {
-            EmployeeStatisticChart emp= new EmployeeStatisticChart();
-            dataset=(TimeSeriesCollection) emp.createDataset();
-        }
-        if (choose==4)
-        {
-            ProjectStatisticChart pr= new ProjectStatisticChart();
-            dataset=(TimeSeriesCollection) pr.createDataset();
-        }
-        return dataset;
-        
+//        TimeSeriesCollection dataset=new TimeSeriesCollection();
+//        if (choose==1) {
+//          EnterpriseStatisticChart  ent= new EnterpriseStatisticChart();
+//          dataset=(TimeSeriesCollection) ent.createDataset(check, total);
+//                   }
+//        if(choose==2)
+//        {
+//        DepartmentStatisticChart dep= new DepartmentStatisticChart();
+//        dataset = (TimeSeriesCollection) dep.createDataset();
+//                
+//        }
+//        if(choose ==3)
+//        {
+//            EmployeeStatisticChart emp= new EmployeeStatisticChart();
+//            dataset=(TimeSeriesCollection) emp.createDataset();
+//        }
+//        if (choose==4)
+//        {
+//            ProjectStatisticChart pr= new ProjectStatisticChart();
+//            dataset=(TimeSeriesCollection) pr.createDataset();
+//        }
+//        return dataset;
+//        
     }
 
     private JFreeChart createChart(XYDataset dataset) {
