@@ -4,28 +4,14 @@
  */
 package vn.com.hkt.statistic.chart;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.DateAxis;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.StandardXYItemRenderer;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.time.Day;
-import org.jfree.data.time.Minute;
 import org.jfree.data.time.Month;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.time.Year;
 import org.jfree.data.xy.XYDataset;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
 import vn.com.hkt.statistic.spi.EnterpriseRevenueStatistic;
 
 /**
@@ -95,13 +81,13 @@ public class EnterpriseStatisticChart {
             dateStart = Calendar.getInstance();
             int monthSt = dateStart.get(Calendar.MONTH);
             int yearSt = dateStart.get(Calendar.YEAR);
-            dateStart.set(yearSt, monthSt + 1, 1);
+            dateStart.set(yearSt, monthSt , 1);
             Calendar nextMonth = Calendar.getInstance();
             nextMonth.set(yearSt, monthSt + 1, 1);
             dateEnd = Calendar.getInstance();
             int monthE = dateEnd.get(Calendar.MONTH);
             int yearE = dateEnd.get(Calendar.YEAR);
-            dateEnd.set(yearE, monthE + 2, 1);
+            dateEnd.set(yearE, monthE + 1, 1);
 
             while (dateStart.before(dateEnd)) {
                 EnterpriseRevenueStatistic ers = new EnterpriseRevenueStatistic();

@@ -83,13 +83,13 @@ public class ProjectStatisticChart {
             dateStart = Calendar.getInstance();
             int monthSt = dateStart.get(Calendar.MONTH);
             int yearSt = dateStart.get(Calendar.YEAR);
-            dateStart.set(yearSt, monthSt + 1, 1);
+            dateStart.set(yearSt, monthSt , 1);
             Calendar nextMonth = Calendar.getInstance();
             nextMonth.set(yearSt, monthSt + 1, 1);
             dateEnd = Calendar.getInstance();
             int monthE = dateEnd.get(Calendar.MONTH);
             int yearE = dateEnd.get(Calendar.YEAR);
-            dateEnd.set(yearE, monthE + 2, 1);
+            dateEnd.set(yearE, monthE + 1, 1);
 
             while (dateStart.before(dateEnd)) {
                 ProjectRevenueStatistic prs = new ProjectRevenueStatistic();

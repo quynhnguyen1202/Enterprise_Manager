@@ -94,7 +94,9 @@ public class Chart extends ApplicationFrame {
             renderer.setSeriesStroke(1, new BasicStroke(2.0f));
         }
         final DateAxis axis = (DateAxis) plot.getDomainAxis();
-        axis.setDateFormatOverride(new SimpleDateFormat("dd:MM:yyyy"));
+        axis.setDateFormatOverride(new SimpleDateFormat("dd:MM:yyyy")); // thong ke theo ngay
+         // axis.setDateFormatOverride(new SimpleDateFormat("MM:yyyy")); // thong ke theo thang
+       // axis.setDateFormatOverride(new SimpleDateFormat("yyyy")); // thong ke theo nam
         return chart;
     }
     public static void main(String[] args) {
