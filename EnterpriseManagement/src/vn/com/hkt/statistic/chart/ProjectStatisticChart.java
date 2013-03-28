@@ -40,7 +40,7 @@ public class ProjectStatisticChart {
          * =5 : thong ke theo quy
          * 
          */
-        int total = 0;
+      //  int total = 0;
         /* total =1 : tinh doanh thu theo  cha,
          * =2 : tinh doanh thu theo  cha va cac con
          * =3 : tinh doanh thu theo cac con 
@@ -53,11 +53,12 @@ public class ProjectStatisticChart {
             TimeSeriesCollection datasetStatisticPerDay = new TimeSeriesCollection();
             while (dateStart.before(dateEnd)) {
                 ProjectRevenueStatistic prs = new ProjectRevenueStatistic();
-                if (total == 1) {
+               // if (total == 1) {
                     revenue = prs.revenueGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), dateStart.getTime());
                     spending = prs.spendingGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
-                }
+              //  }
+                /*
                 if (total == 2) {
                     revenue = prs.revenueGetByTotalProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), dateEnd.getTime());
                     spending = prs.spendingGetByTotalProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), dateStart.getTime());
@@ -68,6 +69,8 @@ public class ProjectStatisticChart {
                     spending = prs.spendingGetByTotalChildrenProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
                 }
+                 * 
+                 */
                 s1.add(new Day(dateStart.getTime()), revenue);
                 s2.add(new Day(dateStart.getTime()), spending);
                 s3.add(new Day(dateStart.getTime()), profit);
@@ -83,21 +86,22 @@ public class ProjectStatisticChart {
             dateStart = Calendar.getInstance();
             int monthSt = dateStart.get(Calendar.MONTH);
             int yearSt = dateStart.get(Calendar.YEAR);
-            dateStart.set(yearSt, monthSt + 1, 1);
+            dateStart.set(yearSt, monthSt , 1);
             Calendar nextMonth = Calendar.getInstance();
             nextMonth.set(yearSt, monthSt + 1, 1);
             dateEnd = Calendar.getInstance();
             int monthE = dateEnd.get(Calendar.MONTH);
             int yearE = dateEnd.get(Calendar.YEAR);
-            dateEnd.set(yearE, monthE + 2, 1);
+            dateEnd.set(yearE, monthE + 1, 1);
 
             while (dateStart.before(dateEnd)) {
                 ProjectRevenueStatistic prs = new ProjectRevenueStatistic();
-                if (total == 1) {
+               // if (total == 1) {
                     revenue = prs.revenueGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), nextMonth.getTime());
                     spending = prs.revenueGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), nextMonth.getTime());
                     profit = revenue - spending;
-                }
+              //  }
+                /*
                 if (total == 2) {
                     revenue = prs.revenueGetByTotalProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), nextMonth.getTime());
                     spending = prs.revenueGetByTotalProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), nextMonth.getTime());
@@ -108,6 +112,8 @@ public class ProjectStatisticChart {
                     spending = prs.revenueGetByTotalChildrenProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), nextMonth.getTime());
                     profit = revenue - spending;
                 }
+                 * 
+                 */
                 s1.add(new Month(dateStart.getTime()), revenue);
                 s2.add(new Month(dateStart.getTime()), spending);
                 s3.add(new Month(dateStart.getTime()), profit);
@@ -131,12 +137,13 @@ public class ProjectStatisticChart {
             dateEnd.set(yearE + 1, 0, 1);
             while (dateStart.before(dateEnd)) {
                 ProjectRevenueStatistic prs = new ProjectRevenueStatistic();
-                if (total == 1) {
+               // if (total == 1) {
 
                     revenue = prs.revenueGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), nextYear.getTime());
                     spending = prs.revenueGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), nextYear.getTime());
                     profit = revenue - spending;
-                }
+              //  }
+                /*
                 if (total == 2) {
                     revenue = prs.revenueGetByTotalProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), nextYear.getTime());
                     spending = prs.revenueGetByTotalProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), nextYear.getTime());
@@ -148,6 +155,8 @@ public class ProjectStatisticChart {
                     profit = revenue - spending;
                 }
 
+                 * 
+                 */
                 s1.add(new Year(dateStart.getTime()), revenue);
                 s2.add(new Year(dateStart.getTime()), spending);
                 s3.add(new Year(dateStart.getTime()), profit);

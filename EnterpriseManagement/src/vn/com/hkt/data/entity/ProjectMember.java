@@ -24,6 +24,7 @@ public class ProjectMember implements IEntity{
     public static final String FIELD_DATESTART = "DateStart";
     public static final String FIELD_DATEEND = "DateEnd";
     public static final String FIELD_CODE_PROJECTMEMBER = "codeProjectMember";
+    public static final String FIELD_PERCENT="Percent";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
