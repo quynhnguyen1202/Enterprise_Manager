@@ -17,5 +17,7 @@ public interface IBasicDialog {
     public void showDefaut();
     
     public void setVisible(boolean flag);
+    
+    public void viewData();
 
 }

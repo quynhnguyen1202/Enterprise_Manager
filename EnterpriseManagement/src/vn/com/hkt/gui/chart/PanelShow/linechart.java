@@ -10,15 +10,39 @@
  */
 package vn.com.hkt.gui.chart.PanelShow;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.io.File;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+import vn.com.hkt.data.entity.Department;
+import vn.com.hkt.data.entity.Employee;
+import vn.com.hkt.data.entity.Enterprise;
+import vn.com.hkt.data.entity.Project;
 import vn.com.hkt.gui.chart.panelshow.api.IPanelShowChart;
 
 /**
  *
  * @author Administrator
  */
-public class linechart extends javax.swing.JPanel implements IPanelShowChart {
+public final class linechart extends javax.swing.JPanel implements IPanelShowChart {
 
     /** Creates new form linechart */
+    Enterprise e;
+    Department d;
+    Project p;
+    Employee emp;
     public linechart() {
         initComponents();
     }
@@ -32,35 +56,97 @@ public class linechart extends javax.swing.JPanel implements IPanelShowChart {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setText("Chart");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(599, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 937, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1)
-                .addContainerGap(280, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+   
+    public  ChartPanel createChart(){
+        DefaultCategoryDataset dataset=new DefaultCategoryDataset();
+        dataset.addValue(110, "aaa", "2009");
+        dataset.addValue(150, "aaa", "2010");
+        dataset.addValue(250, "aaa", "2011");
+        dataset.addValue(500, "aaa", "2012");
+        dataset.addValue(1200, "aaa", "2013");
+        JFreeChart chart=ChartFactory.createLineChart("Line Chart Demo", "Export","Year" , dataset, PlotOrientation.VERTICAL, true, true, false);
+        //design
+        chart.setBackgroundPaint(Color.white);
+        CategoryPlot plot = (CategoryPlot) chart.getPlot();
+        plot.setBackgroundPaint(Color.lightGray);
+        plot.setRangeGridlinePaint(Color.white);
+        // customise the range axis...
+        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        // customise the renderer...
+        LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
+        renderer.setShapesVisible(true);
+        renderer.setDrawOutlines(true);
+        renderer.setUseFillPaint(true);
+        renderer.setFillPaint(Color.white);
+        //xuat ra form
+        ChartPanel panel=new ChartPanel(chart);
+        return panel;
+    }
 
     @Override
     public void setControlShow() {
-        throw new UnsupportedOperationException("Not supported yet.");
+      //  throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setObjectView(Object obj) {
+      if(obj instanceof Enterprise){
+          e=(Enterprise) obj;
+          JOptionPane.showMessageDialog(null, e);
+      }else if(obj instanceof Department){
+          d=(Department)obj;
+          JOptionPane.showMessageDialog(null, d);
+      }else if(obj instanceof Project){
+          p=(Project)obj;
+          JOptionPane.showMessageDialog(null, p);
+      }else{
+          emp=(Employee)obj;
+          JOptionPane.showMessageDialog(null, emp);
+      }
+    }
+
+    @Override
+    public void setTypeDate(int type) {
+     //   throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setTypeView(int type) {
+      //  throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setStartDate(Date d) {
+      //  throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setEndDate(Date d) {
+       // throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void viewData() {
+       jScrollPane1.setViewportView(createChart());
     }
 }

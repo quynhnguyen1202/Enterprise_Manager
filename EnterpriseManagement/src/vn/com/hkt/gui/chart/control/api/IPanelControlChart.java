@@ -17,4 +17,5 @@ public interface IPanelControlChart {
     public void loadDepartment();
     public void loadProject();
     public void loadEmployee();
+    public void viewData();
 }
