@@ -190,6 +190,9 @@ private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         if (showPanel != null) {
             if (showPanel.deleteData() == true) {
                 JOptionPane.showMessageDialog(null, "Delete data successfully !");
+                btnAdd.setVisible(true);
+                btnDelete.setVisible(false);
+                btnEdit.setVisible(false);
             }
         }
     }
