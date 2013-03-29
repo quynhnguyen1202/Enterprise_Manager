@@ -20,7 +20,7 @@ import vn.com.hkt.statistic.spi.ProjectRevenueStatistic;
  */
 public class ProjectStatisticChart {
 
-    public XYDataset createDataset(int check, long idProject, long idDepartment, long idEnterprise, Calendar dateStart, Calendar dateEnd) {
+    public XYDataset createDataset(int check, long idProject, long idDepartment, long idEnterprise, Date start, Date end) {
         float revenue = 0, spending = 0, profit = 0;
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.setDomainIsPointsInTime(true);
@@ -43,8 +43,10 @@ public class ProjectStatisticChart {
          */
 
         if (check == 1) {
-            dateStart = Calendar.getInstance();
-            dateEnd = Calendar.getInstance();
+            Calendar dateStart = Calendar.getInstance();
+            dateStart.setTime(start);
+            Calendar dateEnd = Calendar.getInstance();
+            dateEnd.setTime(end);
             dateEnd.add(Calendar.DATE, 1);
             TimeSeriesCollection datasetStatisticPerDay = new TimeSeriesCollection();
             while (dateStart.before(dateEnd)) {
@@ -65,13 +67,16 @@ public class ProjectStatisticChart {
         }
         if (check == 2) {
             TimeSeriesCollection datasetStatisticPerMonth = new TimeSeriesCollection();
-            dateStart = Calendar.getInstance();
+            Calendar dateStart = Calendar.getInstance();
+            dateStart.setTime(start);
+            Calendar dateEnd = Calendar.getInstance();
+            dateEnd.setTime(end);
             int monthSt = dateStart.get(Calendar.MONTH);
             int yearSt = dateStart.get(Calendar.YEAR);
             dateStart.set(yearSt, monthSt, 1);
             Calendar nextMonth = Calendar.getInstance();
             nextMonth.set(yearSt, monthSt + 1, 1);
-            dateEnd = Calendar.getInstance();
+
             int monthE = dateEnd.get(Calendar.MONTH);
             int yearE = dateEnd.get(Calendar.YEAR);
             dateEnd.set(yearE, monthE + 1, 1);
@@ -96,12 +101,15 @@ public class ProjectStatisticChart {
         }
         if (check == 3) {
             TimeSeriesCollection datasetStatisticPerYear = new TimeSeriesCollection();
-            dateStart = Calendar.getInstance();
+            Calendar dateStart = Calendar.getInstance();
+            dateStart.setTime(start);
+            Calendar dateEnd = Calendar.getInstance();
+            dateEnd.setTime(end);
             int yearSt = dateStart.get(Calendar.YEAR);
             dateStart.set(yearSt, 0, 1);
             Calendar nextYear = Calendar.getInstance();
             nextYear.set(yearSt + 1, 0, 1);
-            dateEnd = Calendar.getInstance();
+
             int yearE = dateEnd.get(Calendar.YEAR);
             dateEnd.set(yearE + 1, 0, 1);
             while (dateStart.before(dateEnd)) {
