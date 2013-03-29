@@ -51,6 +51,7 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
     EmployeeStatisticChart employeeChart;
     public linechart() {
         initComponents();
+        enterpriseChart=new EnterpriseStatisticChart();
     }
 
     /** This method is called from within the constructor to
@@ -85,12 +86,14 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
     public  ChartPanel createChart(){
         TimeSeriesCollection dataset=new TimeSeriesCollection();
         if(e!=null){
-//            JOptionPane.showMessageDialog(null, endDate);
-//            JOptionPane.showMessageDialog(null, startDate);
-//            JOptionPane.showMessageDialog(null, typeDate);
-//            JOptionPane.showMessageDialog(null, typeView);
-//            JOptionPane.showMessageDialog(null, e.getName());
+            JOptionPane.showMessageDialog(null, endDate);
+            JOptionPane.showMessageDialog(null, startDate);
+            JOptionPane.showMessageDialog(null, typeDate);
+            JOptionPane.showMessageDialog(null, typeView);
+            JOptionPane.showMessageDialog(null, e.getName());
+            System.out.println("============================== "+enterpriseChart+"  "+typeDate+"  "+typeView);
             dataset= (TimeSeriesCollection) enterpriseChart.createDataset(typeDate,typeView,e.getId(),startDate,endDate);
+         JOptionPane.showMessageDialog(null, dataset);
         }else if(d !=null){
             //dataset=(TimeSeriesCollection) departmentChart.createDataset(typeDate, typeView, d.getId(), d.getIdEnterprise(), startDate, endDate);
         }else if(p !=null){

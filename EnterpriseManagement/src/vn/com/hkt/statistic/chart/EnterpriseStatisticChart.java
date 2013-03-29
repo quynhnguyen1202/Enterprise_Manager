@@ -20,12 +20,14 @@ import vn.com.hkt.statistic.spi.EnterpriseRevenueStatistic;
  */
 public class EnterpriseStatisticChart {
 
+    private static final int DAY_TYPE = 1;
+
     public XYDataset createDataset(int check, int total, long id, Date start, Date end) {
         Calendar dateStart, dateEnd;
         float revenue = 0, spending = 0, profit = 0;
         TimeSeriesCollection dataset = new TimeSeriesCollection();
-        dataset.setDomainIsPointsInTime(true);
-        TimeSeries s1 = new TimeSeries("Obtain", Day.class);
+        dataset.setDomainIsPointsInTime(true);//
+        TimeSeries s1 = new TimeSeries("Revenues", Day.class);
         TimeSeries s2 = new TimeSeries("Spending", Day.class);
         TimeSeries s3 = new TimeSeries("Profit", Day.class);
 
@@ -40,30 +42,30 @@ public class EnterpriseStatisticChart {
          * =2 : tinh doanh thu theo enterprise cha va cac con
          * =3 : tinh doanh thu theo cac con cua enterprise
          */
-dateStart = Calendar.getInstance();
-            dateStart.setTime(start);
-            dateEnd = Calendar.getInstance();
-            dateEnd.setTime(end);
-        if (check == 1) {
+        dateStart = Calendar.getInstance();
+        dateStart.setTime(start);
+        dateEnd = Calendar.getInstance();
+        dateEnd.setTime(end);
+        if (check == DAY_TYPE) {
             dateStart = Calendar.getInstance();
             dateStart.setTime(start);
             dateEnd = Calendar.getInstance();
             dateEnd.setTime(end);
-            dateEnd.add(Calendar.DATE, 1);
+//            dateEnd.add(Calendar.DATE, 1);
             TimeSeriesCollection datasetStatisticPerDay = new TimeSeriesCollection();
-            while (dateStart.before(dateEnd)) {
+            while (dateStart.compareTo(dateEnd) <= 0) {
                 EnterpriseRevenueStatistic ers = new EnterpriseRevenueStatistic();
-                if (total == 1) {
+                if (total == 1) {// cha
                     revenue = ers.revenueGetByEnterprise(id, dateStart.getTime(), dateStart.getTime());
                     spending = ers.spendingGetByEnterprise(id, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
                 }
-                if (total == 2) {
+                if (total == 2) {// cha,con
                     revenue = ers.revenueGetByTotalEnterprise(id, dateStart.getTime(), dateEnd.getTime());
                     spending = ers.spendingGetByTotalEnterprise(id, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
                 }
-                if (total == 3) {
+                if (total == 3) {// cac con
                     revenue = ers.revenueGetByTotalChildrenEnterprise(id, dateStart.getTime(), dateEnd.getTime());
                     spending = ers.spendingGetByTotalChildrenEnterprise(id, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
@@ -71,17 +73,16 @@ dateStart = Calendar.getInstance();
                 s1.add(new Day(dateStart.getTime()), revenue);
                 s2.add(new Day(dateStart.getTime()), spending);
                 s3.add(new Day(dateStart.getTime()), profit);
-                
+
                 dateStart.add(Calendar.DATE, 1);
             }
             datasetStatisticPerDay.addSeries(s1);
             datasetStatisticPerDay.addSeries(s2);
             datasetStatisticPerDay.addSeries(s3);
             dataset = datasetStatisticPerDay;
-        }
-        if (check == 2) {
+        } else if (check == 2) {
             TimeSeriesCollection datasetStatisticPerMonth = new TimeSeriesCollection();
-           // dateStart = Calendar.getInstance();
+            // dateStart = Calendar.getInstance();
             dateStart.setTime(start);
             dateEnd = Calendar.getInstance();
             dateEnd.setTime(end);
@@ -95,7 +96,7 @@ dateStart = Calendar.getInstance();
             int yearE = dateEnd.get(Calendar.YEAR);
             dateEnd.set(yearE, monthE + 1, 1);
 
-            while (dateStart.before(dateEnd)) {
+            while (dateStart.compareTo(dateEnd)<=0) {
                 EnterpriseRevenueStatistic ers = new EnterpriseRevenueStatistic();
                 if (total == 1) {
                     revenue = ers.revenueGetByEnterprise(id, dateStart.getTime(), nextMonth.getTime());
@@ -122,8 +123,7 @@ dateStart = Calendar.getInstance();
             datasetStatisticPerMonth.addSeries(s2);
             datasetStatisticPerMonth.addSeries(s3);
             dataset = datasetStatisticPerMonth;
-        }
-        if (check == 3) {
+        } else {
             TimeSeriesCollection datasetStatisticPerYear = new TimeSeriesCollection();
             //dateStart = Calendar.getInstance();
             dateStart.setTime(start);
@@ -136,7 +136,7 @@ dateStart = Calendar.getInstance();
 
             int yearE = dateEnd.get(Calendar.YEAR);
             dateEnd.set(yearE + 1, 0, 1);
-            while (dateStart.before(dateEnd)) {
+            while (dateStart.compareTo(dateEnd)<=0) {
                 EnterpriseRevenueStatistic ers = new EnterpriseRevenueStatistic();
                 if (total == 1) {
 
@@ -167,8 +167,7 @@ dateStart = Calendar.getInstance();
             datasetStatisticPerYear.addSeries(s3);
             dataset = datasetStatisticPerYear;
         }
-        
+
         return dataset;
     }
-       
 }
