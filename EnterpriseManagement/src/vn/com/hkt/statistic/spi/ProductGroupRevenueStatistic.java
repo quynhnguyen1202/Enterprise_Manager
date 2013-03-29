@@ -25,7 +25,7 @@ import vn.com.hkt.statistic.api.IProductGroupRevenueStatistic;
 public class ProductGroupRevenueStatistic implements IProductGroupRevenueStatistic {
 
     private List<Double> result = null;
-    private float revenue = 0,spending =0;
+    private float revenue = 0, spending = 0;
     private EntityManager em;
 
     @Override
@@ -36,7 +36,7 @@ public class ProductGroupRevenueStatistic implements IProductGroupRevenueStatist
                 + " From " + ProductGroup.class.getSimpleName() + " pg join tmp t on pg." + ProductGroup.FIELD_IDPRODUCTGROUP + " = t.id )"
                 + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " )"
                 + "  from " + Operation.class.getSimpleName() + " o, " + UnitMoney.class.getSimpleName() + " u , " + OperationProduct.class.getSimpleName() + " op ," + Product.class.getSimpleName() + " p , " + MidleProductGroup.class.getSimpleName() + " m ,  tmp t "
-                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3  and o."+Operation.FIELD_CLASSIFICATION+" = 1 "
+                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3  and o." + Operation.FIELD_CLASSIFICATION + " = 1 "
                 + "and o." + Operation.FIELD_ID_UNITMONEY + "=u." + UnitMoney.FIELD_ID + " and o." + Operation.FIELD_ID + "=op." + OperationProduct.FIELD_IDOPERATION + " and op." + OperationProduct.FIELD_IDPRODUCT + "=p." + Product.FIELD_ID
                 + " and p." + Product.FIELD_ID + "=m." + MidleProductGroup.FIELD_IDPRODUCT + " and m." + MidleProductGroup.FIELD_IDGROUPPRODUCT + "=t.id";
         if (em == null || !em.isOpen()) {
@@ -65,7 +65,7 @@ public class ProductGroupRevenueStatistic implements IProductGroupRevenueStatist
                 + " and oP. " + OperationProduct.FIELD_IDOPERATION + " = o." + Operation.FIELD_ID
                 + " and ( o." + Operation.FIELD_DATEEXECUTE + ">= ?2 )"
                 + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?3)"
-                +" and o";
+                + " and o." + Operation.FIELD_CLASSIFICATION + " = 1";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }
@@ -105,7 +105,7 @@ public class ProductGroupRevenueStatistic implements IProductGroupRevenueStatist
                 + " From " + ProductGroup.class.getSimpleName() + " pg join tmp t on pg." + ProductGroup.FIELD_IDPRODUCTGROUP + " = t.id )"
                 + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " )"
                 + "  from " + Operation.class.getSimpleName() + " o, " + UnitMoney.class.getSimpleName() + " u , " + OperationProduct.class.getSimpleName() + " op ," + Product.class.getSimpleName() + " p , " + MidleProductGroup.class.getSimpleName() + " m ,  tmp t "
-                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3  and o."+Operation.FIELD_CLASSIFICATION+" = 0 "
+                + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3  and o." + Operation.FIELD_CLASSIFICATION + " = 0 "
                 + "and o." + Operation.FIELD_ID_UNITMONEY + "=u." + UnitMoney.FIELD_ID + " and o." + Operation.FIELD_ID + "=op." + OperationProduct.FIELD_IDOPERATION + " and op." + OperationProduct.FIELD_IDPRODUCT + "=p." + Product.FIELD_ID
                 + " and p." + Product.FIELD_ID + "=m." + MidleProductGroup.FIELD_IDPRODUCT + " and m." + MidleProductGroup.FIELD_IDGROUPPRODUCT + "=t.id";
         if (em == null || !em.isOpen()) {
@@ -129,11 +129,41 @@ public class ProductGroupRevenueStatistic implements IProductGroupRevenueStatist
 
     @Override
     public float spendingGetByProductGroup(long idProductGroup, Date dateStart, Date dateEnd) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String sql = "select sum(o." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " o," + OperationProduct.class.getSimpleName() + " oP"
+                + " where (o." + OperationProduct.FIELD_IDPRODUCTGROUP + "=?1 )"
+                + " and oP. " + OperationProduct.FIELD_IDOPERATION + " = o." + Operation.FIELD_ID
+                + " and ( o." + Operation.FIELD_DATEEXECUTE + ">= ?2 )"
+                + " and (o." + Operation.FIELD_DATEEXECUTE + "<=?3)"
+                + " and o." + Operation.FIELD_CLASSIFICATION + " = 0 ";
+        if (em == null || !em.isOpen()) {
+            em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
+        }
+        try {
+
+            result = em.createQuery(sql).setParameter(1, idProductGroup).setParameter(2, dateStart, TemporalType.DATE).setParameter(3, dateEnd, TemporalType.DATE).getResultList();
+            if (result != null && !result.isEmpty()) {
+                try {
+                    spending = Float.parseFloat(result.get(0).toString());
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
+            } else {
+                spending = 0;
+            }
+
+        } catch (Exception e) {
+            return 0;
+        } finally {
+            em.close();
+        }
+        return spending;
     }
 
     @Override
     public float spendingGetByTotalChildrenProductGroup(long idProductGroup, Date dateStart, Date dateEnd) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        float spending = 0;
+        spending = spendingGetByTotalProductGroup(idProductGroup, dateStart, dateEnd) - spendingGetByProductGroup(idProductGroup, dateStart, dateEnd);
+        return spending;
     }
 }

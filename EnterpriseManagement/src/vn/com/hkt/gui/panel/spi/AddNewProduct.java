@@ -497,20 +497,19 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
                 i++;
             }
         }
-        //set list midle group
+       // set list midle group
         List<MidleProductGroup> listMidle = providerMidleGroup.getMidleGroupByProductId(providerProduct.getDataView().getId());
-        JOptionPane.showConfirmDialog(null, listMidle);
-        DefaultListModel listModel = new DefaultListModel();
+         DefaultListModel listModel = new DefaultListModel();
         for (MidleProductGroup p : listMidle) {
             long idGroup = p.getIdGroupProduct();
-            JOptionPane.showMessageDialog(null, idGroup);
             List<ProductGroup> groups = providerMidleGroup.getProductGroupByIDGroup(idGroup);
-            JOptionPane.showMessageDialog(null, groups);
-            listModel.addElement(groups);
-            
+            for (int i = 0; i < groups.size(); i++) {
+                ProductGroup productGroup = groups.get(i);
+            listModel.addElement(productGroup);
         }
+            }
         listAddGroup.setModel(listModel);
-        //long idGroup=providerProduct.
+        
 
         
         controlGeneral.refresh(this);

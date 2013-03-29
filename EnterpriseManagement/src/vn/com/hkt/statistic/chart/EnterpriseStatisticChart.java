@@ -40,7 +40,10 @@ public class EnterpriseStatisticChart {
          * =2 : tinh doanh thu theo enterprise cha va cac con
          * =3 : tinh doanh thu theo cac con cua enterprise
          */
-
+dateStart = Calendar.getInstance();
+            dateStart.setTime(start);
+            dateEnd = Calendar.getInstance();
+            dateEnd.setTime(end);
         if (check == 1) {
             dateStart = Calendar.getInstance();
             dateStart.setTime(start);
@@ -77,7 +80,7 @@ public class EnterpriseStatisticChart {
         }
         if (check == 2) {
             TimeSeriesCollection datasetStatisticPerMonth = new TimeSeriesCollection();
-            dateStart = Calendar.getInstance();
+           // dateStart = Calendar.getInstance();
             dateStart.setTime(start);
             dateEnd = Calendar.getInstance();
             dateEnd.setTime(end);
@@ -121,7 +124,7 @@ public class EnterpriseStatisticChart {
         }
         if (check == 3) {
             TimeSeriesCollection datasetStatisticPerYear = new TimeSeriesCollection();
-            dateStart = Calendar.getInstance();
+            //dateStart = Calendar.getInstance();
             dateStart.setTime(start);
             dateEnd = Calendar.getInstance();
             dateEnd.setTime(end);
