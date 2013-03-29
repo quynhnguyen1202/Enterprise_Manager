@@ -504,19 +504,17 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             }
         }
         // set list midle group
-        List<MidleProductGroup> listMidle = providerMidleGroup.getMidleGroupByProductId(providerProduct.getDataView().getId());
+        List<MidleProductGroup>listMidle = providerMidleGroup.getMidleGroupByProductId(providerProduct.getDataView().getId());
         DefaultListModel listModel = new DefaultListModel();
         for (MidleProductGroup p : listMidle) { 
             System.out.println("---------"  +p.getIdGroupProduct());
             long idGroup = p.getIdGroupProduct();
-            List<ProductGroup> groups = providerMidleGroup.getProductGroupByIDGroup(idGroup);
-            for (int i = 0; i < groups.size(); i++) {
-                ProductGroup productGroup = groups.get(i);
+            ProductGroup groups = providerMidleGroup.getProductGroupByID(idGroup);
                 //add vao list 2
-                System.out.println("++++++  "+productGroup.getName());
-                listModel.addElement(productGroup);
+                System.out.println("++++++  "+groups.getName());
+                listModel.addElement(groups);
                 //xoa khoi list 1
-                long idpGroup = productGroup.getId();
+                long idpGroup = groups.getId();
                 DefaultListModel model = (DefaultListModel) listGroup.getModel();
                 for (int j = 0; j < model.getSize();) {
                     ProductGroup pg = ((ProductGroup) model.getElementAt(j));
@@ -526,7 +524,6 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
                         j++;
                     }
                 }
-            }
         }
         listAddGroup.setModel(listModel);
         controlGeneral.refresh(this);

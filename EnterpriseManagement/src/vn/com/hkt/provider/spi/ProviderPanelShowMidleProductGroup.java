@@ -114,5 +114,11 @@ public class ProviderPanelShowMidleProductGroup implements IProviderPanelShowMid
         return listDep;
     }
 
+    @Override
+    public ProductGroup getProductGroupByID(long idGroup) {;
+        ProductGroup pg=iProductGroupDao.getById(idGroup);
+        return pg;
+    }
+
    
 }
