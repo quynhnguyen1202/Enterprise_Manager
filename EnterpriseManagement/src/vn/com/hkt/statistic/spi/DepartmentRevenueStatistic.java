@@ -111,12 +111,12 @@ public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
             String sql = "with tmp ( id , idDepartment ) as "
                     + "(select d." + Department.FIELD_ID + " ,d." + Department.FIELD_IDDEPARTMENT
                     + " from " + Department.class.getSimpleName() + " d  "
-                    + "where d." + Department.FIELD_ID + " =  " + idDepartment
+                    + " where d." + Department.FIELD_ID + " =  " + idDepartment
                     + " union all  select  d." + Department.FIELD_ID + " ,d." + Department.FIELD_IDDEPARTMENT
-                    + " From " + Department.class.getSimpleName() + " d join tmp t on t.id=d.IdDepartment )"
-                    + "select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
-                    + "from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o.idUnitMoney = u.id "
-                    + "join  tmp t on t.id=o.IdDepartment "
+                    + " From " + Department.class.getSimpleName() + " d join tmp t on t.id=d."+Department.FIELD_ID+" )"
+                    + " select  sum( o." + Operation.FIELD_MONEYAFTERDISCOUNT + " * u." + UnitMoney.FIELD_RATIO_WITH_DEFAULT + " ) "
+                    + " from " + Operation.class.getSimpleName() + " o join  " + UnitMoney.class.getSimpleName() + " u on o."+Operation.FIELD_ID_UNITMONEY+" = u."+UnitMoney.FIELD_ID
+                    + " join  tmp t on t.id=o."+Operation.FIELD_IDDEPARTMENT
                     + " where o." + Operation.FIELD_DATEEXECUTE + " >= ?2 and o." + Operation.FIELD_DATEEXECUTE + " <= ?3 and o." + Operation.FIELD_CLASSIFICATION + "= 1 ";
             if (em == null || !em.isOpen()) {
                 em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -166,6 +166,7 @@ public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
                     spending = 0;
                 }
             } catch (Exception e) {
+                spending=0;
                 System.out.println(e);
             } finally {
                 em.close();
