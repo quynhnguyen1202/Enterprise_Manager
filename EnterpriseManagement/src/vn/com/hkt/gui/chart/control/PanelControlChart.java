@@ -10,11 +10,7 @@
  */
 package vn.com.hkt.gui.chart.control;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -785,8 +781,8 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
         panelShowChart.setTypeDate(typeTime);
         //start date - end date
 
-        panelShowChart.setStartDate(dcStartDate.getCalendar());
-        panelShowChart.setEndDate(dcEndDate.getCalendar());
+        panelShowChart.setStartDate(dcStartDate.getDate());
+        panelShowChart.setEndDate(dcEndDate.getDate());
         if (panelShowChart != null) {
             panelShowChart.viewData();
         }

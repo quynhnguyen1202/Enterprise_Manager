@@ -4,7 +4,7 @@
  */
 package vn.com.hkt.gui.chart.panelshow.api;
 
-import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -15,7 +15,7 @@ public interface IPanelShowChart {
     public void setObjectView(Object obj);
     public void setTypeDate(int type);
     public void setTypeView(int type);
-    public void setStartDate(Calendar d);
-    public void setEndDate(Calendar d);
+    public void setStartDate(Date d);
+    public void setEndDate(Date d);
     public void viewData();
 }

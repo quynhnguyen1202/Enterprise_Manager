@@ -11,16 +11,14 @@
 package vn.com.hkt.gui.chart.PanelShow;
 
 import java.awt.Color;
-import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.time.TimeSeriesCollection;
 import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.Employee;
@@ -45,8 +43,8 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
     Employee emp;
     int typeView;
     int typeDate;
-    Calendar startDate;
-    Calendar endDate;
+    Date startDate;
+    Date endDate;
     EnterpriseStatisticChart enterpriseChart;
     DepartmentStatisticChart departmentChart;
     ProjectStatisticChart projectChart;
@@ -87,39 +85,34 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
     public  ChartPanel createChart(){
         TimeSeriesCollection dataset=new TimeSeriesCollection();
         if(e!=null){
-            JOptionPane.showConfirmDialog(null, endDate);
-            JOptionPane.showConfirmDialog(null, startDate);
-            JOptionPane.showConfirmDialog(null, typeDate);
-            JOptionPane.showConfirmDialog(null, typeView);
-            JOptionPane.showConfirmDialog(null, e.getId());
             dataset= (TimeSeriesCollection) enterpriseChart.createDataset(typeDate,typeView,e.getId(),startDate,endDate);
                        dataset= (TimeSeriesCollection) enterpriseChart.createDataset(typeDate,typeView,e.getId(),startDate,endDate);
         }else if(d !=null){
-            dataset=(TimeSeriesCollection) departmentChart.createDataset(typeDate, typeView, d.getId(), d.getIdEnterprise(), startDate, endDate);
+            //dataset=(TimeSeriesCollection) departmentChart.createDataset(typeDate, typeView, d.getId(), d.getIdEnterprise(), startDate, endDate);
         }else if(p !=null){
-            dataset=(TimeSeriesCollection) projectChart.createDataset(typeDate,p.getId(), p.getIdDepartment(), p.getIdEnterprise(), startDate, endDate);
+           // dataset=(TimeSeriesCollection) projectChart.createDataset(typeDate,p.getId(), p.getIdDepartment(), p.getIdEnterprise(), startDate, endDate);
         }else if(emp !=null){
-            dataset=(TimeSeriesCollection) employeeChart.createDataset(typeDate, emp.getId(), startDate, endDate);
+           // dataset=(TimeSeriesCollection) employeeChart.createDataset(typeDate, emp.getId(), startDate, endDate);
         }else{
             JOptionPane.showMessageDialog(null, "Data not found");
             return null;
         }
         
-        JFreeChart chart=ChartFactory.createTimeSeriesChart("Chart "+e.getName(), "Year","Name" , dataset, true, true, false);
+        JFreeChart chart=ChartFactory.createTimeSeriesChart("Chart "+e.getName(), "Year","Money" , dataset, true, true, false);
         //design
-        chart.setBackgroundPaint(Color.white);
-        CategoryPlot plot = (CategoryPlot) chart.getPlot();
-        plot.setBackgroundPaint(Color.lightGray);
-        plot.setRangeGridlinePaint(Color.white);
-        // customise the range axis...
-        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-        // customise the renderer...
-        LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
-        renderer.setShapesVisible(true);
-        renderer.setDrawOutlines(true);
-        renderer.setUseFillPaint(true);
-        renderer.setFillPaint(Color.white);
+//        chart.setBackgroundPaint(Color.white);
+//        CategoryPlot plot = (CategoryPlot) chart.getPlot();
+//        plot.setBackgroundPaint(Color.lightGray);
+//        plot.setRangeGridlinePaint(Color.white);
+//        // customise the range axis...
+//        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+//        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+//        // customise the renderer...
+//        LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
+//        renderer.setShapesVisible(true);
+//        renderer.setDrawOutlines(true);
+//        renderer.setUseFillPaint(true);
+//        renderer.setFillPaint(Color.white);
         //xuat ra form
         ChartPanel panel=new ChartPanel(chart);
         return panel;
@@ -154,12 +147,12 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
     }
 
     @Override
-    public void setStartDate(Calendar d) {
+    public void setStartDate(Date d) {
       this.startDate=d;
     }
 
     @Override
-    public void setEndDate(Calendar d) {
+    public void setEndDate(Date d) {
        this.endDate=d;
     }
 
