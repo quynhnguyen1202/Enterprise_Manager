@@ -27,7 +27,7 @@ public class DepartmentStatisticChart {
     public static final int TOTAL_TYPE = 2;
     public static final int CHILDREN_TYPE = 3;
 
-    public XYDataset createDataset(int check, int total, long idDepartment, long idEnterprise, Date start, Date end) {
+    public XYDataset createDataset(int check, int total, long idDepartment, Date start, Date end) {
         float revenue = 0, spending = 0, profit = 0;
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.setDomainIsPointsInTime(true);
@@ -45,18 +45,18 @@ public class DepartmentStatisticChart {
             while (dateStart.compareTo(dateEnd) <= 0) {
                 DepartmentRevenueStatistic drs = new DepartmentRevenueStatistic();
                 if (total == PARENT_TYPE) {
-                    revenue = drs.revenueGetByDepartment(idDepartment, idEnterprise, dateStart.getTime(), dateStart.getTime());
-                    spending = drs.spendingGetByDepartment(idDepartment, idEnterprise, dateStart.getTime(), dateStart.getTime());
+                    revenue = drs.revenueGetByDepartment(idDepartment, dateStart.getTime(), dateStart.getTime());
+                    spending = drs.spendingGetByDepartment(idDepartment, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
                 }
                 if (total == TOTAL_TYPE) {
-                    revenue = drs.revenueGetByTotalDepartment(idDepartment, idEnterprise, dateStart.getTime(), dateEnd.getTime());
-                    spending = drs.spendingGetByTotalDepartment(idDepartment, idEnterprise, dateStart.getTime(), dateStart.getTime());
+                    revenue = drs.revenueGetByTotalDepartment(idDepartment, dateStart.getTime(), dateEnd.getTime());
+                    spending = drs.spendingGetByTotalDepartment(idDepartment, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
                 }
                 if (total == CHILDREN_TYPE) {
-                    revenue = drs.revenueGetByTotalChildrenDepartment(idDepartment, idEnterprise, dateStart.getTime(), dateEnd.getTime());
-                    spending = drs.spendingGetByTotalChildrenDepartment(idDepartment, idEnterprise, dateStart.getTime(), dateStart.getTime());
+                    revenue = drs.revenueGetByTotalChildrenDepartment(idDepartment, dateStart.getTime(), dateEnd.getTime());
+                    spending = drs.spendingGetByTotalChildrenDepartment(idDepartment, dateStart.getTime(), dateStart.getTime());
                     profit = revenue - spending;
                 }
                 s1.add(new Day(dateStart.getTime()), revenue);
@@ -81,38 +81,38 @@ public class DepartmentStatisticChart {
             dateEnd.setTime(end);
             int monthSt = dateStart.get(Calendar.MONTH);
             int yearSt = dateStart.get(Calendar.YEAR);
-            int lastDayOfMonth=dateStart.getActualMaximum(Calendar.DATE);
+            int lastDayOfMonth = dateStart.getActualMaximum(Calendar.DATE);
             dateStart.set(yearSt, monthSt, 1);
             Calendar EndOfMonth = Calendar.getInstance();
             EndOfMonth.set(yearSt, monthSt, lastDayOfMonth);
 
             int monthE = dateEnd.get(Calendar.MONTH);
             int yearE = dateEnd.get(Calendar.YEAR);
-            int dayE=dateEnd.getActualMaximum(Calendar.DATE);
+            int dayE = dateEnd.getActualMaximum(Calendar.DATE);
             dateEnd.set(yearE, monthE, dayE);
 
             while (dateStart.compareTo(dateEnd) <= 0) {
                 DepartmentRevenueStatistic drs = new DepartmentRevenueStatistic();
                 if (total == PARENT_TYPE) {
-                    revenue = drs.revenueGetByDepartment(idDepartment, idEnterprise, dateStart.getTime(), EndOfMonth.getTime());
-                    spending = drs.revenueGetByDepartment(idDepartment, idEnterprise, dateStart.getTime(), EndOfMonth.getTime());
+                    revenue = drs.revenueGetByDepartment(idDepartment, dateStart.getTime(), EndOfMonth.getTime());
+                    spending = drs.revenueGetByDepartment(idDepartment, dateStart.getTime(), EndOfMonth.getTime());
                     profit = revenue - spending;
                 }
                 if (total == TOTAL_TYPE) {
-                    revenue = drs.revenueGetByTotalDepartment(idDepartment, idEnterprise, dateStart.getTime(), EndOfMonth.getTime());
-                    spending = drs.revenueGetByTotalDepartment(idDepartment, idEnterprise, dateStart.getTime(), EndOfMonth.getTime());
+                    revenue = drs.revenueGetByTotalDepartment(idDepartment, dateStart.getTime(), EndOfMonth.getTime());
+                    spending = drs.revenueGetByTotalDepartment(idDepartment, dateStart.getTime(), EndOfMonth.getTime());
                     profit = revenue - spending;
                 }
                 if (total == CHILDREN_TYPE) {
-                    revenue = drs.revenueGetByTotalChildrenDepartment(idDepartment, idEnterprise, dateStart.getTime(), EndOfMonth.getTime());
-                    spending = drs.revenueGetByTotalChildrenDepartment(idDepartment, idEnterprise, dateStart.getTime(), EndOfMonth.getTime());
+                    revenue = drs.revenueGetByTotalChildrenDepartment(idDepartment, dateStart.getTime(), EndOfMonth.getTime());
+                    spending = drs.revenueGetByTotalChildrenDepartment(idDepartment, dateStart.getTime(), EndOfMonth.getTime());
                     profit = revenue - spending;
                 }
                 s1.add(new Month(dateStart.getTime()), revenue);
                 s2.add(new Month(dateStart.getTime()), spending);
                 s3.add(new Month(dateStart.getTime()), profit);
                 dateStart.add(Calendar.MONTH, 1);
-                            }
+            }
             datasetStatisticPerMonth.addSeries(s1);
             datasetStatisticPerMonth.addSeries(s2);
             datasetStatisticPerMonth.addSeries(s3);
@@ -139,18 +139,18 @@ public class DepartmentStatisticChart {
                 DepartmentRevenueStatistic drs = new DepartmentRevenueStatistic();
                 if (total == PARENT_TYPE) {
 
-                    revenue = drs.revenueGetByDepartment(idDepartment, idEnterprise, dateStart.getTime(), nextYear.getTime());
-                    spending = drs.revenueGetByDepartment(idDepartment, idEnterprise, dateStart.getTime(), nextYear.getTime());
+                    revenue = drs.revenueGetByDepartment(idDepartment, dateStart.getTime(), nextYear.getTime());
+                    spending = drs.revenueGetByDepartment(idDepartment, dateStart.getTime(), nextYear.getTime());
                     profit = revenue - spending;
                 }
                 if (total == TOTAL_TYPE) {
-                    revenue = drs.revenueGetByTotalDepartment(idDepartment, idEnterprise, dateStart.getTime(), nextYear.getTime());
-                    spending = drs.revenueGetByTotalDepartment(idDepartment, idEnterprise, dateStart.getTime(), nextYear.getTime());
+                    revenue = drs.revenueGetByTotalDepartment(idDepartment, dateStart.getTime(), nextYear.getTime());
+                    spending = drs.revenueGetByTotalDepartment(idDepartment, dateStart.getTime(), nextYear.getTime());
                     profit = revenue - spending;
                 }
                 if (total == CHILDREN_TYPE) {
-                    revenue = drs.revenueGetByTotalChildrenDepartment(idDepartment, idEnterprise, dateStart.getTime(), nextYear.getTime());
-                    spending = drs.revenueGetByTotalChildrenDepartment(idDepartment, idEnterprise, dateStart.getTime(), nextYear.getTime());
+                    revenue = drs.revenueGetByTotalChildrenDepartment(idDepartment, dateStart.getTime(), nextYear.getTime());
+                    spending = drs.revenueGetByTotalChildrenDepartment(idDepartment, dateStart.getTime(), nextYear.getTime());
                     profit = revenue - spending;
                 }
 
