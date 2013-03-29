@@ -37,21 +37,27 @@ import vn.com.hkt.statistic.chart.ProjectStatisticChart;
 public final class linechart extends javax.swing.JPanel implements IPanelShowChart {
 
     /** Creates new form linechart */
-    Enterprise e;
-    Department d;
-    Project p;
-    Employee emp;
-    int typeView;
-    int typeDate;
-    Date startDate;
-    Date endDate;
-    EnterpriseStatisticChart enterpriseChart;
-    DepartmentStatisticChart departmentChart;
-    ProjectStatisticChart projectChart;
-    EmployeeStatisticChart employeeChart;
+    private Enterprise e;
+    private Department d;
+    private Project p;
+    private Employee emp;
+    private int typeView;
+    private int typeDate;
+    private Date startDate;
+    private Date endDate;
+    private EnterpriseStatisticChart enterpriseChart;
+    private DepartmentStatisticChart departmentChart;
+    private ProjectStatisticChart projectChart;
+    private EmployeeStatisticChart employeeChart;
+    private String name = "";
+    private String chartTime = "";
+
     public linechart() {
         initComponents();
-        enterpriseChart=new EnterpriseStatisticChart();
+        enterpriseChart = new EnterpriseStatisticChart();
+        departmentChart = new DepartmentStatisticChart();
+        projectChart = new ProjectStatisticChart();
+        employeeChart = new EmployeeStatisticChart();
     }
 
     /** This method is called from within the constructor to
@@ -67,45 +73,47 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 937, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-   
-    public  ChartPanel createChart(){
-        TimeSeriesCollection dataset=new TimeSeriesCollection();
-        if(e!=null){
-            JOptionPane.showMessageDialog(null, endDate);
-            JOptionPane.showMessageDialog(null, startDate);
-            JOptionPane.showMessageDialog(null, typeDate);
-            JOptionPane.showMessageDialog(null, typeView);
-            JOptionPane.showMessageDialog(null, e.getName());
-            System.out.println("============================== "+enterpriseChart+"  "+typeDate+"  "+typeView);
-            dataset= (TimeSeriesCollection) enterpriseChart.createDataset(typeDate,typeView,e.getId(),startDate,endDate);
-         JOptionPane.showMessageDialog(null, dataset);
-        }else if(d !=null){
-            //dataset=(TimeSeriesCollection) departmentChart.createDataset(typeDate, typeView, d.getId(), d.getIdEnterprise(), startDate, endDate);
-        }else if(p !=null){
-           // dataset=(TimeSeriesCollection) projectChart.createDataset(typeDate,p.getId(), p.getIdDepartment(), p.getIdEnterprise(), startDate, endDate);
-        }else if(emp !=null){
-           // dataset=(TimeSeriesCollection) employeeChart.createDataset(typeDate, emp.getId(), startDate, endDate);
-        }else{
+    public ChartPanel createChart() {
+        TimeSeriesCollection dataset = new TimeSeriesCollection();
+        if (e != null) {
+            name = e.getName();
+            System.out.println("============================== " + e.getName() + "  " + typeDate + "  " + typeView);
+            dataset = (TimeSeriesCollection) enterpriseChart.createDataset(typeDate, typeView, e.getId(), startDate, endDate);
+        } else if (d != null) {
+            System.out.println("------------------------------" + d.getName() + " " + startDate + "  " + typeDate + "  " + typeView);
+            name = d.getName();
+            dataset = (TimeSeriesCollection) departmentChart.createDataset(typeDate, typeView, d.getId(), d.getIdEnterprise(), startDate, endDate);
+        } else if (p != null) {
+            System.out.println("------------------------------" + p.getName() + " " + startDate + "  " + typeDate + "  " + typeView);
+            name = p.getName();
+            dataset = (TimeSeriesCollection) projectChart.createDataset(typeDate, p.getId(), p.getIdDepartment(), p.getIdEnterprise(), startDate, endDate);
+        } else if (emp != null) {
+            System.out.println("------------------------------" + emp.getName() + " " + startDate + "  " + typeDate + "  " + typeView);
+            name = emp.getName();
+            dataset = (TimeSeriesCollection) employeeChart.createDataset(typeDate, emp.getId(), startDate, endDate);
+        } else {
             JOptionPane.showMessageDialog(null, "Data not found");
             return null;
         }
-        
-        JFreeChart chart=ChartFactory.createTimeSeriesChart("Chart "+e.getName(), "Year","Money" , dataset, true, true, false);
+
+        JFreeChart chart = ChartFactory.createTimeSeriesChart("Chart " + name, chartTime, "Money", dataset, true, true, false);
         //design
 //        chart.setBackgroundPaint(Color.white);
 //        CategoryPlot plot = (CategoryPlot) chart.getPlot();
@@ -121,50 +129,57 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
 //        renderer.setUseFillPaint(true);
 //        renderer.setFillPaint(Color.white);
         //xuat ra form
-        ChartPanel panel=new ChartPanel(chart);
+        ChartPanel panel = new ChartPanel(chart);
         return panel;
     }
 
     @Override
     public void setControlShow() {
-      //  throw new UnsupportedOperationException("Not supported yet.");
+        //  throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void setObjectView(Object obj) {
-      if(obj instanceof Enterprise){
-          e=(Enterprise) obj;
-      }else if(obj instanceof Department){
-          d=(Department)obj;
-      }else if(obj instanceof Project){
-          p=(Project)obj;
-      }else{
-          emp=(Employee)obj;
-      }
+        if (obj instanceof Enterprise) {
+            e = (Enterprise) obj;
+        } else if (obj instanceof Department) {
+            d = (Department) obj;
+        } else if (obj instanceof Project) {
+            p = (Project) obj;
+        } else {
+            emp = (Employee) obj;
+        }
     }
 
     @Override
     public void setTypeDate(int type) {
-        this.typeDate=type;   
+        this.typeDate = type;
+        if(type==1){
+            chartTime="Day";
+        }else if(type ==2){
+            chartTime="Month";
+        }else if(type==3){
+            chartTime="Year";
+        }
     }
 
     @Override
     public void setTypeView(int type) {
-      this.typeView=type;
+        this.typeView = type;
     }
 
     @Override
     public void setStartDate(Date d) {
-      this.startDate=d;
+        this.startDate = d;
     }
 
     @Override
     public void setEndDate(Date d) {
-       this.endDate=d;
+        this.endDate = d;
     }
 
     @Override
     public void viewData() {
-       jScrollPane1.setViewportView(createChart());
+        jScrollPane1.setViewportView(createChart());
     }
 }

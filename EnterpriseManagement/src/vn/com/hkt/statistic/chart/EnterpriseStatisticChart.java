@@ -36,7 +36,7 @@ public class EnterpriseStatisticChart {
         dateStart.setTime(start);
         dateEnd = Calendar.getInstance();
         dateEnd.setTime(end);
-        if (check == 1) {
+        if (check == DAY_TYPE) {
             TimeSeries s1 = new TimeSeries("Revenues", Day.class);
             TimeSeries s2 = new TimeSeries("Spending", Day.class);
             TimeSeries s3 = new TimeSeries("Profit", Day.class);
@@ -173,5 +173,4 @@ public class EnterpriseStatisticChart {
 
         return dataset;
     }
-}
 }
