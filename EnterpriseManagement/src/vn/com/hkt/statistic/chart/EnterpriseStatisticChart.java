@@ -32,10 +32,10 @@ public class EnterpriseStatisticChart {
         float revenue = 0, spending = 0, profit = 0;
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.setDomainIsPointsInTime(true);//
-dateStart = Calendar.getInstance();
-            dateStart.setTime(start);
-            dateEnd = Calendar.getInstance();
-            dateEnd.setTime(end);
+        dateStart = Calendar.getInstance();
+        dateStart.setTime(start);
+        dateEnd = Calendar.getInstance();
+        dateEnd.setTime(end);
         if (check == 1) {
             TimeSeries s1 = new TimeSeries("Revenues", Day.class);
             TimeSeries s2 = new TimeSeries("Spending", Day.class);
@@ -45,7 +45,7 @@ dateStart = Calendar.getInstance();
             dateEnd = Calendar.getInstance();
             dateEnd.setTime(end);
             TimeSeriesCollection datasetStatisticPerDay = new TimeSeriesCollection();
-            while (dateStart.before(dateEnd)) {
+            while (dateStart.compareTo(dateEnd) <= 0) {
                 EnterpriseRevenueStatistic ers = new EnterpriseRevenueStatistic();
                 if (total == PARENT_TYPE) {// cha
                     revenue = ers.revenueGetByEnterprise(id, dateStart.getTime(), dateStart.getTime());
@@ -65,7 +65,7 @@ dateStart = Calendar.getInstance();
                 s1.add(new Day(dateStart.getTime()), revenue);
                 s2.add(new Day(dateStart.getTime()), spending);
                 s3.add(new Day(dateStart.getTime()), profit);
-                
+
                 dateStart.add(Calendar.DATE, 1);
             }
             datasetStatisticPerDay.addSeries(s1);
@@ -124,7 +124,7 @@ dateStart = Calendar.getInstance();
             datasetStatisticPerMonth.addSeries(s3);
             dataset = datasetStatisticPerMonth;
         }
-        if (check == 3) {
+        if (check == YEAR_TYPE) {
             TimeSeries s1 = new TimeSeries("Revenues", Year.class);
             TimeSeries s2 = new TimeSeries("Spending", Year.class);
             TimeSeries s3 = new TimeSeries("Profit", Year.class);
@@ -170,8 +170,8 @@ dateStart = Calendar.getInstance();
             datasetStatisticPerYear.addSeries(s3);
             dataset = datasetStatisticPerYear;
         }
-        
+
         return dataset;
     }
-       
+}
 }
