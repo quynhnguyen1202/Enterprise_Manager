@@ -19,10 +19,10 @@ import vn.com.hkt.statistic.api.IDepartmentRevenueStatistic;
  * @author QuynhNguyen
  */
 public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
-    
+
     private List<Double> result;
     private EntityManager em;
-    
+
     @Override
     public float revenueGetByDepartment(long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         float sum = 0;
@@ -46,6 +46,7 @@ public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
                 }
             } catch (Exception e) {
                 System.out.println(e);
+                sum = 0;
             } finally {
                 em.close();
             }
@@ -68,15 +69,16 @@ public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
                     sum = 0;
                 }
             } catch (Exception e) {
+                sum = 0;
                 System.out.println(e);
             } finally {
                 em.close();
             }
         }
-        
+
         return sum;
     }
-    
+
     @Override
     public float revenueGetByTotalDepartment(long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         float revenue = 0;
@@ -98,8 +100,11 @@ public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
                 result = em.createNativeQuery(sql).setParameter(2, dateStart, TemporalType.DATE).setParameter(3, dateEnd, TemporalType.DATE).setParameter(4, idEnterprise).getResultList();
                 if (result != null && !result.isEmpty()) {
                     revenue = Float.parseFloat(result.get(0).toString());
+                } else {
+                    revenue = 0;
                 }
             } catch (Exception e) {
+                revenue = 0;
                 System.out.println(e);
             }
         } else {
@@ -120,21 +125,24 @@ public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
                 result = em.createNativeQuery(sql).setParameter(2, dateStart, TemporalType.DATE).setParameter(3, dateEnd, TemporalType.DATE).getResultList();
                 if (result != null && !result.isEmpty()) {
                     revenue = Float.parseFloat(result.get(0).toString());
+                } else {
+                    revenue = 0;
                 }
             } catch (Exception e) {
                 System.out.println(e);
-            }            
+                revenue = 0;
+            }
         }
         return revenue;
     }
-    
+
     @Override
     public float revenueGetByTotalChildrenDepartment(long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         float revenue = 0;
         revenue = revenueGetByTotalDepartment(idDepartment, idEnterprise, dateStart, dateEnd) - revenueGetByDepartment(idDepartment, idEnterprise, dateStart, dateEnd);
         return revenue;
     }
-    
+
     @Override
     public float spendingGetByDepartment(long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         float spending = 0;
@@ -152,6 +160,7 @@ public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
                         spending = Float.parseFloat(result.get(0).toString());
                     } catch (Exception e) {
                         System.out.println(e);
+                        spending = 0;
                     }
                 } else {
                     spending = 0;
@@ -180,15 +189,16 @@ public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
                     spending = 0;
                 }
             } catch (Exception e) {
+                spending = 0;
                 System.out.println(e);
             } finally {
                 em.close();
             }
-            return spending;
+
         }
         return spending;
     }
-    
+
     @Override
     public float spendingGetByTotalDepartment(long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         float spending = 0;
@@ -210,8 +220,12 @@ public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
                 result = em.createNativeQuery(sql).setParameter(2, dateStart, TemporalType.DATE).setParameter(3, dateEnd, TemporalType.DATE).setParameter(4, idEnterprise).getResultList();
                 if (result != null && !result.isEmpty()) {
                     spending = Float.parseFloat(result.get(0).toString());
+                } else {
+                    spending = 0;
                 }
+
             } catch (Exception e) {
+                spending = 0;
                 System.out.println(e);
             }
         } else {
@@ -232,16 +246,19 @@ public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
                 result = em.createNativeQuery(sql).setParameter(2, dateStart, TemporalType.DATE).setParameter(3, dateEnd, TemporalType.DATE).getResultList();
                 if (result != null && !result.isEmpty()) {
                     spending = Float.parseFloat(result.get(0).toString());
+                } else {
+                    spending = 0;
                 }
             } catch (Exception e) {
+                spending = 0;
                 System.out.println(e);
             }
-            
+
         }
-        
+
         return spending;
     }
-    
+
     @Override
     public float spendingGetByTotalChildrenDepartment(long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         float spending = 0;

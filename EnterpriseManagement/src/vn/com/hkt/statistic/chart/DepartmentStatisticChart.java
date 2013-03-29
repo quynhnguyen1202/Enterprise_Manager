@@ -24,9 +24,9 @@ public class DepartmentStatisticChart {
         float revenue = 0, spending = 0, profit = 0;
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.setDomainIsPointsInTime(true);
-        TimeSeries s1 = new TimeSeries("Obtain", Date.class);
-        TimeSeries s2 = new TimeSeries("Spending", Date.class);
-        TimeSeries s3 = new TimeSeries("Profit", Date.class);
+        TimeSeries s1 = new TimeSeries("Obtain", Day.class);
+        TimeSeries s2 = new TimeSeries("Spending", Day.class);
+        TimeSeries s3 = new TimeSeries("Profit", Day.class);
 
 
         /*check =1 : thong ke theo ngay,

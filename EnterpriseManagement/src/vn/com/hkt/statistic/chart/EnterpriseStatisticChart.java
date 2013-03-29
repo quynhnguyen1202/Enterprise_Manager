@@ -167,12 +167,8 @@ dateStart = Calendar.getInstance();
             datasetStatisticPerYear.addSeries(s3);
             dataset = datasetStatisticPerYear;
         }
-        System.out.println(dateStart);
+        
         return dataset;
     }
-     public static void main(String[] args) {
-        EnterpriseStatisticChart a= new EnterpriseStatisticChart();
-        a.createDataset(1, 1, 1, new Date(), new Date());
-    }
-           
+       
 }
