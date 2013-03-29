@@ -24,6 +24,7 @@ public class ProviderPanelShowMidleProductGroup implements IProviderPanelShowMid
     private IProductGroupDao iProductGroupDao;
 
     public ProviderPanelShowMidleProductGroup() {
+        midleProductGroup=new MidleProductGroup();
         iMidleProductGroupDao = new MidleProductGroupDao();
         iProductGroupDao=new ProductGroupDao();
     }
@@ -59,7 +60,8 @@ public class ProviderPanelShowMidleProductGroup implements IProviderPanelShowMid
     @Override
     public long deleteData() {
         if (midleProductGroup != null) {
-            iMidleProductGroupDao.delete(midleProductGroup);
+            System.out.println(iMidleProductGroupDao.delete(midleProductGroup));
+            
             return 1;
 
         }

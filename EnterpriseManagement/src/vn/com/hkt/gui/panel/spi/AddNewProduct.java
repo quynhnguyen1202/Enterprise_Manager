@@ -383,9 +383,6 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
                 providerMidleGroup.deleteData();
             }
 
-
-
-
             //Them moi DB
             for (int i = 0; i < listAddGroup.getModel().getSize(); i++) {
                 ProductGroup p = (ProductGroup) listAddGroup.getModel().getElementAt(i);
@@ -509,11 +506,15 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
         // set list midle group
         List<MidleProductGroup> listMidle = providerMidleGroup.getMidleGroupByProductId(providerProduct.getDataView().getId());
         DefaultListModel listModel = new DefaultListModel();
-        for (MidleProductGroup p : listMidle) {
+        for (MidleProductGroup p : listMidle) { 
+            System.out.println("---------"  +p.getIdGroupProduct());
             long idGroup = p.getIdGroupProduct();
             List<ProductGroup> groups = providerMidleGroup.getProductGroupByIDGroup(idGroup);
             for (int i = 0; i < groups.size(); i++) {
                 ProductGroup productGroup = groups.get(i);
+                //add vao list 2
+                System.out.println("++++++  "+productGroup.getName());
+                listModel.addElement(productGroup);
                 //xoa khoi list 1
                 long idpGroup = productGroup.getId();
                 DefaultListModel model = (DefaultListModel) listGroup.getModel();
@@ -525,8 +526,6 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
                         j++;
                     }
                 }
-                //add vao list 2
-                listModel.addElement(productGroup);
             }
         }
         listAddGroup.setModel(listModel);
