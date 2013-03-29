@@ -25,9 +25,9 @@ public class EnterpriseStatisticChart {
         float revenue = 0, spending = 0, profit = 0;
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.setDomainIsPointsInTime(true);
-        TimeSeries s1 = new TimeSeries("Obtain", Date.class);
-        TimeSeries s2 = new TimeSeries("Spending", Date.class);
-        TimeSeries s3 = new TimeSeries("Profit", Date.class);
+        TimeSeries s1 = new TimeSeries("Obtain", Day.class);
+        TimeSeries s2 = new TimeSeries("Spending", Day.class);
+        TimeSeries s3 = new TimeSeries("Profit", Day.class);
 
         //int check = 0;
         /*check =1 : thong ke theo ngay,
@@ -71,6 +71,7 @@ dateStart = Calendar.getInstance();
                 s1.add(new Day(dateStart.getTime()), revenue);
                 s2.add(new Day(dateStart.getTime()), spending);
                 s3.add(new Day(dateStart.getTime()), profit);
+                
                 dateStart.add(Calendar.DATE, 1);
             }
             datasetStatisticPerDay.addSeries(s1);
@@ -166,7 +167,12 @@ dateStart = Calendar.getInstance();
             datasetStatisticPerYear.addSeries(s3);
             dataset = datasetStatisticPerYear;
         }
-
+        System.out.println(dateStart);
         return dataset;
     }
+     public static void main(String[] args) {
+        EnterpriseStatisticChart a= new EnterpriseStatisticChart();
+        a.createDataset(1, 1, 1, new Date(), new Date());
+    }
+           
 }
