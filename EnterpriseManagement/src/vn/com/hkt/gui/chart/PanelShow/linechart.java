@@ -93,6 +93,7 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
             JOptionPane.showConfirmDialog(null, typeView);
             JOptionPane.showConfirmDialog(null, e.getId());
             dataset= (TimeSeriesCollection) enterpriseChart.createDataset(typeDate,typeView,e.getId(),startDate,endDate);
+                       dataset= (TimeSeriesCollection) enterpriseChart.createDataset(typeDate,typeView,e.getId(),startDate,endDate);
         }else if(d !=null){
 //            dataset=(DefaultCategoryDataset) departmentChart.createDataset();
         }else if(p !=null){
