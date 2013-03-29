@@ -27,8 +27,8 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
 
     @Override
     public float revenueGetByEmployee(long idEmployee, Date dateStart, Date dateEnd) {
-        String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1 "
-                + "and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
+        String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1 "
+                + "  and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
                 + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3) and ( tbl." + Operation.FIELD_CLASSIFICATION + "= 1 )";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -51,8 +51,8 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
 
     @Override
     public float spendingGetByEmployee(long idEmployee, Date dateStart, Date dateEnd) {
-        String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1) "
-                + "and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
+        String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1) "
+                + " and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
                 + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3) and ( tbl." + Operation.FIELD_CLASSIFICATION + "= 0 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -77,8 +77,8 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
     public float revenueGetByEmployee(long idEmployee, long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         if (idEnterprise > 0) {
             if (idDepartment > 0) {
-                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1 "
-                        + "and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
+                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1 "
+                        + " and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
                         + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3) and ( tbl." + Operation.FIELD_CLASSIFICATION + "= 1 )"
                         + " and tbl." + Operation.FIELD_IDDEPARTMENT + "=?4 and tbl." + Operation.FIELD_IDENTERPRISE + "=?5 ";
                 if (em == null || !em.isOpen()) {
@@ -98,8 +98,8 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
                     em.close();
                 }
             } else {
-                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1 "
-                        + "and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
+                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1 "
+                        + " and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
                         + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3) and ( tbl." + Operation.FIELD_CLASSIFICATION + "= 1 )"
                         + " and tbl." + Operation.FIELD_IDENTERPRISE + "=?4";
                 if (em == null || !em.isOpen()) {
@@ -121,8 +121,8 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
             }
         } else {
             if (idDepartment > 0) {
-                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1 "
-                        + "and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
+                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1 "
+                        + " and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
                         + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3) and ( tbl." + Operation.FIELD_CLASSIFICATION + "= 1 )"
                         + " and tbl." + Operation.FIELD_IDDEPARTMENT + "=?4 ";
                 if (em == null || !em.isOpen()) {
@@ -142,8 +142,8 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
                     em.close();
                 }
             } else {
-                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1 "
-                        + "and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
+                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1 "
+                        + " and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
                         + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3) and ( tbl." + Operation.FIELD_CLASSIFICATION + "= 1 )";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
@@ -170,8 +170,8 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
     public float spendingGetByEmployee(long idEmployee, long idDepartment, long idEnterprise, Date dateStart, Date dateEnd) {
         if (idEnterprise > 0) {
             if (idDepartment > 0) {
-                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1) "
-                        + "and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
+                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1) "
+                        + " and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
                         + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3) and ( tbl." + Operation.FIELD_CLASSIFICATION + "= 0 "
                         + " and tbl." + Operation.FIELD_IDDEPARTMENT + "=?4 and tbl." + Operation.FIELD_IDENTERPRISE + " =?5 ";
                 if (em == null || !em.isOpen()) {
@@ -191,8 +191,8 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
                     em.close();
                 }
             } else {
-                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1) "
-                        + "and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
+                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1) "
+                        + " and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
                         + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3) and ( tbl." + Operation.FIELD_CLASSIFICATION + "= 0 "
                         + " and tbl." + Operation.FIELD_IDENTERPRISE + " =?4";
                 if (em == null || !em.isOpen()) {
@@ -215,8 +215,8 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
 
         } else {
             if (idDepartment > 0) {
-                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1) "
-                        + "and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
+                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1) "
+                        + " and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
                         + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3) and ( tbl." + Operation.FIELD_CLASSIFICATION + "= 0 "
                         + " and tbl." + Operation.FIELD_IDDEPARTMENT + " =?4";
                 if (em == null || !em.isOpen()) {
@@ -237,8 +237,8 @@ public class EmployeeRevenueStatistic implements IEmployeeRevenueStatistic {
                 }
 
             } else {
-                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from" + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1) "
-                        + "and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
+                String sql = "select sum(tbl." + Operation.FIELD_MONEYAFTERDISCOUNT + ") from " + Operation.class.getSimpleName() + " tbl where tbl." + Operation.FIELD_IDEMPLOYEE + "=?1) "
+                        + " and (tbl." + Operation.FIELD_DATEEXECUTE + " >= ?2 )"
                         + " and (tbl." + Operation.FIELD_DATEEXECUTE + "<=?3) and ( tbl." + Operation.FIELD_CLASSIFICATION + "= 0 ";
                 if (em == null || !em.isOpen()) {
                     em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
