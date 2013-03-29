@@ -13,7 +13,6 @@ package vn.com.hkt.gui.panel.spi;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import vn.com.hkt.data.entity.Department;
 import vn.com.hkt.data.entity.Enterprise;
@@ -21,16 +20,9 @@ import vn.com.hkt.data.entity.MidleProductGroup;
 import vn.com.hkt.data.entity.Product;
 import vn.com.hkt.data.entity.ProductGroup;
 import vn.com.hkt.gui.control.api.IPanelControlGeneral;
-import vn.com.hkt.gui.entity.api.IPanelShowList;
 import vn.com.hkt.gui.entity.api.IShowPanel;
-import vn.com.hkt.provider.api.IProviderPanelShowListDepartment;
-import vn.com.hkt.provider.api.IProviderPanelShowListEnterprise;
-import vn.com.hkt.provider.api.IProviderPanelShowListProductGroup;
 import vn.com.hkt.provider.api.IProviderPanelShowMidleProductGroup;
 import vn.com.hkt.provider.api.IProviderPanelShowProduct;
-import vn.com.hkt.provider.spi.ProviderPanelShowListDepartment;
-import vn.com.hkt.provider.spi.ProviderPanelShowListEnterprise;
-import vn.com.hkt.provider.spi.ProviderPanelShowListProductGroup;
 import vn.com.hkt.provider.spi.ProviderPanelShowMidleProductGroup;
 import vn.com.hkt.provider.spi.ProviderPanelShowProduct;
 
@@ -380,16 +372,33 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
                 return false;
             }
             long id = providerProduct.updateData();
+
+
+
+            //xoa khoi DB
+            List<MidleProductGroup> listMPG = providerMidleGroup.getMidleGroupByProductId(id);
+            for (int i = 0; i < listMPG.size(); i++) {
+                MidleProductGroup mdpg = listMPG.get(i);
+                providerMidleGroup.setDataView(mdpg);
+                providerMidleGroup.deleteData();
+            }
+
+
+
+
+            //Them moi DB
             for (int i = 0; i < listAddGroup.getModel().getSize(); i++) {
                 ProductGroup p = (ProductGroup) listAddGroup.getModel().getElementAt(i);
                 if (p != null) {
                     providerMidleGroup.getDataView().setIdGroupProduct(p.getId());
-                    providerMidleGroup.updateData();
+                    providerMidleGroup.getDataView().setIdProduct(id);
+                    providerMidleGroup.addData();
                 }
             }
             if (id < 0) {
                 return false;
             }
+            resetData();
             return true;
         }
         return false;
