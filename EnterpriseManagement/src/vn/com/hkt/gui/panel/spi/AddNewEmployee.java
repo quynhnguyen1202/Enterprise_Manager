@@ -269,6 +269,7 @@ private void cbDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-F
             if (id < 0) {
                 return false;
             }
+            resetData();
             return true;
         }
         return false;

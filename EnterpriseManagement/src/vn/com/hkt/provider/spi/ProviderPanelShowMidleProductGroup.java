@@ -97,7 +97,7 @@ public class ProviderPanelShowMidleProductGroup implements IProviderPanelShowMid
 
     @Override
     public MidleProductGroup getObjectbyID(long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return iMidleProductGroupDao.getById(id);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class MidleProductGroupDao extends EntityDao<MidleProductGroup> implement
 
     @Override
     public List<MidleProductGroup> getByIdProduct(long id) {
-        String sql = "Select tbl from MidleProductGroup tbl where tbl." + MidleProductGroup.FIELD_IDPRODUCT + " =?1 ";
+        String sql = "Select tbl from "+MidleProductGroup.class.getSimpleName()+" tbl where tbl." + MidleProductGroup.FIELD_IDPRODUCT + " =?1 ";
         if (em == null || !em.isOpen()) {
             em = EntityManageFactoryTest.getInstance().getEmf().createEntityManager();
         }

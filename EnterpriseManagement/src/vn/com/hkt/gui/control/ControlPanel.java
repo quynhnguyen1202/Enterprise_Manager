@@ -22,7 +22,9 @@ import vn.com.hkt.gui.entity.api.IShowPanel;
  * @author Administrator
  */
 public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
+
     private IShowPanel showPanel;
+
     /** Creates new form IControlPanel */
     public ControlPanel() {
         initComponents();
@@ -60,10 +62,20 @@ public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
         jButton5.setBackground(new java.awt.Color(153, 153, 153));
         jButton5.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\smallicon\\24x24\\refresh.png")); // NOI18N
         jButton5.setText("Refresh");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(153, 153, 153));
         jButton4.setIcon(new javax.swing.ImageIcon("D:\\HKT\\HKT_Team_Project\\Enterprise_Manager\\EnterpriseManagement\\src\\vn\\com\\hkt\\gui\\icon\\smallicon\\24x24\\warning.png")); // NOI18N
         jButton4.setText("Cancel");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(null);
@@ -120,17 +132,24 @@ public class ControlPanel extends javax.swing.JPanel implements IControlPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        addData();
+    addData();
 }//GEN-LAST:event_btnAddActionPerformed
-
+    
 private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
     editData();
 }//GEN-LAST:event_btnEditActionPerformed
-
+    
 private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
     deleteData();
 }//GEN-LAST:event_btnDeleteActionPerformed
-
+    
+private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    this.setVisible(false);
+}//GEN-LAST:event_jButton4ActionPerformed
+    
+private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    refresh(showPanel);
+}//GEN-LAST:event_jButton5ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -142,55 +161,56 @@ private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
     @Override
     public void setShowPanel(IShowPanel p) {
-        this.showPanel= p;
+        this.showPanel = p;
     }
-
+    
     @Override
     public void addData() {
-         if(showPanel!=null){
-            if(showPanel.addData()>0){
-                JOptionPane.showMessageDialog(null, "Add new data successfully !"); 
+        if (showPanel != null) {
+            if (showPanel.addData() > 0) {
+                JOptionPane.showMessageDialog(null, "Add new data successfully !");                
             }
         }
     }
-
+    
     @Override
     public void editData() {
-        if(showPanel!=null){
-            if(showPanel.editData()==true){
+        if (showPanel != null) {
+            if (showPanel.editData() == true) {
                 JOptionPane.showMessageDialog(null, "Update data successfully !");
+                btnAdd.setVisible(true);
+                btnDelete.setVisible(false);
+                btnEdit.setVisible(false);
             }
         }
     }
-
+    
     @Override
     public void deleteData() {
-        if(showPanel!=null){
-            if(showPanel.deleteData()==true){
+        if (showPanel != null) {
+            if (showPanel.deleteData() == true) {
                 JOptionPane.showMessageDialog(null, "Delete data successfully !");
             }
         }
     }
-
+    
     @Override
     public void showData() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     @Override
     public void showDefault() {
-        if(showPanel!=null){
-            jScrollPane1.setViewportView((JPanel)showPanel);
+        if (showPanel != null) {
+            jScrollPane1.setViewportView((JPanel) showPanel);
         }
     }
-
+    
     @Override
     public void refresh(IShowPanel panel) {
-        jScrollPane1.setViewportView((JPanel)panel);
+        jScrollPane1.setViewportView((JPanel) panel);
         btnEdit.setVisible(true);
-        btnAdd.setVisible(true);
+        btnAdd.setVisible(false);
         btnDelete.setVisible(true);
     }
-
-    
 }
