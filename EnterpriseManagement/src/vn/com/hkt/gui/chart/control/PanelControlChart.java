@@ -16,8 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -786,19 +784,15 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
             typeTime = 3;
         }
         panelShowChart.setTypeDate(typeTime);
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date a = (Date) format.parse(dcStartDate.getDate().toString());
-            Date b = (Date) format.parse(dcEndDate.getDate().toString());
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(a);
-            panelShowChart.setStartDate(cal);
-            cal.setTime(b);
-            panelShowChart.setEndDate(cal);
-        } catch (ParseException ex) {
-            Logger.getLogger(PanelControlChart.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //start date - end date
 
+
+        panelShowChart.setStartDate(dcStartDate.getCalendar());
+        //JOptionPane.showMessageDialog(null, dcStartDate.getCalendar().toString());
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(dcEndDate.getDate());
+        panelShowChart.setEndDate(cal);
+        JOptionPane.showMessageDialog(null, "AAAAAAA"+cal.getTime());
         if (panelShowChart != null) {
             panelShowChart.viewData();
         }

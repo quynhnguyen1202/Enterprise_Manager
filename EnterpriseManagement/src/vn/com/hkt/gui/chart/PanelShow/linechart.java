@@ -95,11 +95,11 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
             dataset= (TimeSeriesCollection) enterpriseChart.createDataset(typeDate,typeView,e.getId(),startDate,endDate);
                        dataset= (TimeSeriesCollection) enterpriseChart.createDataset(typeDate,typeView,e.getId(),startDate,endDate);
         }else if(d !=null){
-//            dataset=(DefaultCategoryDataset) departmentChart.createDataset();
+            dataset=(TimeSeriesCollection) departmentChart.createDataset(typeDate, typeView, d.getId(), d.getIdEnterprise(), startDate, endDate);
         }else if(p !=null){
-          //  dataset=(DefaultCategoryDataset) projectChart.createDataset();
+            dataset=(TimeSeriesCollection) projectChart.createDataset(typeDate,p.getId(), p.getIdDepartment(), p.getIdEnterprise(), startDate, endDate);
         }else if(emp !=null){
-          //  dataset=(DefaultCategoryDataset) employeeChart.createDataset();
+            dataset=(TimeSeriesCollection) employeeChart.createDataset(typeDate, emp.getId(), startDate, endDate);
         }else{
             JOptionPane.showMessageDialog(null, "Data not found");
             return null;
