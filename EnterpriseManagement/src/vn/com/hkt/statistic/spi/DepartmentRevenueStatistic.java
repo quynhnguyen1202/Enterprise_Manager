@@ -148,3 +148,4 @@ public class DepartmentRevenueStatistic implements IDepartmentRevenueStatistic {
         spending = spendingGetByTotalDepartment(idDepartment, dateStart, dateEnd) - spendingGetByDepartment(idDepartment, dateStart, dateEnd);
         return spending;
     }
+}
