@@ -20,7 +20,7 @@ import vn.com.hkt.statistic.spi.ProjectRevenueStatistic;
  */
 public class ProjectStatisticChart {
 
-    public XYDataset createDataset(int check, int idProject, int idDepartment, int idEnterprise, Calendar dateStart, Calendar dateEnd) {
+    public XYDataset createDataset(int check, long idProject, long idDepartment, long idEnterprise, Calendar dateStart, Calendar dateEnd) {
         float revenue = 0, spending = 0, profit = 0;
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.setDomainIsPointsInTime(true);
