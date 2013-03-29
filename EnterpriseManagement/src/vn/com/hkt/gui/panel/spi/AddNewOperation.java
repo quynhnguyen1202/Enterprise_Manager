@@ -351,7 +351,7 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
 
     @Override
     public void setControlShow(IPanelControlGeneral controlGeneral) {
-        this.controlGeneral=controlGeneral;
+        this.controlGeneral = controlGeneral;
     }
 
     @Override
@@ -446,41 +446,47 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
     public void refreshData() {
         lbTitle.setText("Update Operation");
         txtCode.setText(provider.getDataView().getCodeOperation());
-        txtMoneyTotal.setText(String.valueOf( provider.getDataView().getMoneyTotal()));
-        txtMoneyAfterTax.setText(String.valueOf( provider.getDataView().getMoneyAfterTax()));
-        txtMoneyAfterDiscount.setText(String.valueOf( provider.getDataView().getMoneyAfterDiscount()));
+        txtMoneyTotal.setText(String.valueOf(provider.getDataView().getMoneyTotal()));
+        txtMoneyAfterTax.setText(String.valueOf(provider.getDataView().getMoneyAfterTax()));
+        txtMoneyAfterDiscount.setText(String.valueOf(provider.getDataView().getMoneyAfterDiscount()));
         dcDateExecute.setDate(provider.getDataView().getDateExecute());
         //set combobox enrterprise
         long idEnter = provider.getDataView().getIdEnterprise();
-        for (int i = 0; i < cbEnterprise.getItemCount();) {
-            Enterprise enter = ((Enterprise) cbEnterprise.getItemAt(i));
-            if (enter != null && enter.getId() == idEnter) {
-                cbEnterprise.setSelectedIndex(i);
-                break;
-            } else {
-                i++;
+        if (idEnter != 0) {
+            for (int i = 0; i < cbEnterprise.getItemCount();) {
+                Enterprise enter = ((Enterprise) cbEnterprise.getItemAt(i));
+                if (enter != null && enter.getId() == idEnter) {
+                    cbEnterprise.setSelectedIndex(i);
+                    break;
+                } else {
+                    i++;
+                }
             }
         }
         //set combobox department
         long idDepart = provider.getDataView().getIdDepartment();
-        for (int i = 0; i < cbDepartment.getItemCount();) {
-            Department depart = ((Department) cbDepartment.getItemAt(i));
-            if (depart != null && depart.getId() == idDepart) {
-                cbDepartment.setSelectedIndex(i);
-                break;
-            } else {
-                i++;
+        if (idDepart != 0) {
+            for (int i = 0; i < cbDepartment.getItemCount();) {
+                Department depart = ((Department) cbDepartment.getItemAt(i));
+                if (depart != null && depart.getId() == idDepart) {
+                    cbDepartment.setSelectedIndex(i);
+                    break;
+                } else {
+                    i++;
+                }
             }
         }
         //set combobox employee
         long idEmp = provider.getDataView().getIdEmployee();
-        for (int i = 0; i < cbEmployee.getItemCount();) {
-            Employee emp = ((Employee) cbEmployee.getItemAt(i));
-            if (emp != null && emp.getId() == idEmp) {
-                cbEmployee.setSelectedIndex(i);
-                break;
-            } else {
-                i++;
+        if (idEmp != 0) {
+            for (int i = 0; i < cbEmployee.getItemCount();) {
+                Employee emp = ((Employee) cbEmployee.getItemAt(i));
+                if (emp != null && emp.getId() == idEmp) {
+                    cbEmployee.setSelectedIndex(i);
+                    break;
+                } else {
+                    i++;
+                }
             }
         }
         //set combobox project

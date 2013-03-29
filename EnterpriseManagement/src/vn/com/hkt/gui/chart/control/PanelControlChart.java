@@ -95,16 +95,14 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
         dcEndDate = new com.toedter.calendar.JDateChooser();
         jLabel13 = new javax.swing.JLabel();
         dcStartDate = new com.toedter.calendar.JDateChooser();
+        lbError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
         setPreferredSize(new java.awt.Dimension(980, 480));
-        setLayout(null);
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
-        add(jScrollPane1);
-        jScrollPane1.setBounds(14, 87, 954, 385);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -133,9 +131,6 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(cbEntEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        add(jPanel1);
-        jPanel1.setBounds(113, 13, 865, 23);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -194,9 +189,6 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
             .addComponent(cbEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        add(jPanel4);
-        jPanel4.setBounds(113, 13, 865, 21);
-
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         cbDepEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -238,9 +230,6 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(cbDepDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        add(jPanel2);
-        jPanel2.setBounds(113, 13, 865, 21);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -299,29 +288,18 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
             .addComponent(cbProject, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        add(jPanel3);
-        jPanel3.setBounds(113, 13, 865, 21);
-
         cbChoose.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enterprise", "Department", "Employee", "Project" }));
         cbChoose.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbChooseItemStateChanged(evt);
             }
         });
-        add(cbChoose);
-        cbChoose.setBounds(12, 13, 99, 21);
 
         jLabel10.setText("   Follow :");
-        add(jLabel10);
-        jLabel10.setBounds(113, 55, 100, 23);
 
         cbType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Parent", "Subsidiary", "Parent & Subsidiary" }));
-        add(cbType);
-        cbType.setBounds(222, 55, 120, 23);
 
         jLabel11.setText("Date time :");
-        add(jLabel11);
-        jLabel11.setBounds(360, 55, 100, 23);
 
         cbDateTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Day", "Month", "Year" }));
         cbDateTime.addItemListener(new java.awt.event.ItemListener() {
@@ -329,8 +307,6 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
                 cbDateTimeItemStateChanged(evt);
             }
         });
-        add(cbDateTime);
-        cbDateTime.setBounds(460, 55, 120, 23);
 
         panelDay.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -360,8 +336,60 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
             .addComponent(dcEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        add(panelDay);
-        panelDay.setBounds(582, 55, 383, 23);
+        lbError.setForeground(new java.awt.Color(255, 51, 0));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(cbChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(cbType, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(panelDay, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbType, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelDay, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 private void cbEntEnterpriseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEntEnterpriseItemStateChanged
@@ -374,6 +402,7 @@ private void cbChooseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST
         jPanel2.setVisible(false);
         jPanel3.setVisible(false);
         jPanel4.setVisible(false);
+        cbType.setVisible(true);
     }
     if (cbChoose.getSelectedItem() == "Department") {
         jPanel1.setVisible(false);
@@ -381,6 +410,7 @@ private void cbChooseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST
         jPanel3.setVisible(false);
         jPanel4.setVisible(false);
         loadDepEnterprise();
+        cbType.setVisible(true);
     }
     if (cbChoose.getSelectedItem() == "Employee") {
         jPanel1.setVisible(false);
@@ -388,6 +418,7 @@ private void cbChooseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST
         jPanel3.setVisible(false);
         jPanel4.setVisible(true);
         loadEmpEnterprise();
+        cbType.setVisible(false);
     }
     if (cbChoose.getSelectedItem() == "Project") {
         jPanel1.setVisible(false);
@@ -396,6 +427,7 @@ private void cbChooseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST
         jPanel4.setVisible(false);
         loadProEnterprise();
         loadProject();
+        cbType.setVisible(false);
     }
 }//GEN-LAST:event_cbChooseItemStateChanged
 
@@ -467,6 +499,7 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbError;
     private javax.swing.JPanel panelDay;
     // End of variables declaration//GEN-END:variables
 
@@ -750,14 +783,42 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
 
     @Override
     public void viewData() {
+        lbError.setText("");
+        if (getEntEnterprise() == null) {
+            lbError.setText("Choose enterprise !");
+        }
+
+
+
         //get object
-        if (cbChoose.getSelectedItem() == "Enterprise") {
+        if (cbChoose.getSelectedItem().toString().equals("Enterprise")) {
             panelShowChart.setObjectView(getEntEnterprise());
-        } else if (cbChoose.getSelectedItem() == "Department") {
+        } else if (cbChoose.getSelectedItem().toString().equals("Department")) {
+            if (cbDepEnterprise.getSelectedIndex() == 0) {
+                lbError.setText("Choose enterprise !");
+                return;
+            }
+            if (getDepartment() == null) {
+                lbError.setText("Choose enterprise !");
+            }
             panelShowChart.setObjectView(getDepartment());
-        } else if (cbChoose.getSelectedItem() == "Project") {
+        } else if (cbChoose.getSelectedItem().toString().equals("Project")) {
+            if (cbProEnterprise.getSelectedIndex() == 0) {
+                lbError.setText("Choose enterprise !");
+                return;
+            }
+            if (getProject() == null) {
+                lbError.setText("Choose enterprise !");
+            }
             panelShowChart.setObjectView(getProject());
         } else {
+            if (cbEmpEnterprise.getSelectedIndex() == 0) {
+                lbError.setText("Choose enterprise !");
+                return;
+            }
+            if (getEmployee() == null) {
+                lbError.setText("Choose enterprise !");
+            }
             panelShowChart.setObjectView(getEmployee());
         }
         //get type view
@@ -781,6 +842,14 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
         panelShowChart.setTypeDate(typeTime);
         //start date - end date
 
+        if (dcStartDate.getDate() == null) {
+            lbError.setText("Choose start date !");
+            return;
+        }
+        if (dcEndDate.getDate() == null) {
+            lbError.setText("Choose end date !");
+            return;
+        }
         panelShowChart.setStartDate(dcStartDate.getDate());
         panelShowChart.setEndDate(dcEndDate.getDate());
         if (panelShowChart != null) {
@@ -796,18 +865,32 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
         return null;
     }
 
-    private Department getDepartment() {
+    private Object getDepartment() {
         Department d = (Department) cbDepDepartment.getSelectedItem();
+        Enterprise ent = (Enterprise) cbDepEnterprise.getSelectedItem();
         if (d != null) {
             return d;
+        }
+        if (ent != null) {
+            return ent;
+        } else {
+            lbError.setText("Choose enterprise !");
         }
         return null;
     }
 
-    private Project getProject() {
+    private Object getProject() {
         Project p = (Project) cbProject.getSelectedItem();
+        Department d = (Department) cbProDepartment.getSelectedItem();
+        Enterprise ent = (Enterprise) cbProEnterprise.getSelectedItem();
         if (p != null) {
             return p;
+        }
+        if (d != null) {
+            return d;
+        }
+        if (ent != null) {
+            return ent;
         }
         return null;
     }
@@ -819,12 +902,12 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
         if (e != null) {
             return e;
         }
-//        if(d!=null){
-//            return d;
-//        }
-//        if(ent!=null){
-//            return ent;
-//        }
+        if (d != null) {
+            return d;
+        }
+        if (ent != null) {
+            return ent;
+        }
         return null;
     }
 }
