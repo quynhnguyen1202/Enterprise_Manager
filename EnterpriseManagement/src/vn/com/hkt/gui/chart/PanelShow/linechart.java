@@ -99,11 +99,11 @@ public final class linechart extends javax.swing.JPanel implements IPanelShowCha
         } else if (d != null) {
             System.out.println("------------------------------" + d.getName() + " " + startDate + "  " + typeDate + "  " + typeView);
             name = d.getName();
-            dataset = (TimeSeriesCollection) departmentChart.createDataset(typeDate, typeView, d.getId(), d.getIdEnterprise(), startDate, endDate);
+            dataset = (TimeSeriesCollection) departmentChart.createDataset(typeDate, typeView, d.getId(), startDate, endDate);
         } else if (p != null) {
             System.out.println("------------------------------" + p.getName() + " " + startDate + "  " + typeDate + "  " + typeView);
             name = p.getName();
-            dataset = (TimeSeriesCollection) projectChart.createDataset(typeDate, p.getId(), p.getIdDepartment(), p.getIdEnterprise(), startDate, endDate);
+            dataset = (TimeSeriesCollection) projectChart.createDataset(typeDate, p.getId(),  startDate, endDate);
         } else if (emp != null) {
             System.out.println("------------------------------" + emp.getName() + " " + startDate + "  " + typeDate + "  " + typeView);
             name = emp.getName();
