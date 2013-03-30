@@ -123,7 +123,8 @@ public class EnterpriseStatisticChart {
             datasetStatisticPerMonth.addSeries(s2);
             datasetStatisticPerMonth.addSeries(s3);
             dataset = datasetStatisticPerMonth;
-        } else {
+        }
+        if (check == YEAR_TYPE) {
             TimeSeries s1 = new TimeSeries("Revenues", Year.class);
             TimeSeries s2 = new TimeSeries("Spending", Year.class);
             TimeSeries s3 = new TimeSeries("Profit", Year.class);

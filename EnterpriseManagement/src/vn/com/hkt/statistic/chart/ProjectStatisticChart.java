@@ -24,7 +24,7 @@ public class ProjectStatisticChart {
     public static final int MONTH_TYPE = 2;
     public static final int YEAR_TYPE = 3;
 
-    public XYDataset createDataset(int check, long idProject, long idDepartment, long idEnterprise, Date start, Date end) {
+    public XYDataset createDataset(int check, long idProject, Date start, Date end) {
         float revenue = 0, spending = 0, profit = 0;
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.setDomainIsPointsInTime(true);
@@ -40,8 +40,8 @@ public class ProjectStatisticChart {
             TimeSeriesCollection datasetStatisticPerDay = new TimeSeriesCollection();
             while (dateStart.compareTo(dateEnd) <= 0) {
                 ProjectRevenueStatistic prs = new ProjectRevenueStatistic();
-                revenue = prs.revenueGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), dateStart.getTime());
-                spending = prs.spendingGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), dateStart.getTime());
+                revenue = prs.revenueGetByProject(idProject, dateStart.getTime(), dateStart.getTime());
+                spending = prs.spendingGetByProject(idProject, dateStart.getTime(), dateStart.getTime());
                 profit = revenue - spending;
 
                 s1.add(new Day(dateStart.getTime()), revenue);
@@ -86,8 +86,8 @@ public class ProjectStatisticChart {
                 // 
                 ProjectRevenueStatistic prs = new ProjectRevenueStatistic();
 
-                revenue = prs.revenueGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), EndOfMonth.getTime());
-                spending = prs.revenueGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), EndOfMonth.getTime());
+                revenue = prs.revenueGetByProject(idProject, dateStart.getTime(), EndOfMonth.getTime());
+                spending = prs.revenueGetByProject(idProject, dateStart.getTime(), EndOfMonth.getTime());
                 profit = revenue - spending;
 
                 s1.add(new Month(dateStart.getTime()), revenue);
@@ -120,8 +120,8 @@ public class ProjectStatisticChart {
             while (dateStart.compareTo(dateEnd) <= 0) {
                 ProjectRevenueStatistic prs = new ProjectRevenueStatistic();
 
-                revenue = prs.revenueGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), endOfYear.getTime());
-                spending = prs.revenueGetByProject(idProject, idDepartment, idEnterprise, dateStart.getTime(), endOfYear.getTime());
+                revenue = prs.revenueGetByProject(idProject, dateStart.getTime(), endOfYear.getTime());
+                spending = prs.revenueGetByProject(idProject, dateStart.getTime(), endOfYear.getTime());
                 profit = revenue - spending;
 
                 s1.add(new Year(dateStart.getTime()), revenue);
