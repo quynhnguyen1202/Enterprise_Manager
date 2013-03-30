@@ -10,6 +10,7 @@
  */
 package vn.com.hkt.gui.chart.control;
 
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -145,7 +146,6 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
 
         jLabel7.setText("Department :");
 
-        cbEmpDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbEmpDepartment.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbEmpDepartmentItemStateChanged(evt);
@@ -154,7 +154,6 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
 
         jLabel8.setText("Employee :");
 
-        cbEmployee.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbEmployee.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbEmployeeItemStateChanged(evt);
@@ -198,7 +197,6 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
             }
         });
 
-        cbDepDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbDepDepartment.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbDepDepartmentItemStateChanged(evt);
@@ -244,7 +242,6 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
 
         jLabel4.setText("Department :");
 
-        cbProDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbProDepartment.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbProDepartmentItemStateChanged(evt);
@@ -253,7 +250,6 @@ public final class PanelControlChart extends javax.swing.JPanel implements IPane
 
         jLabel5.setText("Project :");
 
-        cbProject.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbProject.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbProjectItemStateChanged(evt);
@@ -784,76 +780,44 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
     @Override
     public void viewData() {
         lbError.setText("");
-        if (getEntEnterprise() == null) {
-            lbError.setText("Choose enterprise !");
-        }
+        if (checkChart()) {
+            //get object
+            if (cbChoose.getSelectedItem().toString().equals("Enterprise")) {
+                panelShowChart.setObjectView(getEntEnterprise());
+            } else if (cbChoose.getSelectedItem().toString().equals("Department")) {
+                panelShowChart.setObjectView(getDepartment());
+            } else if (cbChoose.getSelectedItem().toString().equals("Project")) {
+                panelShowChart.setObjectView(getProject());
+            } else {
+                panelShowChart.setObjectView(getEmployee());
+            }
+            //get type view
+            if (cbType.getSelectedItem().toString().equals("Parent")) {
+                panelShowChart.setTypeView(1);
+            } else if (cbType.getSelectedItem().toString().equals("Subsidiary")) {
+                panelShowChart.setTypeView(3);
+            } else {
+                panelShowChart.setTypeView(2);
+            }
+            //get type time
+            int typeTime = 0;
+            if (cbDateTime.getSelectedItem().toString().equals("Day")) {
+                typeTime = 1;
+            } else if (cbDateTime.getSelectedItem().toString().equals("Month")) {
+                typeTime = 2;
+            } else if (cbDateTime.getSelectedItem().toString().equals("Year")) {
+                typeTime = 3;
+            }
+            panelShowChart.setTypeDate(typeTime);
+            //start date - end date
 
-
-
-        //get object
-        if (cbChoose.getSelectedItem().toString().equals("Enterprise")) {
-            panelShowChart.setObjectView(getEntEnterprise());
-        } else if (cbChoose.getSelectedItem().toString().equals("Department")) {
-            if (cbDepEnterprise.getSelectedIndex() == 0) {
-                lbError.setText("Choose enterprise !");
-                return;
+            panelShowChart.setStartDate(dcStartDate.getDate());
+            panelShowChart.setEndDate(dcEndDate.getDate());
+            if (panelShowChart != null) {
+                panelShowChart.viewData();
             }
-            if (getDepartment() == null) {
-                lbError.setText("Choose enterprise !");
-            }
-            panelShowChart.setObjectView(getDepartment());
-        } else if (cbChoose.getSelectedItem().toString().equals("Project")) {
-            if (cbProEnterprise.getSelectedIndex() == 0) {
-                lbError.setText("Choose enterprise !");
-                return;
-            }
-            if (getProject() == null) {
-                lbError.setText("Choose enterprise !");
-            }
-            panelShowChart.setObjectView(getProject());
-        } else {
-            if (cbEmpEnterprise.getSelectedIndex() == 0) {
-                lbError.setText("Choose enterprise !");
-                return;
-            }
-            if (getEmployee() == null) {
-                lbError.setText("Choose enterprise !");
-            }
-            panelShowChart.setObjectView(getEmployee());
-        }
-        //get type view
-        if (cbType.getSelectedItem().toString().equals("Parent")) {
-            panelShowChart.setTypeView(1);
-        } else if (cbType.getSelectedItem().toString().equals("Subsidiary")) {
-            panelShowChart.setTypeView(3);
-        } else {
-            panelShowChart.setTypeView(2);
-        }
-
-        //get type time
-        int typeTime = 0;
-        if (cbDateTime.getSelectedItem().toString().equals("Day")) {
-            typeTime = 1;
-        } else if (cbDateTime.getSelectedItem().toString().equals("Month")) {
-            typeTime = 2;
-        } else if (cbDateTime.getSelectedItem().toString().equals("Year")) {
-            typeTime = 3;
-        }
-        panelShowChart.setTypeDate(typeTime);
-        //start date - end date
-
-        if (dcStartDate.getDate() == null) {
-            lbError.setText("Choose start date !");
+        }else{
             return;
-        }
-        if (dcEndDate.getDate() == null) {
-            lbError.setText("Choose end date !");
-            return;
-        }
-        panelShowChart.setStartDate(dcStartDate.getDate());
-        panelShowChart.setEndDate(dcEndDate.getDate());
-        if (panelShowChart != null) {
-            panelShowChart.viewData();
         }
     }
 
@@ -884,9 +848,11 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
         Department d = (Department) cbProDepartment.getSelectedItem();
         Enterprise ent = (Enterprise) cbProEnterprise.getSelectedItem();
         if (p != null) {
+            System.out.println("aaaaaaaaaaa : "+p);
             return p;
         }
         if (d != null) {
+            System.out.println("aaaaaaaaaaab : "+d);
             return d;
         }
         if (ent != null) {
@@ -909,5 +875,25 @@ private void cbDateTimeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
             return ent;
         }
         return null;
+    }
+
+    private boolean checkChart() {
+        try {
+            Date date1 = dcStartDate.getDate();
+            Date date2 = dcEndDate.getDate();
+        } catch (Exception e) {
+            lbError.setText("Date format !");
+            return false;
+        }
+        if (dcStartDate.getDate() == null) {
+            lbError.setText("Choose start date !");
+            return false;
+        }
+        if (dcEndDate.getDate() == null) {
+            lbError.setText("Choose end date !");
+            return false;
+        }
+
+        return true;
     }
 }

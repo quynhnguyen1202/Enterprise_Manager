@@ -651,9 +651,9 @@ private void cbProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
         provider.getDataView().setMoneyAfterTax(Float.parseFloat(txtMoneyAfterTax.getText()));
         provider.getDataView().setMoneyAfterDiscount(Float.parseFloat(txtMoneyAfterDiscount.getText()));
         provider.getDataView().setDateExecute(dcDateExecute.getDate());
-        boolean classification = true;
+        boolean classification = false;
         if (rbSale.isSelected()) {
-            classification = false;
+            classification = true;
         }
         provider.getDataView().setClassification(classification);
         return true;
